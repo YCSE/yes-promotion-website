@@ -104,6 +104,7 @@ yes-promotion-website/
 ├── next.config.js        # Next.js configuration
 ├── tailwind.config.js    # Tailwind CSS configuration
 └── package.json          # Dependencies and scripts
+└── DESIGN_SYSTEM_RULES.md # Design detailed description
 ```
 
 ## Development Workflow
@@ -112,6 +113,7 @@ yes-promotion-website/
    - Get Figma design using `get_code` or `get_image` tools
    - Convert to React components with TypeScript
    - Apply Tailwind CSS for styling
+   - @DESIGN_SYSTEM_RULES.md includes the design base rule.
 
 2. **Static Site Generation**
    - Use `getStaticProps` for data fetching at build time

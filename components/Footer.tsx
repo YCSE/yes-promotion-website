@@ -1,21 +1,33 @@
+'use client'
+
 import { getAssetPath } from '@/lib/utils';
 
 const imgApple = getAssetPath('70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg');
 const imgGoogle = getAssetPath('e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg');
 
 const Footer = () => {
+  const scrollToFooter = () => {
+    const footerElement = document.getElementById('footer-section');
+    if (footerElement) {
+      footerElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <div className="fixed bottom-0 left-0 right-0 bg-[#4b52ae] text-white py-6 z-50">
         <div className="max-w-[1280px] mx-auto px-6 text-center">
-          <button className="text-[18px] font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-3 mx-auto">
+          <button 
+            onClick={scrollToFooter}
+            className="text-[18px] font-bold hover:opacity-90 transition-opacity flex items-center justify-center gap-3 mx-auto cursor-pointer"
+          >
             무료 레벨테스트 신청하기
             <span className="bg-white/20 px-3 py-1 rounded-full text-sm">GO</span>
           </button>
         </div>
       </div>
       
-      <footer className="bg-black py-[120px] pb-[190px]">
+      <footer id="footer-section" className="bg-black py-[120px] pb-[190px]">
         <div className="max-w-[1280px] mx-auto px-6 flex justify-center items-start gap-[60px]">
           <div className="flex flex-col gap-[30px]">
             <h3 className="text-[30px] font-bold text-white leading-[40px] tracking-[-0.9px]">
