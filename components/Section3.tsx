@@ -1,6 +1,12 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
+import TiaModal from './TiaModal'
 
 const Section3 = () => {
+  const [isTiaModalOpen, setIsTiaModalOpen] = useState(false)
+  
   const features = [
     {
       icon: '/images/section3/A1.png',
@@ -126,11 +132,20 @@ const Section3 = () => {
             ))}
           </div>
           
-          <button className="w-[350px] h-[100px] rounded-[100px] border-2 border-white text-white text-[25px] font-bold tracking-[-0.75px] hover:bg-white hover:text-[#1A1F3A] transition-colors">
+          <button 
+            onClick={() => setIsTiaModalOpen(true)}
+            className="w-[350px] h-[100px] rounded-[100px] border-2 border-white text-white text-[25px] font-bold tracking-[-0.75px] hover:bg-white hover:text-[#1A1F3A] transition-colors"
+          >
             지금 TIA 만나보기
           </button>
         </div>
       </div>
+      
+      {/* TIA Modal */}
+      <TiaModal 
+        isOpen={isTiaModalOpen} 
+        onClose={() => setIsTiaModalOpen(false)} 
+      />
     </section>
   )
 }
