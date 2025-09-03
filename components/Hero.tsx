@@ -42,7 +42,7 @@ const Hero = () => {
             말하게 되는 영어
           </h1>
           <p className="text-[70px] font-bold leading-[85px] tracking-[-2.1px] text-black">
-            진짜 시작은 <span className="font-extrabold text-[#4b52ae]">YES</span>
+            진짜 시작은 <span className="font-extrabold text-yes-blue">YES</span>
           </p>
         </div>
         

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,6 +9,7 @@
   font-family: "Asta Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  font-weight: 300;
 }
 
 @layer base {
@@ -21,5 +22,6 @@
     font-family: "Asta Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+    font-weight: 300;
   }
 }

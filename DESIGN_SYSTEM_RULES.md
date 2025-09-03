@@ -10,23 +10,35 @@ This document provides comprehensive guidelines for integrating Figma designs us
 **Location:** `/tailwind.config.js`
 ```javascript
 colors: {
-  'yes-blue': '#0066FF',
-  'yes-navy': '#1A1F3A',
-  'yes-gray': '#F8F9FA',
+  'yes-blue': '#4B52AE',   // Primary brand color (YES brand purple-blue)
+  'yes-navy': '#1A1F3A',   // Dark text/backgrounds
+  'yes-gray': '#F8F9FA',   // Light backgrounds
 }
 ```
 
+**Additional Colors Used:**
+- Black: `#000000` (primary text)
+- White: `#FFFFFF` (backgrounds, inverted text)
+- Grays: `text-gray-700`, `bg-gray-100` (hover states)
+- Shadows: `shadow-[0_8px_24px_rgba(0,0,0,0.08)]` (cards)
+
 **Usage Pattern:**
-- Primary brand color: `yes-blue` (#0066FF)
+- Primary brand color: `yes-blue` (#4B52AE) - Used for YES branding
 - Dark backgrounds: `yes-navy` (#1A1F3A)
 - Light backgrounds: `yes-gray` (#F8F9FA)
 - Text colors: `text-black`, `text-white`, `text-white/90` (with opacity)
 
 #### Typography
 **Font Families:**
-- Primary (Korean): `'Astra Sans', sans-serif` - weights: 400, 500, 700, 800
-- Accent (English): `'Astra Sans', sans-serif` - weight: 800
-- Custom: `'Pretendard', sans-serif` (configured but not yet used)
+- Primary: `'Asta Sans', sans-serif` - All text content
+- Font loading: Via Google Fonts in `globals.css`
+- Body text weight: 300 (Light)
+- Configuration: Set as default body font with light weight
+
+**Font Import:**
+```css
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+```
 
 **Font Sizes & Line Heights:**
 ```css
@@ -34,10 +46,17 @@ colors: {
 text-[70px] leading-[85px] tracking-[-2.1px]  /* Main heading */
 text-[50px] leading-[60px] tracking-[-1.5px]  /* Section heading */
 text-[30px] leading-[40px] tracking-[-0.9px]  /* Subheading */
-text-[20px] leading-[32px]                     /* Body large */
-text-[18px] leading-[32px] tracking-[-0.54px]  /* Body medium */
+text-[20px] leading-[32px]                     /* Body large/Buttons */
+text-[18px] leading-[28px] tracking-[-0.54px]  /* Body medium/Cards */
 text-[16px]                                    /* Body small */
 ```
+
+**Font Weights:**
+- `font-light` (300): Default body text weight
+- `font-normal` (400): Regular text
+- `font-medium` (500): Body text in cards
+- `font-bold` (700): Bold text
+- `font-extrabold` (800): Emphasis (especially "YES" branding)
 
 #### Spacing
 **Standard Padding/Margins:**
@@ -57,17 +76,19 @@ text-[16px]                                    /* Body small */
 **Component Structure:**
 ```typescript
 // Standard component pattern
-'use client'  // For client-side components
+'use client'  // Only for components with interactivity
 
-import { ComponentDependencies } from 'react'
 import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'  // For production paths
 
 const ComponentName = () => {
-  // Logic and state
+  // Hooks for client-side logic (useRef, useEffect, useState)
   
   return (
-    <section className="tailwind-classes">
-      {/* Component content */}
+    <section className="relative w-full py-[200px] bg-white">
+      <div className="max-w-[1280px] mx-auto px-6">
+        {/* Component content */}
+      </div>
     </section>
   )
 }
@@ -109,29 +130,33 @@ export default ComponentName
   - `/images/section2/`
   - `/images/section3/`
   - `/images/section3-2/`
+  - Main assets: `/images/thumbnail_PC.png`, `/images/mobile-view.png`
 
 **Image Optimization:**
 - Using Next.js `Image` component for automatic optimization
 - Priority loading for above-fold images: `priority` prop
 - Responsive sizing with `width`, `height`, and `className`
+- `unoptimized: true` in next.config.js for static export
 
-**Asset Types:**
-- Images: `.png`, `.jpg`, `.svg`
-- Videos: `.mp4` (with autoPlay, loop, muted attributes)
-
-**Usage Pattern:**
+**Asset Path Helper:**
 ```tsx
-import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
+// Handles production/dev path differences
 <Image 
-  src="/images/section3/icon.png"  // Public path
+  src={getAssetPath('images/section3/icon.png')}
   alt="Description"
   width={110}
   height={110}
   className="w-full h-full object-contain"
-  priority  // For critical images
+  priority
 />
 ```
+
+**Asset Types:**
+- Images: `.png`, `.jpg`, `.svg`
+- Videos: `.mp4` (with autoPlay, loop, muted attributes)
+- Icons: Favicons at `/fav.png`
 
 ### 5. Icon System
 
@@ -167,16 +192,32 @@ import Image from 'next/image'
 **Global Styles:**
 ```css
 /* app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { 
-    @apply text-black bg-white;
-    font-family: 'Noto Sans KR', sans-serif;
+  html { 
+    scroll-behavior: smooth;
   }
+  
+  body {
+    @apply text-black bg-white;
+    font-family: "Asta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 300; /* Light weight for body text */
+  }
+}
+
+/* Custom font class */
+.asta-sans {
+  font-family: "Asta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 300;
 }
 ```
 
@@ -186,9 +227,25 @@ import Image from 'next/image'
 - Flexbox layouts: `flex flex-col`, `flex items-center`
 
 **Animation Patterns:**
-- CSS animations via `requestAnimationFrame` for smooth performance
-- Hover states: `hover:bg-gray-100 transition-colors`
+- Smooth scroll animations: `requestAnimationFrame` for infinite scrollers
+- Hover states: `hover:scale-105 transition-transform`, `hover:bg-gray-100 transition-colors`
 - Will-change optimization: `style={{ willChange: 'transform' }}`
+- Transitions: `transition-transform`, `transition-colors`
+
+**Example Animation (Infinite Scroll):**
+```tsx
+useEffect(() => {
+  const animate = () => {
+    position -= speed;
+    if (position <= -imageWidth) {
+      position = 0;
+    }
+    element.style.transform = `translateX(${position}px)`;
+    requestAnimationFrame(animate);
+  };
+  requestAnimationFrame(animate);
+}, [])
+```
 
 ### 7. Project Structure
 
@@ -200,20 +257,29 @@ yes-promotion-website/
 │   └── globals.css        # Global styles & Tailwind
 ├── components/            # Reusable React components
 │   ├── Hero.tsx          # Hero section with animation
-│   ├── Section2.tsx      # Feature sections
-│   ├── Section3.tsx      # Multi-part sections
+│   ├── Section2.tsx      # Speech bubble questions
+│   ├── Section3.tsx      # Multi-part feature sections
 │   ├── Section4.tsx      # Content sections
-│   └── Footer.tsx        # Site footer
+│   ├── Section5.tsx      # Additional content
+│   ├── Footer.tsx        # Site footer
+│   └── TiaModal.tsx      # Modal component
+├── lib/                   # Utility functions
+│   ├── utils.ts          # getAssetPath helper
+│   └── config.ts         # Configuration helpers
 ├── public/
+│   ├── fav.png           # Favicon
 │   └── images/           # Static assets
-│       ├── section2/     # Section-specific images
-│       ├── section3/     # Section-specific images
+│       ├── section2/     # D1.png icons
+│       ├── section3/     # Feature images
 │       └── section3-2/   # Subsection assets
-├── scripts/              # Build/utility scripts
-├── .playwright-mcp/      # Playwright testing
+├── scripts/              # Download scripts
+│   └── download-images.js
+├── out/                  # Static export output
+├── .mcp.json             # MCP configuration
+├── CLAUDE.md             # AI assistant instructions
 ├── tailwind.config.js    # Tailwind configuration
 ├── tsconfig.json         # TypeScript config
-├── next.config.js        # Next.js config
+├── next.config.js        # Next.js config (static export)
 └── package.json          # Dependencies
 ```
 
@@ -234,15 +300,18 @@ yes-promotion-website/
    mcp__figma-dev-mode-mcp-server__get_code({
      nodeId: "extracted-from-url",
      clientFrameworks: "react",
-     clientLanguages: "typescript,javascript,html,css"
+     clientLanguages: "typescript,javascript,html,css",
+     dirForAssetWrites: "/Users/roy/Documents/Development/yes-promotion-website/public/images"
    })
    ```
 
 3. **Adapt Generated Code:**
    - Replace inline styles with Tailwind classes
-   - Use Next.js Image component for images
-   - Apply consistent spacing tokens
+   - Use Next.js Image component with `getAssetPath` helper
+   - Apply consistent spacing tokens (py-[200px], max-w-[1280px])
    - Ensure TypeScript typing
+   - Add 'use client' only if needed for interactivity
+   - Use semantic HTML (section, article, etc.)
 
 ### Component Creation Pattern
 
@@ -250,18 +319,27 @@ yes-promotion-website/
 'use client'  // Only if client-side features needed
 
 import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
 interface ComponentProps {
   // Define props with TypeScript
 }
 
 const NewComponent = ({ props }: ComponentProps) => {
-  // Component-specific logic
+  // Hooks only if client component
   
   return (
-    <section className="relative w-full py-[200px]">
+    <section className="relative w-full py-[200px] bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
-        {/* Content following existing patterns */}
+        {/* Title pattern */}
+        <h2 className="text-[50px] font-extrabold leading-[60px] text-center text-black tracking-[-1.5px] mb-[100px]">
+          Section Title
+        </h2>
+        
+        {/* Content with consistent spacing */}
+        <div className="flex flex-col gap-20">
+          {/* Component content */}
+        </div>
       </div>
     </section>
   )
@@ -276,6 +354,8 @@ export default NewComponent
    - Follow existing naming conventions
    - Use established spacing/sizing tokens
    - Maintain TypeScript strict mode compliance
+   - Always use `yes-blue` (#4B52AE) for brand elements
+   - Apply light font weight (300) for body text
 
 2. **Performance:**
    - Use Next.js Image for all images
@@ -349,5 +429,79 @@ export default NewComponent
   Button Text
 </button>
 ```
+
+### Card/Speech Bubble Pattern
+```tsx
+<div className="absolute bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
+     style={{
+       top: `${position.top}px`,
+       left: `${position.left}px`,
+       width: '340px',
+       height: '150px',
+     }}>
+  <p className="text-[18px] leading-[28px] text-gray-700 font-medium whitespace-pre-line text-center flex items-center justify-center h-full tracking-[-0.54px]">
+    {content}
+  </p>
+</div>
+```
+
+### Metadata Configuration
+```tsx
+// app/layout.tsx
+export const metadata: Metadata = {
+  metadataBase: new URL('https://ycse.github.io'),
+  title: 'YES - 말하게 되는 영어, 진짜 시작',
+  description: '실전에서 통하는 영어 회화, YES와 함께 시작하세요',
+  icons: {
+    icon: '/yes-promotion-website/fav.png',
+    apple: '/yes-promotion-website/fav.png',
+  },
+  openGraph: {
+    title: 'YES - 말하게 되는 영어, 진짜 시작',
+    description: '실전에서 통하는 영어 회화, YES와 함께 시작하세요',
+    images: ['/yes-promotion-website/images/thumbnail_PC.png'],
+  },
+}
+```
+
+## Key Implementation Notes
+
+### Brand Guidelines
+- **Primary Brand Color:** `#4B52AE` (yes-blue) - MUST be used for all YES branding
+- **Typography:** Asta Sans font family
+- **Body Text Weight:** Always use font-weight 300 (light) for body text
+- **Logo/Brand Text:** Use font-extrabold (800) for "YES" text
+
+### Static Site Generation
+- Project configured for static export: `output: 'export'` in next.config.js
+- Production deployment to GitHub Pages with basePath
+- Images unoptimized for static compatibility
+- Use `getAssetPath` helper for all asset references
+
+### Client vs Server Components
+- Default to server components (no 'use client')
+- Add 'use client' only for:
+  - Interactive elements (onClick, onChange)
+  - Browser APIs (window, document)
+  - Hooks requiring client-side (useEffect, useState)
+  - Animations using requestAnimationFrame
+
+### TypeScript Strictness
+- Strict mode enabled
+- All components must have proper typing
+- Use interface definitions for props
+- Path alias `@/*` configured for clean imports
+
+### Testing with Playwright MCP
+- Use `browser_snapshot` for structure analysis
+- Test responsive layouts with `browser_resize`
+- Verify animations and interactions
+- Check console for errors with `browser_console_messages`
+
+### Production Considerations
+- GitHub Pages deployment with `/yes-promotion-website` base path
+- All assets must use relative paths via helpers
+- Metadata includes production URLs
+- Trailing slashes enabled for proper routing
 
 This document should be continuously updated as the design system evolves and new patterns emerge.

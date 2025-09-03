@@ -42,7 +42,7 @@ const Section2 = () => {
                 height: '150px',
               }}
             >
-              <p className="text-[18px] leading-[28px] text-gray-700 font-medium whitespace-pre-line text-center flex items-center justify-center h-full tracking-[-0.54px]">
+              <p className="text-[18px] leading-[28px] text-gray-700 font-light whitespace-pre-line text-center flex items-center justify-center h-full tracking-[-0.54px]">
                 {bubble.text}
               </p>
             </div>

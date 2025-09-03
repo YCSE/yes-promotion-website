@@ -22,7 +22,7 @@ const Footer = () => {
               실전 영어 감각,<br/>
               YES에서 키워보세요!
             </h3>
-            <p className="text-[13px] text-[#999999] uppercase leading-[40px]">
+            <p className="text-[13px] font-light text-[#999999] uppercase leading-[40px]">
               © 2025 YCSE. All rights reserved.
             </p>
           </div>
@@ -35,7 +35,7 @@ const Footer = () => {
               className="relative border-2 border-white text-white px-8 py-[25px] rounded-[100px] flex items-center gap-2.5 hover:bg-white hover:text-black transition-colors w-[260px] justify-center"
             >
               <img src={imgApple} alt="Apple" className="w-[25px] h-[30px]" />
-              <span className="text-[22px] font-medium">App Store</span>
+              <span className="text-[22px] font-light">App Store</span>
             </a>
             
             <a 
@@ -45,7 +45,7 @@ const Footer = () => {
               className="relative border-2 border-white text-white px-8 py-[25px] rounded-[100px] flex items-center gap-2.5 hover:bg-white hover:text-black transition-colors w-[260px] justify-center"
             >
               <img src={imgGoogle} alt="Google" className="w-[27px] h-[30px]" />
-              <span className="text-[22px] font-medium">Google Play</span>
+              <span className="text-[22px] font-light">Google Play</span>
             </a>
           </div>
         </div>

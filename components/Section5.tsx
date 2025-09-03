@@ -83,7 +83,7 @@ const Section5 = () => {
                   <h3 className="text-[22px] font-bold mb-6 text-black tracking-[-0.66px]">
                     {feature.title}
                   </h3>
-                  <p className="text-[16px] text-gray-600 whitespace-pre-line leading-[24px] tracking-[-0.48px]">
+                  <p className="text-[16px] font-light text-gray-600 whitespace-pre-line leading-[24px] tracking-[-0.48px]">
                     {feature.description}
                   </p>
                 </div>
@@ -103,7 +103,7 @@ const Section5 = () => {
               {index > 0 && <div className="w-full h-[1px] bg-gray-200 my-[50px]" />}
               
               <div className="py-[2px]">
-                <h4 className={`text-[18px] font-medium text-center tracking-[-0.54px] transition-colors ${
+                <h4 className={`text-[18px] font-light text-center tracking-[-0.54px] transition-colors ${
                   openFaq === index ? 'text-[#4B52AE]' : 'text-black'
                 }`}>
                   {faq.question}
@@ -112,7 +112,7 @@ const Section5 = () => {
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openFaq === index ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                  <p className="text-[16px] text-gray-600 mt-8 text-center max-w-[800px] mx-auto leading-[26px] tracking-[-0.48px]">
+                  <p className="text-[16px] font-light text-gray-600 mt-8 text-center max-w-[800px] mx-auto leading-[26px] tracking-[-0.48px]">
                     {faq.answer}
                   </p>
                 </div>
