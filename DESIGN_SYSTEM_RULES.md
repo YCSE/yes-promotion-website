@@ -24,8 +24,8 @@ colors: {
 
 #### Typography
 **Font Families:**
-- Primary (Korean): `'Noto Sans KR', sans-serif` - weights: 400, 500, 700, 800
-- Accent (English): `'Figtree', sans-serif` - weight: 800
+- Primary (Korean): `'Astra Sans', sans-serif` - weights: 400, 500, 700, 800
+- Accent (English): `'Astra Sans', sans-serif` - weight: 800
 - Custom: `'Pretendard', sans-serif` (configured but not yet used)
 
 **Font Sizes & Line Heights:**

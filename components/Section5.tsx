@@ -2,23 +2,24 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
 const Section5 = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0) // Default first item open
 
   const features = [
     {
-      icon: 'images/frame4/C1.png',
+      icon: getAssetPath('images/frame4/C1.png'),
       title: '현재 영어 레벨 정확 진단',
       description: '문법, 어휘 등으로 영역을 세분화하여\n구체적으로 진단합니다'
     },
     {
-      icon: 'images/frame4/C2.png',
+      icon: getAssetPath('images/frame4/C2.png'),
       title: '맞춤형 학습 방향 제시',
       description: '나에게 딱 맞는 학습 전략과 수업을 추천해\n막막한 영어 공부의 길을 열어줍니다'
     },
     {
-      icon: 'images/frame4/C3.png',
+      icon: getAssetPath('images/frame4/C3.png'),
       title: 'AI 기반 회화 습관 분석',
       description: '대화한 내용 분석해서\n나도 몰랐던 습관을 발견할 수 있어요'
     }
@@ -57,7 +58,7 @@ const Section5 = () => {
           {/* Video Call UI - img 3.png */}
           <div className="relative w-[300px] h-[607px]">
             <Image 
-              src="images/frame4/img 3.png"
+              src={getAssetPath('images/frame4/img 3.png')}
               alt="Video Call Interface"
               width={300}
               height={607}

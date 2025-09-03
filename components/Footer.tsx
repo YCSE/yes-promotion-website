@@ -1,5 +1,7 @@
-const imgApple = "70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg";
-const imgGoogle = "e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg";
+import { getAssetPath } from '@/lib/utils';
+
+const imgApple = getAssetPath('70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg');
+const imgGoogle = getAssetPath('e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg');
 
 const Footer = () => {
   return (

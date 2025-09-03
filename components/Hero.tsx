@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
 const Hero = () => {
   const sliderRef = useRef<HTMLDivElement>(null)
@@ -54,7 +55,7 @@ const Hero = () => {
             {/* First copy of the image */}
             <div className="relative h-[440px] flex-shrink-0">
               <Image 
-                src="images/thumbnail_PC.png" 
+                src={getAssetPath('images/thumbnail_PC.png')} 
                 alt="Students and Teachers" 
                 width={5800}
                 height={440}
@@ -65,7 +66,7 @@ const Hero = () => {
             {/* Second copy for seamless loop */}
             <div className="relative h-[440px] flex-shrink-0">
               <Image 
-                src="images/thumbnail_PC.png" 
+                src={getAssetPath('images/thumbnail_PC.png')} 
                 alt="Students and Teachers" 
                 width={5800}
                 height={440}

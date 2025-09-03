@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
 const Section4 = () => {
   return (
@@ -6,7 +7,7 @@ const Section4 = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="images/section4/section4.png"
+          src={getAssetPath('images/section4/section4.png')}
           alt="Woman using laptop with TIA"
           fill
           className="object-cover"
