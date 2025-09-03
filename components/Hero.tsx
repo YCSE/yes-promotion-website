@@ -54,7 +54,7 @@ const Hero = () => {
             {/* First copy of the image */}
             <div className="relative h-[440px] flex-shrink-0">
               <Image 
-                src="/images/thumbnail_PC.png" 
+                src="images/thumbnail_PC.png" 
                 alt="Students and Teachers" 
                 width={5800}
                 height={440}
@@ -65,7 +65,7 @@ const Hero = () => {
             {/* Second copy for seamless loop */}
             <div className="relative h-[440px] flex-shrink-0">
               <Image 
-                src="/images/thumbnail_PC.png" 
+                src="images/thumbnail_PC.png" 
                 alt="Students and Teachers" 
                 width={5800}
                 height={440}

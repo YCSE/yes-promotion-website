@@ -6,7 +6,7 @@ const Section4 = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/section4/section4.png"
+          src="images/section4/section4.png"
           alt="Woman using laptop with TIA"
           fill
           className="object-cover"

@@ -9,25 +9,25 @@ const Section3 = () => {
   
   const features = [
     {
-      icon: '/images/section3/A1.png',
+      icon: 'images/section3/A1.png',
       title: '검증된 원어민급 강사',
       subtitle: '믿을 수 있는 진짜 원어민급 선생님만',
       description: '매칭될 선생님에 대한 걱정은 이제 그만.\nYES는 선생님의 가치관과 티칭 역량까지 꼼꼼히 검증합니다.'
     },
     {
-      icon: '/images/section3/A2.png',
+      icon: 'images/section3/A2.png',
       title: '개별 맞춤 커리큘럼',
       subtitle: '나에게 딱 맞는 영어 로드맵',
       description: '모두에게 똑같은 수업은 없습니다.\n내 실력에 맞춘 커리큘럼으로 빠르게 성장할 수 있습니다.'
     },
     {
-      icon: '/images/section3/A3.png',
+      icon: 'images/section3/A3.png',
       title: '세계가 인정한 학습법',
       subtitle: '과학적으로 검증된 언어 습득 이론',
       description: 'GPA(성장 참여 접근법)와 OPOL(1인 1언어) 원칙을 적용하여\n체계적이고 효과적인 실력 향상을 보장합니다.'
     },
     {
-      icon: '/images/section3/A5.png',
+      icon: 'images/section3/A5.png',
       title: '효율적인 시간 활용',
       subtitle: '틈새 시간만 활용해도 충분한 성과를',
       description: '잠깐의 투자로도 충분한 학습 효과를 누릴 수 있어요.\n효율적인 수업으로 시간을 최대한 활용할 수 있도록 도와드립니다.'
@@ -36,17 +36,17 @@ const Section3 = () => {
 
   const tiaFeatures = [
     {
-      icon: '/images/section3-2/list2-1.png',
+      icon: 'images/section3-2/list2-1.png',
       title: '누적 피드백 기반 지도',
       description: '누적된 피드백을 바탕으로\n개인별 맞춤 지도를 합니다'
     },
     {
-      icon: '/images/section3-2/list2-2.png',
+      icon: 'images/section3-2/list2-2.png',
       title: '필요할 땐 한국어로 소통',
       description: '표현하기 어려운 내용도\n한국어로 쉽게 상담할 수 있습니다'
     },
     {
-      icon: '/images/section3-2/list2-3.png',
+      icon: 'images/section3-2/list2-3.png',
       title: '누구나 언제든 이용 가능',
       description: '수강 여부와 관계없이\n100% 무료로 이용 가능합니다'
     }
@@ -94,7 +94,7 @@ const Section3 = () => {
           <div className="w-[360px] h-[632px] bg-white rounded-[15px] overflow-hidden flex items-center justify-center p-2">
             <video 
               className="w-full h-full object-contain rounded-[10px]"
-              src="/images/section3-2/tia.mp4"
+              src="images/section3-2/tia.mp4"
               autoPlay
               loop
               muted

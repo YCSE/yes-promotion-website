@@ -16,7 +16,7 @@ const Section2 = () => {
         <div className="flex flex-col items-center mb-[85px]">
           <div className="w-[130px] h-[130px] mb-[30px] relative flex items-center justify-center">
             <Image 
-              src="/images/section2/D1.png" 
+              src="images/section2/D1.png" 
               alt="Question icon" 
               width={130} 
               height={130}
