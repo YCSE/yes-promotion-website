@@ -1,165 +1,65 @@
-/**
- * Dynamic image prompt generator for blog posts
- * Generates contextual prompts based on the blog post topic and content
- */
+const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } = require('@google/generative-ai');
 
 /**
- * Analyzes the topic and generates appropriate scene descriptions
- * @param {string} title - The blog post title
- * @param {string} topic - The blog post topic
- * @returns {string} - A contextual scene description
+ * Uses Gemini to generate contextual image prompts based on blog content
  */
-function generateSceneContext(title, topic) {
-  // Keywords for different contexts
-  const contexts = {
-    business: {
-      keywords: ['비즈니스', '이메일', '프레젠테이션', '면접', '네트워킹', '협상', '전화', '미팅'],
-      scenes: [
-        'modern office meeting room with professionals discussing',
-        'business presentation in a conference room',
-        'professional networking event',
-        'modern coworking space with people collaborating',
-        'business video call setup in office'
-      ]
-    },
-    travel: {
-      keywords: ['여행', '공항', '호텔', '레스토랑', '관광'],
-      scenes: [
-        'airport departure lounge with travelers',
-        'hotel reception desk interaction',
-        'tourist asking for directions on city street',
-        'restaurant ordering scene',
-        'travel planning with maps and devices'
-      ]
-    },
-    daily: {
-      keywords: ['일상', '카페', '쇼핑', '소셜', '친구', '데이트'],
-      scenes: [
-        'casual cafe conversation between friends',
-        'shopping mall interaction',
-        'friends meeting at coffee shop',
-        'casual outdoor conversation in park',
-        'social gathering at restaurant'
-      ]
-    },
-    education: {
-      keywords: ['학습', '공부', '문법', '단어', '시험', '토익', '토플', '수업', '교육'],
-      scenes: [
-        'study group in modern library',
-        'language learning classroom',
-        'student studying with books and laptop',
-        'online learning setup at home',
-        'exam preparation at desk'
-      ]
-    },
-    technology: {
-      keywords: ['기술', '디지털', 'SNS', '소셜', '미디어', '온라인'],
-      scenes: [
-        'person using smartphone for social media',
-        'digital workspace with multiple screens',
-        'online video recording setup',
-        'tech startup office environment',
-        'person working on laptop at modern cafe'
-      ]
-    },
-    medical: {
-      keywords: ['의료', '병원', '건강', '진료'],
-      scenes: [
-        'patient consultation at medical office',
-        'hospital reception area',
-        'healthcare professional explaining to patient',
-        'modern medical facility waiting room',
-        'telemedicine consultation setup'
-      ]
-    },
-    family: {
-      keywords: ['가족', '부모', '어린이', '아이', '교사'],
-      scenes: [
-        'parent-teacher conference at school',
-        'family learning English together at home',
-        'children in language learning classroom',
-        'family video call on tablet',
-        'parent helping child with homework'
-      ]
+async function generateFeaturedImagePrompt(title, topic = '') {
+  try {
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error('GEMINI_API_KEY is not set');
     }
-  };
 
-  // Find matching context
-  const lowerTitle = title.toLowerCase();
-  const lowerTopic = topic ? topic.toLowerCase() : '';
-  const combined = lowerTitle + ' ' + lowerTopic;
-  
-  for (const [contextType, contextData] of Object.entries(contexts)) {
-    const hasKeyword = contextData.keywords.some(keyword => 
-      combined.includes(keyword)
-    );
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     
-    if (hasKeyword) {
-      // Return random scene from matching context
-      const scenes = contextData.scenes;
-      return scenes[Math.floor(Math.random() * scenes.length)];
-    }
-  }
-  
-  // Default scenes if no specific context matches
-  const defaultScenes = [
-    'people having conversation in modern setting',
-    'professional learning environment',
-    'casual interaction between people',
-    'modern classroom or study space',
-    'people collaborating on project'
-  ];
-  
-  return defaultScenes[Math.floor(Math.random() * defaultScenes.length)];
-}
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      safetySettings: [
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+      ],
+    });
 
-/**
- * Generates specific visual elements based on the topic
- * @param {string} title - The blog post title
- * @returns {string} - Visual elements description
- */
-function generateVisualElements(title) {
-  const elements = {
-    speaking: 'people engaged in conversation, gesturing naturally',
-    writing: 'notebook, laptop, or writing materials visible',
-    reading: 'books or reading materials in scene',
-    listening: 'people wearing headphones or in listening pose',
-    presentation: 'presentation screen or whiteboard in background',
-    phone: 'smartphone or phone conversation',
-    computer: 'laptop or computer screen visible',
-    travel: 'luggage, maps, or travel documents',
-    study: 'study materials, books, notebooks',
-    professional: 'business attire, professional setting'
-  };
-  
-  const titleLower = title.toLowerCase();
-  const selectedElements = [];
-  
-  // Check which elements match the title
-  for (const [key, value] of Object.entries(elements)) {
-    if (titleLower.includes(key) || 
-        (key === 'speaking' && (titleLower.includes('말') || titleLower.includes('회화') || titleLower.includes('대화'))) ||
-        (key === 'writing' && (titleLower.includes('작문') || titleLower.includes('쓰기') || titleLower.includes('이메일'))) ||
-        (key === 'reading' && (titleLower.includes('읽기') || titleLower.includes('독해'))) ||
-        (key === 'listening' && (titleLower.includes('듣기') || titleLower.includes('리스닝')))) {
-      selectedElements.push(value);
-    }
-  }
-  
-  return selectedElements.length > 0 ? selectedElements.join(', ') : 'modern, clean environment';
-}
+    const prompt = `
+You are an expert at creating image generation prompts for educational blog posts about English learning.
 
-/**
- * Main function to generate featured image prompt
- * @param {string} title - The blog post title
- * @param {string} topic - The blog post topic (optional)
- * @returns {string} - Complete image generation prompt
- */
-function generateFeaturedImagePrompt(title, topic = '') {
-  const scene = generateSceneContext(title, topic);
-  const visualElements = generateVisualElements(title);
-  
-  const prompt = `Photorealistic photograph: ${scene}. ${visualElements}. Professional photography, natural lighting, documentary style.
+Blog post title: ${title}
+${topic ? `Topic: ${topic}` : ''}
+
+Create a photorealistic image prompt that:
+1. Captures the essence of this English learning topic
+2. Shows an appropriate scene or situation related to the content
+3. Includes relevant visual elements (setting, objects, activities)
+
+Rules for the prompt:
+- Describe a specific, realistic scene
+- Include environmental details and context
+- Focus on the learning or practice situation
+- Keep it professional and educational
+
+Output ONLY the scene description in English, without any additional text or explanation.
+Example: "Modern office meeting room with professionals discussing documents, laptop and presentation screen visible"
+`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const sceneDescription = response.text().trim();
+    
+    // Combine with people rules
+    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional photography, natural lighting, documentary style.
     
     STRICT PEOPLE RULES:
     - ONE person only: Must be a Korean person in their 20s
@@ -169,20 +69,13 @@ function generateFeaturedImagePrompt(title, topic = '') {
     - Exception: Historical figures or celebrities shown as they are
     
     CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
-  
-  return prompt;
-}
-
-/**
- * Generates H2 section image prompt
- * @param {string} h2Title - The H2 section title
- * @returns {string} - Complete image generation prompt
- */
-function generateH2ImagePrompt(h2Title) {
-  // Simpler context for H2 images
-  const scene = generateSceneContext(h2Title, '');
-  
-  const prompt = `Photorealistic photograph representing: ${h2Title}. ${scene}. Professional photography, natural lighting, documentary style.
+    
+    return finalPrompt;
+    
+  } catch (error) {
+    console.error('Error generating image prompt with Gemini:', error);
+    // Fallback prompt
+    return `Photorealistic photograph: People engaged in English learning or conversation in modern setting. Professional photography, natural lighting, documentary style.
     
     STRICT PEOPLE RULES:
     - ONE person only: Must be a Korean person in their 20s
@@ -192,13 +85,95 @@ function generateH2ImagePrompt(h2Title) {
     - Exception: Historical figures or celebrities shown as they are
     
     CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
-  
-  return prompt;
+  }
+}
+
+/**
+ * Uses Gemini to generate H2 section image prompts
+ */
+async function generateH2ImagePrompt(h2Title) {
+  try {
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error('GEMINI_API_KEY is not set');
+    }
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      safetySettings: [
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+      ],
+    });
+
+    const prompt = `
+You are an expert at creating image generation prompts for educational content.
+
+Section title: ${h2Title}
+
+Create a photorealistic image prompt that visually represents this section's content.
+Focus on the key concept or activity described in the title.
+
+Rules for the prompt:
+- Describe a clear, specific scene
+- Make it relevant to the section topic
+- Include appropriate setting and context
+- Keep it educational and professional
+
+Output ONLY the scene description in English, without any additional text or explanation.
+Example: "Person practicing pronunciation with headphones in quiet study room"
+`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const sceneDescription = response.text().trim();
+    
+    // Combine with people rules
+    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional photography, natural lighting, documentary style.
+    
+    STRICT PEOPLE RULES:
+    - ONE person only: Must be a Korean person in their 20s
+    - MULTIPLE people: Exactly ONE Korean person in their 20s, all others must be Western (Caucasian or Black)
+    - NEVER show two or more Korean/Asian people together
+    - After one Korean appears, ALL other people must be Western
+    - Exception: Historical figures or celebrities shown as they are
+    
+    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+    
+    return finalPrompt;
+    
+  } catch (error) {
+    console.error('Error generating H2 image prompt with Gemini:', error);
+    // Fallback prompt
+    return `Photorealistic photograph: Person engaged in English learning activity. Professional photography, natural lighting, documentary style.
+    
+    STRICT PEOPLE RULES:
+    - ONE person only: Must be a Korean person in their 20s
+    - MULTIPLE people: Exactly ONE Korean person in their 20s, all others must be Western (Caucasian or Black)
+    - NEVER show two or more Korean/Asian people together
+    - After one Korean appears, ALL other people must be Western
+    - Exception: Historical figures or celebrities shown as they are
+    
+    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+  }
 }
 
 module.exports = {
   generateFeaturedImagePrompt,
-  generateH2ImagePrompt,
-  generateSceneContext,
-  generateVisualElements
+  generateH2ImagePrompt
 };

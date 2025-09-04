@@ -27,8 +27,8 @@ async function generateH2Image(h2Title, slug, index) {
       apiKey: process.env.GEMINI_API_KEY,
     });
     
-    // Generate dynamic prompt based on the H2 section title
-    const prompt = generateH2ImagePrompt(h2Title);
+    // Generate dynamic prompt based on the H2 section title using Gemini
+    const prompt = await generateH2ImagePrompt(h2Title);
     
     console.log('Generating H2 image with prompt:', prompt);
     

@@ -27,8 +27,8 @@ async function generateFeaturedImage(title, slug) {
       apiKey: process.env.GEMINI_API_KEY,
     });
     
-    // Generate dynamic prompt based on the blog post title
-    const prompt = generateFeaturedImagePrompt(title);
+    // Generate dynamic prompt based on the blog post title using Gemini
+    const prompt = await generateFeaturedImagePrompt(title);
     
     console.log('Generating image with prompt:', prompt);
     
