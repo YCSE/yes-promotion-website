@@ -29,10 +29,12 @@ async function generateH2Image(h2Title, slug, index) {
     // Generate photorealistic image inspired by H2 section - ABSOLUTELY NO TEXT
     const prompt = `Photorealistic photograph representing: ${h2Title}. Professional photography, natural lighting, documentary style.
     
-    PEOPLE RULES:
-    - ONE person: Show a Korean person in their 20s
-    - MULTIPLE people: Show ONE Korean person in their 20s with Western people
-    - Exception: Historical figures or celebrities as they are
+    STRICT PEOPLE RULES:
+    - ONE person only: Must be a Korean person in their 20s
+    - MULTIPLE people: Exactly ONE Korean person in their 20s, all others must be Western (Caucasian or Black)
+    - NEVER show two or more Korean/Asian people together
+    - After one Korean appears, ALL other people must be Western
+    - Exception: Historical figures or celebrities shown as they are
     
     CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
     
