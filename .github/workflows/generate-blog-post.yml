@@ -53,7 +53,8 @@ jobs:
           
           # Add all changes in content and public directories
           git add content/posts/*.md
-          git add public/images/blog/*.webp || true
+          git add public/images/blog/*.jpg || true
+          git add public/images/blog/*.jpeg || true
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
