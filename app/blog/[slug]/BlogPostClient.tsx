@@ -46,9 +46,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
       <ol className="list-none space-y-3 my-6 counter-reset-list">{children}</ol>
     ),
     li: ({ children, ordered, index }: any) => (
-      <li className="relative pl-8 text-[16px] md:text-[18px] leading-relaxed text-gray-700">
-        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#4B52AE] rounded-full"></div>
-        <span className="absolute left-0 top-[10px] w-[3px] h-[3px] bg-[#4B52AE] rounded-full"></span>
+      <li className="text-[16px] md:text-[18px] leading-relaxed text-gray-700">
         {children}
       </li>
     ),
