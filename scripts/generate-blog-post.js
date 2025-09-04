@@ -51,7 +51,12 @@ async function generateBlogPost() {
     const topic = combination.topic;
     const topicSlug = combination.slug;
     const direction = combination.direction;
+    const combinationId = combination.combinationId;
     const randomEditor = EDITORS[Math.floor(Math.random() * EDITORS.length)];
+    
+    // Generate unique slug using date, topic slug, and combination ID
+    // This ensures uniqueness even when same topic is used with different directions
+    const slug = `${format(new Date(), 'yyyy-MM-dd')}-${topicSlug}-${combinationId}`;
     
     // Log the selected combination
     console.log('\n=== Selected Blog Post Configuration ===');
@@ -62,11 +67,6 @@ async function generateBlogPost() {
     console.log('Author:', randomEditor);
     console.log('Final Slug:', slug);
     console.log('\n');
-    
-    // Generate unique slug using date, topic slug, and combination ID
-    // This ensures uniqueness even when same topic is used with different directions
-    const combinationId = combination.combinationId;
-    const slug = `${format(new Date(), 'yyyy-MM-dd')}-${topicSlug}-${combinationId}`;
     
     const prompt = `
 한국인 영어 학습자를 위한 블로그 포스트를 작성해주세요.
