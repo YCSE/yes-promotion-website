@@ -19,7 +19,7 @@ const Hero = () => {
       position -= speed
       
       // When the first image has scrolled completely out of view, reset position
-      if (position <= -2150) { // Updated for fixed width
+      if (position <= -3634) { // Updated for increased width
         position = 0
       }
       
@@ -35,7 +35,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className="relative w-full h-[600px] md:h-[900px] overflow-hidden bg-white">
+    <section className="relative w-full h-[800px] md:h-[1200px] overflow-hidden bg-white">
       <div className="flex flex-col items-center justify-start pt-[80px] md:pt-[200px] gap-[50px] md:gap-[110px] px-4 md:px-6">
         <div className="text-center">
           <h1 className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
@@ -46,31 +46,31 @@ const Hero = () => {
           </p>
         </div>
         
-        <div className="relative w-full h-[300px] md:h-[454px] overflow-hidden">
+        <div className="relative w-full h-[541px] md:h-[794px] overflow-visible -mt-[60px]">
           <div 
             ref={sliderRef}
             className="flex absolute h-full items-center"
             style={{ willChange: 'transform' }}
           >
             {/* First copy of the image */}
-            <div className="relative h-[280px] md:h-[440px] flex-shrink-0" style={{ width: '2150px' }}>
+            <div className="relative h-[541px] md:h-[794px] flex-shrink-0" style={{ width: '3634px' }}>
               <Image 
-                src={getAssetPath('images/thumbnail_PC.png')} 
+                src={getAssetPath('images/thumbnail_PC.webp')} 
                 alt="Students and Teachers" 
-                width={5800}
-                height={440}
-                className="h-full w-full object-cover"
+                width={3480}
+                height={454}
+                className="h-full w-full object-contain object-center"
                 priority
               />
             </div>
             {/* Second copy for seamless loop */}
-            <div className="relative h-[280px] md:h-[440px] flex-shrink-0" style={{ width: '2150px' }}>
+            <div className="relative h-[541px] md:h-[794px] flex-shrink-0" style={{ width: '3634px' }}>
               <Image 
-                src={getAssetPath('images/thumbnail_PC.png')} 
+                src={getAssetPath('images/thumbnail_PC.webp')} 
                 alt="Students and Teachers" 
-                width={5800}
-                height={440}
-                className="h-full w-full object-cover"
+                width={3480}
+                height={454}
+                className="h-full w-full object-contain object-center"
                 priority
               />
             </div>

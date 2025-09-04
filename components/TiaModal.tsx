@@ -43,17 +43,17 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
 
   const features = [
     {
-      icon: getAssetPath('images/frame4/C2.png'),
+      icon: getAssetPath('images/frame4/C2.webp'),
       title: '맞춤형 학습 코칭',
       description: '수업에서 받은 피드백을 기반으로 개인별 약점을 분석하고, 맞춤형 추가 학습 자료를 제공합니다.',
     },
     {
-      icon: getAssetPath('images/frame4/C3.png'),
+      icon: getAssetPath('images/frame4/C3.webp'),
       title: '실시간 대화 연습',
       description: '수업 시간 외에도 Tia와 자유롭게 영어 대화를 연습할 수 있습니다. 한국어 지원으로 막힘없이 학습하세요.',
     },
     {
-      icon: getAssetPath('images/frame4/C1.png'),
+      icon: getAssetPath('images/frame4/C1.webp'),
       title: '문장 분석 & 해설',
       description: '어려운 영어 문장을 선택하면 문법, 어휘, 대체 표현까지 상세하게 분석해드립니다.',
     }
@@ -116,7 +116,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           <div className="relative text-white px-8 md:px-16 py-12 md:py-20 overflow-hidden">
             {/* Background Image */}
             <Image 
-              src={getAssetPath('images/tia-hero-background-new.png')}
+              src={getAssetPath('images/tia-hero-background-new.webp')}
               alt="AI Technology Background"
               fill
               className="object-cover"
@@ -135,6 +135,154 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 개인 맞춤형 AI 영어 학습 파트너
               </p>
             </div>
+            </div>
+          </div>
+
+          {/* Why Tia Section - 왜 Tia가 필요한가? */}
+          <div className="px-8 md:px-16 py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+            <div className="max-w-[900px] mx-auto">
+              {/* 기존 화상영어의 한계 - 서술형 */}
+              <div className="mb-12 md:mb-16">
+                <h3 className="text-[22px] md:text-[26px] lg:text-[30px] font-bold text-[#1A1F3A] mb-6 tracking-[-0.66px] md:tracking-[-0.78px] lg:tracking-[-0.9px]">
+                  다년간 화상영어 수업을 진행하며 저희는 고민에 빠졌습니다.
+                </h3>
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-4">
+                    많은 분들이 화상영어를 통해 영어 실력을 향상시키려 노력하지만, 실제로는 여러 한계에 부딪힙니다. 
+                    가장 큰 문제는 <span className="font-medium text-gray-900">주 2-3회, 25분이라는 제한된 수업 시간</span>입니다. 
+                    이는 언어 습득에 필요한 충분한 노출과 연습 시간을 제공하기 어렵고, 수업이 없는 날에는 영어 학습이 완전히 단절됩니다.
+                  </p>
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-4">
+                    더 근본적인 문제는 화상영어의 <span className="font-medium text-gray-900">학습 영역의 불균형</span>입니다. 
+                    영어는 Speaking, Listening, Reading, Writing의 네 영역이 균형 있게 발달해야 하는데, 
+                    화상영어는 필연적으로 Speaking과 Listening에만 초점이 맞춰집니다. 
+                    Reading과 Writing 능력이 뒷받침되지 않으면 표현의 깊이와 정확성에 한계가 생기게 됩니다.
+                  </p>
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-4">
+                    또한 화상영어 수업의 특성상 <span className="font-medium text-gray-900">체계적인 문법과 어휘 학습 기회가 부족</span>할 수 밖에 없습니다.
+                    다양하고 정확한 문장을 구사하려면 탄탄한 문법 기초와 풍부한 어휘력이 필수적인데, 
+                    대화 위주의 수업에서는 이런 기초를 다지기 어렵습니다. 
+                    결국 항상 비슷한 패턴의 간단한 문장만 반복하게 되고, 표현의 다양성이 제한됩니다.
+                  </p>
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-4">
+                    이런 구조적 문제들로 인해 많은 학습자들이 <span className="font-medium text-gray-900">일정 수준에서 실력 정체</span>를 경험합니다. 
+                    처음에는 빠르게 늘던 회화 실력이 어느 순간 제자리걸음을 하게 되고, 
+                    아무리 수업을 받아도 더 이상 발전하지 않는 '고원 현상(plateau)'에 빠지게 됩니다. 
+                    이는 개인의 노력 부족이 아니라 기존 화상영어 시스템의 근본적 한계 때문입니다.
+                    화상영어 수업을 아무리 들어도 성적과 실력이 오르지 않는 이유가 여기에 있습니다.
+                  </p>
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-6">
+                    마지막으로, 수업 중 받은 피드백을 <span className="font-medium text-gray-900">체계적으로 관리하고 복습할 시스템이 부재</span>합니다. 
+                    선생님의 귀중한 조언과 교정 내용들이 수업이 끝나면 사라지고, 같은 실수를 반복하게 됩니다. 
+                    이러한 한계들은 학습자의 시간과 비용 대비 효과를 떨어뜨리는 주요 원인이 되고 있습니다.
+                  </p>
+                  <p className="text-[15px] md:text-[17px] font-medium text-[#4B52AE] leading-[26px] md:leading-[30px] bg-gradient-to-r from-[#4B52AE]/5 to-transparent rounded-[12px] p-4">
+                    이 모든 문제를 해결하기 위해 우리는 Tia를 설계했습니다. 
+                    언어 학습의 말하기, 듣기, 읽기, 쓰기 4가지 영역을 균형 있게 발달시키고, 체계적인 문법과 어휘 학습을 지원하며, 
+                    개인별 맞춤형 학습 경로를 제공하여 실력 정체를 돌파할 수 있도록 돕습니다.
+                  </p>
+                </div>
+              </div>
+
+              {/* 언어학 이론 기반 설계 - 서술형 */}
+              <div className="mb-12 md:mb-16">
+                <h3 className="text-[22px] md:text-[26px] lg:text-[30px] font-bold text-black mb-6 tracking-[-0.66px] md:tracking-[-0.78px] lg:tracking-[-0.9px]">
+                  세계적 언어학 연구가 증명한 학습 원리
+                </h3>
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-6">
+                    Tia는 오직 영어교육만을 위해 정교하게 설계한 AI 입니다. <span className="font-medium text-[#4B52AE]">수십 년간 검증된 언어습득 이론</span>을 
+                    최신 AI 기술로 구현한 과학적 학습 도구입니다.
+                  </p>
+                  
+                  <div className="bg-gradient-to-r from-[#4B52AE]/5 to-transparent rounded-[16px] p-5 md:p-6 mb-6">
+                    <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
+                      <span className="font-bold text-[#4B52AE]">Stephen Krashen의 이해가능한 입력 이론(i+1)</span>은 
+                      언어 학습의 핵심 원리를 제시합니다. 학습자의 현재 수준(i)보다 약간 높은 수준(+1)의 입력을 받을 때 
+                      가장 효과적인 학습이 일어난다는 것입니다. 너무 쉬우면 지루하고, 너무 어려우면 좌절하게 됩니다. 
+                      <span className="font-medium text-[#4B52AE]">Tia는 AI 분석을 통해 각 학습자에게 정확히 i+1 수준의 콘텐츠를 실시간으로 제공</span>합니다.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[16px] p-5 md:p-6 mb-6">
+                    <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
+                      <span className="font-bold text-[#4B52AE]">Merrill Swain의 출력 가설</span>은 
+                      단순히 듣고 이해하는 것만으로는 부족하다고 지적합니다. 직접 말하고 쓰는 과정에서 
+                      자신의 부족한 점을 인식하고, 가설을 세우고 검증하며, 언어 구조를 내재화합니다. 
+                      <span className="font-medium text-[#4B52AE]">Tia는 24시간 대화 파트너가 되어 충분한 아웃풋 기회를 제공하고, 
+                      즉각적인 피드백으로 가설 검증을 돕습니다</span>.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#4B52AE]/5 to-transparent rounded-[16px] p-5 md:p-6 mb-6">
+                    <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
+                      <span className="font-bold text-[#4B52AE]">Michael Long의 상호작용 가설</span>은 
+                      의미 협상(meaning negotiation) 과정의 중요성을 강조합니다. 대화 중 이해하지 못한 부분을 
+                      명확히 하고, 다시 표현하고, 확인하는 과정에서 언어 습득이 가속화됩니다. 
+                      <span className="font-medium text-[#4B52AE]">Tia는 실시간 대화를 통해 자연스러운 의미 협상을 유도하고, 
+                      이해하지 못한 부분을 다양한 방식으로 재설명합니다</span>.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[16px] p-5 md:p-6">
+                    <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
+                      마지막으로 <span className="font-bold text-[#4B52AE]">정의적 여과 가설(Affective Filter)</span>은 
+                      감정 상태가 학습에 미치는 영향을 설명합니다. 불안, 자신감 부족, 동기 결여 등의 부정적 감정은 
+                      '정의적 여과'를 높여 언어 입력을 차단합니다. 
+                      <span className="font-medium text-[#4B52AE]">Tia와의 대화는 실수를 두려워할 필요가 없는 안전한 환경을 제공해 
+                      정의적 여과를 낮추고 학습 효율을 극대화합니다</span>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* AI 개인맞춤 학습의 효과 - 서술형 + 통계 */}
+              <div>
+                <h3 className="text-[22px] md:text-[26px] lg:text-[30px] font-bold text-[#1A1F3A] mb-6 tracking-[-0.66px] md:tracking-[-0.78px] lg:tracking-[-0.9px]">
+                  2025년, AI 교육의 혁신적 성과
+                </h3>
+                <div className="prose prose-lg max-w-none mb-8">
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-4">
+                    2024년은 AI 교육 기술이 본격적으로 검증받은 해입니다. 
+                    <span className="font-medium text-gray-900">전 세계 818건의 연구 중 엄격한 기준을 통과한 85건의 연구</span>가 
+                    AI 기반 개인화 학습의 효과를 과학적으로 입증했습니다.
+                  </p>
+                  <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-6">
+                    특히 주목할 점은 <span className="font-medium text-gray-900">적응형 학습 기술(Adaptive Learning Technology)</span>의 성과입니다. 
+                    학습자 개개인의 수준과 진도를 실시간으로 분석하고 맞춤형 콘텐츠를 제공하는 ALT를 활용한 학습자들은 
+                    전통적 방식 대비 <span className="font-bold text-[#4B52AE]">3.2배 빠른 학습 속도</span>를 보였습니다. 
+                    또한 연구진들은 효과적인 학습을 위해서는 제공되는 콘텐츠의 <span className="font-medium text-gray-900">95-98%를 이해할 수 있는 수준</span>이 
+                    최적이라는 것을 밝혀냈는데, 이는 Krashen의 i+1 이론을 뒷받침하는 중요한 발견입니다.
+                  </p>
+                </div>
+                
+                {/* 통계 시각화 */}
+                <div className="bg-gradient-to-br from-[#1A1F3A] to-[#4B52AE] rounded-[24px] p-8 md:p-10 text-white">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                    <div className="text-center">
+                      <div className="text-[36px] md:text-[42px] font-extrabold mb-1">3.2배</div>
+                      <p className="text-[12px] md:text-[14px] font-light text-white/90">학습 속도 향상</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[36px] md:text-[42px] font-extrabold mb-1">85건</div>
+                      <p className="text-[12px] md:text-[14px] font-light text-white/90">검증된 연구</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[36px] md:text-[42px] font-extrabold mb-1">98%</div>
+                      <p className="text-[12px] md:text-[14px] font-light text-white/90">최적 이해도</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-[36px] md:text-[42px] font-extrabold mb-1">24/7</div>
+                      <p className="text-[12px] md:text-[14px] font-light text-white/90">상시 학습</p>
+                    </div>
+                  </div>
+                  <div className="border-t border-white/20 pt-4">
+                    <p className="text-[11px] md:text-[12px] font-light text-white/70 text-center">
+                      * Frontiers in Education, MDPI Electronics 등 2024년 주요 학술지 발표 연구 종합
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -285,7 +433,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
               지금 바로 Tia를 만나보세요
             </h3>
             <p className="text-[16px] md:text-[18px] font-light text-gray-600 mb-8 tracking-[-0.48px] md:tracking-[-0.54px]">
-              수업료 외 추가 비용 없이 모든 기능을 무료로 이용하실 수 있습니다
+              누구나 Tia의 모든 기능을 무료로 이용하실 수 있습니다
             </p>
             <button 
               onClick={handleClose}

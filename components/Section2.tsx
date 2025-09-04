@@ -21,12 +21,12 @@ const Section2 = () => {
   ]
 
   return (
-    <section className="relative w-full py-[80px] md:py-[150px] lg:py-[200px] bg-white">
+    <section className="relative w-full py-[80px] md:py-[150px] lg:py-[200px] bg-white -mt-[60px]">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center mb-[50px] md:mb-[85px]">
           <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[130px] lg:h-[130px] mb-[20px] md:mb-[30px] relative flex items-center justify-center">
             <Image 
-              src={getAssetPath('images/section2/D1.png')} 
+              src={getAssetPath('images/section2/D1.webp')} 
               alt="Question icon" 
               width={130} 
               height={130}

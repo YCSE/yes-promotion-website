@@ -9,17 +9,17 @@ const Section5 = () => {
 
   const features = [
     {
-      icon: getAssetPath('images/frame4/C1.png'),
+      icon: getAssetPath('images/frame4/C1.webp'),
       title: '현재 영어 레벨 정확 진단',
       description: '문법, 어휘 등으로 영역을 세분화하여\n구체적으로 진단합니다'
     },
     {
-      icon: getAssetPath('images/frame4/C2.png'),
+      icon: getAssetPath('images/frame4/C2.webp'),
       title: '맞춤형 학습 방향 제시',
       description: '나에게 딱 맞는 학습 전략과 수업을 추천해\n막막한 영어 공부의 길을 열어줍니다'
     },
     {
-      icon: getAssetPath('images/frame4/C3.png'),
+      icon: getAssetPath('images/frame4/C3.webp'),
       title: 'AI 기반 회화 습관 분석',
       description: '대화한 내용 분석해서\n나도 몰랐던 습관을 발견할 수 있어요'
     }
@@ -58,7 +58,7 @@ const Section5 = () => {
           {/* Video Call UI - img 3.png */}
           <div className="relative w-[250px] h-[500px] md:w-[280px] md:h-[560px] lg:w-[300px] lg:h-[607px]">
             <Image 
-              src={getAssetPath('images/frame4/img 3.png')}
+              src={getAssetPath('images/frame4/img 3.webp')}
               alt="Video Call Interface"
               width={300}
               height={607}
@@ -103,8 +103,8 @@ const Section5 = () => {
               {index > 0 && <div className="w-full h-[1px] bg-gray-200 my-[30px] md:my-[40px] lg:my-[50px]" />}
               
               <div className="py-[2px]">
-                <h4 className={`text-[16px] md:text-[17px] lg:text-[18px] font-light text-center tracking-[-0.48px] md:tracking-[-0.51px] lg:tracking-[-0.54px] transition-colors ${
-                  openFaq === index ? 'text-[#4B52AE]' : 'text-black'
+                <h4 className={`text-[16px] md:text-[17px] lg:text-[18px] text-center tracking-[-0.48px] md:tracking-[-0.51px] lg:tracking-[-0.54px] transition-all ${
+                  openFaq === index ? 'text-[#4B52AE] font-bold' : 'text-black font-light'
                 }`}>
                   {faq.question}
                 </h4>
@@ -112,7 +112,7 @@ const Section5 = () => {
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openFaq === index ? 'max-h-[250px] md:max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                  <p className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-gray-600 mt-6 md:mt-7 lg:mt-8 text-center max-w-[800px] mx-auto leading-[22px] md:leading-[24px] lg:leading-[26px] tracking-[-0.42px] md:tracking-[-0.45px] lg:tracking-[-0.48px] px-4 md:px-0">
+                  <p className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-gray-600 mt-6 md:mt-7 lg:mt-8 text-center max-w-[800px] mx-auto leading-[1.6em] tracking-[-0.42px] md:tracking-[-0.45px] lg:tracking-[-0.48px] px-4 md:px-0">
                     {faq.answer}
                   </p>
                 </div>

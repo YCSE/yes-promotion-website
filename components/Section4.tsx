@@ -7,7 +7,7 @@ const Section4 = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={getAssetPath('images/section4/section4.png')}
+          src={getAssetPath('images/section4/section4.webp')}
           alt="Woman using laptop with TIA"
           fill
           className="object-cover"
