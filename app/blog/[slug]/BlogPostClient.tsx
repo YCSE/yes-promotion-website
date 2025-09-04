@@ -40,13 +40,17 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
       <p className="text-[16px] md:text-[18px] leading-relaxed text-gray-700 mb-4">{children}</p>
     ),
     ul: ({ children }: any) => (
-      <ul className="list-disc list-inside space-y-2 my-4 ml-4">{children}</ul>
+      <ul className="list-none space-y-3 my-6">{children}</ul>
     ),
     ol: ({ children }: any) => (
-      <ol className="list-decimal list-inside space-y-2 my-4 ml-4">{children}</ol>
+      <ol className="list-none space-y-3 my-6 counter-reset-list">{children}</ol>
     ),
-    li: ({ children }: any) => (
-      <li className="text-[16px] md:text-[18px] leading-relaxed text-gray-700">{children}</li>
+    li: ({ children, ordered, index }: any) => (
+      <li className="relative pl-8 text-[16px] md:text-[18px] leading-relaxed text-gray-700">
+        <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#4B52AE] rounded-full"></div>
+        <span className="absolute left-0 top-[10px] w-[3px] h-[3px] bg-[#4B52AE] rounded-full"></span>
+        {children}
+      </li>
     ),
     blockquote: ({ children }: any) => (
       <blockquote className="border-l-4 border-[#4B52AE] pl-4 py-2 my-4 italic bg-gray-50 rounded-r">
