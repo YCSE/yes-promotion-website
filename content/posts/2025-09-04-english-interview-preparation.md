@@ -4,7 +4,7 @@ subtitle: 기본 질문부터 스킬까지, 합격률 높이는 필승 전략
 date: 2025-09-04T14:18:34.539Z
 author: YES English Team
 excerpt: 영어 인터뷰, 막막하셨나요? 이 글 하나로 자신감을 얻고, 당신의 잠재력을 마음껏 펼쳐보세요. 실용적인 팁과 예시로 완벽 대비!
-featuredImage: /images/blog/english-interview-prep.jpg
+featuredImage: /images/blog/2025-09-04-english-interview-preparation.jpg
 ---
 
 안녕하세요, YES English Team입니다!

@@ -4,7 +4,7 @@ subtitle: 첫인상을 결정하는 이메일, 초급도 완벽하게 쓰는 법
 date: 2025-09-04T14:17:06.003Z
 author: YES English Team
 excerpt: 비즈니스 이메일 작성은 직장인의 필수 역량입니다. 이 글에서는 초급-중급 학습자들이 비즈니스 영어 이메일을 자신감 있게 작성할 수 있도록, 실용적인 5가지 팁과 예시를 제공합니다. 첫인상을 좌우하는 이메일 작성 스킬을 한 단계 업그레이드해보세요!
-featuredImage: /images/blog/business-email-writing-tips.jpg
+featuredImage: /images/blog/2025-09-04-business-english-email-tips.jpg
 ---
 
 안녕하세요, 영어 실력 향상을 위해 꾸준히 노력하는 YES English 구독자 여러분!

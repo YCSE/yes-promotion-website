@@ -62,6 +62,9 @@ async function generateBlogPost() {
     const topic = topicObj.korean;
     const topicSlug = topicObj.slug;
     
+    // Generate slug using date and topic slug
+    const slug = `${format(new Date(), 'yyyy-MM-dd')}-${topicSlug}`;
+    
     const prompt = `
 한국인 영어 학습자를 위한 블로그 포스트를 작성해주세요.
 
@@ -90,7 +93,7 @@ subtitle: [부제목]
 date: ${new Date().toISOString()}
 author: YES English Team
 excerpt: [요약 2-3문장]
-featuredImage: /images/blog/[actual-slug].jpg
+featuredImage: /images/blog/${slug}.jpg
 ---
 
 [본문 내용]
@@ -100,31 +103,13 @@ featuredImage: /images/blog/[actual-slug].jpg
     const response = await result.response;
     const text = response.text();
     
-    // Extract frontmatter and content
-    const frontmatterMatch = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-    
-    if (!frontmatterMatch) {
-      throw new Error('Invalid blog post format');
-    }
-    
-    const [, frontmatterContent, mainContent] = frontmatterMatch;
-    
     // Parse frontmatter to get the title
-    const titleMatch = frontmatterContent.match(/title:\s*(.+)/);
+    const titleMatch = text.match(/title:\s*(.+)/);
     const title = titleMatch ? titleMatch[1].replace(/['"]/g, '') : topic;
-    
-    // Generate slug using English slug from the topic
-    const slug = `${format(new Date(), 'yyyy-MM-dd')}-${topicSlug}`;
-    
-    // Update featured image path with correct slug
-    const updatedContent = text.replace(
-      /featuredImage:\s*\/images\/blog\/\[actual-slug\]\.jpg/,
-      `featuredImage: /images/blog/${slug}.jpg`
-    );
     
     return {
       slug,
-      content: updatedContent,
+      content: text,
       title
     };
   } catch (error) {
