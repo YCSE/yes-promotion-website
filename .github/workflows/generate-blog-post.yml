@@ -41,6 +41,9 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
+          # Pull latest changes first
+          git pull origin main --rebase
+          
           # Add all changes in content and public directories
           git add content/posts/*.md
           git add public/images/blog/*.webp || true
@@ -54,7 +57,7 @@ jobs:
             git commit -m "$COMMIT_MSG"
             
             # Push changes
-            git push
+            git push origin main
             
             echo "✅ Blog post committed and pushed successfully"
           fi
