@@ -107,11 +107,11 @@ async function generateBlogPost() {
 
 【형식】
 ---
-title: [제목]
-subtitle: [부제목]
+title: "[제목 - 항상 따옴표로 감싸세요]"
+subtitle: "[부제목 - 항상 따옴표로 감싸세요]"
 date: ${new Date().toISOString()}
-author: ${randomEditor}
-excerpt: [요약 2-3문장]
+author: "${randomEditor}"
+excerpt: "[요약 2-3문장 - 항상 따옴표로 감싸세요]"
 featuredImage: /images/blog/${slug}.jpg
 ---
 
