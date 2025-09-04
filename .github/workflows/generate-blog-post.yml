@@ -12,8 +12,13 @@ permissions:
   id-token: write
 
 jobs:
-  generate-content:
+  generate-and-deploy:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
       - name: Checkout repository
@@ -71,19 +76,38 @@ jobs:
             done
           fi
           
-      # Manually trigger deploy workflow using GitHub CLI
-      - name: Trigger Deploy Workflow
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Build the Next.js site with new content
+      - name: Build with Next.js
+        run: npm run build
+        
+      # Setup GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      # Create .nojekyll file
+      - name: Create .nojekyll file
+        run: touch ./out/.nojekyll
+        
+      # Upload artifact for GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+          
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+      - name: Summary
         run: |
-          echo "✨ Blog post generation completed!"
-          echo "Triggering deploy workflow..."
-          gh workflow run deploy.yml --ref main || echo "Note: Deploy may need to be triggered manually"
+          echo "✨ Blog post generation and deployment completed!"
+          echo "🌐 Site URL: ${{ steps.deployment.outputs.page_url }}"
             
   # Optional: Send notification on failure
   notify-failure:
     runs-on: ubuntu-latest
-    needs: generate-content
+    needs: generate-and-deploy
     if: failure()
     steps:
       - name: Notify failure

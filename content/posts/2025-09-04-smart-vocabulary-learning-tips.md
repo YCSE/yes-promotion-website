@@ -4,7 +4,7 @@ subtitle: 초급-중급 학습자를 위한 효율적인 단어 학습 전략
 date: 2025-09-04T10:14:47.019Z
 author: YES English Team
 excerpt: 영어 단어 암기가 어렵다고요? 이 글에서는 무작정 외우는 방식에서 벗어나, 초급-중급 학습자들이 즉시 활용할 수 있는 과학적이고 실용적인 영어 단어 암기법을 소개합니다. 이제 더 이상 스트레스 받지 않고 효율적으로 어휘력을 확장해 보세요!
-featuredImage: /images/blog/english-vocabulary-memorization-tips.webp
+featuredImage: /images/blog/2025-09-04-smart-vocabulary-learning-tips.webp
 ---
 
 안녕하세요, YES English Team입니다!

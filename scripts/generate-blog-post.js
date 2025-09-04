@@ -3,28 +3,28 @@ const fs = require('fs-extra');
 const path = require('path');
 const { format } = require('date-fns');
 
-// Topics for English learning blog posts
+// Topics for English learning blog posts with English slugs
 const TOPICS = [
-  '일상 영어 회화: 카페에서 주문하기',
-  '비즈니스 영어: 이메일 작성 팁',
-  '여행 영어: 공항과 호텔에서 쓰는 표현',
-  '영어 발음 개선: 한국인이 어려워하는 발음',
-  '영어 숙어와 관용 표현 마스터하기',
-  '실전 영어: 전화 통화 표현',
-  '영어 문법: 시제 완벽 정리',
-  '토익/토플 준비: 고득점 전략',
-  '영어 단어 암기법: 효율적인 학습 방법',
-  '미드로 배우는 실생활 영어',
-  '영어 프레젠테이션 스킬',
-  '소셜 미디어 영어: SNS에서 쓰는 표현',
-  '영어 인터뷰 준비하기',
-  '어린이 영어 교육 방법',
-  '영어 뉴스 읽기 팁',
-  '영어 작문 실력 향상시키기',
-  '영어 리스닝 스킬 개발',
-  '영어 스피킹 자신감 기르기',
-  '문화 차이와 영어 표현',
-  '영어 독해 전략'
+  { korean: '일상 영어 회화: 카페에서 주문하기', slug: 'daily-english-cafe-ordering' },
+  { korean: '비즈니스 영어: 이메일 작성 팁', slug: 'business-english-email-tips' },
+  { korean: '여행 영어: 공항과 호텔에서 쓰는 표현', slug: 'travel-english-airport-hotel' },
+  { korean: '영어 발음 개선: 한국인이 어려워하는 발음', slug: 'english-pronunciation-korean-learners' },
+  { korean: '영어 숙어와 관용 표현 마스터하기', slug: 'english-idioms-expressions' },
+  { korean: '실전 영어: 전화 통화 표현', slug: 'practical-english-phone-calls' },
+  { korean: '영어 문법: 시제 완벽 정리', slug: 'english-grammar-tenses-guide' },
+  { korean: '토익/토플 준비: 고득점 전략', slug: 'toeic-toefl-high-score-strategy' },
+  { korean: '영어 단어 암기법: 효율적인 학습 방법', slug: 'english-vocabulary-memorization' },
+  { korean: '미드로 배우는 실생활 영어', slug: 'learn-english-tv-shows' },
+  { korean: '영어 프레젠테이션 스킬', slug: 'english-presentation-skills' },
+  { korean: '소셜 미디어 영어: SNS에서 쓰는 표현', slug: 'social-media-english-expressions' },
+  { korean: '영어 인터뷰 준비하기', slug: 'english-interview-preparation' },
+  { korean: '어린이 영어 교육 방법', slug: 'kids-english-education-methods' },
+  { korean: '영어 뉴스 읽기 팁', slug: 'english-news-reading-tips' },
+  { korean: '영어 작문 실력 향상시키기', slug: 'improve-english-writing-skills' },
+  { korean: '영어 리스닝 스킬 개발', slug: 'develop-english-listening-skills' },
+  { korean: '영어 스피킹 자신감 기르기', slug: 'build-english-speaking-confidence' },
+  { korean: '문화 차이와 영어 표현', slug: 'cultural-differences-english-expressions' },
+  { korean: '영어 독해 전략', slug: 'english-reading-comprehension-strategy' }
 ];
 
 async function generateBlogPost() {
@@ -58,7 +58,9 @@ async function generateBlogPost() {
     });
 
     // Select a random topic
-    const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+    const topicObj = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+    const topic = topicObj.korean;
+    const topicSlug = topicObj.slug;
     
     const prompt = `
 한국인 영어 학습자를 위한 블로그 포스트를 작성해주세요.
@@ -111,12 +113,8 @@ featuredImage: /images/blog/[slug].webp
     const titleMatch = frontmatterContent.match(/title:\s*(.+)/);
     const title = titleMatch ? titleMatch[1].replace(/['"]/g, '') : topic;
     
-    // Generate slug from title
-    const slug = `${format(new Date(), 'yyyy-MM-dd')}-${title
-      .toLowerCase()
-      .replace(/[^a-z0-9가-힣]+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .slice(0, 50)}`;
+    // Generate slug using English slug from the topic
+    const slug = `${format(new Date(), 'yyyy-MM-dd')}-${topicSlug}`;
     
     // Update featured image path with correct slug
     const updatedContent = text.replace(
