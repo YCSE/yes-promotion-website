@@ -52,7 +52,7 @@ const Section2 = () => {
                 height: '150px',
               }}
             >
-              <p className="text-[18px] leading-[28px] text-gray-700 font-light whitespace-pre-line text-center flex items-center justify-center h-full tracking-[-0.54px]">
+              <p className="text-[18px] leading-[28px] text-black font-light whitespace-pre-line text-center flex items-center justify-center h-full tracking-[-0.54px]">
                 {bubble.text}
               </p>
             </div>
@@ -66,7 +66,7 @@ const Section2 = () => {
               key={index}
               className="bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
             >
-              <p className="text-[18px] leading-[28px] text-gray-700 font-light whitespace-pre-line text-center tracking-[-0.54px]">
+              <p className="text-[18px] leading-[28px] text-black font-light whitespace-pre-line text-center tracking-[-0.54px]">
                 {bubble.text}
               </p>
             </div>
@@ -92,7 +92,7 @@ const Section2 = () => {
                       zIndex: zIndex
                     }}
                   >
-                    <p className="text-[14px] leading-[20px] text-gray-700 font-light whitespace-pre-line text-center tracking-[-0.42px]">
+                    <p className="text-[14px] leading-[20px] text-black font-light whitespace-pre-line text-center tracking-[-0.42px]">
                       {bubble.text}
                     </p>
                   </div>
@@ -117,7 +117,7 @@ const Section2 = () => {
                       zIndex: zIndex
                     }}
                   >
-                    <p className="text-[14px] leading-[20px] text-gray-700 font-light whitespace-pre-line text-center tracking-[-0.42px]">
+                    <p className="text-[14px] leading-[20px] text-black font-light whitespace-pre-line text-center tracking-[-0.42px]">
                       {bubble.text}
                     </p>
                   </div>

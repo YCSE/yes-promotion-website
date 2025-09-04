@@ -128,8 +128,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             <div className="relative z-10">
             <div className="max-w-[900px] mx-auto text-center">
               <h1 className="text-[36px] md:text-[50px] lg:text-[60px] font-bold leading-[44px] md:leading-[60px] lg:leading-[72px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-1.8px] mb-6">
-                AI 영어 코치
-                <span className="block text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-white mt-2">Tia</span>
+                AI 영어 선생님 Tia
               </h1>
               <p className="text-[18px] md:text-[20px] lg:text-[24px] font-light leading-[28px] md:leading-[32px] lg:leading-[36px] tracking-[-0.54px] md:tracking-[-0.6px] lg:tracking-[-0.72px] text-white/90 max-w-[600px] mx-auto">
                 YES 수업의 효과를 극대화하는<br/>
