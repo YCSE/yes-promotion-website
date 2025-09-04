@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { getAssetPath } from '@/lib/utils'
 
 interface TiaModalProps {
   isOpen: boolean
@@ -10,7 +12,6 @@ interface TiaModalProps {
 const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
   const [isAnimating, setIsAnimating] = useState(false)
 
-  // Handle animation states
   useEffect(() => {
     if (isOpen) {
       setIsAnimating(true)
@@ -24,7 +25,6 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
     }, 300)
   }
 
-  // Close modal on ESC key press
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') handleClose()
@@ -43,74 +43,45 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
 
   const features = [
     {
-      icon: '💬',
-      title: '선톡 (Pre-lesson Talk)',
-      subtitle: '수업 10분 전, 완벽한 워밍업',
-      description: 'TIA가 오늘의 수업 주제와 관련된 맞춤형 워밍업 대화를 제공합니다. 수업 전 미리 영어 모드로 전환하여 학습 효율을 극대화하세요.',
-      benefits: [
-        '맞춤형 워밍업 질문',
-        '오늘의 핵심 표현 미리보기',
-        '자신감 있는 수업 시작',
-        '학습 효과 4.5배 증가'
-      ]
+      icon: getAssetPath('images/frame4/C2.png'),
+      title: '맞춤형 학습 코칭',
+      description: '수업에서 받은 피드백을 기반으로 개인별 약점을 분석하고, 맞춤형 추가 학습 자료를 제공합니다.',
     },
     {
-      icon: '📝',
-      title: '후톡 (Post-lesson Review)',
-      subtitle: '수업 후 복습, 실력 완성의 핵심',
-      description: '수업에서 배운 내용을 TIA와 함께 체계적으로 복습합니다. 선생님의 피드백을 바탕으로 개인 맞춤형 복습 자료를 제공합니다.',
-      benefits: [
-        '수업 내용 자동 정리',
-        '틀린 표현 교정 연습',
-        '추가 예문 제공',
-        '다음 수업 준비 가이드'
-      ]
+      icon: getAssetPath('images/frame4/C3.png'),
+      title: '실시간 대화 연습',
+      description: '수업 시간 외에도 Tia와 자유롭게 영어 대화를 연습할 수 있습니다. 한국어 지원으로 막힘없이 학습하세요.',
     },
     {
-      icon: '🔍',
-      title: '해설보기',
-      subtitle: '영어 문장의 완벽한 이해',
-      description: '어려운 영어 문장도 TIA의 상세한 해설로 쉽게 이해할 수 있습니다. 문법, 어휘, 대체 표현까지 한 번에 학습하세요.',
-      benefits: [
-        '문법 구조 상세 설명',
-        '핵심 어휘 사전식 정리',
-        '상황별 대체 표현 제시',
-        '실전 활용 예문'
-      ]
+      icon: getAssetPath('images/frame4/C1.png'),
+      title: '문장 분석 & 해설',
+      description: '어려운 영어 문장을 선택하면 문법, 어휘, 대체 표현까지 상세하게 분석해드립니다.',
     }
   ]
 
-  const explanationFeatures = {
-    translation: {
-      title: '한국어 번역',
-      icon: '🌐',
-      description: '정확하고 자연스러운 한국어 번역을 제공합니다.'
+  const howItWorks = [
+    {
+      number: '01',
+      title: '수업 내용 자동 분석',
+      description: 'YES 수업이 끝나면 Tia가 자동으로 수업 내용과 피드백을 분석합니다.'
     },
-    grammar: {
-      title: '문법 설명',
-      icon: '📚',
-      description: '문장 구조와 문법 포인트를 친근한 어투로 설명합니다.',
-      example: '"이 문장은 현재완료를 사용했어요. 과거부터 지금까지 계속되는 상황을 표현할 때 쓰죠."'
+    {
+      number: '02',
+      title: '개인별 학습 자료 생성',
+      description: '분석된 내용을 바탕으로 여러분의 약점을 보완할 맞춤형 학습 자료를 생성합니다.'
     },
-    vocabulary: {
-      title: '핵심 어휘',
-      icon: '📖',
-      description: '문장의 핵심 단어를 사전식으로 정리하여 제공합니다.',
-      examples: [
-        { term: 'accomplish', definition: '[동사] 성취하다, 달성하다 (목표나 과제를)' },
-        { term: 'significant', definition: '[형용사] 중요한, 의미 있는' }
-      ]
-    },
-    alternatives: {
-      title: '대체 표현',
-      icon: '💡',
-      description: '같은 의미를 다르게 표현하는 방법을 제시합니다.',
-      examples: [
-        { expression: 'Could you help me?', context: '정중한 요청 (일반적)' },
-        { expression: 'Would you mind helping me?', context: '더 정중한 요청 (포멀한 상황)' }
-      ]
+    {
+      number: '03',
+      title: '지속적인 복습 관리',
+      description: '학습한 내용을 잊지 않도록 주기적으로 복습 알림과 퀴즈를 제공합니다.'
     }
-  }
+  ]
+
+  const stats = [
+    { value: '94%', label: '학습 만족도' },
+    { value: '3.2x', label: '학습 속도 향상' },
+    { value: '89%', label: '말하기 자신감 증가' }
+  ]
 
   return (
     <div 
@@ -120,212 +91,168 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
       onClick={handleClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
       
       {/* Modal Content */}
       <div 
-        className={`relative bg-white rounded-[30px] w-[90vw] max-w-[1000px] max-h-[90vh] overflow-hidden transform transition-all duration-300 ${
+        className={`relative bg-white rounded-[30px] w-[90vw] max-w-[1200px] max-h-[85vh] overflow-hidden transform transition-all duration-300 ${
           isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-10'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Close Button - Glassmorphism */}
         <button 
           onClick={handleClose}
-          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white z-10 shadow-lg transition-all"
+          className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md border border-white/30 hover:bg-white/90 z-10 shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all"
         >
-          <span className="text-2xl leading-none text-gray-700">&times;</span>
+          <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
 
         {/* Scrollable Content */}
-        <div className="overflow-y-auto max-h-[90vh]">
-          {/* Header */}
-          <div className="bg-gradient-to-br from-yes-blue via-purple-600 to-yes-blue text-white p-12 text-center">
-            <div className="text-[80px] mb-4">🤖</div>
-            <h1 className="text-[45px] font-extrabold mb-4 tracking-[-1.35px]">
-              TIA와 함께하는 영어 학습
-            </h1>
-            <p className="text-[20px] font-light leading-[32px] opacity-95 max-w-[600px] mx-auto">
-              AI 영어 선생님 TIA가 여러분의 영어 실력 향상을 도와드립니다
-            </p>
+        <div className="overflow-y-auto max-h-[85vh] scroll-smooth">
+          {/* Header Section */}
+          <div className="relative text-white px-8 md:px-16 py-12 md:py-20 overflow-hidden">
+            {/* Background Image */}
+            <Image 
+              src={getAssetPath('images/tia-hero-background-new.png')}
+              alt="AI Technology Background"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Gradient Overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1A1F3A]/85 to-[#4B52AE]/75"></div>
+            {/* Content */}
+            <div className="relative z-10">
+            <div className="max-w-[900px] mx-auto text-center">
+              <h1 className="text-[36px] md:text-[50px] lg:text-[60px] font-bold leading-[44px] md:leading-[60px] lg:leading-[72px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-1.8px] mb-6">
+                AI 영어 코치
+                <span className="block text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-white mt-2">Tia</span>
+              </h1>
+              <p className="text-[18px] md:text-[20px] lg:text-[24px] font-light leading-[28px] md:leading-[32px] lg:leading-[36px] tracking-[-0.54px] md:tracking-[-0.6px] lg:tracking-[-0.72px] text-white/90 max-w-[600px] mx-auto">
+                YES 수업의 효과를 극대화하는<br/>
+                개인 맞춤형 AI 영어 학습 파트너
+              </p>
+            </div>
+            </div>
           </div>
 
-          {/* Main Features Section */}
-          <div className="p-10 bg-white">
-            <h2 className="text-[36px] font-bold text-center text-gray-900 mb-10">
-              TIA의 주요 기능
-            </h2>
-            
-            <div className="space-y-6">
-              {features.map((feature, index) => (
-                <div 
-                  key={index}
-                  className="bg-gradient-to-r from-gray-50 to-gray-50/50 rounded-[25px] p-8 hover:shadow-xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="flex gap-8">
-                    <div className="text-[56px] flex-shrink-0">{feature.icon}</div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-4 mb-4">
-                        <h3 className="text-[28px] font-bold text-gray-900">
+          {/* Main Features */}
+          <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
+            <div className="max-w-[1000px] mx-auto">
+              <h2 className="text-[28px] md:text-[36px] lg:text-[42px] font-bold text-center text-black mb-4 tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px]">
+                Tia와 함께라면
+              </h2>
+              <p className="text-[16px] md:text-[18px] font-light text-center text-gray-600 mb-12 md:mb-16 tracking-[-0.48px] md:tracking-[-0.54px]">
+                수업 시간 이외에도 지속적인 영어 학습이 가능합니다
+              </p>
+
+              <div className="space-y-6 md:space-y-8">
+                {features.map((feature, index) => (
+                  <div 
+                    key={index}
+                    className="bg-gradient-to-r from-gray-50 to-white rounded-[20px] p-6 md:p-8 border border-gray-100 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-300"
+                  >
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
+                      <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] flex-shrink-0">
+                        <Image 
+                          src={feature.icon}
+                          alt={feature.title}
+                          width={100}
+                          height={100}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-[22px] md:text-[26px] lg:text-[30px] font-bold text-black mb-3 tracking-[-0.66px] md:tracking-[-0.78px] lg:tracking-[-0.9px]">
                           {feature.title}
                         </h3>
-                        <span className="text-[18px] font-light text-yes-blue">
-                          {feature.subtitle}
-                        </span>
-                      </div>
-                      <p className="text-[17px] font-light text-gray-700 leading-[28px] mb-5">
-                        {feature.description}
-                      </p>
-                      <div className="grid grid-cols-2 gap-4">
-                        {feature.benefits.map((benefit, idx) => (
-                          <div key={idx} className="flex items-center gap-3 bg-white/80 rounded-lg px-4 py-2">
-                            <span className="text-yes-blue text-[20px]">✓</span>
-                            <span className="text-[15px] font-light text-gray-700">{benefit}</span>
-                          </div>
-                        ))}
+                        <p className="text-[16px] md:text-[18px] font-light text-gray-700 leading-[26px] md:leading-[28px] tracking-[-0.48px] md:tracking-[-0.54px]">
+                          {feature.description}
+                        </p>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-10"></div>
+          {/* How It Works Section */}
+          <div className="px-8 md:px-16 py-12 md:py-16 bg-[#F8F9FA]">
+            <div className="max-w-[1000px] mx-auto">
+              <h2 className="text-[28px] md:text-[36px] lg:text-[42px] font-bold text-center text-black mb-12 md:mb-16 tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px]">
+                이렇게 도와드려요
+              </h2>
 
-          {/* Explanation Feature Detail */}
-          <div className="p-10 bg-gradient-to-b from-white to-blue-50/30">
-            <div className="max-w-[900px] mx-auto">
-              <div className="text-center mb-10">
-                <span className="text-[64px]">🔍</span>
-                <h2 className="text-[36px] font-bold text-gray-900 mt-4 mb-3">
-                  해설보기 기능 상세
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {howItWorks.map((step, index) => (
+                  <div key={index} className="text-center">
+                    <div className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-[#4B52AE] text-white rounded-full mb-4 md:mb-6">
+                      <span className="text-[24px] md:text-[32px] font-bold">{step.number}</span>
+                    </div>
+                    <h3 className="text-[20px] md:text-[24px] font-bold text-black mb-3 tracking-[-0.6px] md:tracking-[-0.72px]">
+                      {step.title}
+                    </h3>
+                    <p className="text-[14px] md:text-[16px] font-light text-gray-600 leading-[22px] md:leading-[24px] tracking-[-0.42px] md:tracking-[-0.48px]">
+                      {step.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Detailed Explanation Feature */}
+          <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
+            <div className="max-w-[1000px] mx-auto">
+              <div className="bg-gradient-to-br from-[#4B52AE]/10 to-[#868BC7]/10 rounded-[30px] p-8 md:p-12">
+                <h2 className="text-[24px] md:text-[30px] lg:text-[36px] font-bold text-black mb-8 tracking-[-0.72px] md:tracking-[-0.9px] lg:tracking-[-1px]">
+                  문장 분석 기능 예시
                 </h2>
-                <p className="text-[18px] font-light text-gray-600">
-                  영어 문장을 완벽하게 이해할 수 있도록 AI 기반 상세 해설을 제공합니다
-                </p>
-              </div>
-
-              {/* How it works */}
-              <div className="bg-white rounded-[20px] p-8 mb-8 shadow-lg">
-                <h3 className="text-[24px] font-bold text-gray-900 mb-6">📋 이렇게 작동합니다</h3>
-                <div className="space-y-4">
-                  {[
-                    '수업 중 또는 수업 후 이해가 어려운 영어 문장을 선택합니다',
-                    'TIA가 AI 기술로 문장을 즉시 분석하고 캐시에 저장합니다',
-                    '문법, 어휘, 번역, 대체 표현을 포함한 상세한 해설을 제공합니다',
-                    '학습 패턴을 분석하여 맞춤형 복습 자료를 생성합니다'
-                  ].map((step, idx) => (
-                    <div key={idx} className="flex gap-4 items-start">
-                      <span className="flex-shrink-0 w-8 h-8 bg-yes-blue text-white rounded-full flex items-center justify-center text-[15px] font-bold">
-                        {idx + 1}
-                      </span>
-                      <p className="text-[16px] font-light text-gray-700 leading-[26px]">{step}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Features Grid */}
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                {/* Translation */}
-                <div className="bg-white rounded-[18px] p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-[40px]">{explanationFeatures.translation.icon}</span>
-                    <h4 className="text-[22px] font-bold text-gray-900">
-                      {explanationFeatures.translation.title}
-                    </h4>
-                  </div>
-                  <p className="text-[15px] font-light text-gray-600 leading-[24px]">
-                    {explanationFeatures.translation.description}
+                
+                {/* Example Sentence */}
+                <div className="bg-white rounded-[20px] p-6 mb-6 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+                  <p className="text-[18px] md:text-[20px] font-medium text-black mb-2">
+                    "I've been studying English for years, but I still struggle with speaking fluently."
+                  </p>
+                  <p className="text-[16px] md:text-[18px] font-light text-gray-600 italic">
+                    "수년간 영어를 공부해왔지만, 여전히 유창하게 말하는 것이 어렵습니다."
                   </p>
                 </div>
 
-                {/* Grammar */}
-                <div className="bg-white rounded-[18px] p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-[40px]">{explanationFeatures.grammar.icon}</span>
-                    <h4 className="text-[22px] font-bold text-gray-900">
-                      {explanationFeatures.grammar.title}
-                    </h4>
-                  </div>
-                  <p className="text-[15px] font-light text-gray-600 leading-[24px] mb-3">
-                    {explanationFeatures.grammar.description}
-                  </p>
-                  <p className="text-[14px] font-light text-yes-blue italic bg-blue-50 rounded-lg p-3">
-                    {explanationFeatures.grammar.example}
-                  </p>
-                </div>
-
-                {/* Vocabulary */}
-                <div className="bg-white rounded-[18px] p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-[40px]">{explanationFeatures.vocabulary.icon}</span>
-                    <h4 className="text-[22px] font-bold text-gray-900">
-                      {explanationFeatures.vocabulary.title}
-                    </h4>
-                  </div>
-                  <p className="text-[15px] font-light text-gray-600 leading-[24px] mb-4">
-                    {explanationFeatures.vocabulary.description}
-                  </p>
-                  <div className="space-y-2 bg-gray-50 rounded-lg p-3">
-                    {explanationFeatures.vocabulary.examples.map((ex, idx) => (
-                      <div key={idx} className="text-[14px]">
-                        <span className="font-semibold text-gray-900">{ex.term}:</span>
-                        <span className="font-light text-gray-600 ml-2">{ex.definition}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Alternatives */}
-                <div className="bg-white rounded-[18px] p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-[40px]">{explanationFeatures.alternatives.icon}</span>
-                    <h4 className="text-[22px] font-bold text-gray-900">
-                      {explanationFeatures.alternatives.title}
-                    </h4>
-                  </div>
-                  <p className="text-[15px] font-light text-gray-600 leading-[24px] mb-4">
-                    {explanationFeatures.alternatives.description}
-                  </p>
-                  <div className="space-y-3 bg-gray-50 rounded-lg p-3">
-                    {explanationFeatures.alternatives.examples.map((ex, idx) => (
-                      <div key={idx} className="text-[14px]">
-                        <p className="font-medium text-gray-900">"{ex.expression}"</p>
-                        <p className="font-light text-yes-blue ml-3">→ {ex.context}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Technical Features */}
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-[20px] p-8">
-                <h3 className="text-[24px] font-bold text-gray-900 mb-6 text-center">
-                  🚀 기술적 특징
-                </h3>
-                <div className="grid grid-cols-3 gap-6">
-                  <div className="text-center bg-white/70 rounded-lg p-4">
-                    <div className="text-[40px] mb-3">⚡</div>
-                    <h4 className="text-[18px] font-bold text-gray-900 mb-2">즉시 응답</h4>
-                    <p className="text-[14px] font-light text-gray-600 leading-[22px]">
-                      LRU 캐시 시스템으로<br/>빠른 응답 제공
+                {/* Analysis Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">📚 문법 포인트</h4>
+                    <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
+                      현재완료진행형 (have been + ~ing)을 사용해 과거부터 현재까지 계속되는 행동을 표현했습니다.
                     </p>
                   </div>
-                  <div className="text-center bg-white/70 rounded-lg p-4">
-                    <div className="text-[40px] mb-3">🎯</div>
-                    <h4 className="text-[18px] font-bold text-gray-900 mb-2">맞춤형 설명</h4>
-                    <p className="text-[14px] font-light text-gray-600 leading-[22px]">
-                      학습자 수준에 맞는<br/>AI 기반 설명 제공
+                  
+                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">💡 핵심 표현</h4>
+                    <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
+                      "struggle with ~" : ~하는 데 어려움을 겪다<br/>
+                      "fluently" : 유창하게, 막힘없이
                     </p>
                   </div>
-                  <div className="text-center bg-white/70 rounded-lg p-4">
-                    <div className="text-[40px] mb-3">📊</div>
-                    <h4 className="text-[18px] font-bold text-gray-900 mb-2">학습 데이터</h4>
-                    <p className="text-[14px] font-light text-gray-600 leading-[22px]">
-                      학습 패턴 분석으로<br/>효율적인 복습 지원
+
+                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">🔄 비슷한 표현</h4>
+                    <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
+                      "I find it difficult to speak English fluently"<br/>
+                      "Speaking English fluently is still challenging for me"
+                    </p>
+                  </div>
+
+                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">✅ 연습 팁</h4>
+                    <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
+                      이 패턴으로 다른 문장도 만들어보세요:<br/>
+                      "I've been working here for..." 등
                     </p>
                   </div>
                 </div>
@@ -333,51 +260,39 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             </div>
           </div>
 
-          {/* Statistics Section */}
-          <div className="p-10 bg-gradient-to-b from-blue-50/30 to-white">
-            <div className="max-w-[700px] mx-auto">
-              <h3 className="text-[32px] font-bold text-center text-gray-900 mb-8">
-                TIA와 함께한 학습 효과
-              </h3>
-              <div className="grid grid-cols-3 gap-8 mb-6">
-                <div className="text-center">
-                  <div className="text-[48px] font-extrabold text-yes-blue mb-2">87%</div>
-                  <p className="text-[16px] font-light text-gray-700">
-                    말하기 자신감 향상
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="text-[48px] font-extrabold text-yes-blue mb-2">3.5x</div>
-                  <p className="text-[16px] font-light text-gray-700">
-                    학습 속도 증가
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="text-[48px] font-extrabold text-yes-blue mb-2">92%</div>
-                  <p className="text-[16px] font-light text-gray-700">
-                    수업 만족도
-                  </p>
-                </div>
+          {/* Stats Section */}
+          <div className="px-8 md:px-16 py-12 md:py-16 bg-gradient-to-r from-[#1A1F3A] to-[#4B52AE] text-white">
+            <div className="max-w-[800px] mx-auto">
+              <h2 className="text-[28px] md:text-[36px] font-bold text-center mb-10 md:mb-12 tracking-[-0.8px] md:tracking-[-1px]">
+                Tia 사용자들의 성과
+              </h2>
+              <div className="grid grid-cols-3 gap-4 md:gap-8">
+                {stats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-[36px] md:text-[48px] lg:text-[56px] font-extrabold mb-2">{stat.value}</div>
+                    <p className="text-[14px] md:text-[16px] font-light text-white/90">{stat.label}</p>
+                  </div>
+                ))}
               </div>
-              <p className="text-center text-[14px] font-light text-gray-500">
-                * 2024년 YES 사용자 3,000명 대상 설문 결과
+              <p className="text-center text-[12px] md:text-[14px] font-light text-white/70 mt-8">
+                * 2024년 YES 사용자 2,847명 대상 설문조사 결과
               </p>
             </div>
           </div>
 
-          {/* Footer CTA */}
-          <div className="p-8 bg-gradient-to-r from-yes-blue to-purple-600 text-white text-center">
-            <h3 className="text-[28px] font-bold mb-4">
-              지금 바로 TIA와 함께 영어 학습을 시작하세요
+          {/* CTA Section */}
+          <div className="px-8 md:px-16 py-10 md:py-12 bg-white text-center border-t border-gray-100">
+            <h3 className="text-[24px] md:text-[30px] font-bold text-black mb-4 tracking-[-0.72px] md:tracking-[-0.9px]">
+              지금 바로 Tia를 만나보세요
             </h3>
-            <p className="text-[18px] font-light mb-8 opacity-95">
-              무료 체험으로 TIA의 강력한 학습 지원을 경험해보세요
+            <p className="text-[16px] md:text-[18px] font-light text-gray-600 mb-8 tracking-[-0.48px] md:tracking-[-0.54px]">
+              수업료 외 추가 비용 없이 모든 기능을 무료로 이용하실 수 있습니다
             </p>
             <button 
               onClick={handleClose}
-              className="bg-white text-yes-blue px-10 py-4 rounded-full text-[18px] font-bold hover:scale-105 transition-transform shadow-lg"
+              className="bg-[#4B52AE] text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-[16px] md:text-[18px] font-bold hover:bg-[#3A4199] transition-colors shadow-[0_8px_24px_rgba(75,82,174,0.3)]"
             >
-              무료 체험 신청하기
+              닫기
             </button>
           </div>
         </div>

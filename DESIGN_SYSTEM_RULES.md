@@ -1,92 +1,547 @@
 # Design System Rules for YES Promotion Website
 
-This document provides comprehensive guidelines for integrating Figma designs using the Model Context Protocol (MCP) into the YES Promotion website codebase.
+This document provides comprehensive design guidelines and component-specific patterns for the YES Promotion website, ensuring consistency across all implementations.
 
-## Design System Structure
+## Table of Contents
+1. [Core Design Tokens](#core-design-tokens)
+2. [Typography System](#typography-system)
+3. [Color System](#color-system)
+4. [Spacing & Layout](#spacing--layout)
+5. [Component Design Patterns](#component-design-patterns)
+6. [Responsive Design Strategy](#responsive-design-strategy)
+7. [Animation & Interactions](#animation--interactions)
+8. [Asset Management](#asset-management)
+9. [Development Guidelines](#development-guidelines)
 
-### 1. Token Definitions
+## Core Design Tokens
 
-#### Colors
-**Location:** `/tailwind.config.js`
-```javascript
-colors: {
-  'yes-blue': '#4B52AE',   // Primary brand color (YES brand purple-blue)
-  'yes-navy': '#1A1F3A',   // Dark text/backgrounds
-  'yes-gray': '#F8F9FA',   // Light backgrounds
+### 1. Brand Identity
+- **Primary Brand:** YES (예스)
+- **Brand Personality:** Professional, Approachable, Innovative
+- **Visual Language:** Clean, Modern, Trustworthy
+
+### 2. Design Principles
+- **Clarity First:** Content should be immediately understandable
+- **Consistent Hierarchy:** Clear visual progression through sections
+- **Subtle Interactions:** Smooth transitions without distraction
+- **Mobile-First Responsive:** Optimized for all device sizes
+
+## Typography System
+
+### Font Family
+```css
+font-family: "Asta Sans", sans-serif;
+```
+
+### Font Weights
+- `font-light` (300): Body text, descriptions, testimonials
+- `font-normal` (400): Regular text (rarely used)
+- `font-medium` (500): Card content emphasis
+- `font-bold` (700): Headings, buttons, CTAs
+- `font-extrabold` (800): Brand emphasis (YES logo text)
+
+### Typography Scale
+
+#### Hero Section
+```scss
+// Desktop (lg)
+.hero-heading {
+  font-size: 70px;
+  line-height: 85px;
+  letter-spacing: -2.1px;
+  font-weight: 700;
+}
+
+// Tablet (md)
+.hero-heading-md {
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: -1.5px;
+}
+
+// Mobile
+.hero-heading-sm {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -1px;
 }
 ```
 
-**Additional Colors Used:**
-- Black: `#000000` (primary text)
-- White: `#FFFFFF` (backgrounds, inverted text)
-- Grays: `text-gray-700`, `bg-gray-100` (hover states)
-- Shadows: `shadow-[0_8px_24px_rgba(0,0,0,0.08)]` (cards)
+#### Section Headings
+```scss
+// Primary Section Title
+.section-title {
+  // Desktop
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: -1.5px;
+  font-weight: 800; // extrabold
+  
+  // Tablet
+  @media (max-width: 1024px) {
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: -1.2px;
+  }
+  
+  // Mobile
+  @media (max-width: 768px) {
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: -0.8px;
+  }
+}
 
-**Usage Pattern:**
-- Primary brand color: `yes-blue` (#4B52AE) - Used for YES branding
-- Dark backgrounds: `yes-navy` (#1A1F3A)
-- Light backgrounds: `yes-gray` (#F8F9FA)
-- Text colors: `text-black`, `text-white`, `text-white/90` (with opacity)
-
-#### Typography
-**Font Families:**
-- Primary: `'Asta Sans', sans-serif` - All text content
-- Font loading: Via Google Fonts in `globals.css`
-- Body text weight: 300 (Light)
-- Configuration: Set as default body font with light weight
-
-**Font Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+// Subsection Title
+.subsection-title {
+  // Desktop
+  font-size: 30px;
+  line-height: 40px;
+  letter-spacing: -0.9px;
+  font-weight: 700;
+  
+  // Tablet
+  @media (max-width: 1024px) {
+    font-size: 25px;
+    line-height: 34px;
+    letter-spacing: -0.75px;
+  }
+  
+  // Mobile
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.6px;
+  }
+}
 ```
 
-**Font Sizes & Line Heights:**
-```css
-/* Hero Section */
-text-[70px] leading-[85px] tracking-[-2.1px]  /* Main heading */
-text-[50px] leading-[60px] tracking-[-1.5px]  /* Section heading */
-text-[30px] leading-[40px] tracking-[-0.9px]  /* Subheading */
-text-[20px] leading-[32px]                     /* Body large/Buttons */
-text-[18px] leading-[28px] tracking-[-0.54px]  /* Body medium/Cards */
-text-[16px]                                    /* Body small */
+#### Body Text
+```scss
+// Large Body (Buttons, Important Text)
+.body-large {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+// Medium Body (Cards, Descriptions)
+.body-medium {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.54px;
+  font-weight: 300; // light
+}
+
+// Small Body (Captions, Secondary Info)
+.body-small {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.48px;
+  font-weight: 300;
+}
+
+// Mobile Body
+.body-mobile {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.42px;
+  font-weight: 300;
+}
 ```
 
-**Font Weights:**
-- `font-light` (300): Default body text weight
-- `font-normal` (400): Regular text
-- `font-medium` (500): Body text in cards
-- `font-bold` (700): Bold text
-- `font-extrabold` (800): Emphasis (especially "YES" branding)
+## Color System
 
-#### Spacing
-**Standard Padding/Margins:**
-- Section padding: `py-[200px]`
-- Container max-width: `max-w-[1280px]`
-- Component gaps: `gap-20`, `gap-[110px]`
-- Button padding: `px-[60px] py-[25px]`
+### Primary Colors
+```scss
+$yes-blue: #4B52AE;    // Primary brand color
+$yes-navy: #1A1F3A;    // Dark backgrounds, section bg
+$yes-gray: #F8F9FA;    // Light backgrounds
+```
 
-### 2. Component Library
+### Extended Palette
+```scss
+// Text Colors
+$text-primary: #000000;        // Main text
+$text-secondary: #666666;      // Secondary text
+$text-light: #999999;          // Disabled/placeholder
+$text-white: #FFFFFF;          // Inverted text
+$text-white-90: rgba(255, 255, 255, 0.9);  // Slightly transparent white
 
-**Component Architecture:**
-- **Framework:** React 18.3.1 with TypeScript
-- **Pattern:** Functional components with hooks
-- **State Management:** React hooks (useState, useEffect, useRef)
-- **Styling:** Tailwind CSS utility classes
+// Accent Colors
+$accent-purple: #868BC7;       // Feature labels in dark sections
+$accent-blue: #4B52AE;         // Interactive elements, links
 
-**Component Structure:**
+// Background Colors
+$bg-white: #FFFFFF;            // Default background
+$bg-dark: #1A1F3A;            // Dark sections
+$bg-black: #000000;           // Footer background
+$bg-gray-light: #F8F9FA;      // Alternate sections
+
+// UI Colors
+$border-white: #FFFFFF;       // White borders
+$border-gray: #E5E5E5;        // Dividers
+$shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
+```
+
+### Color Usage Patterns
+- **Hero Section:** White background, black text, yes-blue for brand
+- **Section 2:** White background, gray-700 text in bubbles
+- **Section 3:** Dark navy background, white text, purple accents
+- **Section 4:** Image overlay with white text
+- **Section 5:** White background, black primary text, gray secondary
+- **Footer:** Black background, white text, gray legal text
+
+## Spacing & Layout
+
+### Container System
+```scss
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px; // Mobile: 16px, Tablet: 24px, Desktop: 24px
+}
+```
+
+### Section Spacing
+```scss
+// Desktop
+.section-padding {
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+// Tablet
+.section-padding-md {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+// Mobile
+.section-padding-sm {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+```
+
+### Component Gaps
+```scss
+// Feature Grids
+.feature-gap-lg: 80px;  // Desktop
+.feature-gap-md: 56px;  // Tablet
+.feature-gap-sm: 40px;  // Mobile
+
+// Content Spacing
+.content-gap-lg: 100px;  // Major sections
+.content-gap-md: 70px;   // Subsections
+.content-gap-sm: 40px;   // Elements
+```
+
+## Component Design Patterns
+
+### 1. Hero Component
 ```typescript
-// Standard component pattern
-'use client'  // Only for components with interactivity
+// Structure
+<section className="relative w-full h-[600px] md:h-[900px] overflow-hidden bg-white">
+  <div className="flex flex-col items-center justify-start pt-[80px] md:pt-[200px]">
+    // Title with brand emphasis
+    <h1>말하게 되는 영어</h1>
+    <p>진짜 시작은 <span className="font-extrabold text-yes-blue">YES</span></p>
+    // Infinite scroll animation
+  </div>
+</section>
+
+// Key Design Elements:
+- Infinite horizontal scroll animation (0.5px/frame)
+- Fixed width images (2150px) for seamless loop
+- Brand color emphasis on "YES"
+- Responsive height adjustment
+```
+
+### 2. Section2 - Speech Bubbles
+```typescript
+// Desktop Layout (Hidden on mobile/tablet)
+<div className="relative h-[539px] w-full max-w-[1030px]">
+  // Absolutely positioned bubbles
+  {speechBubbles.map(bubble => (
+    <div className="absolute bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+         style={{ top: bubble.top, left: bubble.left, width: '340px', height: '150px' }}>
+  ))}
+</div>
+
+// Mobile Layout - Alternating Two Columns
+<div className="grid grid-cols-2 gap-0">
+  // Left column (indices 0,2,4)
+  <div className="flex flex-col gap-2">
+    // z-index: 1, 3, 5 (sequential increase)
+  </div>
+  // Right column (indices 1,3,5) 
+  <div className="flex flex-col gap-2 mt-[50px] -ml-5">
+    // z-index: 2, 4, 6 (sequential increase)
+    // Offset down for staggered effect
+  </div>
+</div>
+
+// Key Design Elements:
+- Fixed positioning on desktop
+- Staggered two-column layout on mobile
+- Sequential z-index for layering (1-6)
+- Overlap effect with negative margins
+- Hover scale animation
+```
+
+### 3. Section3 - Dark Feature Section
+```typescript
+// Background & Theme
+className="bg-[#1A1F3A] text-white"
+
+// Two-part structure:
+// Part 1: Feature Grid
+<div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+  // Icon + Title + Subtitle + Description
+  // Purple accent for labels (#868BC7)
+</div>
+
+// Part 2: TIA Introduction
+<div className="flex flex-col items-center">
+  // Video showcase in white frame
+  // Three-column feature list
+  // CTA button with border
+</div>
+
+// Key Design Elements:
+- Dark navy background for contrast
+- White text with 90% opacity for descriptions
+- Purple accent color for feature labels
+- Video in rounded white container
+- Ghost button style (border only)
+```
+
+### 4. Section4 - Testimonial Overlay
+```typescript
+// Full-width image background
+<div className="absolute inset-0">
+  <Image fill className="object-cover" />
+</div>
+
+// Centered text overlay
+<div className="relative z-10 text-center text-white">
+  // Testimonial quote
+  // Attribution
+</div>
+
+// Key Design Elements:
+- Full-bleed background image
+- White text overlay
+- Light font weight for elegance
+- Minimal height for impact
+```
+
+### 5. Section5 - Level Test & FAQ
+```typescript
+// Three-part structure:
+// 1. Title
+// 2. Phone mockup + Features
+<div className="flex flex-col lg:flex-row gap-[100px]">
+  // Phone mockup (fixed aspect ratio)
+  // Feature list with icons
+</div>
+
+// 3. Expandable FAQ
+<div className="max-w-[1080px] mx-auto">
+  {faqs.map(faq => (
+    // Accordion with smooth height animation
+    // Color change on active (#4B52AE)
+  ))}
+</div>
+
+// Key Design Elements:
+- Phone mockup maintains aspect ratio
+- Feature icons at 100x100px
+- FAQ with smooth expand animation
+- Active state color change
+- Divider lines between FAQs
+```
+
+### 6. Footer - Two-layer Design
+```typescript
+// Fixed Bottom Bar
+<div className="fixed bottom-0 left-0 right-0 bg-[#4b52ae] z-50">
+  // Full-width CTA button
+  // GO badge element
+</div>
+
+// Main Footer
+<footer className="bg-black py-[120px] pb-[190px]">
+  // Brand message
+  // App store buttons with icons
+</footer>
+
+// Key Design Elements:
+- Sticky CTA bar at bottom
+- Black background for premium feel
+- Ghost button style for app stores
+- Extra padding bottom for fixed bar
+- Smooth scroll to footer on CTA click
+```
+
+## Responsive Design Strategy
+
+### Breakpoints
+```scss
+// Mobile First Approach
+$mobile: 0px;        // Default
+$tablet: 768px;      // md:
+$desktop: 1024px;    // lg:
+$wide: 1440px;       // xl:
+```
+
+### Responsive Patterns
+
+#### Typography Scaling
+```scss
+// Desktop -> Tablet -> Mobile
+// Example: Section Title
+text-[50px] -> text-[40px] -> text-[28px]
+leading-[60px] -> leading-[50px] -> leading-[36px]
+tracking-[-1.5px] -> tracking-[-1.2px] -> tracking-[-0.8px]
+```
+
+#### Spacing Adaptation
+```scss
+// Section Padding
+py-[200px] -> py-[150px] -> py-[80px]
+
+// Component Gaps
+gap-20 -> gap-14 -> gap-10
+
+// Margins
+mb-[100px] -> mb-[80px] -> mb-[50px]
+```
+
+#### Layout Changes
+- **Hero:** Height 900px -> 600px
+- **Features:** 2 columns -> 1 column
+- **Speech Bubbles:** Absolute -> Grid layout
+- **Footer:** Row -> Column layout
+
+## Animation & Interactions
+
+### Hover States
+```scss
+// Scale Animation
+.hover-scale {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Color Transitions
+.hover-button {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: white;
+    color: $yes-navy;
+  }
+}
+```
+
+### Scroll Animations
+```javascript
+// Infinite Scroll (Hero)
+const animate = () => {
+  position -= 0.5; // Speed
+  if (position <= -2150) {
+    position = 0; // Reset
+  }
+  element.style.transform = `translateX(${position}px)`;
+  requestAnimationFrame(animate);
+};
+
+// Smooth Scroll
+element.scrollIntoView({ behavior: 'smooth' });
+```
+
+### Transitions
+```scss
+// FAQ Accordion
+.accordion-content {
+  max-height: 0;
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+  
+  &.open {
+    max-height: 250px;
+    opacity: 1;
+  }
+}
+```
+
+## Asset Management
+
+### Image Organization
+```
+/public/images/
+├── thumbnail_PC.png       # Hero banner
+├── section2/
+│   └── D1.png            # Question icon
+├── section3/
+│   ├── A1.png           # Feature icons
+│   ├── A2.png
+│   ├── A3.png
+│   └── A5.png
+├── section3-2/
+│   ├── list2-1.png      # TIA feature icons
+│   ├── list2-2.png
+│   ├── list2-3.png
+│   └── tia.mp4          # TIA demo video
+├── section4/
+│   └── section4.png     # Testimonial bg
+├── frame4/
+│   ├── img 3.png        # Phone mockup
+│   ├── C1.png           # Level test icons
+│   ├── C2.png
+│   └── C3.png
+└── icons/
+    ├── apple.svg        # App store icon
+    └── google.svg       # Play store icon
+```
+
+### Image Guidelines
+- Use Next.js Image component for optimization
+- Priority loading for above-fold images
+- Maintain aspect ratios for consistency
+- Use getAssetPath() helper for production paths
+
+### Icon Specifications
+- Standard size: 110x110px
+- Mobile size: 70x70px
+- Format: PNG with transparency
+- Consistent visual weight
+
+## Development Guidelines
+
+### Component Architecture
+```typescript
+// Standard Component Pattern
+'use client'  // Only if needed for interactivity
 
 import Image from 'next/image'
-import { getAssetPath } from '@/lib/utils'  // For production paths
+import { getAssetPath } from '@/lib/utils'
 
 const ComponentName = () => {
-  // Hooks for client-side logic (useRef, useEffect, useState)
+  // State and hooks (if client component)
   
   return (
     <section className="relative w-full py-[200px] bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
+        <h2 className="section-title">
+          Title
+        </h2>
         {/* Component content */}
       </div>
     </section>
@@ -96,412 +551,87 @@ const ComponentName = () => {
 export default ComponentName
 ```
 
-**Key Components:**
-- `Hero.tsx` - Animated hero section with infinite scroll
-- `Section2.tsx` - Feature display sections
-- `Section3.tsx` - Multi-part feature sections with video
-- `Section4.tsx` - Content sections
-- `Footer.tsx` - Site footer
+### Tailwind Class Organization
+1. **Layout:** `relative`, `flex`, `grid`
+2. **Sizing:** `w-full`, `h-[100px]`, `max-w-[1280px]`
+3. **Spacing:** `px-6`, `py-[200px]`, `gap-20`
+4. **Typography:** `text-[50px]`, `font-bold`, `leading-[60px]`
+5. **Colors:** `text-black`, `bg-white`
+6. **Effects:** `shadow-lg`, `rounded-[20px]`
+7. **Animations:** `hover:scale-105`, `transition-transform`
 
-### 3. Frameworks & Libraries
+### Mobile-First Implementation
+```scss
+// Start with mobile styles
+className="text-[28px] md:text-[40px] lg:text-[50px]"
 
-**Core Stack:**
-- **Framework:** Next.js 14.2.18 (App Router)
-- **UI Library:** React 18.3.1
-- **Language:** TypeScript 5.7.2
-- **Styling:** Tailwind CSS 3.4.1
-- **Build Tool:** Next.js built-in (Turbopack/Webpack)
+// Progressive enhancement
+className="grid grid-cols-1 md:grid-cols-2"
 
-**TypeScript Configuration:**
-```json
-{
-  "strict": true,
-  "paths": {
-    "@/*": ["./*"]  // Path alias for imports
-  }
-}
+// Conditional rendering
+className="hidden lg:block"  // Desktop only
+className="md:hidden"        // Mobile only
 ```
 
-### 4. Asset Management
+### Performance Optimization
+- Use `'use client'` only when necessary
+- Implement lazy loading for below-fold content
+- Optimize images with proper sizing
+- Minimize re-renders with proper state management
+- Use CSS transforms for animations (GPU acceleration)
 
-**Asset Storage:**
-- Location: `/public/images/`
-- Organization: By section/feature
-  - `/images/section2/`
-  - `/images/section3/`
-  - `/images/section3-2/`
-  - Main assets: `/images/thumbnail_PC.png`, `/images/mobile-view.png`
+### Accessibility Standards
+- Semantic HTML structure
+- Proper heading hierarchy (h1 -> h2 -> h3)
+- Alt text for all images
+- ARIA labels for interactive elements
+- Keyboard navigation support
+- Color contrast compliance (WCAG AA)
 
-**Image Optimization:**
-- Using Next.js `Image` component for automatic optimization
-- Priority loading for above-fold images: `priority` prop
-- Responsive sizing with `width`, `height`, and `className`
-- `unoptimized: true` in next.config.js for static export
+## Component-Specific Styles Reference
 
-**Asset Path Helper:**
-```tsx
-import { getAssetPath } from '@/lib/utils'
+### Hero Component
+- Height: 600px (mobile) / 900px (desktop)
+- Title size: 32px -> 50px -> 70px
+- Infinite scroll speed: 0.5px per frame
+- Image width: 2150px fixed
 
-// Handles production/dev path differences
-<Image 
-  src={getAssetPath('images/section3/icon.png')}
-  alt="Description"
-  width={110}
-  height={110}
-  className="w-full h-full object-contain"
-  priority
-/>
-```
+### Section2 (Speech Bubbles)
+- Desktop: Absolute positioning, 340x150px bubbles
+- Mobile: Two-column grid with overlap
+- Shadow: 0 8px 24px rgba(0,0,0,0.08)
+- Border radius: 20px
+- Padding: Mobile (px-3 py-4), Desktop (px-8 py-6)
 
-**Asset Types:**
-- Images: `.png`, `.jpg`, `.svg`
-- Videos: `.mp4` (with autoPlay, loop, muted attributes)
-- Icons: Favicons at `/fav.png`
+### Section3 (Features)
+- Background: #1A1F3A
+- Text: White primary, #868BC7 accent
+- Icon size: 70px -> 90px -> 110px
+- Video container: 360x632px with white frame
+- Button: Border-2, rounded-100px, hover effect
 
-### 5. Icon System
+### Section4 (Testimonial)
+- Height: 400px -> 450px -> 516px
+- Full-width background image
+- Centered text overlay
+- Light font weight throughout
 
-**Icon Storage:**
-- Location: `/public/images/` subdirectories
-- Format: PNG and SVG files
-- Naming: Descriptive names (e.g., `A1.png`, `icon1.svg`)
+### Section5 (Level Test)
+- Phone mockup: 300x607px
+- Icon size: 100x100px
+- FAQ max-height animation: 250px
+- Active FAQ color: #4B52AE
 
-**Icon Sizes:**
-- Standard: 110x110px
-- Responsive: Using Tailwind classes for sizing
+### Footer
+- Fixed bar height: py-4 -> py-5 -> py-6
+- Main footer padding: 120px top, 190px bottom
+- App store buttons: 260px width
+- Border: 2px white
 
-**Implementation:**
-```tsx
-<div className="w-[110px] h-[110px] relative">
-  <Image 
-    src="/images/section3/icon.png"
-    alt="Icon description"
-    width={110}
-    height={110}
-    className="w-full h-full object-contain"
-  />
-</div>
-```
+## Version History
+- v2.0.0 - Complete redesign with component-specific patterns
+- v1.0.0 - Initial design system
 
-### 6. Styling Approach
-
-**CSS Methodology:**
-- **Tailwind CSS** utility-first approach
-- Custom CSS in `globals.css` for base styles
-- No CSS Modules or Styled Components
-
-**Global Styles:**
-```css
-/* app/globals.css */
-@import url('https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;600;700;800;900&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  html { 
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply text-black bg-white;
-    font-family: "Asta Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-weight: 300; /* Light weight for body text */
-  }
-}
-
-/* Custom font class */
-.asta-sans {
-  font-family: "Asta Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-weight: 300;
-}
-```
-
-**Responsive Design:**
-- Mobile-first approach with Tailwind breakpoints
-- Grid system: `grid grid-cols-2`, `grid-cols-3`
-- Flexbox layouts: `flex flex-col`, `flex items-center`
-
-**Animation Patterns:**
-- Smooth scroll animations: `requestAnimationFrame` for infinite scrollers
-- Hover states: `hover:scale-105 transition-transform`, `hover:bg-gray-100 transition-colors`
-- Will-change optimization: `style={{ willChange: 'transform' }}`
-- Transitions: `transition-transform`, `transition-colors`
-
-**Example Animation (Infinite Scroll):**
-```tsx
-useEffect(() => {
-  const animate = () => {
-    position -= speed;
-    if (position <= -imageWidth) {
-      position = 0;
-    }
-    element.style.transform = `translateX(${position}px)`;
-    requestAnimationFrame(animate);
-  };
-  requestAnimationFrame(animate);
-}, [])
-```
-
-### 7. Project Structure
-
-```
-yes-promotion-website/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout with metadata
-│   ├── page.tsx           # Home page entry
-│   └── globals.css        # Global styles & Tailwind
-├── components/            # Reusable React components
-│   ├── Hero.tsx          # Hero section with animation
-│   ├── Section2.tsx      # Speech bubble questions
-│   ├── Section3.tsx      # Multi-part feature sections
-│   ├── Section4.tsx      # Content sections
-│   ├── Section5.tsx      # Additional content
-│   ├── Footer.tsx        # Site footer
-│   └── TiaModal.tsx      # Modal component
-├── lib/                   # Utility functions
-│   ├── utils.ts          # getAssetPath helper
-│   └── config.ts         # Configuration helpers
-├── public/
-│   ├── fav.png           # Favicon
-│   └── images/           # Static assets
-│       ├── section2/     # D1.png icons
-│       ├── section3/     # Feature images
-│       └── section3-2/   # Subsection assets
-├── scripts/              # Download scripts
-│   └── download-images.js
-├── out/                  # Static export output
-├── .mcp.json             # MCP configuration
-├── CLAUDE.md             # AI assistant instructions
-├── tailwind.config.js    # Tailwind configuration
-├── tsconfig.json         # TypeScript config
-├── next.config.js        # Next.js config (static export)
-└── package.json          # Dependencies
-```
-
-## Integration Guidelines
-
-### Converting Figma Designs
-
-1. **Extract Design Tokens:**
-   ```typescript
-   // Use Figma MCP to get variables
-   mcp__figma-dev-mode-mcp-server__get_variable_defs
-   // Map to Tailwind config colors/spacing
-   ```
-
-2. **Generate Component Code:**
-   ```typescript
-   // Request with proper framework context
-   mcp__figma-dev-mode-mcp-server__get_code({
-     nodeId: "extracted-from-url",
-     clientFrameworks: "react",
-     clientLanguages: "typescript,javascript,html,css",
-     dirForAssetWrites: "/Users/roy/Documents/Development/yes-promotion-website/public/images"
-   })
-   ```
-
-3. **Adapt Generated Code:**
-   - Replace inline styles with Tailwind classes
-   - Use Next.js Image component with `getAssetPath` helper
-   - Apply consistent spacing tokens (py-[200px], max-w-[1280px])
-   - Ensure TypeScript typing
-   - Add 'use client' only if needed for interactivity
-   - Use semantic HTML (section, article, etc.)
-
-### Component Creation Pattern
-
-```tsx
-'use client'  // Only if client-side features needed
-
-import Image from 'next/image'
-import { getAssetPath } from '@/lib/utils'
-
-interface ComponentProps {
-  // Define props with TypeScript
-}
-
-const NewComponent = ({ props }: ComponentProps) => {
-  // Hooks only if client component
-  
-  return (
-    <section className="relative w-full py-[200px] bg-white">
-      <div className="max-w-[1280px] mx-auto px-6">
-        {/* Title pattern */}
-        <h2 className="text-[50px] font-extrabold leading-[60px] text-center text-black tracking-[-1.5px] mb-[100px]">
-          Section Title
-        </h2>
-        
-        {/* Content with consistent spacing */}
-        <div className="flex flex-col gap-20">
-          {/* Component content */}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export default NewComponent
-```
-
-### Best Practices
-
-1. **Consistency:**
-   - Follow existing naming conventions
-   - Use established spacing/sizing tokens
-   - Maintain TypeScript strict mode compliance
-   - Always use `yes-blue` (#4B52AE) for brand elements
-   - Apply light font weight (300) for body text
-
-2. **Performance:**
-   - Use Next.js Image for all images
-   - Add `priority` to above-fold images
-   - Implement lazy loading for below-fold content
-
-3. **Accessibility:**
-   - Always include alt text for images
-   - Use semantic HTML elements
-   - Maintain proper heading hierarchy
-
-4. **Code Quality:**
-   - Keep components focused and single-purpose
-   - Extract reusable logic into custom hooks
-   - Type all props and state with TypeScript
-
-## Figma to Code Workflow
-
-1. **Analyze Figma Design:**
-   - Get node metadata first
-   - Extract design tokens/variables
-   - Identify component patterns
-
-2. **Generate Initial Code:**
-   - Use MCP tools with correct framework context
-   - Get both code and assets
-
-3. **Adapt to Project:**
-   - Apply Tailwind classes
-   - Use project color tokens
-   - Follow component patterns
-
-4. **Test Implementation:**
-   - Use Playwright MCP for E2E testing
-   - Verify responsive behavior
-   - Check accessibility
-
-5. **Optimize:**
-   - Review performance metrics
-   - Optimize images and assets
-   - Ensure smooth animations
-
-## Common Patterns
-
-### Section Layout
-```tsx
-<section className="relative w-full bg-[color] py-[200px]">
-  <div className="max-w-[1280px] mx-auto px-6">
-    <h2 className="text-[50px] font-extrabold leading-[60px] text-center mb-[100px]">
-      Section Title
-    </h2>
-    {/* Section content */}
-  </div>
-</section>
-```
-
-### Feature Grid
-```tsx
-<div className="grid grid-cols-2 gap-20">
-  {features.map((feature, index) => (
-    <div key={index} className="flex flex-col items-center text-center">
-      {/* Feature content */}
-    </div>
-  ))}
-</div>
-```
-
-### Button Styling
-```tsx
-<button className="bg-white text-[#1A1F3A] px-[60px] py-[25px] rounded-full text-[20px] font-bold hover:bg-gray-100 transition-colors">
-  Button Text
-</button>
-```
-
-### Card/Speech Bubble Pattern
-```tsx
-<div className="absolute bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
-     style={{
-       top: `${position.top}px`,
-       left: `${position.left}px`,
-       width: '340px',
-       height: '150px',
-     }}>
-  <p className="text-[18px] leading-[28px] text-gray-700 font-medium whitespace-pre-line text-center flex items-center justify-center h-full tracking-[-0.54px]">
-    {content}
-  </p>
-</div>
-```
-
-### Metadata Configuration
-```tsx
-// app/layout.tsx
-export const metadata: Metadata = {
-  metadataBase: new URL('https://ycse.github.io'),
-  title: 'YES - 말하게 되는 영어, 진짜 시작',
-  description: '실전에서 통하는 영어 회화, YES와 함께 시작하세요',
-  icons: {
-    icon: '/yes-promotion-website/fav.png',
-    apple: '/yes-promotion-website/fav.png',
-  },
-  openGraph: {
-    title: 'YES - 말하게 되는 영어, 진짜 시작',
-    description: '실전에서 통하는 영어 회화, YES와 함께 시작하세요',
-    images: ['/yes-promotion-website/images/thumbnail_PC.png'],
-  },
-}
-```
-
-## Key Implementation Notes
-
-### Brand Guidelines
-- **Primary Brand Color:** `#4B52AE` (yes-blue) - MUST be used for all YES branding
-- **Typography:** Asta Sans font family
-- **Body Text Weight:** Always use font-weight 300 (light) for body text
-- **Logo/Brand Text:** Use font-extrabold (800) for "YES" text
-
-### Static Site Generation
-- Project configured for static export: `output: 'export'` in next.config.js
-- Production deployment to GitHub Pages with basePath
-- Images unoptimized for static compatibility
-- Use `getAssetPath` helper for all asset references
-
-### Client vs Server Components
-- Default to server components (no 'use client')
-- Add 'use client' only for:
-  - Interactive elements (onClick, onChange)
-  - Browser APIs (window, document)
-  - Hooks requiring client-side (useEffect, useState)
-  - Animations using requestAnimationFrame
-
-### TypeScript Strictness
-- Strict mode enabled
-- All components must have proper typing
-- Use interface definitions for props
-- Path alias `@/*` configured for clean imports
-
-### Testing with Playwright MCP
-- Use `browser_snapshot` for structure analysis
-- Test responsive layouts with `browser_resize`
-- Verify animations and interactions
-- Check console for errors with `browser_console_messages`
-
-### Production Considerations
-- GitHub Pages deployment with `/yes-promotion-website` base path
-- All assets must use relative paths via helpers
-- Metadata includes production URLs
-- Trailing slashes enabled for proper routing
+---
 
 This document should be continuously updated as the design system evolves and new patterns emerge.
