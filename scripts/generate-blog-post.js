@@ -43,6 +43,11 @@ async function generateBlogPost() {
           threshold: HarmBlockThreshold.BLOCK_NONE,
         },
       ],
+      generationConfig: {
+        thinkingConfig: {
+          thinkingBudget: -1,
+        },
+      },
     });
 
     // Use the BlogPostGenerator to get random combination
@@ -72,37 +77,35 @@ async function generateBlogPost() {
 한국인 영어 학습자를 위한 블로그 포스트를 작성해주세요.
 
 주제: ${topic}
-
 작성 방향: ${direction}
 
-중요 요구사항:
-1. 반드시 최소 1개 이상의 H2 (##) 섹션을 포함해야 합니다.
-2. 각 H2 섹션 제목 바로 다음 줄에 [IMAGE_PLACEHOLDER_H2_{번호}] 마커를 삽입 (예: ## 핵심 표현 익히기\n[IMAGE_PLACEHOLDER_H2_1])
-3. author는 반드시 "${randomEditor}"를 사용해야 합니다. YES English Team이 아닙니다!
-4. 리스트 항목 (<li> 또는 -)은 꼭 필요한 경우에만 최소한으로 사용하세요.
-5. 위에 명시된 "작성 방향"을 반드시 따라서 글을 구성하세요. 이것이 글의 전체적인 구조와 접근법을 결정합니다.
+【필수 규칙】
+1. ⚠️ 매우 중요: 모든 H2(##) 섹션 제목 바로 다음 줄에 반드시 [IMAGE_PLACEHOLDER_H2_{번호}] 삽입!
+   예시:
+   ## 첫 번째 섹션
+   [IMAGE_PLACEHOLDER_H2_1]
+   
+   ## 두 번째 섹션  
+   [IMAGE_PLACEHOLDER_H2_2]
+   
+2. author는 반드시 "${randomEditor}" 사용
+3. 작은따옴표 백틱 사용 절대 금지 → 강조할 때는 **볼드체** 사용
+4. 리스트(-)는 최소한으로, 문단 위주로 작성
+5. 과도한 괄호 사용 금지 (예: '프렌즈(Friends)' → 프렌즈)
 
-다음 구조로 작성해주세요:
-1. 흥미로운 제목 (한국어)
-2. 부제목 (한국어, 선택사항)
-3. 도입부 (왜 이 주제가 중요한지)
-4. 최소 1개 이상의 H2 섹션으로 구성된 본문 내용
-   - 각 H2 섹션은 실용적인 예시와 설명 포함
-   - 리스트보다는 문단 형식 선호
-   - 작성 방향에 맞는 스타일로 전개
-5. 마무리와 다음 단계
+【좋은 예시】
+✅ "프렌즈나 해리포터 같은 작품을 추천합니다"
+✅ "**중요한 표현**은 이렇게 강조합니다"
+❌ "드라마('프렌즈'), 영화('해리포터')"
+❌ '이렇게' 백틱 사용 금지
 
-요구사항:
-- 한국어로 작성하되, 영어 예문은 영어로
-- 실용적이고 즉시 활용 가능한 내용
-- 초급-중급 학습자 대상
-- 친근하고 격려하는 톤 (작성 방향에 따라 조정)
-- 2000-3000자 분량 (충실한 내용을 위해 분량 증가)
-- 마크다운 형식으로 작성
-- 리스트 사용 최소화, 문단 형식 선호
-- 작성 방향을 창의적으로 해석하여 독특하고 흥미로운 글 작성
+【글 구조】
+1. 제목과 부제목
+2. 흥미로운 도입부
+3. H2 섹션들 (실용적 내용)
+4. 마무리
 
-형식 (반드시 이 형식을 따르세요):
+【형식】
 ---
 title: [제목]
 subtitle: [부제목]
@@ -112,11 +115,11 @@ excerpt: [요약 2-3문장]
 featuredImage: /images/blog/${slug}.jpg
 ---
 
-[본문 내용 - 반드시 H2 섹션 포함 및 작성 방향 반영]
+[본문 - 2000-3000자, 친근한 톤, 실용적 내용]
 `;
 
     const result = await model.generateContent(prompt);
-    const response = await result.response;
+    const response = result.response;
     const text = response.text();
     
     // Parse frontmatter to get the title

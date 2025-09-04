@@ -90,23 +90,94 @@ async function generateH2Image(h2Title, slug, index) {
 
 async function processH2Images(content, slug) {
   try {
-    // Find all H2 titles and placeholders
-    const h2Pattern = /## (.+?)\n\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
-    const matches = [...content.matchAll(h2Pattern)];
+    console.log('=== Starting H2 image processing ===');
+    console.log('Content length:', content.length);
+    
+    // First, find all IMAGE_PLACEHOLDER markers
+    const placeholderPattern = /\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
+    const placeholders = [...content.matchAll(placeholderPattern)];
+    console.log(`Found ${placeholders.length} IMAGE_PLACEHOLDER markers`);
+    
+    // Also try to find H2 titles with placeholders (more flexible pattern)
+    const h2Pattern = /##\s+(.+?)(?:\n|\r\n?)\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
+    const h2Matches = [...content.matchAll(h2Pattern)];
+    console.log(`Found ${h2Matches.length} H2 titles with placeholders`);
+    
+    // Create a map of index to H2 title
+    const h2Map = new Map();
+    for (const match of h2Matches) {
+      const h2Title = match[1].trim();
+      const index = match[2];
+      h2Map.set(index, h2Title);
+      console.log(`H2 #${index}: "${h2Title}"`);
+    }
+    
+    // If we couldn't match H2s with placeholders, try alternative approach
+    if (h2Map.size === 0 && placeholders.length > 0) {
+      console.log('Trying alternative H2 matching approach...');
+      
+      // Find all H2 titles separately
+      const h2OnlyPattern = /##\s+(.+?)(?:\n|\r\n?)/g;
+      const h2Titles = [...content.matchAll(h2OnlyPattern)];
+      console.log(`Found ${h2Titles.length} H2 titles in total`);
+      
+      // Match placeholders to H2s by proximity
+      for (const placeholder of placeholders) {
+        const index = placeholder[1];
+        const placeholderPos = placeholder.index;
+        
+        // Find the closest H2 before this placeholder
+        let closestH2 = null;
+        let closestDistance = Infinity;
+        
+        for (const h2Match of h2Titles) {
+          const h2Pos = h2Match.index;
+          if (h2Pos < placeholderPos && (placeholderPos - h2Pos) < closestDistance) {
+            closestDistance = placeholderPos - h2Pos;
+            closestH2 = h2Match[1].trim();
+          }
+        }
+        
+        if (closestH2) {
+          h2Map.set(index, closestH2);
+          console.log(`Matched placeholder #${index} to H2: "${closestH2}"`);
+        }
+      }
+    }
     
     let updatedContent = content;
+    let replacementCount = 0;
     
-    for (const match of matches) {
-      const h2Title = match[1];
-      const index = match[2];
+    // Process all placeholders
+    for (const placeholder of placeholders) {
+      const index = placeholder[1];
+      const h2Title = h2Map.get(index) || `Section ${index}`;
+      
+      console.log(`Processing placeholder #${index} for: "${h2Title}"`);
       
       // Generate image for this H2
       const imagePath = await generateH2Image(h2Title, slug, index);
       
       // Replace placeholder with actual image markdown
-      const placeholder = `[IMAGE_PLACEHOLDER_H2_${index}]`;
+      const placeholderText = `[IMAGE_PLACEHOLDER_H2_${index}]`;
       const imageMarkdown = `\n![${h2Title}](${imagePath})\n`;
-      updatedContent = updatedContent.replace(placeholder, imageMarkdown);
+      
+      if (updatedContent.includes(placeholderText)) {
+        updatedContent = updatedContent.replace(placeholderText, imageMarkdown);
+        replacementCount++;
+        console.log(`Replaced placeholder #${index} with image`);
+      } else {
+        console.warn(`Could not find placeholder text: ${placeholderText}`);
+      }
+    }
+    
+    console.log(`=== H2 image processing complete ===`);
+    console.log(`Processed ${replacementCount} out of ${placeholders.length} placeholders`);
+    
+    // Final check for any remaining placeholders
+    const remainingPlaceholders = (updatedContent.match(/\[IMAGE_PLACEHOLDER_H2_\d+\]/g) || []).length;
+    if (remainingPlaceholders > 0) {
+      console.warn(`Warning: ${remainingPlaceholders} placeholders remain in content`);
     }
     
     return updatedContent;
