@@ -27,7 +27,7 @@ async function generateFeaturedImage(title, slug) {
     });
     
     // Generate photorealistic image using Imagen 4 - ABSOLUTELY NO TEXT
-    const prompt = `Photorealistic photograph inspired by: ${title}. Professional photography, natural lighting, documentary style. Real-world scenes, people, objects or landscapes. IMPORTANT: Absolutely NO text, NO letters, NO words, NO numbers, NO signs with writing, NO logos, NO watermarks, NO typography of any kind. Pure photographic image only. Avoid any surfaces that might contain text like books, signs, screens, or labels.`;
+    const prompt = `Photorealistic photograph inspired by: ${title}. Professional photography, natural lighting, documentary style. Real-world scenes, people, objects or landscapes. IMPORTANT: If the image includes people, at least one person must be Korean or East Asian. Show diversity with Korean representation. CRITICAL: Absolutely NO text, NO letters, NO words, NO numbers, NO signs with writing, NO logos, NO watermarks, NO typography of any kind. Pure photographic image only. Avoid any surfaces that might contain text like books, signs, screens, or labels.`;
     
     console.log('Generating image with prompt:', prompt);
     
@@ -38,7 +38,7 @@ async function generateFeaturedImage(title, slug) {
         numberOfImages: 1,
         outputMimeType: 'image/jpeg',
         personGeneration: 'ALLOW_ALL',
-        aspectRatio: '16:9',
+        aspectRatio: '4:3',
       },
     });
     
