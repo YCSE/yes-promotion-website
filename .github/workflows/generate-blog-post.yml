@@ -71,11 +71,14 @@ jobs:
             done
           fi
           
-      # Deploy will be triggered automatically by the push to main branch
-      - name: Complete
+      # Manually trigger deploy workflow using GitHub CLI
+      - name: Trigger Deploy Workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "✨ Blog post generation completed!"
-          echo "The deploy workflow will be triggered automatically by the push to main branch."
+          echo "Triggering deploy workflow..."
+          gh workflow run deploy.yml --ref main || echo "Note: Deploy may need to be triggered manually"
             
   # Optional: Send notification on failure
   notify-failure:
