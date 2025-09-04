@@ -58,13 +58,14 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
       const isInline = inline !== false && !match
       
       if (isInline) {
-        return <code className="bg-gray-100 px-2 py-1 rounded text-sm" {...props}>{children}</code>
+        return <code className="bg-blue-50 text-blue-900 px-2 py-1 rounded text-sm font-medium" {...props}>{children}</code>
       }
       
+      // For block code, use a more subtle styling for English examples
       return (
-        <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4">
-          <code className={className} {...props}>{children}</code>
-        </pre>
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg my-4">
+          <code className="text-blue-900 font-medium text-[16px] md:text-[18px]" {...props}>{children}</code>
+        </div>
       )
     },
     pre: ({ children }: any) => {
