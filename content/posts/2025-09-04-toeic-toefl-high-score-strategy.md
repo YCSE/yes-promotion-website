@@ -4,7 +4,7 @@ subtitle: 점수 정체기 극복! 초중급 학습자를 위한 실용적인 �
 date: 2025-09-04T10:22:14.577Z
 author: YES English Team
 excerpt: 토익/토플 점수 향상에 어려움을 겪고 계신가요? 이 글에서는 초중급 학습자를 위한 실용적인 고득점 전략과 즉시 적용 가능한 팁들을 소개합니다. 여러분의 영어 목표 달성을 YES English Team이 응원합니다.
-featuredImage: /images/blog/2025-09-04-toeic-toefl-high-score-strategy.webp
+featuredImage: /images/blog/2025-09-04-toeic-toefl-high-score-strategy.jpg
 ---
 
 안녕하세요, 여러분! 영어 공부에 열정을 불태우고 계신 모든 학습자분들을 YES English Team이 진심으로 응원합니다.

@@ -90,7 +90,7 @@ subtitle: [부제목]
 date: ${new Date().toISOString()}
 author: YES English Team
 excerpt: [요약 2-3문장]
-featuredImage: /images/blog/[slug].webp
+featuredImage: /images/blog/[actual-slug].jpg
 ---
 
 [본문 내용]
@@ -118,8 +118,8 @@ featuredImage: /images/blog/[slug].webp
     
     // Update featured image path with correct slug
     const updatedContent = text.replace(
-      /featuredImage:\s*\/images\/blog\/\[slug\]\.webp/,
-      `featuredImage: /images/blog/${slug}.webp`
+      /featuredImage:\s*\/images\/blog\/\[actual-slug\]\.jpg/,
+      `featuredImage: /images/blog/${slug}.jpg`
     );
     
     return {

@@ -4,7 +4,7 @@ subtitle: 자신감 넘치는 전화 통화를 위한 필수 표현 꿀팁!
 date: 2025-09-04T14:04:20.625Z
 author: YES English Team
 excerpt: 전화 영어 때문에 진땀 흘리셨나요? 벨이 울려도 당황하지 않고 자신감 있게 대화할 수 있는 실용적인 영어 표현들을 배워보세요. 이 포스팅 하나로 전화 통화 마스터가 될 수 있습니다!
-featuredImage: /images/blog/practical-phone-english.webp
+featuredImage: /images/blog/2025-09-04-practical-english-phone-calls.jpg
 ---
 
 안녕하세요, 여러분! 영어 학습의 여정에 함께하는 YES English Team입니다.

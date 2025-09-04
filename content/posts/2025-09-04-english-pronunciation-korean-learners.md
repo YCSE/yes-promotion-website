@@ -4,7 +4,7 @@ subtitle: 입 모양부터 혀 위치까지, 실전 꿀팁 대방출!
 date: 2025-09-04T09:00:23.862Z
 author: YES English Team
 excerpt: 한국인이 유독 어려워하는 영어 발음, 이제 자신감 있게 정복할 시간입니다! R/L, F/P, V/B, Th 발음의 정확한 입 모양과 혀 위치, 실용적인 예시를 통해 명확한 영어 발음을 만드는 비법을 알려드립니다. 오늘부터 당당하게 말해보세요!
-featuredImage: /images/blog/2025-09-04-english-pronunciation-korean-learners.webp
+featuredImage: /images/blog/2025-09-04-english-pronunciation-korean-learners.jpg
 ---
 
 안녕하세요, 영어 공부의 길을 걷고 계신 여러분! YES English Team입니다.

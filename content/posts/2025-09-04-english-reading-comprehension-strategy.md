@@ -4,7 +4,7 @@ subtitle: 초급-중급 학습자를 위한 실용 독해 전략 가이드
 date: 2025-09-04T10:02:14.324Z
 author: YES English Team
 excerpt: 영어 독해가 막막하게 느껴지시나요? 이 글에서는 초급-중급 학습자를 위한 실용적인 영어 독해 전략 5가지를 소개합니다. 영어가 술술 읽히는 경험을 시작해보세요!
-featuredImage: /images/blog/2025-09-04-english-reading-comprehension-strategy.webp
+featuredImage: /images/blog/2025-09-04-english-reading-comprehension-strategy.jpg
 ---
 
 안녕하세요, YES English 팀입니다!
