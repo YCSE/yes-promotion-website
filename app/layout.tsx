@@ -230,7 +230,7 @@ export default function RootLayout({
         <meta property="article:author" content="YES Education" />
         <meta property="article:published_time" content="2025-01-01T00:00:00.000Z" />
         <meta property="article:modified_time" content={new Date().toISOString()} />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+        <link rel="alternate" type="application/rss+xml" title="YES 화상영어 블로그 RSS" href="/rss.xml" />
         <Script
           id="structured-data"
           type="application/ld+json"
