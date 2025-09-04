@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { generateBlogPost } = require('./generate-blog-post');
 const { generateFeaturedImage } = require('./generate-featured-image');
+const { processH2Images } = require('./generate-h2-images');
 
 async function generateContent() {
   try {
@@ -17,15 +18,20 @@ async function generateContent() {
     const imagePath = await generateFeaturedImage(title, slug);
     console.log(`✅ Featured image generated: ${imagePath}`);
     
-    // Step 3: Save the blog post
+    // Step 3: Process H2 images (photorealistic)
+    console.log('🖼️ Processing H2 section images...');
+    const contentWithImages = await processH2Images(content, slug);
+    console.log('✅ H2 images processed');
+    
+    // Step 4: Save the blog post
     const postsDir = path.join(process.cwd(), 'content', 'posts');
     await fs.ensureDir(postsDir);
     
     const postPath = path.join(postsDir, `${slug}.md`);
-    await fs.writeFile(postPath, content, 'utf8');
+    await fs.writeFile(postPath, contentWithImages, 'utf8');
     console.log(`✅ Blog post saved: ${postPath}`);
     
-    // Step 4: Log summary
+    // Step 5: Log summary
     console.log('\n📊 Content Generation Summary:');
     console.log('================================');
     console.log(`Title: ${title}`);

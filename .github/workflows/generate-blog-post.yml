@@ -47,14 +47,15 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # Pull latest changes first to avoid conflicts
-          git fetch origin main
-          git pull origin main --rebase --strategy-option=theirs
-          
-          # Add all changes in content and public directories
-          git add content/posts/*.md
+          # Add all changes BEFORE pulling to avoid unstaged changes error
+          git add content/posts/*.md || true
+          git add content/blog/*.md || true
           git add public/images/blog/*.jpg || true
           git add public/images/blog/*.jpeg || true
+          
+          # Pull latest changes to avoid conflicts
+          git fetch origin main
+          git pull origin main --rebase --strategy-option=theirs || true
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then

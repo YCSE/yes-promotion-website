@@ -1,4 +1,4 @@
-const { GoogleGenAI, PersonGeneration } = require('@google/genai');
+const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs-extra');
 const path = require('path');
 
@@ -22,31 +22,35 @@ async function generateFeaturedImage(title, slug) {
       throw new Error('GEMINI_API_KEY is not set for Imagen 4');
     }
     
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    const ai = new GoogleGenAI({
+      apiKey: process.env.GEMINI_API_KEY,
+    });
     
-    // Generate image using Imagen 4
-    const prompt = `Professional educational banner image for blog post about: "${title}". Modern gradient background with purple and blue tones. Include text overlay: "${title}" and "YES English Learning". Clean, minimalist design suitable for an English learning blog.`;
+    // Generate photorealistic image using Imagen 4 - ABSOLUTELY NO TEXT
+    const prompt = `Photorealistic photograph inspired by: ${title}. Professional photography, natural lighting, documentary style. Real-world scenes, people, objects or landscapes. IMPORTANT: Absolutely NO text, NO letters, NO words, NO numbers, NO signs with writing, NO logos, NO watermarks, NO typography of any kind. Pure photographic image only. Avoid any surfaces that might contain text like books, signs, screens, or labels.`;
     
     console.log('Generating image with prompt:', prompt);
     
     const response = await ai.models.generateImages({
-      model: 'models/imagen-4.0-generate-001',
+      model: 'models/imagen-4.0-fast-generate-001',
       prompt: prompt,
       config: {
         numberOfImages: 1,
         outputMimeType: 'image/jpeg',
-        personGeneration: PersonGeneration.ALLOW_ALL,
+        personGeneration: 'ALLOW_ALL',
         aspectRatio: '16:9',
-        imageSize: '1K',
       },
     });
     
-    if (!response.generatedImages || response.generatedImages.length === 0) {
-      throw new Error('No image generated from Imagen 4 API');
+    if (!response?.generatedImages || response.generatedImages.length === 0) {
+      throw new Error('No image generated from Imagen 4.0 Fast API');
     }
     
     // Convert base64 to buffer and save as JPG
-    const imageData = response.generatedImages[0].image.imageBytes;
+    const imageData = response.generatedImages[0]?.image?.imageBytes;
+    if (!imageData) {
+      throw new Error('No image data received from API');
+    }
     const buffer = Buffer.from(imageData, 'base64');
     
     // Save the JPG file
@@ -74,12 +78,8 @@ async function generateFeaturedImage(title, slug) {
           </linearGradient>
         </defs>
         <rect width="1200" height="675" fill="url(#grad)" />
-        <text x="50%" y="45%" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="white" text-anchor="middle" dominant-baseline="middle">
-          ${title.substring(0, 40)}${title.length > 40 ? '...' : ''}
-        </text>
-        <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="32" fill="white" opacity="0.9" text-anchor="middle" dominant-baseline="middle">
-          YES English Learning
-        </text>
+        <!-- Fallback image - no text version -->
+        <rect x="20%" y="40%" width="60%" height="20%" fill="white" opacity="0.2" rx="10" />
       </svg>
     `;
     
