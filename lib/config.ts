@@ -1,5 +1,5 @@
 export const config = {
-  basePath: process.env.NODE_ENV === 'production' ? '/yes-promotion-website' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '' : '',
 }
 
 export function getImagePath(path: string): string {

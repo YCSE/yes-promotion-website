@@ -82,20 +82,56 @@ export async function generateMetadata({ params }: BlogPostProps) {
   
   if (!post) {
     return {
-      title: 'Post Not Found | YES English Blog'
+      title: 'Post Not Found | YES 화상영어 블로그',
+      description: 'YES 화상영어 블로그에서 영어 학습 팁과 화상영어 수업 노하우를 확인하세요.'
     }
   }
   
+  const description = post.subtitle || post.content.slice(0, 160).replace(/[#*\n]/g, ' ').trim()
+  
   return {
-    title: `${post.title} | YES English Blog`,
-    description: post.subtitle || post.content.slice(0, 160),
+    title: `${post.title} | YES 화상영어 블로그`,
+    description: description,
+    keywords: `화상영어, 영어회화, 온라인영어, ${post.title}, YES화상영어, 영어학습, 영어공부, 화상영어수업, 캠블리대안, 링글대안, 스픽대안, 엔구대안, 민트영어대안, 어메이징토커비교, 프렙비교, 야나두영어, 시원스쿨영어`,
+    authors: [{ name: post.author }],
     openGraph: {
-      title: post.title,
-      description: post.subtitle || post.content.slice(0, 160),
+      title: `${post.title} | YES 화상영어`,
+      description: description,
       type: 'article',
       publishedTime: post.date,
       authors: [post.author],
-      images: post.featuredImage ? [post.featuredImage] : []
+      images: post.featuredImage ? [{
+        url: post.featuredImage,
+        width: 1200,
+        height: 630,
+        alt: post.title
+      }] : [{
+        url: '/ogimage.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'YES 화상영어'
+      }],
+      siteName: 'YES 화상영어',
+      locale: 'ko_KR',
+      url: `https://yourenglishschool.co.kr/blog/${params.slug}`
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} | YES 화상영어`,
+      description: description,
+      images: post.featuredImage ? [post.featuredImage] : ['/ogimage.jpg'],
+      creator: '@yesenglish',
+      site: '@yesenglish'
+    },
+    alternates: {
+      canonical: `https://yourenglishschool.co.kr/blog/${params.slug}`
+    },
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1
     }
   }
 }

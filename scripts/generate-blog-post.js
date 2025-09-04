@@ -80,13 +80,15 @@ async function generateBlogPost() {
 작성 방향: ${direction}
 
 【필수 규칙】
-1. ⚠️ 매우 중요: 모든 H2(##) 섹션 제목 바로 다음 줄에 반드시 [IMAGE_PLACEHOLDER_H2_{번호}] 삽입!
-   예시:
-   ## 첫 번째 섹션
-   [IMAGE_PLACEHOLDER_H2_1]
+1. ⚠️ 매우 중요: 모든 H2(##) 섹션 제목 바로 다음 줄에 아래 텍스트를 정확히 복사해서 붙여넣으세요:
    
-   ## 두 번째 섹션  
-   [IMAGE_PLACEHOLDER_H2_2]
+   첫 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_1]
+   두 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_2]
+   세 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_3]
+   네 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_4]
+   
+   ⚠️ 위 텍스트를 한 글자도 바꾸지 말고 그대로 복사하세요!
+   ⚠️ PLACEHOLDER 철자를 절대 바꾸지 마세요 (PLACEER ❌, PLACEHANCER ❌)
    
 2. author는 반드시 "${randomEditor}" 사용
 3. 작은따옴표 백틱 사용 절대 금지 → 강조할 때는 **볼드체** 사용

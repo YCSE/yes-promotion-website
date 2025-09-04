@@ -35,26 +35,25 @@ const Footer = () => {
               실전 영어 감각,<br/>
               YES에서 키워보세요!
             </h3>
-            <div className="flex gap-4 justify-center lg:justify-start mt-2">
+            <p className="text-[11px] md:text-[12px] lg:text-[13px] font-light text-[#999999] uppercase leading-[30px] md:leading-[35px] lg:leading-[40px]">
+              © 2025 YCSE. All rights reserved.
+            </p>
+            
+            <div className="flex gap-4 justify-center lg:justify-start mt-4">
+              <Link 
+                href="/" 
+                className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
+              >
+                홈
+              </Link>
+              <span className="text-white/30">|</span>
               <Link 
                 href="/blog" 
                 className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
               >
-                학습 블로그
+                블로그
               </Link>
-              <span className="text-white">•</span>
-              <a 
-                href="https://www.ycse.kr" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
-              >
-                YES 소개
-              </a>
             </div>
-            <p className="text-[11px] md:text-[12px] lg:text-[13px] font-light text-[#999999] uppercase leading-[30px] md:leading-[35px] lg:leading-[40px]">
-              © 2025 YCSE. All rights reserved.
-            </p>
           </div>
           
           <div className="flex flex-col md:flex-row gap-4 md:gap-5">

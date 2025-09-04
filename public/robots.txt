@@ -1,0 +1,74 @@
+# YES Promotion Website - Robots.txt
+# https://yourenglishschool.co.kr/
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Social Media Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# SEO Tools
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 10
+
+# Block Bad Bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Sitemap Location
+Sitemap: https://yourenglishschool.co.kr/sitemap.xml

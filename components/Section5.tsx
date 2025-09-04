@@ -45,12 +45,12 @@ const Section5 = () => {
   ]
 
   return (
-    <section className="relative w-full bg-white py-[80px] md:py-[150px] lg:py-[200px]">
+    <section className="relative w-full bg-white pt-[40px] md:pt-[75px] lg:pt-[100px] pb-[80px] md:pb-[150px] lg:pb-[200px]">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         {/* Title */}
         <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center mb-[50px] md:mb-[80px] lg:mb-[100px] text-black tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
-          지금 레벨테스트를 받고<br/>
-          무료 수업을 들어보세요
+          지금 레벨테스트 신청하고<br/>
+          무료 수업 받으세요
         </h2>
 
         {/* Main Content */}
