@@ -27,7 +27,7 @@ async function generateH2Image(h2Title, slug, index) {
     });
     
     // Generate photorealistic image inspired by H2 section - ABSOLUTELY NO TEXT
-    const prompt = `Photorealistic photograph representing: ${h2Title}. Professional photography, natural lighting, documentary style. Real people, objects, landscapes or situations. IMPORTANT: If the image includes people, show exactly ONE Korean or East Asian person interacting with one or more Western/Caucasian people. Cross-cultural interaction between one Korean and Western people. Do NOT show multiple Koreans or only Asians. CRITICAL: Absolutely NO text, NO letters, NO words, NO numbers, NO writing, NO signs with text, NO logos, NO watermarks, NO typography anywhere in the image. Avoid showing books, signs, screens, labels, or any surface that might contain text. Pure photography only.`;
+    const prompt = `Photorealistic photograph representing: ${h2Title}. Professional photography, natural lighting, documentary style. Real people, objects, landscapes or situations. IMPORTANT PEOPLE RULES: If showing ONLY ONE person, that person MUST be Korean or East Asian (exception: historical figures or celebrities can be shown as they are). If showing MULTIPLE people, include exactly ONE Korean/East Asian person with one or more Western/Caucasian people for cross-cultural interaction. Never show multiple Koreans together. CRITICAL: Absolutely NO text, NO letters, NO words, NO numbers, NO writing, NO signs with text, NO logos, NO watermarks, NO typography anywhere in the image. Avoid showing books, signs, screens, labels, or any surface that might contain text. Pure photography only.`;
     
     console.log('Generating H2 image with prompt:', prompt);
     
