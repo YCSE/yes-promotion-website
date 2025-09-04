@@ -2,7 +2,7 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 async function testAPI() {
-  const apiKey = process.env.GEMINI_API_KEY || 'AIzaSyBSgzef913CGUyqc83rjLX0Xv8EdQU3Xic';
+  const apiKey = process.env.GEMINI_API_KEY;
   
   if (!apiKey || apiKey === 'your_api_key_here') {
     console.error('❌ GEMINI_API_KEY is not properly configured');

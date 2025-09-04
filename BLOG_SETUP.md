@@ -62,11 +62,11 @@ npm install
 
 ### Test Content Generation
 ```bash
-# Using the provided API key (for testing only)
-GEMINI_API_KEY=AIzaSyBSgzef913CGUyqc83rjLX0Xv8EdQU3Xic node scripts/generate-content.js
+# Set your API key as environment variable
+GEMINI_API_KEY=your_api_key_here node scripts/generate-content.js
 
 # Or create .env file
-echo "GEMINI_API_KEY=AIzaSyBSgzef913CGUyqc83rjLX0Xv8EdQU3Xic" > .env
+echo "GEMINI_API_KEY=your_api_key_here" > .env
 node scripts/generate-content.js
 ```
 
