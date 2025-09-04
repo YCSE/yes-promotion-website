@@ -1,6 +1,7 @@
 const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs-extra');
 const path = require('path');
+const { generateH2ImagePrompt } = require('./generate-image-prompt');
 
 async function generateH2Image(h2Title, slug, index) {
   try {
@@ -26,17 +27,8 @@ async function generateH2Image(h2Title, slug, index) {
       apiKey: process.env.GEMINI_API_KEY,
     });
     
-    // Generate photorealistic image inspired by H2 section - ABSOLUTELY NO TEXT
-    const prompt = `Photorealistic photograph representing: ${h2Title}. Professional photography, natural lighting, documentary style.
-    
-    STRICT PEOPLE RULES:
-    - ONE person only: Must be a Korean person in their 20s
-    - MULTIPLE people: Exactly ONE Korean person in their 20s, all others must be Western (Caucasian or Black)
-    - NEVER show two or more Korean/Asian people together
-    - After one Korean appears, ALL other people must be Western
-    - Exception: Historical figures or celebrities shown as they are
-    
-    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+    // Generate dynamic prompt based on the H2 section title
+    const prompt = generateH2ImagePrompt(h2Title);
     
     console.log('Generating H2 image with prompt:', prompt);
     
