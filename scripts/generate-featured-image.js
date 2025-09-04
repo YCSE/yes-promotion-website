@@ -37,7 +37,14 @@ async function generateFeaturedImage(title, slug) {
       .webp({ quality: 85 })
       .toFile(webpPath);
     
+    console.log(`Featured image saved: ${webpPath}`);
     return `/images/blog/${slug}.webp`;
+  } catch (error) {
+    console.error('Error generating featured image:', error);
+    
+    // Return a default image path as fallback
+    console.log('Using default placeholder image...');
+    return '/images/blog/default-placeholder.webp';
   }
 }
 
