@@ -1,0 +1,83 @@
+name: Generate Blog Post
+
+on:
+  schedule:
+    # Run every 2 days at 9:00 AM KST (00:00 UTC)
+    - cron: '0 0 */2 * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  generate-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate blog content
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          node scripts/generate-content.js
+          
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Add all changes in content and public directories
+          git add content/posts/*.md
+          git add public/images/blog/*.webp || true
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            # Create commit message with current date
+            COMMIT_MSG="🤖 Auto-generated blog post - $(date +'%Y-%m-%d')"
+            git commit -m "$COMMIT_MSG"
+            
+            # Push changes
+            git push
+            
+            echo "✅ Blog post committed and pushed successfully"
+          fi
+          
+      - name: Trigger deploy workflow
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            })
+            
+  # Optional: Send notification on failure
+  notify-failure:
+    runs-on: ubuntu-latest
+    needs: generate-content
+    if: failure()
+    steps:
+      - name: Notify failure
+        run: |
+          echo "❌ Blog post generation failed!"
+          echo "Please check the workflow logs for details."

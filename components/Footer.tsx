@@ -1,6 +1,7 @@
 'use client'
 
 import { getAssetPath } from '@/lib/utils';
+import Link from 'next/link';
 
 const imgApple = getAssetPath('70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg');
 const imgGoogle = getAssetPath('e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg');
@@ -34,6 +35,23 @@ const Footer = () => {
               실전 영어 감각,<br/>
               YES에서 키워보세요!
             </h3>
+            <div className="flex gap-4 justify-center lg:justify-start mt-2">
+              <Link 
+                href="/blog" 
+                className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
+              >
+                학습 블로그
+              </Link>
+              <span className="text-white">•</span>
+              <a 
+                href="https://www.ycse.kr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
+              >
+                YES 소개
+              </a>
+            </div>
             <p className="text-[11px] md:text-[12px] lg:text-[13px] font-light text-[#999999] uppercase leading-[30px] md:leading-[35px] lg:leading-[40px]">
               © 2025 YCSE. All rights reserved.
             </p>
