@@ -23,7 +23,7 @@ interface BlogPostClientProps {
 
 export default function BlogPostClient({ post }: BlogPostClientProps) {
   // Custom components for ReactMarkdown
-  const markdownComponents = {
+  const markdownComponents: any = {
     h1: ({ children }: any) => (
       <h1 className="text-[32px] md:text-[42px] font-bold mt-12 mb-8">{children}</h1>
     ),
@@ -53,15 +53,22 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
         {children}
       </blockquote>
     ),
-    code: ({ inline, children }: any) => {
-      if (inline) {
-        return <code className="bg-gray-100 px-2 py-1 rounded text-sm">{children}</code>
+    code: ({ inline, className, children, ...props }: any) => {
+      const match = /language-(\w+)/.exec(className || '')
+      const isInline = inline !== false && !match
+      
+      if (isInline) {
+        return <code className="bg-gray-100 px-2 py-1 rounded text-sm" {...props}>{children}</code>
       }
+      
       return (
         <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4">
-          <code>{children}</code>
+          <code className={className} {...props}>{children}</code>
         </pre>
       )
+    },
+    pre: ({ children }: any) => {
+      return <>{children}</>
     },
     strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
     em: ({ children }: any) => <em className="italic">{children}</em>,
