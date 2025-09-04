@@ -44,17 +44,26 @@ export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), 'content/posts')
   
   try {
+    // Create directory if it doesn't exist
     if (!fs.existsSync(postsDirectory)) {
-      return []
+      fs.mkdirSync(postsDirectory, { recursive: true })
     }
     
     const fileNames = fs.readdirSync(postsDirectory)
     
-    return fileNames
+    const params = fileNames
       .filter(fileName => fileName.endsWith('.md'))
       .map(fileName => ({
         slug: fileName.replace(/\.md$/, '')
       }))
+    
+    // Return empty array if no posts exist yet
+    // This is required for static export
+    if (params.length === 0) {
+      return []
+    }
+    
+    return params
   } catch (error) {
     console.error('Error generating static params:', error)
     return []
