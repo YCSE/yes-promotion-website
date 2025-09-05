@@ -5,7 +5,7 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yourenglishschool.co.kr'),
-  title: 'YES 화상영어 - 화상영어 1:1 수업 | 온라인 화상영어회화',
+  title: 'YES 화상영어 - 원어민과 1:1 화상영어회화 수업',
   description: 'YES 화상영어는 캠블리, 링글, 스픽, 민트영어보다 효과적인 1:1 화상영어! 원어민급 선생님과 실시간 화상영어회화. 엔구, 어메이징토커보다 체계적인 커리큘럼. 화상영어 무료체험으로 차이를 경험하세요!',
   keywords: '화상영어, 화상영어회화, 온라인화상영어, 원어민화상영어, 화상영어수업, 화상영어추천, 1대1화상영어, 화상영어앱, YES화상영어, 실시간화상영어, 화상영어플랫폼, 영어회화, 온라인영어, 비대면영어, 화상영어학원, 캠블리, 링글, 스픽, 엔구, 어메이징토커, 프렙, 튜터링, 링고다, 버블링, 아이튜터, 민병철유폰, 야나두, 시원스쿨, 리얼클래스, 케이크, 민트영어',
   authors: [{ name: 'YES' }],
@@ -70,11 +70,13 @@ export const metadata: Metadata = {
     canonical: 'https://yourenglishschool.co.kr/',
   },
   verification: {
-    google: 'google-site-verification-code',
-    yandex: 'yandex-verification-code',
-    yahoo: 'yahoo-site-verification-code',
+    google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Google Search Console에서 받은 코드로 교체
+    yandex: 'YOUR_YANDEX_VERIFICATION_CODE', // Yandex Webmaster에서 받은 코드로 교체
+    yahoo: 'YOUR_YAHOO_VERIFICATION_CODE', // Yahoo에서 받은 코드로 교체
     other: {
-      'naver-site-verification': '80beba25833830552b38dc574c01c9ebbd92a4a0'
+      'naver-site-verification': '80beba25833830552b38dc574c01c9ebbd92a4a0',
+      'msvalidate.01': 'YOUR_BING_VERIFICATION_CODE', // Bing Webmaster에서 받은 코드로 교체
+      'facebook-domain-verification': 'YOUR_FB_VERIFICATION_CODE' // Facebook에서 받은 코드로 교체
     }
   },
   category: 'education',
@@ -184,6 +186,87 @@ export default function RootLayout({
     ]
   }
 
+  const localBusinessJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://yourenglishschool.co.kr/#business',
+    name: 'YES 화상영어',
+    alternateName: 'YES English',
+    description: 'YES 화상영어는 한국 최고의 1:1 온라인 화상영어 교육 플랫폼입니다. 원어민급 튜터와 실시간 화상영어 수업, AI 학습 시스템으로 효과적인 영어 실력 향상을 지원합니다.',
+    url: 'https://yourenglishschool.co.kr/',
+    logo: 'https://yourenglishschool.co.kr/ogimage.jpg',
+    image: [
+      'https://yourenglishschool.co.kr/ogimage.jpg',
+      'https://yourenglishschool.co.kr/images/thumbnail_PC.png'
+    ],
+    telephone: '+82-1588-0000',
+    email: 'contact@yourenglishschool.co.kr',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '강남대로 382',
+      addressLocality: '강남구',
+      addressRegion: '서울',
+      postalCode: '06232',
+      addressCountry: 'KR'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 37.498095,
+      longitude: 127.028079
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '22:00'
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday', 'Sunday'],
+        opens: '10:00',
+        closes: '21:00'
+      }
+    ],
+    priceRange: '₩₩',
+    paymentAccepted: ['Credit Card', 'Bank Transfer', 'Mobile Payment'],
+    currenciesAccepted: 'KRW',
+    areaServed: {
+      '@type': 'Country',
+      name: 'South Korea'
+    },
+    serviceType: '화상영어, 온라인영어, 영어회화',
+    additionalType: 'https://schema.org/EducationalOrganization',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: '화상영어 수업 플랜',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          name: '무료 체험 수업',
+          description: '25분 무료 레벨 테스트 및 체험 수업',
+          price: '0',
+          priceCurrency: 'KRW'
+        },
+        {
+          '@type': 'Offer',
+          name: '월 정기 구독',
+          description: '매일 25분 1:1 화상영어 수업',
+          price: '149000',
+          priceCurrency: 'KRW'
+        }
+      ]
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: '12500',
+      reviewCount: '8750'
+    }
+  }
+
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -273,6 +356,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(faqJsonLd)
+          }}
+        />
+        <Script
+          id="local-business-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessJsonLd)
           }}
         />
       </head>

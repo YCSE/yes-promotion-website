@@ -87,7 +87,7 @@ export async function GET() {
   <channel>
     <title>YES 화상영어 블로그</title>
     <link>${baseUrl}/blog</link>
-    <description>YES 화상영어 블로그 - 효과적인 영어학습법과 화상영어 수업 팁을 제공합니다. 캠블리, 링글, 스픽, 민트영어보다 효과적인 화상영어 학습법!</description>
+    <description>YES 화상영어 블로그 - 효과적인 영어학습법과 온라인 영어회화 수업 팁, 실전 영어 회화 노하우를 공유합니다.</description>
     <language>ko</language>
     <copyright>Copyright 2025 YES 화상영어</copyright>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

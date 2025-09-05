@@ -92,7 +92,7 @@ export async function generateMetadata({ params }: BlogPostProps) {
   return {
     title: `${post.title} | YES 화상영어 블로그`,
     description: description,
-    keywords: `화상영어, 영어회화, 온라인영어, ${post.title}, YES화상영어, 영어학습, 영어공부, 화상영어수업, 캠블리대안, 링글대안, 스픽대안, 엔구대안, 민트영어대안, 어메이징토커비교, 프렙비교, 야나두영어, 시원스쿨영어`,
+    keywords: `화상영어, 영어회화, 온라인영어, ${post.title}, YES화상영어, 영어학습, 영어공부, 화상영어수업, 1대1영어, 영어스피킹, 비즈니스영어, 토익스피킹, 오픽대비`,
     authors: [{ name: post.author }],
     openGraph: {
       title: `${post.title} | YES 화상영어`,
