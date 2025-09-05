@@ -78,6 +78,11 @@ jobs:
             done
           fi
           
+      # Pull the latest changes to include the new blog post
+      - name: Pull latest changes
+        run: |
+          git pull origin main
+          
       # Build the Next.js site with new content
       - name: Build with Next.js
         run: npm run build
