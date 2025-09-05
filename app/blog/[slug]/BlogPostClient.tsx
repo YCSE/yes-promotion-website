@@ -194,7 +194,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
       </div>
 
       {/* Related Posts Section */}
-      {relatedPosts.length > 0 && (
+      {relatedPosts.length > 0 ? (
         <div className="bg-[#F8F9FA] py-[60px] md:py-[100px]">
           <div className="max-w-[1280px] mx-auto px-6">
             <h2 className="text-[24px] md:text-[32px] font-bold mb-[40px] md:mb-[60px]">
@@ -244,20 +244,20 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
             </div>
           </div>
         </div>
-      )}
-
-      {/* Footer */}
-      <div className="max-w-[900px] mx-auto px-6 py-[60px] border-t border-gray-200">
-        <div className="text-center">
-          <p className="text-[20px] font-bold mb-4">더 많은 영어 학습 팁이 필요하신가요?</p>
-          <Link 
-            href="/blog" 
-            className="inline-block px-8 py-3 bg-[#4B52AE] text-white rounded-full hover:bg-[#3A4199] transition-colors text-[16px] font-medium"
-          >
-            다른 글 보기
-          </Link>
+      ) : (
+        /* Fallback Footer - only shown when no related posts */
+        <div className="max-w-[900px] mx-auto px-6 py-[60px] border-t border-gray-200">
+          <div className="text-center">
+            <p className="text-[20px] font-bold mb-4">더 많은 영어 학습 팁이 필요하신가요?</p>
+            <Link 
+              href="/blog" 
+              className="inline-block px-8 py-3 bg-[#4B52AE] text-white rounded-full hover:bg-[#3A4199] transition-colors text-[16px] font-medium"
+            >
+              다른 글 보기
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </article>
   )
 }
