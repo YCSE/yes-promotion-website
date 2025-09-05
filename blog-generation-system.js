@@ -72,6 +72,12 @@ const TOPICS = [
   { korean: '서구권 데이트 문화와 언어', slug: 'dating-culture-language-western' },
   { korean: '휴일 전통과 관련 어휘', slug: 'holiday-traditions-vocabulary' },
   { korean: '세대 간 언어 차이: 부머에서 Z세대까지', slug: 'generation-gap-language' },
+  { korean: '영어학습을 위한 역사적 인물탐구', slug: 'historical-person' },
+  { korean: '영어권 국가의 교육 시스템과 학교 문화', slug: 'education-system-school-culture' },
+  { korean: '스포츠 문화와 관련 영어 표현', slug: 'sports-culture-expressions' },
+  { korean: '영미 문학작품을 통한 문화 이해', slug: 'literature-cultural-understanding' },
+  { korean: '할리우드 영화 산업과 엔터테인먼트 언어', slug: 'hollywood-entertainment-language' },
+  { korean: '영어권 국가의 음식 문화와 테이블 매너', slug: 'food-culture-table-manners' },
 
   // 학습 전략 (10개)
   { korean: '어휘 암기를 위한 기억 기술', slug: 'memory-techniques-vocabulary' },
@@ -83,7 +89,11 @@ const TOPICS = [
   { korean: '다양한 텍스트 유형별 읽기 전략', slug: 'reading-strategies-text-types' },
   { korean: '영어 수업을 위한 노트 필기법', slug: 'note-taking-english-classes' },
   { korean: '언어 진척도 자가 평가 기법', slug: 'self-assessment-language-progress' },
-  { korean: '지속 가능한 영어 학습 습관 만들기', slug: 'english-learning-habits-stick' }
+  { korean: '지속 가능한 영어 학습 습관 만들기', slug: 'english-learning-habits-stick' },
+  { korean: '화상영어 수업 전 예습으로 효과 200% 높이기', slug: 'video-lesson-preview-preparation' },
+  { korean: '화상영어 선생님과 라포 형성하는 커뮤니케이션 팁', slug: 'building-rapport-online-teacher' },
+  { korean: '화상수업 중 실시간 피드백 최대한 활용하기', slug: 'maximizing-realtime-feedback' },
+  { korean: '화상영어 수업 시 집중력 유지법', slug: 'technical-issues-focus-maintenance' }
 ];
 
 // 70개의 글 작성 방향/접근법 (한국어)

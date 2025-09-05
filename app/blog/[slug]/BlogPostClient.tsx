@@ -73,7 +73,22 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
     pre: ({ children }: any) => {
       return <>{children}</>
     },
-    strong: ({ children }: any) => <strong className="font-bold">{children}</strong>,
+    strong: ({ children }: any) => {
+      // Check if children is a string with quotes at start and end
+      if (typeof children === 'string') {
+        const text = children
+        // Handle patterns like '텍스트' or "텍스트"
+        if ((text.startsWith("'") && text.endsWith("'")) || 
+            (text.startsWith('"') && text.endsWith('"'))) {
+          return (
+            <span className="font-bold text-[#4B52AE]">
+              {text}
+            </span>
+          )
+        }
+      }
+      return <strong className="font-bold">{children}</strong>
+    },
     em: ({ children }: any) => <em className="italic">{children}</em>,
     hr: () => <hr className="my-8 border-gray-300" />,
     a: ({ href, children }: any) => (
