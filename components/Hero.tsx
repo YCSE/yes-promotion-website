@@ -46,14 +46,14 @@ const Hero = () => {
           </p>
         </div>
         
-        <div className="relative w-full h-[541px] md:h-[794px] overflow-visible -mt-[60px]">
+        <div className="relative w-full h-[238px] md:h-[794px] overflow-visible -mt-[60px]">
           <div 
             ref={sliderRef}
             className="flex absolute h-full items-center"
             style={{ willChange: 'transform' }}
           >
             {/* First copy of the image */}
-            <div className="relative h-[541px] md:h-[794px] flex-shrink-0" style={{ width: '3634px' }}>
+            <div className="relative h-[238px] md:h-[794px] flex-shrink-0" style={{ width: '3634px' }}>
               <Image 
                 src={getAssetPath('images/thumbnail_PC.webp')} 
                 alt="Students and Teachers" 
@@ -64,7 +64,7 @@ const Hero = () => {
               />
             </div>
             {/* Second copy for seamless loop */}
-            <div className="relative h-[541px] md:h-[794px] flex-shrink-0" style={{ width: '3634px' }}>
+            <div className="relative h-[238px] md:h-[794px] flex-shrink-0" style={{ width: '3634px' }}>
               <Image 
                 src={getAssetPath('images/thumbnail_PC.webp')} 
                 alt="Students and Teachers" 
