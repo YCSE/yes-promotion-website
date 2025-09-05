@@ -97,7 +97,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
 
             {/* Remaining Posts Grid */}
             {remainingPosts.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-[80px]">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10 mb-[80px]">
                 {remainingPosts.map((post) => (
                   <Link 
                     key={post.slug} 
@@ -122,15 +122,15 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                       
                       {/* Content */}
                       <div className="flex-1 flex flex-col">
-                        <time className="text-[14px] text-gray-500 mb-2">
+                        <time className="text-[12px] md:text-[14px] text-gray-500 mb-1 md:mb-2">
                           {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                         </time>
                         
-                        <h3 className="text-[18px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[28px] tracking-[-0.54px] group-hover:text-[#4B52AE] transition-colors">
+                        <h3 className="text-[14px] md:text-[20px] font-medium mb-1 md:mb-2 line-clamp-2 leading-[20px] md:leading-[28px] tracking-[-0.42px] md:tracking-[-0.54px] group-hover:text-[#4B52AE] transition-colors">
                           {post.title}
                         </h3>
                         
-                        <p className="text-[14px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[24px] tracking-[-0.48px]">
+                        <p className="text-[12px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[18px] md:leading-[24px] tracking-[-0.36px] md:tracking-[-0.48px]">
                           {post.excerpt}
                         </p>
                       </div>
