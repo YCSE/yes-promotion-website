@@ -38,8 +38,8 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className="relative w-full h-[800px] md:h-[1200px] overflow-hidden bg-white">
-      <div className="flex flex-col items-center justify-start pt-[80px] md:pt-[200px] gap-[50px] md:gap-[110px] px-4 md:px-6">
+    <section className="relative w-full h-[450px] md:h-[1200px] overflow-hidden bg-white">
+      <div className="flex flex-col items-center justify-start pt-[40px] md:pt-[200px] gap-[30px] md:gap-[110px] px-4 md:px-6">
         <div className="text-center">
           <h1 className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
             말하게 되는 영어
@@ -49,7 +49,7 @@ const Hero = () => {
           </p>
         </div>
         
-        <div className="relative w-full h-[238px] md:h-[794px] overflow-visible mt-[50px] md:-mt-[60px]">
+        <div className="relative w-full h-[238px] md:h-[794px] overflow-visible mt-[20px] md:-mt-[60px]">
           <div 
             ref={sliderRef}
             className="flex absolute h-full items-center"
