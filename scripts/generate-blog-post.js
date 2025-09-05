@@ -103,11 +103,25 @@ async function generateBlogPost() {
    - ✅ 올바른 예: 'so ~ that' 구문, "너무 ~해서 ~하다"라는 뜻
    - ✅ 또는: **so ~ that** 구문, **너무 ~해서 ~하다**는 뜻
 
+7. ⚠️ 예문 작성 규칙 (매우 중요):
+   - 학습 효율성을 위해 항상 완전한 예문을 제공하세요
+   - 템플릿 형식의 문장 절대 금지 (예: [날짜], [제품명], [문제점] 등)
+   - 구체적이고 실제적인 상황의 예문 사용
+   
+   ❌ 잘못된 예: "I would like to report an issue with [제품 이름]."
+   ❌ 잘못된 예: "My reservation for [날짜] at [시간] was not found."
+   
+   ✅ 올바른 예: "I would like to report an issue with my laptop."
+   ✅ 올바른 예: "My reservation for December 25th at 7 PM was not found."
+   ✅ 올바른 예: "The coffee maker I purchased last Monday is leaking water."
+
 【좋은 예시】
 ✅ "프렌즈나 해리포터 같은 작품을 추천합니다"
 ✅ "**중요한 표현**은 이렇게 강조합니다"
+✅ "I was charged for $50 but I only received one meal." (구체적 예문)
 ❌ "드라마('프렌즈'), 영화('해리포터')"
 ❌ '이렇게' 백틱 사용 금지
+❌ "I was charged for [금액] but I only received [서비스]." (템플릿 형식)
 
 【글 구조】
 1. 제목과 부제목
