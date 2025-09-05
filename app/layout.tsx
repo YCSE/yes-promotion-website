@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import './fonts.css'
 import Footer from '@/components/Footer'
 import Script from 'next/script'
 
@@ -199,20 +200,20 @@ export default function RootLayout({
       'https://yourenglishschool.co.kr/ogimage.jpg',
       'https://yourenglishschool.co.kr/images/thumbnail_PC.png'
     ],
-    telephone: '+82-1588-0000',
-    email: 'contact@yourenglishschool.co.kr',
+    telephone: '1670-2905',
+    email: 'admin@ycse.kr',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '강남대로 382',
-      addressLocality: '강남구',
+      streetAddress: '도봉로71가길 38-10',
+      addressLocality: '강북구',
       addressRegion: '서울',
-      postalCode: '06232',
+      postalCode: '01114',
       addressCountry: 'KR'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 37.498095,
-      longitude: 127.028079
+      latitude: 37.6396,
+      longitude: 127.0247
     },
     openingHoursSpecification: [
       {
@@ -301,18 +302,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;700;800&display=swap" 
-          rel="stylesheet"
-        />
-        <noscript>
-          <link 
-            href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;700;800&display=swap" 
-            rel="stylesheet" 
-          />
-        </noscript>
         <meta name="theme-color" content="#4B52AE" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

@@ -9,7 +9,9 @@ const EDITORS = [
   '에디터 정다홍(Rita)',
   '에디터 손온유(Olive)',
   '에디터 김가혜(Kay)',
-  '에디터 오혜리(Hailey)'
+  '에디터 오혜리(Hailey)',
+  '에디터 황해나(Hannah)',
+  '에디터 이든(Aiden)',
 ];
 
 // Import topics and directions from the generation system
@@ -74,7 +76,7 @@ async function generateBlogPost() {
     console.log('\n');
     
     const prompt = `
-한국인 영어 학습자를 위한 블로그 포스트를 작성해주세요.
+영어공부에 관심있는 한국인 학생을 위한 블로그 포스트를 작성해주세요.
 
 주제: ${topic}
 작성 방향: ${direction}
