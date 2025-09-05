@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { format } from 'date-fns'
@@ -24,6 +25,23 @@ interface BlogPostClientProps {
 }
 
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
+  // Responsive related posts count
+  const [displayPosts, setDisplayPosts] = useState(relatedPosts.slice(0, 3))
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setDisplayPosts(relatedPosts.slice(0, 2))
+      } else {
+        setDisplayPosts(relatedPosts.slice(0, 3))
+      }
+    }
+    
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [relatedPosts])
+  
   // Custom components for ReactMarkdown
   const markdownComponents: any = {
     h1: ({ children }: any) => (
@@ -184,7 +202,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
             </h2>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-10">
-              {relatedPosts.map((relatedPost) => (
+              {displayPosts.map((relatedPost) => (
                 <Link 
                   key={relatedPost.slug} 
                   href={`/blog/${relatedPost.slug}`}
