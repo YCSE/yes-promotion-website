@@ -223,8 +223,6 @@ export default function RootLayout({
         <link 
           href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@300;400;500;700;800&display=swap" 
           rel="stylesheet"
-          media="print"
-          onLoad="this.media='all'"
         />
         <noscript>
           <link 
