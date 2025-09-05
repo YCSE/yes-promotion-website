@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { generateFeaturedImagePrompt } = require('./generate-image-prompt');
 
-async function generateFeaturedImage(title, slug) {
+async function generateFeaturedImage(title, slug, contentExcerpt = '') {
   try {
     console.log('Creating featured image with Imagen 4...');
     
@@ -27,8 +27,8 @@ async function generateFeaturedImage(title, slug) {
       apiKey: process.env.GEMINI_API_KEY,
     });
     
-    // Generate dynamic prompt based on the blog post title using Gemini
-    const prompt = await generateFeaturedImagePrompt(title);
+    // Generate dynamic prompt based on the blog post title and content excerpt using Gemini
+    const prompt = await generateFeaturedImagePrompt(title, '', contentExcerpt);
     
     console.log('Generating image with prompt:', prompt);
     
@@ -100,8 +100,9 @@ module.exports = { generateFeaturedImage };
 if (require.main === module) {
   const title = process.argv[2] || 'Test Blog Post';
   const slug = process.argv[3] || 'test-post';
+  const contentExcerpt = process.argv[4] || '';
   
-  generateFeaturedImage(title, slug)
+  generateFeaturedImage(title, slug, contentExcerpt)
     .then(imagePath => {
       console.log('Image generated:', imagePath);
     })

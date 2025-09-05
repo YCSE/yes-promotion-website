@@ -3,7 +3,7 @@ const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } = require('@googl
 /**
  * Uses Gemini to generate contextual image prompts based on blog content
  */
-async function generateFeaturedImagePrompt(title, topic = '') {
+async function generateFeaturedImagePrompt(title, topic = '', contentExcerpt = '') {
   try {
     if (!process.env.GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY is not set');
@@ -39,15 +39,21 @@ You are an expert at creating image generation prompts for educational blog post
 Blog post title: ${title}
 ${topic ? `Topic: ${topic}` : ''}
 
+${contentExcerpt ? `Content excerpt from the blog post:
+${contentExcerpt}
+
+Based on the actual content above, create a photorealistic image prompt that visually represents the specific concepts, scenarios, or examples discussed in the article.` : ''}
+
 Create a photorealistic image prompt that:
-1. Captures the essence of this English learning topic
+1. ${contentExcerpt ? 'Directly reflects the specific content and examples from the article' : 'Captures the essence of this English learning topic'}
 2. Shows an appropriate scene or situation related to the content
 3. Includes relevant visual elements (setting, objects, activities)
+4. ${contentExcerpt ? 'Incorporates key themes or scenarios mentioned in the excerpt' : 'Focuses on the learning or practice situation'}
 
 Rules for the prompt:
 - Describe a specific, realistic scene
 - Include environmental details and context
-- Focus on the learning or practice situation
+- ${contentExcerpt ? 'Base the scene on actual content from the article' : 'Focus on the learning or practice situation'}
 - Keep it professional and educational
 
 Output ONLY the scene description in English, without any additional text or explanation.
@@ -91,7 +97,7 @@ Example: "Modern office meeting room with professionals discussing documents, la
 /**
  * Uses Gemini to generate H2 section image prompts
  */
-async function generateH2ImagePrompt(h2Title) {
+async function generateH2ImagePrompt(h2Title, sectionContent = '') {
   try {
     if (!process.env.GEMINI_API_KEY) {
       throw new Error('GEMINI_API_KEY is not set');
@@ -126,12 +132,20 @@ You are an expert at creating image generation prompts for educational content.
 
 Section title: ${h2Title}
 
-Create a photorealistic image prompt that visually represents this section's content.
-Focus on the key concept or activity described in the title.
+${sectionContent ? `Section content:
+${sectionContent}
+
+Carefully analyze the content above and create a photorealistic image that accurately visualizes the specific concepts, examples, or scenarios described in this section.` : ''}
+
+Create a photorealistic image prompt that:
+1. ${sectionContent ? 'Directly illustrates the specific content and examples from this section' : 'visually represents the section topic'}
+2. ${sectionContent ? 'Captures the key points and scenarios mentioned in the text' : 'Focuses on the key concept or activity'}
+3. Shows relevant visual elements that support the written content
+4. Maintains coherence with the educational theme
 
 Rules for the prompt:
 - Describe a clear, specific scene
-- Make it relevant to the section topic
+- ${sectionContent ? 'Base the visual on actual examples or scenarios from the section content' : 'Make it relevant to the section topic'}
 - Include appropriate setting and context
 - Keep it educational and professional
 

@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { generateH2ImagePrompt } = require('./generate-image-prompt');
 
-async function generateH2Image(h2Title, slug, index) {
+async function generateH2Image(h2Title, slug, index, sectionContent = '') {
   try {
     console.log(`Creating H2 image #${index} for: "${h2Title}"`);
     
@@ -27,8 +27,8 @@ async function generateH2Image(h2Title, slug, index) {
       apiKey: process.env.GEMINI_API_KEY,
     });
     
-    // Generate dynamic prompt based on the H2 section title using Gemini
-    const prompt = await generateH2ImagePrompt(h2Title);
+    // Generate dynamic prompt based on the H2 section title and content using Gemini
+    const prompt = await generateH2ImagePrompt(h2Title, sectionContent);
     
     console.log('Generating H2 image with prompt:', prompt);
     
@@ -103,13 +103,36 @@ async function processH2Images(content, slug) {
     const h2Matches = [...content.matchAll(h2Pattern)];
     console.log(`Found ${h2Matches.length} H2 titles with placeholders`);
     
-    // Create a map of index to H2 title
+    // Create a map of index to H2 title and section content
     const h2Map = new Map();
+    const sectionContentMap = new Map();
+    
     for (const match of h2Matches) {
       const h2Title = match[1].trim();
       const index = match[2];
       h2Map.set(index, h2Title);
       console.log(`H2 #${index}: "${h2Title}"`);
+      
+      // Extract section content after the placeholder
+      const placeholderEnd = match.index + match[0].length;
+      const nextH2Pattern = /##\s+/;
+      const restOfContent = content.substring(placeholderEnd);
+      const nextH2Match = restOfContent.match(nextH2Pattern);
+      
+      let sectionContent = '';
+      if (nextH2Match) {
+        // Get content until next H2
+        sectionContent = restOfContent.substring(0, nextH2Match.index);
+      } else {
+        // Get content until end or a reasonable length (first 1000 chars)
+        sectionContent = restOfContent.substring(0, 1000);
+      }
+      
+      // Clean up the section content (remove excess whitespace, get first 2-3 paragraphs)
+      const paragraphs = sectionContent.trim().split(/\n\n+/);
+      const contentExcerpt = paragraphs.slice(0, 3).join('\n\n').trim();
+      sectionContentMap.set(index, contentExcerpt);
+      console.log(`Extracted ${contentExcerpt.length} chars of content for section #${index}`);
     }
     
     // If we couldn't match H2s with placeholders, try alternative approach
@@ -128,6 +151,7 @@ async function processH2Images(content, slug) {
         
         // Find the closest H2 before this placeholder
         let closestH2 = null;
+        let closestH2Match = null;
         let closestDistance = Infinity;
         
         for (const h2Match of h2Titles) {
@@ -135,12 +159,30 @@ async function processH2Images(content, slug) {
           if (h2Pos < placeholderPos && (placeholderPos - h2Pos) < closestDistance) {
             closestDistance = placeholderPos - h2Pos;
             closestH2 = h2Match[1].trim();
+            closestH2Match = h2Match;
           }
         }
         
         if (closestH2) {
           h2Map.set(index, closestH2);
           console.log(`Matched placeholder #${index} to H2: "${closestH2}"`);
+          
+          // Extract section content after the placeholder
+          const placeholderEnd = placeholderPos + placeholder[0].length;
+          const nextH2Pattern = /##\s+/;
+          const restOfContent = content.substring(placeholderEnd);
+          const nextH2Match = restOfContent.match(nextH2Pattern);
+          
+          let sectionContent = '';
+          if (nextH2Match) {
+            sectionContent = restOfContent.substring(0, nextH2Match.index);
+          } else {
+            sectionContent = restOfContent.substring(0, 1000);
+          }
+          
+          const paragraphs = sectionContent.trim().split(/\n\n+/);
+          const contentExcerpt = paragraphs.slice(0, 3).join('\n\n').trim();
+          sectionContentMap.set(index, contentExcerpt);
         }
       }
     }
@@ -152,11 +194,15 @@ async function processH2Images(content, slug) {
     for (const placeholder of placeholders) {
       const index = placeholder[1];
       const h2Title = h2Map.get(index) || `Section ${index}`;
+      const sectionContent = sectionContentMap.get(index) || '';
       
       console.log(`Processing placeholder #${index} for: "${h2Title}"`);
+      if (sectionContent) {
+        console.log(`Using ${sectionContent.length} chars of section content for image generation`);
+      }
       
-      // Generate image for this H2
-      const imagePath = await generateH2Image(h2Title, slug, index);
+      // Generate image for this H2 with section content
+      const imagePath = await generateH2Image(h2Title, slug, index, sectionContent);
       
       // Replace placeholder with actual image markdown
       const placeholderText = `[IMAGE_PLACEHOLDER_H2_${index}]`;

@@ -13,12 +13,37 @@ async function generateCompleteBlogPost() {
     const { slug, content, title } = await generateBlogPost();
     console.log(`   ✓ Generated post: "${title}"`);
     
-    // Step 2: Generate featured image (photorealistic)
+    // Extract the first 2-3 paragraphs from the content for featured image
+    // Skip the frontmatter and get the actual content
+    const contentLines = content.split('\n');
+    let actualContent = '';
+    let foundEnd = false;
+    let dashCount = 0;
+    
+    for (const line of contentLines) {
+      if (line === '---') {
+        dashCount++;
+        if (dashCount === 2) {
+          foundEnd = true;
+          continue;
+        }
+      }
+      if (foundEnd && line.trim()) {
+        actualContent += line + '\n';
+      }
+    }
+    
+    // Get first 2-3 paragraphs for content excerpt
+    const paragraphs = actualContent.trim().split(/\n\n+/);
+    const contentExcerpt = paragraphs.slice(0, 3).join('\n\n').substring(0, 1000);
+    console.log(`   ✓ Extracted ${contentExcerpt.length} chars of content for featured image`);
+    
+    // Step 2: Generate featured image (photorealistic) with content excerpt
     console.log('\n2. Generating featured image...');
-    const featuredImagePath = await generateFeaturedImage(title, slug);
+    const featuredImagePath = await generateFeaturedImage(title, slug, contentExcerpt);
     console.log(`   ✓ Featured image: ${featuredImagePath}`);
     
-    // Step 3: Process H2 images (photorealistic)
+    // Step 3: Process H2 images (photorealistic) - already handles content extraction internally
     console.log('\n3. Processing H2 section images...');
     const contentWithImages = await processH2Images(content, slug);
     console.log('   ✓ H2 images processed');
