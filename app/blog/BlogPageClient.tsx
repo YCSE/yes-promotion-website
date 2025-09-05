@@ -20,7 +20,7 @@ interface BlogPageClientProps {
 }
 
 export default function BlogPageClient({ posts }: BlogPageClientProps) {
-  const [displayCount, setDisplayCount] = useState(6) // Show first 6 posts initially
+  const [displayCount, setDisplayCount] = useState(7) // Show featured + 6 posts initially
   
   const featuredPost = posts[0]
   const remainingPosts = posts.slice(1, displayCount)
@@ -145,10 +145,10 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
               <div className="flex justify-center mb-[100px]">
                 <button
                   onClick={handleLoadMore}
-                  className="relative w-[350px] h-[100px] rounded-[100px] border border-black border-solid hover:bg-black hover:text-white transition-all duration-300"
+                  className="relative w-[200px] h-[60px] md:w-[300px] md:h-[80px] lg:w-[350px] lg:h-[100px] rounded-[100px] border border-black border-solid hover:bg-black hover:text-white transition-all duration-300 group"
                 >
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-bold text-[25px] leading-[40px] tracking-[-0.75px] text-center">
+                    <span className="font-bold text-[18px] md:text-[22px] lg:text-[25px] leading-[28px] md:leading-[35px] lg:leading-[40px] tracking-[-0.54px] md:tracking-[-0.66px] lg:tracking-[-0.75px] text-center text-black group-hover:text-white transition-colors duration-300">
                       더보기
                     </span>
                   </div>
