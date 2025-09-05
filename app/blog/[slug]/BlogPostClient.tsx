@@ -6,6 +6,7 @@ import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import type { PostData as RelatedPostData } from '@/lib/posts'
 
 interface PostData {
   slug: string
@@ -19,9 +20,10 @@ interface PostData {
 
 interface BlogPostClientProps {
   post: PostData
+  relatedPosts: RelatedPostData[]
 }
 
-export default function BlogPostClient({ post }: BlogPostClientProps) {
+export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
   // Custom components for ReactMarkdown
   const markdownComponents: any = {
     h1: ({ children }: any) => (
@@ -172,6 +174,59 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
           </ReactMarkdown>
         </div>
       </div>
+
+      {/* Related Posts Section */}
+      {relatedPosts.length > 0 && (
+        <div className="bg-[#F8F9FA] py-[60px] md:py-[100px]">
+          <div className="max-w-[1280px] mx-auto px-6">
+            <h2 className="text-[24px] md:text-[32px] font-bold mb-[40px] md:mb-[60px]">
+              함께 읽어볼 글
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+              {relatedPosts.map((relatedPost) => (
+                <Link 
+                  key={relatedPost.slug} 
+                  href={`/blog/${relatedPost.slug}`}
+                  className="group"
+                >
+                  <article className="bg-white h-full flex flex-col">
+                    {/* Square Image */}
+                    <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[20px] mb-4">
+                      {relatedPost.featuredImage ? (
+                        <Image
+                          src={relatedPost.featuredImage}
+                          alt={relatedPost.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
+                      )}
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1 flex flex-col">
+                      <time className="text-[12px] md:text-[14px] text-gray-500 mb-2">
+                        {format(new Date(relatedPost.date), 'yyyy년 M월 d일', { locale: ko })}
+                      </time>
+                      
+                      <h3 className="text-[16px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[24px] md:leading-[28px] tracking-[-0.48px] md:tracking-[-0.54px] group-hover:text-[#4B52AE] transition-colors">
+                        {relatedPost.title}
+                      </h3>
+                      
+                      <p className="text-[14px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[20px] md:leading-[24px] tracking-[-0.42px] md:tracking-[-0.48px]">
+                        {relatedPost.excerpt}
+                      </p>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <div className="max-w-[900px] mx-auto px-6 py-[60px] border-t border-gray-200">

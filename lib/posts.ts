@@ -59,3 +59,12 @@ export function getRandomPosts(posts: PostData[], count: number): PostData[] {
   const shuffled = [...posts].sort(() => Math.random() - 0.5)
   return shuffled.slice(0, Math.min(count, posts.length))
 }
+
+// Get related posts for a specific post
+export function getRelatedPosts(currentSlug: string, count: number = 3): PostData[] {
+  const allPosts = getAllPosts()
+  // Filter out the current post
+  const otherPosts = allPosts.filter(post => post.slug !== currentSlug)
+  // Return random posts from the remaining ones
+  return getRandomPosts(otherPosts, count)
+}

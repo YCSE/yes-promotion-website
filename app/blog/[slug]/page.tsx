@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { notFound } from 'next/navigation'
 import BlogPostClient from './BlogPostClient'
+import { getRelatedPosts } from '@/lib/posts'
 
 interface BlogPostProps {
   params: {
@@ -74,7 +75,9 @@ export default function BlogPost({ params }: BlogPostProps) {
     notFound()
   }
 
-  return <BlogPostClient post={post} />
+  const relatedPosts = getRelatedPosts(params.slug, 3)
+
+  return <BlogPostClient post={post} relatedPosts={relatedPosts} />
 }
 
 export async function generateMetadata({ params }: BlogPostProps) {
