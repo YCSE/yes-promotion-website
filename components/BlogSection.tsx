@@ -1,51 +1,14 @@
-'use client'
-
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
-import { useState, useEffect } from 'react'
-
-interface PostData {
-  slug: string
-  title: string
-  subtitle?: string
-  date: string
-  featuredImage?: string
-  excerpt: string
-}
-
-// Mock data - same as blog page
-const mockPosts: PostData[] = [
-  {
-    slug: '2025-09-04-movies-tv-language-learning-1',
-    title: '영화와 드라마로 영어 정복! 나만의 스마트 학습 툴킷 만들기',
-    subtitle: '넷플릭스, 디즈니+ 이제는 영어 실력 향상의 무한한 보고!',
-    date: '2025-09-04T16:37:25.557Z',
-    featuredImage: '/images/blog/2025-09-04-movies-tv-language-learning-1.jpg',
-    excerpt: '영화와 드라마를 통해 영어 학습의 지루함을 없애고, 즐거움과 효과를 동시에 잡으세요. 나만의 맞춤형 학습 툴킷을 만들어 꾸준히 영어 실력을 향상시키는 방법을 알려드립니다.'
-  },
-  {
-    slug: '2025-09-04-inversion-emphasis-english-1',
-    title: '영어 도치 구문 완벽 가이드: 강조와 리듬의 예술',
-    subtitle: '원어민처럼 말하기 위한 고급 문법 테크닉',
-    date: '2025-09-04T15:00:00.000Z',
-    featuredImage: '/images/blog/2025-09-04-inversion-emphasis-english-1.jpg',
-    excerpt: '영어의 도치 구문은 단순한 문법 규칙을 넘어 언어의 예술적 표현입니다. 강조, 리듬, 그리고 격식을 더하는 도치 구문을 마스터해보세요.'
-  }
-]
-
-// Get random posts (up to the count specified)
-function getRandomPosts(posts: PostData[], count: number): PostData[] {
-  const shuffled = [...posts].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, Math.min(count, posts.length))
-}
+import { getAllPosts, getRandomPosts } from '@/lib/posts'
 
 export default function BlogSection() {
-  const [randomPosts, setRandomPosts] = useState<PostData[]>([])
-
-  useEffect(() => {
-    setRandomPosts(getRandomPosts(mockPosts, 2))
-  }, [])
+  // Get all posts from content directory
+  const allPosts = getAllPosts()
+  
+  // Get 3 random posts
+  const randomPosts = getRandomPosts(allPosts, 3)
 
   return (
     <section className="relative w-full pt-[80px] md:pt-[150px] lg:pt-[200px] pb-[40px] md:pb-[75px] lg:pb-[100px] bg-white">
