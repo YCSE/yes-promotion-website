@@ -26,7 +26,7 @@ export default function BlogSection() {
               href={`/blog/${post.slug}`}
               className="group"
             >
-              <article className="bg-white h-full flex flex-col">
+              <article className="h-full flex flex-col">
                 {/* Square Image */}
                 <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[15px] mb-3">
                   {post.featuredImage ? (
@@ -67,7 +67,7 @@ export default function BlogSection() {
               href={`/blog/${post.slug}`}
               className="group"
             >
-              <article className="bg-white h-full flex flex-col">
+              <article className="h-full flex flex-col">
                 {/* Square Image */}
                 <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[20px] mb-4">
                   {post.featuredImage ? (
