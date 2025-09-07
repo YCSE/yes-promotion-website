@@ -58,7 +58,7 @@ const Section3 = () => {
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         {/* Section 3-1 */}
         <div className="mb-[80px] md:mb-[150px] lg:mb-[200px]">
-          <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-extrabold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center mb-[50px] md:mb-[80px] lg:mb-[100px] tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
+          <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center mb-[50px] md:mb-[80px] lg:mb-[100px] tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
             교과서 밖에서 통하는 영어,<br/>
             YES로 시작하세요!
           </h2>
