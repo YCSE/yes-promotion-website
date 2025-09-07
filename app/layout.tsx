@@ -4,6 +4,13 @@ import './fonts.css'
 import Footer from '@/components/Footer'
 import Script from 'next/script'
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://yourenglishschool.co.kr'),
   title: 'YES 화상영어 - 원어민과 1:1 화상영어회화 수업',
@@ -47,12 +54,6 @@ export const metadata: Metadata = {
     images: ['/ogimage.jpg'],
     creator: '@yesenglish',
     site: '@yesenglish',
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
   },
   robots: {
     index: true,
