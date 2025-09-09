@@ -169,25 +169,6 @@ export default function RootLayout({
     ]
   }
 
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'HOME',
-        item: 'https://yourenglishschool.co.kr/'
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: '블로그',
-        item: 'https://yourenglishschool.co.kr/blog'
-      }
-    ]
-  }
-
   // Course Schema - 화상영어 수업 정보
   const courseJsonLd = {
     '@context': 'https://schema.org',
@@ -437,13 +418,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(siteNavigationJsonLd)
-          }}
-        />
-        <Script
-          id="breadcrumb-structured-data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(breadcrumbJsonLd)
           }}
         />
         <Script
