@@ -61,7 +61,7 @@ export async function GET() {
   const rssItems = posts.map(post => {
     const pubDate = new Date(post.date).toUTCString()
     const imageTag = post.featuredImage 
-      ? `<enclosure url="${baseUrl}${post.featuredImage}" type="image/jpeg" />`
+      ? `<enclosure url="${baseUrl}${post.featuredImage}" type="image/jpeg" length="0" />`
       : ''
     
     return `
