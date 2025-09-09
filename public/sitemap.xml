@@ -15,12 +15,12 @@
     </image:image>
   </url>
   
-  <!-- 블로그 메인 - 중상위 키워드: 영어스피킹, 영어회화 학습법 -->
+  <!-- 블로그 메인 - 보조 콘텐츠 -->
   <url>
     <loc>https://yourenglishschool.co.kr/blog/</loc>
     <lastmod>2025-01-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- 블로그 포스트들 - 롱테일 키워드 타겟팅 -->
@@ -28,49 +28,49 @@
     <loc>https://yourenglishschool.co.kr/blog/effective-english-study-methods/</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yourenglishschool.co.kr/blog/business-english-tips/</loc>
     <lastmod>2025-01-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yourenglishschool.co.kr/blog/travel-english-essentials/</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yourenglishschool.co.kr/blog/daily-english-conversation/</loc>
     <lastmod>2025-01-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yourenglishschool.co.kr/blog/english-pronunciation-guide/</loc>
     <lastmod>2025-01-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yourenglishschool.co.kr/blog/toeic-speaking-strategies/</loc>
     <lastmod>2025-01-02</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://yourenglishschool.co.kr/blog/english-interview-preparation/</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <!-- 섹션별 앵커 링크 - 특화 키워드 -->

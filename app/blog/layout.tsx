@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import BlogHeader from '@/components/BlogHeader'
 
 export const metadata: Metadata = {
   title: 'YES 화상영어 블로그 - 영어학습 팁과 화상영어 노하우',
@@ -116,6 +117,7 @@ export default function BlogLayout({
           __html: JSON.stringify(breadcrumbJsonLd)
         }}
       />
+      <BlogHeader />
       {children}
     </>
   )

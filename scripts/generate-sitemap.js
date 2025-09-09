@@ -57,8 +57,8 @@ function generateSitemap() {
     },
     {
       loc: '/blog/',
-      changefreq: 'daily',
-      priority: '0.9'
+      changefreq: 'weekly',
+      priority: '0.7'
     }
   ];
   
@@ -106,7 +106,7 @@ function generateSitemap() {
     <loc>${baseUrl}/blog/${post.slug}/</loc>
     <lastmod>${post.date}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>`;
   });
   
