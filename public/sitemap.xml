@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+  <!-- 메인 페이지 - 핵심 키워드: 화상영어, 영어회화 -->
+  <url>
+    <loc>https://yourenglishschool.co.kr/</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://yourenglishschool.co.kr/images/thumbnail_PC.webp</image:loc>
+      <image:title>YES 화상영어 - 원어민과 1:1 화상영어회화</image:title>
+      <image:caption>YES 화상영어로 실시간 원어민 영어회화 수업</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- 블로그 메인 - 중상위 키워드: 영어스피킹, 영어회화 학습법 -->
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- 블로그 포스트들 - 롱테일 키워드 타겟팅 -->
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/effective-english-study-methods/</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/business-english-tips/</loc>
+    <lastmod>2025-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/travel-english-essentials/</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/daily-english-conversation/</loc>
+    <lastmod>2025-01-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/english-pronunciation-guide/</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/toeic-speaking-strategies/</loc>
+    <lastmod>2025-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/blog/english-interview-preparation/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 섹션별 앵커 링크 - 특화 키워드 -->
+  <url>
+    <loc>https://yourenglishschool.co.kr/#features</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/#tia</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/#level-test</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://yourenglishschool.co.kr/#faq</loc>
+    <lastmod>2025-01-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

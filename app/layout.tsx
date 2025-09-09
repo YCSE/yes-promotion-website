@@ -13,9 +13,9 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yourenglishschool.co.kr'),
-  title: 'YES 화상영어 - 원어민과 1:1 화상영어회화 수업',
-  description: 'YES 화상영어는 캠블리, 링글, 스픽, 민트영어보다 효과적인 1:1 화상영어! 원어민급 선생님과 실시간 화상영어회화. 엔구, 어메이징토커보다 체계적인 커리큘럼. 화상영어 무료체험으로 차이를 경험하세요!',
-  keywords: '화상영어, 화상영어회화, 온라인화상영어, 원어민화상영어, 화상영어수업, 화상영어추천, 1대1화상영어, 화상영어앱, YES화상영어, 실시간화상영어, 화상영어플랫폼, 영어회화, 온라인영어, 비대면영어, 화상영어학원, 캠블리, 링글, 스픽, 엔구, 어메이징토커, 프렙, 튜터링, 링고다, 버블링, 아이튜터, 민병철유폰, 야나두, 시원스쿨, 리얼클래스, 케이크, 민트영어',
+  title: 'YES 화상영어 - 선생님과 1:1 화상영어회화 수업',
+  description: '화상영어 추천! YES로 선생님과 1:1 실시간 영어회화. AI 튜터 TIA와 체계적인 커리큘럼. 무료체험!',
+  keywords: '화상영어, 화상영어회화, 화상영어추천, 화상영어가격, 영어회화, 영어스피킹, 원어민영어, 성인영어회화, 직장인영어회화, 온라인영어학원, 실전영어회화, 아침영어회화, 화상영어무료체험, YES화상영어, TIA영어',
   authors: [{ name: 'YES' }],
   creator: 'YES',
   publisher: 'YES',
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     alternateLocale: 'en_US',
     url: 'https://yourenglishschool.co.kr/',
-    title: 'YES 화상영어 - 원어민과 1:1 화상영어 수업',
-    description: 'YES 화상영어로 원어민과 실시간 화상영어회화! 국내 최고의 화상영어 플랫폼, 맞춤형 화상영어 커리큘럼, 전문 화상영어 튜터진. 화상영어 무료체험!',
+    title: 'YES 화상영어 - 선생님과 1:1 화상영어 수업',
+    description: 'YES 화상영어로 선생님과 실시간 화상영어회화! 맞춤형 커리큘럼과 전문 튜터진. 화상영어 무료체험!',
     images: [
       {
         url: '/ogimage.jpg',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'YES 화상영어 - 원어민 화상영어 1:1 수업',
-    description: 'YES 화상영어로 원어민과 실시간 화상영어회화! 국내 1위 화상영어 플랫폼, 전문 화상영어 튜터와 맞춤 수업!',
+    description: 'YES 화상영어로 선생님과 실시간 화상영어회화! 전문 화상영어 튜터와 맞춤 수업!',
     images: ['/ogimage.jpg'],
     creator: '@yesenglish',
     site: '@yesenglish',
@@ -96,7 +96,7 @@ export default function RootLayout({
     alternateName: 'YES English',
     url: 'https://yourenglishschool.co.kr/',
     logo: 'https://yourenglishschool.co.kr/ogimage.jpg',
-    description: 'YES 화상영어로 원어민과 1:1 화상영어 수업! 국내 최고의 화상영어회화 플랫폼, 실시간 화상영어 피드백, AI 맞춤형 화상영어 학습 시스템으로 영어 실력 향상!',
+    description: 'YES 화상영어로 선생님과 1:1 화상영어 수업! 실시간 피드백과 AI 맞춤형 학습 시스템으로 영어 실력 향상!',
     sameAs: [
       'https://www.facebook.com/yesenglish',
       'https://www.instagram.com/yesenglish',
@@ -131,7 +131,7 @@ export default function RootLayout({
           '@type': 'Person',
           name: '김서연'
         },
-        reviewBody: 'YES 화상영어 덕분에 영어 울렁증을 극복했어요! 화상영어로 원어민과 직접 대화하니 실전 영어가 늘어요. 최고의 화상영어 플랫폼이에요!'
+        reviewBody: 'YES 화상영어 덕분에 영어 울렁증을 극복했어요! 화상영어로 선생님과 직접 대화하니 실전 영어가 늘어요. 최고의 화상영어 플랫폼이에요!'
       }
     ],
     areaServed: {
@@ -186,6 +186,106 @@ export default function RootLayout({
         item: 'https://yourenglishschool.co.kr/blog'
       }
     ]
+  }
+
+  // Course Schema - 화상영어 수업 정보
+  const courseJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'YES 화상영어 1:1 원어민 회화 수업',
+    description: '원어민급 선생님과 1:1 실시간 화상영어 수업. 개인 맞춤 커리큘럼으로 효과적인 영어 실력 향상',
+    provider: {
+      '@type': 'Organization',
+      name: 'YES 화상영어',
+      sameAs: 'https://yourenglishschool.co.kr/'
+    },
+    courseMode: 'online',
+    courseWorkload: 'PT25M',
+    educationalLevel: '초급부터 고급까지',
+    teaches: '영어회화, 비즈니스 영어, 일상 영어, 여행 영어',
+    inLanguage: 'en',
+    availableLanguage: ['en', 'ko'],
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: 'online',
+      instructor: {
+        '@type': 'Person',
+        name: '원어민급 전문 강사진'
+      }
+    }
+  }
+
+  // Product Schema - 수업 플랜 정보
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'YES 화상영어 수업',
+    description: '1:1 맞춤형 화상영어 수업',
+    brand: {
+      '@type': 'Brand',
+      name: 'YES 화상영어'
+    },
+    offers: [
+      {
+        '@type': 'Offer',
+        name: '무료 체험 수업',
+        price: '0',
+        priceCurrency: 'KRW',
+        availability: 'https://schema.org/InStock',
+        validFrom: '2025-01-01',
+        priceValidUntil: '2025-12-31'
+      },
+      {
+        '@type': 'Offer',
+        name: '월 정기 구독',
+        price: '86000',
+        priceCurrency: 'KRW',
+        availability: 'https://schema.org/InStock',
+        validFrom: '2025-01-01',
+        priceValidUntil: '2025-12-31'
+      }
+    ],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      bestRating: '5',
+      ratingCount: '12500',
+      reviewCount: '8750'
+    },
+    review: {
+      '@type': 'Review',
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: '5',
+        bestRating: '5'
+      },
+      author: {
+        '@type': 'Person',
+        name: '김서연'
+      },
+      reviewBody: 'YES 화상영어 덕분에 영어 실력이 정말 늘었어요! 선생님들이 친절하고 체계적입니다.'
+    }
+  }
+
+  // VideoObject Schema - TIA 소개 비디오
+  const videoJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'TIA - YES 화상영어 AI 튜터 소개',
+    description: 'YES 화상영어의 AI 튜터 TIA를 소개합니다. 수업 후에도 지속적인 학습을 도와드립니다.',
+    thumbnailUrl: 'https://yourenglishschool.co.kr/images/section3-2/tia-thumbnail.png',
+    uploadDate: '2025-01-01',
+    duration: 'PT1M30S',
+    contentUrl: 'https://yourenglishschool.co.kr/images/section3-2/tia.mp4',
+    embedUrl: 'https://yourenglishschool.co.kr/#tia',
+    publisher: {
+      '@type': 'Organization',
+      name: 'YES 화상영어',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://yourenglishschool.co.kr/ogimage.jpg'
+      }
+    }
   }
 
   const localBusinessJsonLd = {
@@ -254,7 +354,7 @@ export default function RootLayout({
           '@type': 'Offer',
           name: '월 정기 구독',
           description: '매일 25분 1:1 화상영어 수업',
-          price: '149000',
+          price: '86000',
           priceCurrency: 'KRW'
         }
       ]
@@ -275,26 +375,26 @@ export default function RootLayout({
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'YES 화상영어는 캠블리, 링글, 민트영어와 어떤 차이가 있나요?',
+        name: 'YES 화상영어의 특징은 무엇인가요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'YES 화상영어는 캠블리, 링글, 민트영어와 달리 한국인 학습자에 최적화된 커리큘럼을 제공합니다. 스픽, 엔구보다 체계적인 1:1 수업과 AI 피드백으로 3배 빠른 실력 향상! 민트영어, 어메이징토커, 프렙보다 합리적인 가격으로 원어민급 튜터와 수업 가능합니다.'
+          text: 'YES 화상영어는 한국인 학습자에 최적화된 커리큘럼을 제공합니다. 체계적인 1:1 수업과 AI 피드백으로 빠른 실력 향상이 가능하며, 합리적인 가격으로 원어민급 튜터와 수업이 가능합니다.'
         }
       },
       {
         '@type': 'Question',
-        name: 'YES 화상영어 가격은 캠블리, 링글보다 저렴한가요?',
+        name: 'YES 화상영어 가격은 어떻게 되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'YES 화상영어는 캠블리, 링글 대비 최대 50% 저렴! 스픽, 엔구와 비교해도 가성비 최고의 화상영어입니다. 어메이징토커, 튜터링보다 체계적인 커리큘럼을 제공하면서도 합리적인 가격. 무료체험 후 본인에게 맞는 플랜을 선택하세요.'
+          text: 'YES 화상영어는 합리적인 가격으로 고품질 화상영어 수업을 제공합니다. 무료체험 후 본인에게 맞는 플랜을 선택할 수 있습니다.'
         }
       },
       {
         '@type': 'Question',
-        name: '야나두, 시원스쿨처럼 초보자도 가능한가요?',
+        name: '초보자도 수업이 가능한가요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '네! YES 화상영어는 야나두, 시원스쿨보다 실전적인 회화 중심 수업! 케이크, 리얼클래스와 달리 실제 튜터와 대화하며 배웁니다. 민병철유폰, 버블링처럼 초급부터 체계적으로 시작 가능. 링고다, 아이튜터보다 친절한 한국인 상담 서비스도 제공합니다.'
+          text: '네! YES 화상영어는 초급부터 고급까지 모든 레벨에 맞춤형 수업을 제공합니다. 실제 튜터와 대화하며 학습하고, 한국인 상담 서비스도 제공하여 초보자도 편하게 시작할 수 있습니다.'
         }
       }
     ]
@@ -358,6 +458,27 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessJsonLd)
+          }}
+        />
+        <Script
+          id="course-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(courseJsonLd)
+          }}
+        />
+        <Script
+          id="product-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(productJsonLd)
+          }}
+        />
+        <Script
+          id="video-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(videoJsonLd)
           }}
         />
       </head>
