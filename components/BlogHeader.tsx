@@ -12,7 +12,7 @@ const BlogHeader = () => {
           {/* Logo with Home Link */}
           <Link 
             href="/" 
-            className="flex items-center gap-3 group transition-all hover:opacity-80"
+            className="flex items-center group transition-all hover:opacity-80"
             aria-label="YES 화상영어 홈으로 이동"
           >
             <div className="relative w-10 h-10 md:w-12 md:h-12">
@@ -24,14 +24,6 @@ const BlogHeader = () => {
                 className="w-full h-full object-contain rounded-lg"
                 priority
               />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-[#4B52AE]">
-                YES 화상영어
-              </span>
-              <span className="text-xs md:text-sm text-gray-500">
-                블로그
-              </span>
             </div>
           </Link>
 
