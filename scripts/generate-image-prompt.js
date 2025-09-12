@@ -64,8 +64,8 @@ Example: "Modern office meeting room with professionals discussing documents, la
     const response = await result.response;
     const sceneDescription = response.text().trim();
     
-    // Combine with people rules
-    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional photography, natural lighting, documentary style.
+    // Combine with enhanced realism and people rules
+    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional candid photography, natural lighting, documentary style, anatomically correct.
     
     STRICT PEOPLE RULES:
     - ONE person only: Must be a Korean person in their 20s
@@ -74,14 +74,35 @@ Example: "Modern office meeting room with professionals discussing documents, la
     - After one Korean appears, ALL other people must be Western
     - Exception: Historical figures or celebrities shown as they are
     
-    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+    ANATOMY & REALISM RULES:
+    - Each person must have EXACTLY 2 arms, 2 hands, 2 legs - no extra limbs
+    - Natural body proportions and realistic human anatomy only
+    - Hands must have 5 fingers each, properly formed
+    - No distorted or impossible body positions
+    
+    NATURAL BEHAVIOR RULES:
+    - Phone usage: Hold with ONE hand only in natural grip
+    - Natural, relaxed postures - how real people actually sit, stand, or move
+    - Realistic everyday gestures and interactions
+    - No staged or artificial poses
+    - Candid moments as if captured in real life
+    
+    ABSOLUTE PROHIBITIONS:
+    - NO speech bubbles, thought bubbles, or dialogue balloons
+    - NO text overlays, captions, or labels of any kind
+    - NO letters, words, or writing visible anywhere
+    - NO cartoon or comic-style elements
+    - NO floating text or annotations
+    - Pure photographic image only
+    
+    QUALITY: High detail, sharp focus, professional photography, realistic proportions.`;
     
     return finalPrompt;
     
   } catch (error) {
     console.error('Error generating image prompt with Gemini:', error);
     // Fallback prompt
-    return `Photorealistic photograph: People engaged in English learning or conversation in modern setting. Professional photography, natural lighting, documentary style.
+    return `Photorealistic photograph: People engaged in English learning or conversation in modern setting. Professional candid photography, natural lighting, documentary style, anatomically correct.
     
     STRICT PEOPLE RULES:
     - ONE person only: Must be a Korean person in their 20s
@@ -90,7 +111,28 @@ Example: "Modern office meeting room with professionals discussing documents, la
     - After one Korean appears, ALL other people must be Western
     - Exception: Historical figures or celebrities shown as they are
     
-    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+    ANATOMY & REALISM RULES:
+    - Each person must have EXACTLY 2 arms, 2 hands, 2 legs - no extra limbs
+    - Natural body proportions and realistic human anatomy only
+    - Hands must have 5 fingers each, properly formed
+    - No distorted or impossible body positions
+    
+    NATURAL BEHAVIOR RULES:
+    - Phone usage: Hold with ONE hand only in natural grip
+    - Natural, relaxed postures - how real people actually sit, stand, or move
+    - Realistic everyday gestures and interactions
+    - No staged or artificial poses
+    - Candid moments as if captured in real life
+    
+    ABSOLUTE PROHIBITIONS:
+    - NO speech bubbles, thought bubbles, or dialogue balloons
+    - NO text overlays, captions, or labels of any kind
+    - NO letters, words, or writing visible anywhere
+    - NO cartoon or comic-style elements
+    - NO floating text or annotations
+    - Pure photographic image only
+    
+    QUALITY: High detail, sharp focus, professional photography, realistic proportions.`;
   }
 }
 
@@ -157,8 +199,8 @@ Example: "Person practicing pronunciation with headphones in quiet study room"
     const response = await result.response;
     const sceneDescription = response.text().trim();
     
-    // Combine with people rules
-    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional photography, natural lighting, documentary style.
+    // Combine with enhanced realism and people rules
+    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional candid photography, natural lighting, documentary style, anatomically correct.
     
     STRICT PEOPLE RULES:
     - ONE person only: Must be a Korean person in their 20s
@@ -167,7 +209,28 @@ Example: "Person practicing pronunciation with headphones in quiet study room"
     - After one Korean appears, ALL other people must be Western
     - Exception: Historical figures or celebrities shown as they are
     
-    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+    ANATOMY & REALISM RULES:
+    - Each person must have EXACTLY 2 arms, 2 hands, 2 legs - no extra limbs
+    - Natural body proportions and realistic human anatomy only
+    - Hands must have 5 fingers each, properly formed
+    - No distorted or impossible body positions
+    
+    NATURAL BEHAVIOR RULES:
+    - Phone usage: Hold with ONE hand only in natural grip
+    - Natural, relaxed postures - how real people actually sit, stand, or move
+    - Realistic everyday gestures and interactions
+    - No staged or artificial poses
+    - Candid moments as if captured in real life
+    
+    ABSOLUTE PROHIBITIONS:
+    - NO speech bubbles, thought bubbles, or dialogue balloons
+    - NO text overlays, captions, or labels of any kind
+    - NO letters, words, or writing visible anywhere
+    - NO cartoon or comic-style elements
+    - NO floating text or annotations
+    - Pure photographic image only
+    
+    QUALITY: High detail, sharp focus, professional photography, realistic proportions.`;
     
     return finalPrompt;
     
@@ -187,7 +250,118 @@ Example: "Person practicing pronunciation with headphones in quiet study room"
   }
 }
 
+/**
+ * Generates a people-free image prompt focusing on objects and environments
+ */
+async function generatePeopleFreeImagePrompt(title, topic = '', contentExcerpt = '') {
+  try {
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error('GEMINI_API_KEY is not set');
+    }
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+    
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      safetySettings: [
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+      ],
+    });
+
+    const prompt = `
+You are an expert at creating image generation prompts for educational blog posts about English learning.
+Create a prompt that focuses on OBJECTS, ENVIRONMENTS, and ABSTRACT CONCEPTS only - NO PEOPLE.
+
+Blog post title: ${title}
+${topic ? `Topic: ${topic}` : ''}
+
+${contentExcerpt ? `Content excerpt from the blog post:
+${contentExcerpt}
+
+Based on the content above, create an image that represents the concepts WITHOUT showing any people.` : ''}
+
+Create a photorealistic image prompt that:
+1. Shows relevant objects, tools, or environments related to the content
+2. May include: books, devices, office spaces, study areas, documents, technology
+3. Creates atmosphere through lighting, composition, and setting
+4. Symbolically represents the learning concept without human figures
+
+Focus on:
+- Educational materials and tools
+- Work or study environments
+- Abstract representations of concepts
+- Technology and learning devices
+- Written materials (but no readable text)
+
+Output ONLY the scene description in English, without any additional text or explanation.
+Example: "Modern office desk with laptop displaying graphs, notebooks, coffee cup, soft morning light through window"
+`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const sceneDescription = response.text().trim();
+    
+    // Combine with no-people rules
+    const finalPrompt = `Photorealistic photograph: ${sceneDescription}. Professional photography, natural lighting, high detail, no people.
+    
+    STRICT RULES:
+    - ABSOLUTELY NO PEOPLE, NO HUMAN FIGURES, NO BODY PARTS
+    - Focus on objects, environments, and abstract concepts only
+    - Professional composition and lighting
+    - Documentary style photography
+    
+    ABSOLUTE PROHIBITIONS:
+    - NO people or human figures of any kind
+    - NO speech bubbles, thought bubbles, or dialogue balloons
+    - NO text overlays, captions, or readable text
+    - NO letters, words, or writing visible anywhere
+    - NO cartoon or illustration elements
+    - Pure photographic image only
+    
+    QUALITY: High detail, sharp focus, professional photography, artistic composition.`;
+    
+    return finalPrompt;
+    
+  } catch (error) {
+    console.error('Error generating people-free image prompt with Gemini:', error);
+    // Fallback prompt without people
+    return `Photorealistic photograph: Modern study environment with English learning materials, laptop, notebooks, and coffee on desk. Professional photography, natural lighting, high detail, no people.
+    
+    STRICT RULES:
+    - ABSOLUTELY NO PEOPLE, NO HUMAN FIGURES, NO BODY PARTS
+    - Focus on objects, environments, and abstract concepts only
+    - Professional composition and lighting
+    - Documentary style photography
+    
+    ABSOLUTE PROHIBITIONS:
+    - NO people or human figures of any kind
+    - NO speech bubbles, thought bubbles, or dialogue balloons
+    - NO text overlays, captions, or readable text
+    - NO letters, words, or writing visible anywhere
+    - NO cartoon or illustration elements
+    - Pure photographic image only
+    
+    QUALITY: High detail, sharp focus, professional photography, artistic composition.`;
+  }
+}
+
 module.exports = {
   generateFeaturedImagePrompt,
-  generateH2ImagePrompt
+  generateH2ImagePrompt,
+  generatePeopleFreeImagePrompt
 };

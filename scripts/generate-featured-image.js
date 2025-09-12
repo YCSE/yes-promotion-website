@@ -1,7 +1,7 @@
 const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs-extra');
 const path = require('path');
-const { generateFeaturedImagePrompt } = require('./generate-image-prompt');
+const { generateFeaturedImagePrompt, generatePeopleFreeImagePrompt } = require('./generate-image-prompt');
 
 async function generateFeaturedImage(title, slug, contentExcerpt = '') {
   try {
@@ -30,28 +30,73 @@ async function generateFeaturedImage(title, slug, contentExcerpt = '') {
     // Generate dynamic prompt based on the blog post title and content excerpt using Gemini
     const prompt = await generateFeaturedImagePrompt(title, '', contentExcerpt);
     
-    console.log('Generating image with prompt:', prompt);
+    console.log('Generating image with prompt (with people)...');
     
-    const response = await ai.models.generateImages({
-      model: 'models/imagen-4.0-fast-generate-001',
-      prompt: prompt,
-      config: {
-        numberOfImages: 1,
-        outputMimeType: 'image/jpeg',
-        personGeneration: 'ALLOW_ALL',
-        aspectRatio: '4:3',
-      },
-    });
+    let response;
+    let imageData;
     
-    if (!response?.generatedImages || response.generatedImages.length === 0) {
-      throw new Error('No image generated from Imagen 4.0 Fast API');
+    try {
+      // First attempt with people
+      response = await ai.models.generateImages({
+        model: 'models/imagen-4.0-generate-001',
+        prompt: prompt,
+        config: {
+          numberOfImages: 1,
+          outputMimeType: 'image/jpeg',
+          personGeneration: 'ALLOW_ALL',
+          aspectRatio: '4:3',
+        },
+      });
+      
+      if (!response?.generatedImages || response.generatedImages.length === 0) {
+        throw new Error('No image generated from Imagen 4.0 Fast API');
+      }
+      
+      imageData = response.generatedImages[0]?.image?.imageBytes;
+      if (!imageData) {
+        throw new Error('No image data received from API');
+      }
+      
+      console.log('Successfully generated image with people');
+      
+    } catch (firstError) {
+      console.warn('First attempt failed (possibly due to safety filter with real people):', firstError.message);
+      console.log('Retrying with people-free prompt...');
+      
+      // Fallback: Generate prompt without people
+      const peopleFreePrompt = await generatePeopleFreeImagePrompt(title, '', contentExcerpt);
+      console.log('Generating image with people-free prompt...');
+      
+      try {
+        response = await ai.models.generateImages({
+          model: 'models/imagen-4.0-generate-001',
+          prompt: peopleFreePrompt,
+          config: {
+            numberOfImages: 1,
+            outputMimeType: 'image/jpeg',
+            personGeneration: 'DONT_ALLOW',  // Explicitly don't allow people
+            aspectRatio: '4:3',
+          },
+        });
+        
+        if (!response?.generatedImages || response.generatedImages.length === 0) {
+          throw new Error('No image generated from Imagen 4.0 Fast API (people-free attempt)');
+        }
+        
+        imageData = response.generatedImages[0]?.image?.imageBytes;
+        if (!imageData) {
+          throw new Error('No image data received from API (people-free attempt)');
+        }
+        
+        console.log('Successfully generated people-free image');
+        
+      } catch (secondError) {
+        console.error('Both attempts failed:', secondError);
+        throw secondError;
+      }
     }
     
     // Convert base64 to buffer and save as JPG
-    const imageData = response.generatedImages[0]?.image?.imageBytes;
-    if (!imageData) {
-      throw new Error('No image data received from API');
-    }
     const buffer = Buffer.from(imageData, 'base64');
     
     // Save the JPG file

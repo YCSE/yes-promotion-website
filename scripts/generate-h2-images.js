@@ -1,7 +1,7 @@
 const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs-extra');
 const path = require('path');
-const { generateH2ImagePrompt } = require('./generate-image-prompt');
+const { generateH2ImagePrompt, generatePeopleFreeImagePrompt } = require('./generate-image-prompt');
 
 async function generateH2Image(h2Title, slug, index, sectionContent = '') {
   try {
@@ -30,28 +30,73 @@ async function generateH2Image(h2Title, slug, index, sectionContent = '') {
     // Generate dynamic prompt based on the H2 section title and content using Gemini
     const prompt = await generateH2ImagePrompt(h2Title, sectionContent);
     
-    console.log('Generating H2 image with prompt:', prompt);
+    console.log('Generating H2 image with prompt (with people)...');
     
-    const response = await ai.models.generateImages({
-      model: 'models/imagen-4.0-fast-generate-001',
-      prompt: prompt,
-      config: {
-        numberOfImages: 1,
-        outputMimeType: 'image/jpeg',
-        personGeneration: 'ALLOW_ALL',
-        aspectRatio: '4:3',
-      },
-    });
+    let response;
+    let imageData;
     
-    if (!response?.generatedImages || response.generatedImages.length === 0) {
-      throw new Error('No image generated from Imagen 4.0 Fast API');
+    try {
+      // First attempt with people
+      response = await ai.models.generateImages({
+        model: 'models/imagen-4.0-generate-001',
+        prompt: prompt,
+        config: {
+          numberOfImages: 1,
+          outputMimeType: 'image/jpeg',
+          personGeneration: 'ALLOW_ALL',
+          aspectRatio: '4:3',
+        },
+      });
+      
+      if (!response?.generatedImages || response.generatedImages.length === 0) {
+        throw new Error('No image generated from Imagen 4.0 Fast API');
+      }
+      
+      imageData = response.generatedImages[0]?.image?.imageBytes;
+      if (!imageData) {
+        throw new Error('No image data received from API');
+      }
+      
+      console.log('Successfully generated H2 image with people');
+      
+    } catch (firstError) {
+      console.warn('First attempt failed (possibly due to safety filter with real people):', firstError.message);
+      console.log('Retrying with people-free prompt...');
+      
+      // Fallback: Generate prompt without people
+      const peopleFreePrompt = await generatePeopleFreeImagePrompt(h2Title, '', sectionContent);
+      console.log('Generating H2 image with people-free prompt...');
+      
+      try {
+        response = await ai.models.generateImages({
+          model: 'models/imagen-4.0-generate-001',
+          prompt: peopleFreePrompt,
+          config: {
+            numberOfImages: 1,
+            outputMimeType: 'image/jpeg',
+            personGeneration: 'DONT_ALLOW',  // Explicitly don't allow people
+            aspectRatio: '4:3',
+          },
+        });
+        
+        if (!response?.generatedImages || response.generatedImages.length === 0) {
+          throw new Error('No image generated from Imagen 4.0 Fast API (people-free attempt)');
+        }
+        
+        imageData = response.generatedImages[0]?.image?.imageBytes;
+        if (!imageData) {
+          throw new Error('No image data received from API (people-free attempt)');
+        }
+        
+        console.log('Successfully generated people-free H2 image');
+        
+      } catch (secondError) {
+        console.error('Both attempts failed for H2 image:', secondError);
+        throw secondError;
+      }
     }
     
     // Convert base64 to buffer and save as JPG
-    const imageData = response.generatedImages[0]?.image?.imageBytes;
-    if (!imageData) {
-      throw new Error('No image data received from API');
-    }
     const buffer = Buffer.from(imageData, 'base64');
     
     // Save the JPG file
@@ -93,14 +138,39 @@ async function processH2Images(content, slug) {
     console.log('=== Starting H2 image processing ===');
     console.log('Content length:', content.length);
     
+    // 오타 감지 및 자동 수정 (generate-blog-post.js와 동일한 패턴)
+    const typoPatterns = [
+      { wrong: /\[IMAGE_PLACEER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACEHANCER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACEHODLER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PALCEHOLDER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACEHODER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACHOLDER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+    ];
+    
+    let updatedContent = content;
+    let typoFound = false;
+    for (const pattern of typoPatterns) {
+      const matches = updatedContent.match(pattern.wrong);
+      if (matches) {
+        console.warn(`⚠️ H2 이미지 처리 중 오타 발견 및 수정: ${matches.join(', ')}`);
+        updatedContent = updatedContent.replace(pattern.wrong, pattern.correct);
+        typoFound = true;
+      }
+    }
+    
+    if (typoFound) {
+      console.log('✅ H2 이미지 처리: 오타가 자동으로 수정되었습니다.');
+    }
+    
     // First, find all IMAGE_PLACEHOLDER markers
     const placeholderPattern = /\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
-    const placeholders = [...content.matchAll(placeholderPattern)];
+    const placeholders = [...updatedContent.matchAll(placeholderPattern)];
     console.log(`Found ${placeholders.length} IMAGE_PLACEHOLDER markers`);
     
     // Also try to find H2 titles with placeholders (more flexible pattern)
     const h2Pattern = /##\s+(.+?)(?:\n|\r\n?)\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
-    const h2Matches = [...content.matchAll(h2Pattern)];
+    const h2Matches = [...updatedContent.matchAll(h2Pattern)];
     console.log(`Found ${h2Matches.length} H2 titles with placeholders`);
     
     // Create a map of index to H2 title and section content
@@ -116,7 +186,7 @@ async function processH2Images(content, slug) {
       // Extract section content after the placeholder
       const placeholderEnd = match.index + match[0].length;
       const nextH2Pattern = /##\s+/;
-      const restOfContent = content.substring(placeholderEnd);
+      const restOfContent = updatedContent.substring(placeholderEnd);
       const nextH2Match = restOfContent.match(nextH2Pattern);
       
       let sectionContent = '';
@@ -141,7 +211,7 @@ async function processH2Images(content, slug) {
       
       // Find all H2 titles separately
       const h2OnlyPattern = /##\s+(.+?)(?:\n|\r\n?)/g;
-      const h2Titles = [...content.matchAll(h2OnlyPattern)];
+      const h2Titles = [...updatedContent.matchAll(h2OnlyPattern)];
       console.log(`Found ${h2Titles.length} H2 titles in total`);
       
       // Match placeholders to H2s by proximity
@@ -170,7 +240,7 @@ async function processH2Images(content, slug) {
           // Extract section content after the placeholder
           const placeholderEnd = placeholderPos + placeholder[0].length;
           const nextH2Pattern = /##\s+/;
-          const restOfContent = content.substring(placeholderEnd);
+          const restOfContent = updatedContent.substring(placeholderEnd);
           const nextH2Match = restOfContent.match(nextH2Pattern);
           
           let sectionContent = '';
@@ -187,7 +257,6 @@ async function processH2Images(content, slug) {
       }
     }
     
-    let updatedContent = content;
     let replacementCount = 0;
     
     // Process all placeholders
