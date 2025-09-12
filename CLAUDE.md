@@ -5,33 +5,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 This is a Next.js static website project for YES Promotion with the following key characteristics:
-- **Framework**: Next.js with React
-- **Type**: Static website (SSG - Static Site Generation)
+- **Framework**: Next.js 14 with React 18, TypeScript, and Tailwind CSS
+- **Type**: Static website (SSG - Static Site Generation) with `output: 'export'`
 - **Design Source**: Figma designs via MCP integration
 - **Testing**: End-to-end testing with Playwright MCP
+- **Blog System**: Automated content generation with Gemini AI
+- **Deployment**: GitHub Pages via GitHub Actions
 
-## Project Setup Commands
+## Development Commands
 
 ```bash
-# Initialize Next.js project (if not already initialized)
-npx create-next-app@latest . --typescript --tailwind --app --no-src-dir
-
-# Install dependencies
-npm install
-
-# Development server
+# Development server (port 3000)
 npm run dev
 
-# Build static site
+# Build static site for deployment
 npm run build
-npm run export  # For static export if using pages router
 
-# Production preview
+# Preview production build locally
 npm run start
 
-# Linting and formatting
+# Linting
 npm run lint
-npm run lint:fix
+
+# Generate blog post (runs daily via GitHub Action)
+node blog-generation-system.js
 ```
 
 ## Playwright MCP Testing
@@ -94,17 +91,31 @@ Use Figma MCP tools to convert designs to code:
 
 ```
 yes-promotion-website/
-├── app/                    # Next.js app directory
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   └── globals.css        # Global styles
+├── app/                    # Next.js app directory (App Router)
+│   ├── layout.tsx         # Root layout with metadata
+│   ├── page.tsx           # Home page with all sections
+│   ├── globals.css        # Global styles and Tailwind imports
+│   └── blog/              # Blog section
+│       ├── page.tsx       # Blog listing page
+│       └── [slug]/        # Dynamic blog post pages
 ├── components/            # React components
-├── public/               # Static assets
-├── tests/                # Playwright E2E tests
-├── next.config.js        # Next.js configuration
-├── tailwind.config.js    # Tailwind CSS configuration
-└── package.json          # Dependencies and scripts
-└── DESIGN_SYSTEM_RULES.md # Design detailed description
+│   ├── Hero.tsx          # Hero section with infinite scroll
+│   ├── Section2-5.tsx    # Main landing page sections
+│   ├── Footer.tsx        # Footer with fixed CTA bar
+│   └── BlogSection.tsx   # Blog preview on homepage
+├── content/posts/         # Markdown blog posts
+├── lib/                   # Utility functions
+│   ├── utils.ts          # Asset path helpers
+│   ├── posts.ts          # Blog post utilities
+│   └── config.ts         # Site configuration
+├── public/               # Static assets and images
+├── .github/workflows/    # GitHub Actions
+│   ├── deploy.yml        # Deploy to GitHub Pages
+│   └── generate-blog-post.yml # Daily blog generation
+├── blog-generation-system.js # AI blog generator
+├── next.config.js        # Next.js static export config
+├── tailwind.config.js    # Tailwind configuration
+└── DESIGN_SYSTEM_RULES.md # Comprehensive design system
 ```
 
 ## Development Workflow
@@ -125,23 +136,41 @@ yes-promotion-website/
    - Test on multiple viewports with `browser_resize`
    - Verify both desktop and mobile layouts
 
-## Build Configuration
+## High-Level Architecture
 
-### next.config.js
+### Static Site Generation
+The site uses Next.js 14's App Router with static export configuration. All pages are pre-rendered at build time.
+
+### Blog System Architecture
+1. **Content Storage**: Markdown files in `content/posts/` with gray-matter frontmatter
+2. **Generation**: `blog-generation-system.js` uses Gemini AI to create daily posts
+3. **Rendering**: Dynamic routing with `[slug]` pages, SSG at build time
+4. **Automation**: GitHub Actions runs generation daily and deploys changes
+
+### Component Patterns
+- Server Components by default (no `'use client'` unless needed)
+- Client Components only for interactivity (modals, accordions, animations)
+- Image optimization with Next.js Image component
+- Responsive design with Tailwind breakpoints (mobile-first)
+
+### Asset Management
+- Production path handling via `getAssetPath()` utility
+- Images organized by section in `/public/images/`
+- Unoptimized images for static export compatibility
+
+### Key Configuration Files
+
+**next.config.js**
 ```javascript
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',  // For static export
-  images: {
-    unoptimized: true  // For static export compatibility
-  },
-}
+output: 'export'         // Static HTML export
+images.unoptimized: true // Required for static export
+trailingSlash: true      // GitHub Pages compatibility
 ```
 
-### TypeScript Configuration
+**TypeScript (tsconfig.json)**
 - Strict mode enabled
-- Path aliases configured in tsconfig.json
-- Type checking on build
+- Path alias: `@/*` maps to root directory
+- Target: ES5 for compatibility
 
 ## Testing Best Practices
 
@@ -151,22 +180,36 @@ const nextConfig = {
 4. Test critical user flows first
 5. Verify responsive design with `browser_resize`
 
-## Common Tasks
+## GitHub Actions Workflows
 
-### Adding a New Page
-1. Create new file in `app/` directory
-2. Export default React component
-3. Add metadata for SEO
-4. Test with Playwright MCP
+### Deploy Workflow (.github/workflows/deploy.yml)
+- Triggers on push to main branch
+- Builds static site and deploys to GitHub Pages
+- Runs on Node.js 18
 
-### Converting Figma Design
-1. Get node ID from Figma URL or selection
-2. Use `get_code` with React framework specified
-3. Adapt generated code to project structure
-4. Apply project-specific styling patterns
+### Blog Generation Workflow (.github/workflows/generate-blog-post.yml)
+- Runs daily at 09:00 UTC (6:00 PM KST)
+- Can be manually triggered
+- Generates new blog post using Gemini AI
+- Commits and pushes changes automatically
+- Uses repository secrets for API keys
 
-### Running E2E Tests
-1. Start development server: `npm run dev`
-2. Use Playwright MCP tools to navigate and test
-3. Capture screenshots for visual regression
-4. Check console for errors
+## Important Implementation Notes
+
+### Blog Generation System
+- 70 predefined topics in Korean with English slugs
+- Structured content with examples and exercises
+- SEO-optimized metadata generation
+- Automatic sitemap and RSS feed updates
+
+### Design System Integration
+- Refer to DESIGN_SYSTEM_RULES.md for comprehensive styling guidelines
+- Component-specific patterns documented in detail
+- Responsive breakpoints: mobile (default), md (768px), lg (1024px)
+- Color system: YES blue (#4B52AE), navy (#1A1F3A), grays
+
+### Performance Considerations
+- Lazy load below-fold content
+- Use CSS transforms for animations (GPU acceleration)
+- Minimize client-side JavaScript
+- Static generation for all pages

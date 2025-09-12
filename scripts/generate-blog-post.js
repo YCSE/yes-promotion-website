@@ -76,7 +76,22 @@ async function generateBlogPost() {
     console.log('\n');
     
     const prompt = `
-영어공부에 관심있는 한국인 학생을 위한 블로그 포스트를 작성해주세요.
+⚠️⚠️⚠️ 극도로 중요한 철자 규칙 ⚠️⚠️⚠️
+이미지 플레이스홀더는 반드시 정확히 다음과 같이 작성하세요:
+[IMAGE_PLACEHOLDER_H2_1]
+[IMAGE_PLACEHOLDER_H2_2]
+[IMAGE_PLACEHOLDER_H2_3]
+[IMAGE_PLACEHOLDER_H2_4]
+
+절대로 다음과 같은 오타를 내지 마세요:
+❌ [IMAGE_PLACEER_H2_1] - PLACEER는 틀렸습니다!
+❌ [IMAGE_PLACEHANCER_H2_1] - PLACEHANCER는 틀렸습니다!
+❌ [IMAGE_PLACEHODLER_H2_1] - PLACEHODLER는 틀렸습니다!
+❌ [IMAGE_PALCEHOLDER_H2_1] - PALCEHOLDER는 틀렸습니다!
+
+✅ 올바른 철자는 오직: PLACEHOLDER (P-L-A-C-E-H-O-L-D-E-R)
+
+영어공부에 관심있는 YES 학생을 위한 블로그 포스트를 작성해주세요. (fyi, YES는 화상영어 플랫폼입니다)
 
 주제: ${topic}
 작성 방향: ${direction}
@@ -140,11 +155,49 @@ featuredImage: /images/blog/${slug}.jpg
 ---
 
 [본문 - 2000-3000자, 친근한 톤, 실용적 내용]
+
+【작성 후 체크리스트】
+□ 각 H2 제목 다음에 [IMAGE_PLACEHOLDER_H2_숫자]가 있는가?
+□ PLACEHOLDER 철자가 정확한가? (PLACEER나 다른 오타가 없는가?)
+□ 총 4개의 H2 섹션과 4개의 이미지 플레이스홀더가 있는가?
 `;
 
     const result = await model.generateContent(prompt);
     const response = result.response;
-    const text = response.text();
+    let text = response.text();
+    
+    // 오타 감지 및 자동 수정
+    const typoPatterns = [
+      { wrong: /\[IMAGE_PLACEER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACEHANCER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACEHODLER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PALCEHOLDER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACEHODER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+      { wrong: /\[IMAGE_PLACHOLDER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
+    ];
+    
+    let typoFound = false;
+    for (const pattern of typoPatterns) {
+      const matches = text.match(pattern.wrong);
+      if (matches) {
+        console.warn(`⚠️ 오타 발견 및 수정: ${matches.join(', ')}`);
+        text = text.replace(pattern.wrong, pattern.correct);
+        typoFound = true;
+      }
+    }
+    
+    if (typoFound) {
+      console.log('✅ 오타가 자동으로 수정되었습니다.');
+    }
+    
+    // 플레이스홀더 검증
+    const placeholderPattern = /\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
+    const placeholders = [...text.matchAll(placeholderPattern)];
+    console.log(`📸 발견된 이미지 플레이스홀더: ${placeholders.length}개`);
+    
+    if (placeholders.length < 4) {
+      console.warn(`⚠️ 경고: 4개의 플레이스홀더가 필요하지만 ${placeholders.length}개만 발견됨`);
+    }
     
     // Parse frontmatter to get the title
     const titleMatch = text.match(/title:\s*(.+)/);
