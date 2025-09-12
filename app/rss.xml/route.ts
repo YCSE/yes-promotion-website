@@ -67,8 +67,8 @@ export async function GET() {
     return `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${baseUrl}/blog/${post.slug}</link>
-      <guid isPermaLink="true">${baseUrl}/blog/${post.slug}</guid>
+      <link>${baseUrl}/blog/${post.slug}/</link>
+      <guid isPermaLink="true">${baseUrl}/blog/${post.slug}/</guid>
       <description><![CDATA[${post.description}]]></description>
       <author>noreply@yourenglishschool.co.kr (${escapeXml(post.author)})</author>
       <pubDate>${pubDate}</pubDate>
@@ -86,7 +86,7 @@ export async function GET() {
      xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>YES 화상영어 블로그</title>
-    <link>${baseUrl}/blog</link>
+    <link>${baseUrl}/blog/</link>
     <description>YES 화상영어 블로그 - 효과적인 영어학습법과 온라인 영어회화 수업 팁, 실전 영어 회화 노하우를 공유합니다.</description>
     <language>ko</language>
     <copyright>Copyright 2025 YES 화상영어</copyright>

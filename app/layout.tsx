@@ -47,6 +47,12 @@ export const metadata: Metadata = {
     ],
     siteName: 'YES 화상영어',
   },
+  alternates: {
+    canonical: 'https://yourenglishschool.co.kr/',
+    types: {
+      'application/rss+xml': [{ url: '/rss.xml', title: 'YES 화상영어 블로그 RSS' }]
+    }
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'YES 화상영어 - 원어민 화상영어 1:1 수업',
@@ -67,9 +73,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  alternates: {
-    canonical: 'https://yourenglishschool.co.kr/',
   },
   verification: {
     google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Google Search Console에서 받은 코드로 교체

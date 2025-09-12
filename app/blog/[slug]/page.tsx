@@ -116,7 +116,7 @@ export async function generateMetadata({ params }: BlogPostProps) {
       }],
       siteName: 'YES 화상영어',
       locale: 'ko_KR',
-      url: `https://yourenglishschool.co.kr/blog/${params.slug}`
+      url: `https://yourenglishschool.co.kr/blog/${params.slug}/`
     },
     twitter: {
       card: 'summary_large_image',
@@ -127,7 +127,7 @@ export async function generateMetadata({ params }: BlogPostProps) {
       site: '@yesenglish'
     },
     alternates: {
-      canonical: `https://yourenglishschool.co.kr/blog/${params.slug}`
+      canonical: `https://yourenglishschool.co.kr/blog/${params.slug}/`
     },
     robots: {
       index: true,

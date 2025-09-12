@@ -42,24 +42,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Get all blog posts
   const blogPosts = getAllBlogPosts()
   
-  // Create sitemap entries for blog posts
+  // Create sitemap entries for blog posts (with trailing slash)
   const blogPostEntries = blogPosts.map(post => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+    url: `${baseUrl}/blog/${post.slug}/`,
     lastModified: post.date,
     changeFrequency: 'monthly' as const,
     priority: 0.8
   }))
   
-  // Main sitemap structure
+  // Main sitemap structure (with trailing slashes)
   const routes = [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 1.0
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/blog/`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9

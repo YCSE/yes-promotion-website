@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: 'https://yourenglishschool.co.kr/blog',
+    url: 'https://yourenglishschool.co.kr/blog/',
     title: '블로그 | YES 화상영어',
     description: '실전 화상영어 학습법과 영어회화 팁을 YES 블로그에서 만나보세요',
     siteName: 'YES 화상영어',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     images: ['/ogimage.jpg'],
   },
   alternates: {
-    canonical: 'https://yourenglishschool.co.kr/blog',
+    canonical: 'https://yourenglishschool.co.kr/blog/',
     types: {
       'application/rss+xml': 'https://yourenglishschool.co.kr/rss.xml',
     },
