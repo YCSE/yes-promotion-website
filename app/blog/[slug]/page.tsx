@@ -70,14 +70,60 @@ export async function generateStaticParams() {
 
 export default function BlogPost({ params }: BlogPostProps) {
   const post = getPostData(params.slug)
-  
+
   if (!post) {
     notFound()
   }
 
   const relatedPosts = getRelatedPosts(params.slug, 3)
 
-  return <BlogPostClient post={post} relatedPosts={relatedPosts} />
+  // Generate structured data for Google Search Console
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.subtitle || post.content.slice(0, 160).replace(/[#*\n]/g, ' ').trim(),
+    "image": {
+      "@type": "ImageObject",
+      "url": `https://yourenglishschool.co.kr${post.featuredImage || '/ogimage.jpg'}`,
+      "width": 1200,
+      "height": 630
+    },
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "YES 화상영어",
+      "url": "https://yourenglishschool.co.kr",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yourenglishschool.co.kr/ogimage.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://yourenglishschool.co.kr/blog/${params.slug}/`
+    },
+    "articleSection": "영어 학습",
+    "keywords": `화상영어, 영어회화, 온라인영어, ${post.title}, YES화상영어, 영어학습, 영어공부, 화상영어수업, 1대1영어, 영어스피킹, 비즈니스영어, 토익스피킹, 오픽대비`,
+    "url": `https://yourenglishschool.co.kr/blog/${params.slug}/`
+  }
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <BlogPostClient post={post} relatedPosts={relatedPosts} />
+    </>
+  )
 }
 
 export async function generateMetadata({ params }: BlogPostProps) {
