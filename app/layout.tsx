@@ -113,7 +113,15 @@ export default function RootLayout({
       priceCurrency: 'KRW',
       priceValidUntil: '2025-12-31',
       description: '화상영어 무료 체험 가능',
-      url: 'https://yourenglishschool.co.kr/'
+      url: 'https://yourenglishschool.co.kr/',
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'KR',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 7,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/FreeReturn'
+      }
     },
     aggregateRating: {
       '@type': 'AggregateRating',
@@ -217,7 +225,15 @@ export default function RootLayout({
         priceCurrency: 'KRW',
         availability: 'https://schema.org/InStock',
         validFrom: '2025-01-01',
-        priceValidUntil: '2025-12-31'
+        priceValidUntil: '2025-12-31',
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'KR',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          merchantReturnDays: 7,
+          returnMethod: 'https://schema.org/ReturnByMail',
+          returnFees: 'https://schema.org/FreeReturn'
+        }
       },
       {
         '@type': 'Offer',
@@ -226,7 +242,15 @@ export default function RootLayout({
         priceCurrency: 'KRW',
         availability: 'https://schema.org/InStock',
         validFrom: '2025-01-01',
-        priceValidUntil: '2025-12-31'
+        priceValidUntil: '2025-12-31',
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'KR',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+          merchantReturnDays: 7,
+          returnMethod: 'https://schema.org/ReturnByMail',
+          returnFees: 'https://schema.org/FreeReturn'
+        }
       }
     ],
     aggregateRating: {
@@ -332,14 +356,30 @@ export default function RootLayout({
           name: '무료 체험 수업',
           description: '25분 무료 레벨 테스트 및 체험 수업',
           price: '0',
-          priceCurrency: 'KRW'
+          priceCurrency: 'KRW',
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'KR',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 7,
+            returnMethod: 'https://schema.org/ReturnByMail',
+            returnFees: 'https://schema.org/FreeReturn'
+          }
         },
         {
           '@type': 'Offer',
           name: '월 정기 구독',
           description: '매일 25분 1:1 화상영어 수업',
           price: '86000',
-          priceCurrency: 'KRW'
+          priceCurrency: 'KRW',
+          hasMerchantReturnPolicy: {
+            '@type': 'MerchantReturnPolicy',
+            applicableCountry: 'KR',
+            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays: 7,
+            returnMethod: 'https://schema.org/ReturnByMail',
+            returnFees: 'https://schema.org/FreeReturn'
+          }
         }
       ]
     },
