@@ -246,7 +246,7 @@ Example: "Person practicing pronunciation with headphones in quiet study room"
     - After one Korean appears, ALL other people must be Western
     - Exception: Historical figures or celebrities shown as they are
     
-    CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
+    ‼️‼️CRITICAL: NO text, NO letters, NO words, NO writing anywhere in the image. Pure photography only.`;
   }
 }
 
