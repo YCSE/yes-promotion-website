@@ -222,7 +222,7 @@ Example: "Person practicing pronunciation with headphones in quiet study room"
     - No staged or artificial poses
     - Candid moments as if captured in real life
     
-    ABSOLUTE PROHIBITIONS:
+    ‼️ABSOLUTE PROHIBITIONS:
     - NO speech bubbles, thought bubbles, or dialogue balloons
     - NO text overlays, captions, or labels of any kind
     - NO letters, words, or writing visible anywhere
