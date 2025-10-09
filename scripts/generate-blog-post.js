@@ -98,44 +98,44 @@ async function generateBlogPost() {
 
 【필수 규칙】
 1. ⚠️ 매우 중요: 모든 H2(##) 섹션 제목 바로 다음 줄에 아래 텍스트를 정확히 복사해서 붙여넣으세요:
-   
+
    첫 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_1]
    두 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_2]
    세 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_3]
    네 번째 H2 다음: [IMAGE_PLACEHOLDER_H2_4]
-   
+
    ⚠️ 위 텍스트를 한 글자도 바꾸지 말고 그대로 복사하세요!
    ⚠️ PLACEHOLDER 철자를 절대 바꾸지 마세요 (PLACEER ❌, PLACEHANCER ❌)
-   
-2. author는 반드시 "${randomEditor}" 사용
-3. 작은따옴표 백틱 사용 절대 금지 → 강조할 때는 **볼드체** 사용
-4. 리스트(-)는 최소한으로, 문단 위주로 작성
-5. 과도한 괄호 사용 금지 (예: '프렌즈(Friends)' → 프렌즈)
-6. ⚠️ 마크다운 문법 주의사항:
-   - **'텍스트'**, **"텍스트"**, **(텍스트)** 패턴 금지!
-   - 따옴표나 괄호와 강조를 함께 쓸 때는 분리하세요
-   - ❌ 잘못된 예: **'so ~ that'**, **"너무 ~해서 ~하다"**, **(Zero Conditional)**
-   - ✅ 올바른 예: 'so ~ that' 구문, "너무 ~해서 ~하다"라는 뜻, (Zero Conditional) 또는 Zero Conditional
-   - ✅ 또는: **so ~ that** 구문, **너무 ~해서 ~하다**는 뜻, **영조건문** (Zero Conditional)
 
-7. ⚠️ 예문 작성 규칙 (매우 중요):
+2. author는 반드시 "${randomEditor}" 사용
+
+3. 리스트(-)는 최소한으로, 문단 위주로 작성
+
+4. 과도한 괄호 사용 금지 (예: '프렌즈(Friends)' → 프렌즈)
+
+5. ⚠️ 예문 작성 규칙 (매우 중요):
    - 학습 효율성을 위해 항상 완전한 예문을 제공하세요
    - 템플릿 형식의 문장 절대 금지 (예: [날짜], [제품명], [문제점] 등)
    - 구체적이고 실제적인 상황의 예문 사용
-   
+
    ❌ 잘못된 예: "I would like to report an issue with [제품 이름]."
    ❌ 잘못된 예: "My reservation for [날짜] at [시간] was not found."
-   
+
    ✅ 올바른 예: "I would like to report an issue with my laptop."
    ✅ 올바른 예: "My reservation for December 25th at 7 PM was not found."
    ✅ 올바른 예: "The coffee maker I purchased last Monday is leaking water."
 
+6. 마크다운 문법을 자유롭게 사용하세요:
+   - **볼드**, *이탤릭*, 리스트, 인용구 등 표준 마크다운 문법 모두 사용 가능
+   - 강조가 필요한 부분은 **볼드**로 표시
+   - 페이지에서 자동으로 올바르게 렌더링됩니다
+
 【좋은 예시】
 ✅ "프렌즈나 해리포터 같은 작품을 추천합니다"
 ✅ "**중요한 표현**은 이렇게 강조합니다"
+✅ "**'so ~ that'** 구문을 사용하면 더 자연스럽습니다"
 ✅ "I was charged for $50 but I only received one meal." (구체적 예문)
-❌ "드라마('프렌즈'), 영화('해리포터')"
-❌ '이렇게' 백틱 사용 금지
+❌ "드라마('프렌즈'), 영화('해리포터')" (과도한 괄호)
 ❌ "I was charged for [금액] but I only received [서비스]." (템플릿 형식)
 
 【글 구조】
