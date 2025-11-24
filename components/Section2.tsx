@@ -25,20 +25,20 @@ const Section2 = () => {
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center mb-[50px] md:mb-[85px]">
           <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[130px] lg:h-[130px] mb-[20px] md:mb-[30px] relative flex items-center justify-center">
-            <Image 
-              src={getAssetPath('images/section2/D1.webp')} 
-              alt="Question icon" 
-              width={130} 
+            <Image
+              src={getAssetPath('images/section2/D1.webp')}
+              alt="Question icon"
+              width={130}
               height={130}
               className="w-full h-full object-contain"
             />
           </div>
           <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center text-black tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
-            실전에서는 막막한 영어,<br/>
+            실전에서는 막막한 영어,<br />
             나만 그런가요?
           </h2>
         </div>
-        
+
         {/* Desktop version - hidden on mobile */}
         <div className="hidden lg:block relative h-[539px] w-full max-w-[1030px] mx-auto">
           {speechBubbles.map((bubble, index) => (
@@ -82,7 +82,7 @@ const Section2 = () => {
                 // For left column: indices 0, 2, 4 -> z-index: 1, 3, 5
                 const actualIndex = index * 2;  // 0, 2, 4
                 const zIndex = actualIndex + 1;  // 1, 3, 5
-                
+
                 return (
                   <div
                     key={actualIndex}
@@ -99,14 +99,14 @@ const Section2 = () => {
                 );
               })}
             </div>
-            
+
             {/* Right column - offset down and overlapping left */}
             <div className="flex flex-col gap-2 mt-[50px] -ml-5">
               {mobileSpeechBubbles.filter((_, index) => index % 2 === 1).map((bubble, index) => {
                 // For right column: indices 1, 3, 5 -> z-index: 2, 4, 6
                 const actualIndex = index * 2 + 1;  // 1, 3, 5
                 const zIndex = actualIndex + 1;  // 2, 4, 6
-                
+
                 return (
                   <div
                     key={actualIndex}
@@ -127,7 +127,14 @@ const Section2 = () => {
           </div>
         </div>
       </div>
-    </section>
+
+
+      <div className="mt-[60px] md:mt-[80px] text-center">
+        <p className="text-[20px] md:text-[24px] font-bold text-yes-blue mb-2">
+          이런 고민, YES에서는 끝낼 수 있습니다.
+        </p>
+      </div>
+    </section >
   )
 }
 

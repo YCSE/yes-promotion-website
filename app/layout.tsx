@@ -13,8 +13,8 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yourenglishschool.co.kr'),
-  title: 'YES 화상영어 - 선생님과 1:1 화상영어회화 수업',
-  description: '화상영어 추천! YES로 선생님과 1:1 실시간 영어회화. AI 선생님 Tia와 체계적인 커리큘럼. 무료체험!',
+  title: 'YES - 입이 먼저 트이는 진짜 영어',
+  description: 'GPA 학습법과 AI 튜터 Tia로 24시간 케어받으세요. 암기 없이 모국어처럼 습득하는 검증된 학습법.',
   keywords: '화상영어, 화상영어회화, 화상영어추천, 화상영어가격, 영어회화, 영어스피킹, 원어민영어, 성인영어회화, 직장인영어회화, 온라인영어학원, 실전영어회화, 아침영어회화, 화상영어무료체험, YES화상영어, TIA영어, 캠블리, 링글, 스픽, 말해보카, 엔구, 민트영어, 어메이징토커, 프렙, 튜터링, 링고다, 버블링, 아이튜터, 민병철유폰, 야나두, 시원스쿨, 리얼클래스',
   authors: [{ name: 'YES' }],
   creator: 'YES',

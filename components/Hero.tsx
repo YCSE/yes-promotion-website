@@ -17,7 +17,7 @@ const Hero = () => {
 
     const animate = () => {
       position -= speed
-      
+
       // When the first image has scrolled completely out of view, reset position
       // Check screen size and use appropriate width
       const isMobile = window.innerWidth < 768
@@ -25,7 +25,7 @@ const Hero = () => {
       if (position <= -imageWidth) {
         position = 0
       }
-      
+
       slider.style.transform = `translateX(${position}px)`
       animationId = requestAnimationFrame(animate)
     }
@@ -42,24 +42,27 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-start pt-[40px] md:pt-[200px] gap-[30px] md:gap-[110px] px-4 md:px-6">
         <div className="text-center">
           <h1 className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
-            말하게 되는 영어
+            입이 먼저 트이는 진짜 영어
           </h1>
-          <p className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
-            진짜 시작은 <span className="font-extrabold text-yes-blue">YES</span>
+          <p className="text-[18px] md:text-[24px] lg:text-[30px] font-medium leading-[28px] md:leading-[36px] lg:leading-[45px] tracking-[-0.5px] md:tracking-[-0.8px] lg:tracking-[-1px] text-gray-600 mt-4 mb-8">
+            GPA 학습법과 AI 튜터 Tia로 24시간 케어받으세요.
           </p>
+          <button className="bg-yes-blue text-white px-8 py-4 rounded-full text-[18px] font-bold hover:bg-opacity-90 transition-all shadow-lg">
+            무료 레벨테스트 & 체험하기
+          </button>
         </div>
-        
+
         <div className="relative w-full h-[238px] md:h-[794px] overflow-visible mt-[20px] md:-mt-[60px]">
-          <div 
+          <div
             ref={sliderRef}
             className="flex absolute h-full items-center"
             style={{ willChange: 'transform' }}
           >
             {/* First copy of the image */}
             <div className="relative h-[238px] md:h-[794px] flex-shrink-0 w-[1448px] md:w-[3634px]">
-              <Image 
-                src={getAssetPath('images/thumbnail_PC.webp')} 
-                alt="Students and Teachers" 
+              <Image
+                src={getAssetPath('images/thumbnail_PC.webp')}
+                alt="Students and Teachers"
                 width={3480}
                 height={454}
                 className="h-full w-full object-contain object-center"
@@ -68,9 +71,9 @@ const Hero = () => {
             </div>
             {/* Second copy for seamless loop */}
             <div className="relative h-[238px] md:h-[794px] flex-shrink-0 w-[1448px] md:w-[3634px]">
-              <Image 
-                src={getAssetPath('images/thumbnail_PC.webp')} 
-                alt="Students and Teachers" 
+              <Image
+                src={getAssetPath('images/thumbnail_PC.webp')}
+                alt="Students and Teachers"
                 width={3480}
                 height={454}
                 className="h-full w-full object-contain object-center"

@@ -7,7 +7,7 @@ import { getAssetPath } from '@/lib/utils'
 
 const Section3 = () => {
   const [isTiaModalOpen, setIsTiaModalOpen] = useState(false)
-  
+
   const features = [
     {
       icon: getAssetPath('images/section3/A1.webp'),
@@ -59,16 +59,16 @@ const Section3 = () => {
         {/* Section 3-1 */}
         <div className="mb-[80px] md:mb-[150px] lg:mb-[200px]">
           <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center mb-[50px] md:mb-[80px] lg:mb-[100px] tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
-            교과서 밖에서 통하는 영어,<br/>
+            교과서 밖에서 통하는 영어,<br />
             YES로 시작하세요!
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 lg:gap-20">
             {features.map((feature, index) => (
               <div key={index} className="flex flex-col items-center text-center">
                 <div className="w-[70px] h-[70px] md:w-[90px] md:h-[90px] lg:w-[110px] lg:h-[110px] mb-[20px] md:mb-[25px] relative">
-                  <Image 
-                    src={feature.icon} 
+                  <Image
+                    src={feature.icon}
                     alt={feature.title}
                     width={110}
                     height={110}
@@ -78,7 +78,7 @@ const Section3 = () => {
                 <p className="text-[14px] md:text-[16px] lg:text-[18px] font-bold text-[#868BC7] mb-[15px] md:mb-[18px] lg:mb-[22px] tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] leading-[24px] md:leading-[28px] lg:leading-[32px]">{feature.title}</p>
                 <h3 className="text-[20px] md:text-[25px] lg:text-[30px] font-bold text-white mb-[15px] md:mb-[20px] lg:mb-[23px] tracking-[-0.6px] md:tracking-[-0.75px] lg:tracking-[-0.9px] leading-[28px] md:leading-[34px] lg:leading-[40px]">{feature.subtitle}</h3>
                 <p className="text-[14px] md:text-[16px] lg:text-[18px] font-light text-white/90 whitespace-pre-line tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] leading-[24px] md:leading-[28px] lg:leading-[32px]">
-                  {feature.description}
+                  {index === 2 ? '암기 없이 모국어처럼 습득하는 검증된 학습법.\nGPA와 OPOL 원칙으로 자연스럽게 영어가 틔입니다.' : feature.description}
                 </p>
               </div>
             ))}
@@ -87,13 +87,16 @@ const Section3 = () => {
 
         {/* Section 3-2 */}
         <div className="flex flex-col items-center gap-[40px] md:gap-[70px] lg:gap-[100px]">
-          <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[52px] lg:leading-[65px] text-center tracking-[-0.8px] md:tracking-[-0.9px] lg:tracking-[-1px] whitespace-pre">
-            수업 이후에도<br/>
-            Tia가 여러분의 코치가 되어줍니다
-          </h2>
-          
+          <div className="text-center">
+            <span className="text-[#868BC7] font-bold text-[16px] md:text-[20px] mb-4 block">Tia가 특별한 이유</span>
+            <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[52px] lg:leading-[65px] tracking-[-0.8px] md:tracking-[-0.9px] lg:tracking-[-1px] whitespace-pre">
+              수업이 끝난 후가<br />
+              진짜 실력이 느는 시간입니다
+            </h2>
+          </div>
+
           <div className="w-[280px] h-[500px] md:w-[320px] md:h-[570px] lg:w-[360px] lg:h-[632px] bg-white rounded-[15px] overflow-hidden flex items-center justify-center p-2">
-            <video 
+            <video
               className="w-full h-full object-contain rounded-[10px]"
               src={getAssetPath('images/section3-2/tia.mp4')}
               autoPlay
@@ -102,19 +105,18 @@ const Section3 = () => {
               playsInline
             />
           </div>
-          
+
           <p className="text-[16px] md:text-[20px] lg:text-[25px] font-light leading-[26px] md:leading-[32px] lg:leading-[40px] text-center tracking-[-0.48px] md:tracking-[-0.6px] lg:tracking-[-0.75px] whitespace-pre-line px-4">
-            Tia는 여러분의 영어 여정을 함께하는 AI 선생님입니다.
-            수업 중에 했던 표현과 피드백을 분석해 여러분을 돕는 똑똑한 학습 파트너죠.
-            수업이 끝난 뒤에도 실력이 향상될 수 있도록 계속해서 코치해 줍니다.
+            Tia는 24시간 당신을 기다리는 AI 튜터입니다.
+            수업 내용을 완벽하게 복습하고, 언제든 부담 없이 대화하세요.
           </p>
-          
+
           <div className="flex flex-col md:flex-row gap-10 md:gap-20 lg:gap-40 items-center md:items-start justify-center">
             {tiaFeatures.map((feature, index) => (
               <div key={index} className="flex flex-col gap-[20px] md:gap-[25px] items-center max-w-[280px] md:max-w-none">
                 <div className="w-[70px] h-[70px] md:w-[90px] md:h-[90px] lg:w-[110px] lg:h-[110px] relative">
-                  <Image 
-                    src={feature.icon} 
+                  <Image
+                    src={feature.icon}
                     alt={feature.title}
                     width={110}
                     height={110}
@@ -126,26 +128,26 @@ const Section3 = () => {
                     {feature.title}
                   </h4>
                   <p className="text-[14px] md:text-[16px] lg:text-[18px] font-light leading-[24px] md:leading-[28px] lg:leading-[32px] tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] whitespace-pre">
-                    {feature.description}
+                    {index === 2 ? <span className="text-[#868BC7] font-bold">100% 무료로 이용 가능합니다</span> : feature.description}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          
-          <button 
+
+          <button
             onClick={() => setIsTiaModalOpen(true)}
             className="w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white text-[16px] md:text-[22px] lg:text-[25px] font-bold tracking-[-0.48px] md:tracking-[-0.66px] lg:tracking-[-0.75px] hover:bg-white hover:text-[#1A1F3A] transition-colors"
           >
-            Tia 자세히 보기
+            Tia 무료로 만나보기
           </button>
         </div>
       </div>
-      
+
       {/* TIA Modal */}
-      <TiaModal 
-        isOpen={isTiaModalOpen} 
-        onClose={() => setIsTiaModalOpen(false)} 
+      <TiaModal
+        isOpen={isTiaModalOpen}
+        onClose={() => setIsTiaModalOpen(false)}
       />
     </section>
   )
