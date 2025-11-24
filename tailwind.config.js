@@ -78,8 +78,6 @@ module.exports = {
           lineHeight: '1.3',
           marginTop: '2.5rem',
           marginBottom: '1rem',
-          paddingBottom: '0.5rem',
-          borderBottom: `2px solid ${theme('colors.yes-blue')}`,
         },
 
         'h3': {

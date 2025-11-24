@@ -19,7 +19,7 @@ export const MDXComponents = {
 
   h2: ({ children, ...props }: any) => (
     <h2
-      className="text-[28px] md:text-[36px] font-extrabold leading-tight tracking-tight mt-12 mb-6 pb-3 border-b-2 border-yes-blue"
+      className="text-[28px] md:text-[36px] font-extrabold leading-tight tracking-tight mt-12 mb-6"
       {...props}
     >
       {children}
