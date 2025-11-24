@@ -2,6 +2,7 @@ import Hero from '@/components/Hero'
 import Section2 from '@/components/Section2'
 import Section3 from '@/components/Section3'
 import Section4 from '@/components/Section4'
+import ReviewCarousel from '@/components/ReviewCarousel'
 import BlogSection from '@/components/BlogSection'
 import Section5 from '@/components/Section5'
 import Script from 'next/script'
@@ -34,6 +35,7 @@ export default function Home() {
         <Section2 />
         <Section3 />
         <Section4 />
+        <ReviewCarousel />
         <BlogSection />
         <Section5 />
       </main>
