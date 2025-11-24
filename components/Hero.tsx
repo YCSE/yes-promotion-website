@@ -17,7 +17,7 @@ const Hero = () => {
 
     const animate = () => {
       position -= speed
-      
+
       // When the first image has scrolled completely out of view, reset position
       // Check screen size and use appropriate width
       const isMobile = window.innerWidth < 768
@@ -25,7 +25,7 @@ const Hero = () => {
       if (position <= -imageWidth) {
         position = 0
       }
-      
+
       slider.style.transform = `translateX(${position}px)`
       animationId = requestAnimationFrame(animate)
     }
@@ -38,28 +38,52 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className="relative w-full h-[450px] md:h-[1200px] overflow-hidden bg-white">
-      <div className="flex flex-col items-center justify-start pt-[40px] md:pt-[200px] gap-[30px] md:gap-[110px] px-4 md:px-6">
-        <div className="text-center">
-          <h1 className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
-            말하게 되는 영어
-          </h1>
-          <p className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
-            진짜 시작은 <span className="font-extrabold text-yes-blue">YES</span>
-          </p>
+    <section className="relative w-full min-h-[520px] md:min-h-[1300px] overflow-hidden bg-white">
+      <div className="flex flex-col items-center justify-start pt-[40px] md:pt-[200px] gap-[30px] md:gap-[80px] px-4 md:px-6">
+        <div className="flex flex-col items-center gap-6 md:gap-10 z-10">
+          <div className="text-center">
+            <h1 className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
+              말하게 되는 영어
+            </h1>
+            <p className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
+              진짜 시작은 <span className="font-extrabold text-yes-blue">YES</span>
+            </p>
+          </div>
+
+          <div className="flex flex-row gap-3 md:gap-4">
+            <a
+              href="https://apps.apple.com/app/id6745255649"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative w-[150px] md:w-[200px] border border-black text-black py-2.5 md:py-3.5 rounded-[100px] flex items-center justify-center gap-2 hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
+            >
+              <img src={getAssetPath('images/70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg')} alt="Apple" className="w-[16px] h-[20px] md:w-[20px] md:h-[24px] invert group-hover:invert-0 transition-all duration-300" />
+              <span className="text-[14px] md:text-[16px] font-medium">App Store</span>
+            </a>
+
+            <a
+              href="https://play.google.com/store/apps/details?id=kr.ycse"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative w-[150px] md:w-[200px] border border-black text-black py-2.5 md:py-3.5 rounded-[100px] flex items-center justify-center gap-2 hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
+            >
+              <img src={getAssetPath('images/e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')} alt="Google" className="w-[18px] h-[20px] md:w-[22px] md:h-[24px] invert group-hover:invert-0 transition-all duration-300" />
+              <span className="text-[14px] md:text-[16px] font-medium">Google Play</span>
+            </a>
+          </div>
         </div>
-        
-        <div className="relative w-full h-[238px] md:h-[794px] overflow-visible mt-[20px] md:-mt-[60px]">
-          <div 
+
+        <div className="relative w-full h-[238px] md:h-[794px] overflow-visible mt-[10px] md:-mt-[40px]">
+          <div
             ref={sliderRef}
             className="flex absolute h-full items-center"
             style={{ willChange: 'transform' }}
           >
             {/* First copy of the image */}
             <div className="relative h-[238px] md:h-[794px] flex-shrink-0 w-[1448px] md:w-[3634px]">
-              <Image 
-                src={getAssetPath('images/thumbnail_PC.webp')} 
-                alt="Students and Teachers" 
+              <Image
+                src={getAssetPath('images/thumbnail_PC.webp')}
+                alt="Students and Teachers"
                 width={3480}
                 height={454}
                 className="h-full w-full object-contain object-center"
@@ -68,9 +92,9 @@ const Hero = () => {
             </div>
             {/* Second copy for seamless loop */}
             <div className="relative h-[238px] md:h-[794px] flex-shrink-0 w-[1448px] md:w-[3634px]">
-              <Image 
-                src={getAssetPath('images/thumbnail_PC.webp')} 
-                alt="Students and Teachers" 
+              <Image
+                src={getAssetPath('images/thumbnail_PC.webp')}
+                alt="Students and Teachers"
                 width={3480}
                 height={454}
                 className="h-full w-full object-contain object-center"
