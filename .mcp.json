@@ -4,13 +4,12 @@
       "type": "http",
       "url": "http://127.0.0.1:3845/mcp"
     },
-    "playwright": {
-      "type": "stdio",
+    "chrome-devtools": {
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest"
-      ],
-      "env": {}
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
     }
   }
 }

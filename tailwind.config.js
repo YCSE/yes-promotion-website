@@ -8,13 +8,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'yes-blue': '#4B52AE',
-        'yes-navy': '#1A1F3A',
-        'yes-gray': '#F8F9FA',
+        // Refined Brand Colors
+        'yes-blue': '#4B52AE', // Primary Brand Color
+        'yes-navy': '#1A1F3A', // Deep Navy for headings/footer
+        'yes-gray': '#F8F9FA', // Light background
+
+        // Semantic Colors for Typography (Slate scale for better readability)
+        gray: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+        },
       },
       fontFamily: {
-        'sans': ['"Asta Sans"', 'sans-serif'],
-        'asta': ['"Asta Sans"', 'sans-serif'],
+        'sans': ['"Inter"', '"Asta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        'heading': ['"Asta Sans"', '"Inter"', 'sans-serif'],
       },
       keyframes: {
         'scroll-left': {
@@ -30,156 +45,123 @@ module.exports = {
         'scroll-left': 'scroll-left 120s linear infinite',
         'scroll-right': 'scroll-right 120s linear infinite',
       },
-      // Typography 커스터마이징
+      // Typography Customization
       typography: (theme) => ({
-    DEFAULT: {
-      css: {
-        '--tw-prose-body': theme('colors.gray.700'),
-        '--tw-prose-headings': theme('colors.gray.900'),
-        '--tw-prose-links': theme('colors.yes-blue'),
-        '--tw-prose-bold': theme('colors.gray.900'),
-        '--tw-prose-counters': theme('colors.yes-blue'),
-        '--tw-prose-bullets': theme('colors.yes-blue'),
-        '--tw-prose-hr': theme('colors.gray.200'),
-        '--tw-prose-quotes': theme('colors.gray.900'),
-        '--tw-prose-quote-borders': theme('colors.yes-blue'),
-        '--tw-prose-captions': theme('colors.gray.600'),
-        '--tw-prose-code': theme('colors.yes-blue'),
-        '--tw-prose-pre-code': theme('colors.gray.100'),
-        '--tw-prose-pre-bg': theme('colors.gray.900'),
-        '--tw-prose-th-borders': theme('colors.gray.300'),
-        '--tw-prose-td-borders': theme('colors.gray.200'),
+        DEFAULT: {
+          css: {
+            maxWidth: '68ch', // Optimal line length for reading
+            color: theme('colors.gray.700'),
+            fontSize: '1.125rem', // 18px base size
+            lineHeight: '1.8',
 
-        // 링크 스타일링
-        'a': {
-          color: theme('colors.yes-blue'),
-          textDecoration: 'none',
-          fontWeight: '600',
-          '&:hover': {
-            textDecoration: 'underline',
+            // Headings
+            'h1, h2, h3, h4': {
+              color: theme('colors.gray.900'),
+              fontFamily: theme('fontFamily.heading').join(', '),
+              fontWeight: '800',
+              letterSpacing: '-0.025em',
+            },
+            h1: {
+              fontSize: '2.5rem',
+              marginTop: '0',
+              marginBottom: '2rem',
+              lineHeight: '1.2',
+            },
+            h2: {
+              fontSize: '2rem',
+              marginTop: '3.5rem',
+              marginBottom: '1.5rem',
+              lineHeight: '1.3',
+            },
+            h3: {
+              fontSize: '1.5rem',
+              marginTop: '2.5rem',
+              marginBottom: '1rem',
+              color: theme('colors.yes-blue'),
+            },
+
+            // Links
+            a: {
+              color: theme('colors.yes-blue'),
+              textDecoration: 'none',
+              fontWeight: '600',
+              borderBottom: `1px solid ${theme('colors.yes-blue')}`,
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                color: theme('colors.yes-navy'),
+                borderBottomWidth: '2px',
+              },
+            },
+
+            // Lists
+            'ul > li': {
+              paddingLeft: '0.5em',
+              marginTop: '0.75em',
+              marginBottom: '0.75em',
+            },
+            'ul > li::marker': {
+              color: theme('colors.yes-blue'),
+            },
+
+            // Blockquotes
+            blockquote: {
+              borderLeftColor: theme('colors.yes-blue'),
+              borderLeftWidth: '4px',
+              backgroundColor: theme('colors.gray.50'),
+              padding: '1.5rem',
+              fontStyle: 'italic',
+              color: theme('colors.gray.800'),
+              quotes: '"\\201C""\\201D""\\2018""\\2019"',
+              marginTop: '2.5rem',
+              marginBottom: '2.5rem',
+              borderRadius: '0.5rem',
+            },
+
+            // Code
+            code: {
+              color: theme('colors.pink.600'),
+              backgroundColor: theme('colors.gray.100'),
+              padding: '0.2em 0.4em',
+              borderRadius: '0.25rem',
+              fontWeight: '500',
+              fontSize: '0.9em',
+            },
+            'code::before': { content: '""' },
+            'code::after': { content: '""' },
+
+            pre: {
+              backgroundColor: theme('colors.gray.900'),
+              borderRadius: '0.75rem',
+              padding: '1.5rem',
+              marginTop: '2rem',
+              marginBottom: '2rem',
+            },
+
+            // Images
+            img: {
+              borderRadius: '0.75rem',
+              marginTop: '2.5rem',
+              marginBottom: '2.5rem',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            },
+
+            // Horizontal Rule
+            hr: {
+              borderColor: theme('colors.gray.200'),
+              marginTop: '3rem',
+              marginBottom: '3rem',
+            },
           },
         },
-
-        // 제목 스타일링
-        'h1, h2, h3, h4, h5, h6': {
-          fontWeight: '800',
-          letterSpacing: '-0.02em',
+        // Responsive adjustments
+        lg: {
+          css: {
+            fontSize: '1.125rem', // Maintain 18px on large screens
+            h1: { fontSize: '3rem' },
+            h2: { fontSize: '2.25rem' },
+          },
         },
-
-        'h1': {
-          fontSize: '2.5rem',
-          lineHeight: '1.2',
-          marginTop: '0',
-          marginBottom: '1.5rem',
-        },
-
-        'h2': {
-          fontSize: '2rem',
-          lineHeight: '1.3',
-          marginTop: '2.5rem',
-          marginBottom: '1rem',
-        },
-
-        'h3': {
-          fontSize: '1.5rem',
-          lineHeight: '1.4',
-          marginTop: '2rem',
-          marginBottom: '0.75rem',
-          color: theme('colors.yes-blue'),
-        },
-
-        // 리스트 스타일링
-        'ul > li::marker': {
-          color: theme('colors.yes-blue'),
-        },
-
-        'ol > li::marker': {
-          color: theme('colors.yes-blue'),
-          fontWeight: '700',
-        },
-
-        // 코드 블록 스타일링
-        'code': {
-          color: theme('colors.yes-blue'),
-          backgroundColor: theme('colors.gray.100'),
-          padding: '0.2rem 0.4rem',
-          borderRadius: '0.25rem',
-          fontWeight: '600',
-        },
-
-        'code::before': {
-          content: '""',
-        },
-
-        'code::after': {
-          content: '""',
-        },
-
-        'pre': {
-          backgroundColor: theme('colors.gray.900'),
-          color: theme('colors.gray.100'),
-          borderRadius: '0.5rem',
-          padding: '1.25rem',
-        },
-
-        'pre code': {
-          backgroundColor: 'transparent',
-          color: 'inherit',
-          padding: '0',
-          fontWeight: '400',
-        },
-
-        // 인용구 스타일링
-        'blockquote': {
-          borderLeftColor: theme('colors.yes-blue'),
-          borderLeftWidth: '4px',
-          fontStyle: 'normal',
-          color: theme('colors.gray.700'),
-          backgroundColor: theme('colors.gray.50'),
-          padding: '1rem 1.5rem',
-          borderRadius: '0.25rem',
-        },
-
-        'blockquote p:first-of-type::before': {
-          content: '""',
-        },
-
-        'blockquote p:last-of-type::after': {
-          content: '""',
-        },
-
-        // 테이블 스타일링
-        'thead': {
-          borderBottomColor: theme('colors.yes-blue'),
-          borderBottomWidth: '2px',
-        },
-
-        'thead th': {
-          color: theme('colors.gray.900'),
-          fontWeight: '700',
-        },
-
-        // 이미지 스타일링
-        'img': {
-          borderRadius: '0.5rem',
-          margin: '2rem 0',
-        },
-
-        // 수평선 스타일링
-        'hr': {
-          borderColor: theme('colors.yes-blue'),
-          borderTopWidth: '2px',
-          margin: '3rem 0',
-        },
-
-        // 강조 텍스트
-        'strong': {
-          color: theme('colors.yes-blue'),
-          fontWeight: '700',
-        },
-      },
-    },
-  }),
+      }),
     },
   },
   plugins: [

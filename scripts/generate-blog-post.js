@@ -24,7 +24,7 @@ async function generateBlogPost() {
     }
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    
+
     const model = genAI.getGenerativeModel({
       model: 'gemini-flash-latest',
       safetySettings: [
@@ -60,11 +60,11 @@ async function generateBlogPost() {
     const direction = combination.direction;
     const combinationId = combination.combinationId;
     const randomEditor = EDITORS[Math.floor(Math.random() * EDITORS.length)];
-    
+
     // Generate unique slug using date, topic slug, and combination ID
     // This ensures uniqueness even when same topic is used with different directions
     const slug = `${format(new Date(), 'yyyy-MM-dd')}-${topicSlug}-${combinationId}`;
-    
+
     // Log the selected combination
     console.log('\n=== Selected Blog Post Configuration ===');
     console.log('Topic:', topic);
@@ -74,7 +74,7 @@ async function generateBlogPost() {
     console.log('Author:', randomEditor);
     console.log('Final Slug:', slug);
     console.log('\n');
-    
+
     const prompt = `
 ⚠️⚠️⚠️ 극도로 중요한 철자 규칙 ⚠️⚠️⚠️
 이미지 플레이스홀더는 반드시 정확히 다음과 같이 작성하세요:
@@ -146,8 +146,8 @@ async function generateBlogPost() {
 
 【형식】
 ---
-title: "[제목 - 항상 따옴표로 감싸세요]"
-subtitle: "[부제목 - 항상 따옴표로 감싸세요]"
+title: "[제목 - 항상 따옴표로 감싸세요]" ':' 기호를 쓰지 않고 한 문장으로 생성한다.
+subtitle: "[부제목 - 항상 따옴표로 감싸세요]" ':' 기호를 쓰지 않고 한 문장으로 생성한다.
 date: ${new Date().toISOString()}
 author: "${randomEditor}"
 excerpt: "[요약 2-3문장 - 항상 따옴표로 감싸세요]"
@@ -165,7 +165,7 @@ featuredImage: /images/blog/${slug}.jpg
     const result = await model.generateContent(prompt);
     const response = result.response;
     let text = response.text();
-    
+
     // 오타 감지 및 자동 수정
     const typoPatterns = [
       { wrong: /\[IMAGE_PLACEER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
@@ -175,7 +175,7 @@ featuredImage: /images/blog/${slug}.jpg
       { wrong: /\[IMAGE_PLACEHODER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
       { wrong: /\[IMAGE_PLACHOLDER_H2_(\d+)\]/g, correct: '[IMAGE_PLACEHOLDER_H2_$1]' },
     ];
-    
+
     let typoFound = false;
     for (const pattern of typoPatterns) {
       const matches = text.match(pattern.wrong);
@@ -185,24 +185,24 @@ featuredImage: /images/blog/${slug}.jpg
         typoFound = true;
       }
     }
-    
+
     if (typoFound) {
       console.log('✅ 오타가 자동으로 수정되었습니다.');
     }
-    
+
     // 플레이스홀더 검증
     const placeholderPattern = /\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
     const placeholders = [...text.matchAll(placeholderPattern)];
     console.log(`📸 발견된 이미지 플레이스홀더: ${placeholders.length}개`);
-    
+
     if (placeholders.length < 4) {
       console.warn(`⚠️ 경고: 4개의 플레이스홀더가 필요하지만 ${placeholders.length}개만 발견됨`);
     }
-    
+
     // Parse frontmatter to get the title
     const titleMatch = text.match(/title:\s*(.+)/);
     const title = titleMatch ? titleMatch[1].replace(/['"]/g, '') : topic;
-    
+
     return {
       slug,
       content: text,
