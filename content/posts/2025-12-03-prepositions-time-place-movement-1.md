@@ -4,7 +4,7 @@ subtitle: "At On In To From Across 더 이상 헷갈리지 않는 YES 학생을 
 date: 2025-12-03T02:44:51.523Z
 author: "에디터 이든(Aiden)"
 excerpt: "영어 학습의 가장 큰 난관 중 하나인 전치사는 시간, 장소, 이동이라는 세 가지 큰 카테고리로 나뉩니다. 이 가이드에서는 각 카테고리별 핵심 규칙을 정리하고, 다양한 학습 스타일에 맞춘 직관적인 암기 전략을 제시합니다. YES 화상영어를 통해 배운 내용을 실제 대화에서 적용하는 방법도 함께 알아보세요."
-featuredImage: /images/blog/2025-dc-03-prepositions-time-place-movement-1.jpg
+featuredImage: /images/blog/2025-12-03-prepositions-time-place-movement-1.jpg
 ---
 
 안녕하세요, YES에서 열심히 영어 실력을 키우고 계신 학습자 여러분! 에디터 이든(Aiden)입니다.

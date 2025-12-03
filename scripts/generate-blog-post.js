@@ -190,6 +190,18 @@ featuredImage: /images/blog/${slug}.jpg
       console.log('✅ 오타가 자동으로 수정되었습니다.');
     }
 
+    // featuredImage 경로 강제 수정 (AI가 날짜를 잘못 변경하는 경우 방지)
+    const correctFeaturedImage = `/images/blog/${slug}.jpg`;
+    const featuredImagePattern = /featuredImage:\s*.+/;
+    if (text.match(featuredImagePattern)) {
+      const originalMatch = text.match(featuredImagePattern)[0];
+      const correctedLine = `featuredImage: ${correctFeaturedImage}`;
+      if (originalMatch !== correctedLine) {
+        console.warn(`⚠️ featuredImage 경로 수정: ${originalMatch} → ${correctedLine}`);
+        text = text.replace(featuredImagePattern, correctedLine);
+      }
+    }
+
     // 플레이스홀더 검증
     const placeholderPattern = /\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
     const placeholders = [...text.matchAll(placeholderPattern)];
