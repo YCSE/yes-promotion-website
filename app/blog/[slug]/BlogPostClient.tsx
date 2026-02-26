@@ -2,9 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { ko } from 'date-fns/locale'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import ReactMarkdown from 'react-markdown'
 import { MDXComponents } from '@/components/mdx/MDXComponents'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import type { PostData as RelatedPostData } from '@/lib/posts'
 import RelatedPosts from './RelatedPosts'
 
@@ -21,6 +22,29 @@ interface PostData {
 interface BlogPostClientProps {
   post: PostData
   relatedPosts: RelatedPostData[]
+}
+
+/**
+ * Pre-process markdown to convert **bold** to <strong> HTML tags.
+ * CommonMark emphasis parsing fails when bold text ends with punctuation
+ * (e.g., parentheses or quotes) and is immediately followed by CJK characters,
+ * because the closing ** is not recognized as a right-flanking delimiter run.
+ */
+function preprocessBoldMarkers(content: string): string {
+  const lines = content.split('\n')
+  const result: string[] = []
+
+  for (const line of lines) {
+    // Skip code blocks and headings
+    if (line.startsWith('```') || line.startsWith('    ')) {
+      result.push(line)
+      continue
+    }
+    // Replace **...** with <strong>...</strong> on non-code lines
+    result.push(line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'))
+  }
+
+  return result.join('\n')
 }
 
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
@@ -74,15 +98,13 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
       {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 py-[40px] md:py-[80px]">
         <article className="prose prose-lg max-w-none">
-          <MDXRemote
-            source={post.content}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-              },
-            }}
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw]}
             components={MDXComponents}
-          />
+          >
+            {preprocessBoldMarkers(post.content)}
+          </ReactMarkdown>
         </article>
       </div>
 
