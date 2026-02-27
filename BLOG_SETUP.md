@@ -48,7 +48,7 @@ yes-promotion-website/
 ├── scripts/                 # Generation scripts
 │   ├── generate-content.js  # Main orchestration
 │   ├── generate-blog-post.js # Content generation
-│   └── generate-featured-image.js # Image generation
+│   └── generate-blog-images.js  # Unified image generation (featured + H2)
 └── .github/workflows/
     └── generate-blog-post.yml # GitHub Actions workflow
 ```

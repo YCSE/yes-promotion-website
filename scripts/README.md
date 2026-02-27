@@ -10,8 +10,8 @@ Main orchestration script that generates both blog post and featured image.
 ### generate-blog-post.js
 Generates English learning blog posts using Gemini 2.5 Flash model.
 
-### generate-featured-image.js
-Generates featured images for blog posts using Imagen (with fallback to placeholder).
+### generate-blog-images.js
+Generates all blog images (featured + H2 section images) using gemini-3.1-flash-image-preview in a single multi-turn session for visual consistency. Falls back to SVG placeholders on failure.
 
 ## Setup
 

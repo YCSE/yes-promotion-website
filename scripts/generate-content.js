@@ -1,52 +1,46 @@
 const fs = require('fs-extra');
 const path = require('path');
 const { generateBlogPost } = require('./generate-blog-post');
-const { generateFeaturedImage } = require('./generate-featured-image');
-const { processH2Images } = require('./generate-h2-images');
+const { generateBlogImages } = require('./generate-blog-images');
 
 async function generateContent() {
   try {
     console.log('🚀 Starting content generation...');
-    
+
     // Step 1: Generate blog post
     console.log('📝 Generating blog post with Gemini...');
     const { slug, content, title } = await generateBlogPost();
     console.log(`✅ Blog post generated: ${title}`);
-    
-    // Step 2: Generate featured image
-    console.log('🎨 Generating featured image...');
-    const imagePath = await generateFeaturedImage(title, slug);
-    console.log(`✅ Featured image generated: ${imagePath}`);
-    
-    // Step 3: Process H2 images (photorealistic)
-    console.log('🖼️ Processing H2 section images...');
-    const contentWithImages = await processH2Images(content, slug);
-    console.log('✅ H2 images processed');
-    
-    // Step 4: Save the blog post
+
+    // Step 2: Generate all images (featured + H2) in one multi-turn session
+    console.log('🎨 Generating blog images with visual consistency...');
+    const { updatedContent, featuredImagePath } = await generateBlogImages(content, title, slug);
+    console.log(`✅ All images generated`);
+
+    // Step 3: Save the blog post
     const postsDir = path.join(process.cwd(), 'content', 'posts');
     await fs.ensureDir(postsDir);
-    
+
     const postPath = path.join(postsDir, `${slug}.md`);
-    await fs.writeFile(postPath, contentWithImages, 'utf8');
+    await fs.writeFile(postPath, updatedContent, 'utf8');
     console.log(`✅ Blog post saved: ${postPath}`);
-    
-    // Step 5: Log summary
+
+    // Step 4: Log summary
     console.log('\n📊 Content Generation Summary:');
     console.log('================================');
     console.log(`Title: ${title}`);
     console.log(`Slug: ${slug}`);
     console.log(`Post: /content/posts/${slug}.md`);
-    console.log(`Image: ${imagePath}`);
+    console.log(`Image: ${featuredImagePath}`);
     console.log('================================');
     console.log('✨ Content generation completed successfully!');
-    
+
     return {
       success: true,
       slug,
       title,
       postPath,
-      imagePath
+      imagePath: featuredImagePath
     };
   } catch (error) {
     console.error('❌ Error generating content:', error);
