@@ -28,8 +28,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        'sans': ['"Inter"', '"Asta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
-        'heading': ['"Asta Sans"', '"Inter"', 'sans-serif'],
+        'sans': ['"Outfit"', '"Pretendard Variable"', '"Pretendard"', 'system-ui', '-apple-system', '"Apple SD Gothic Neo"', '"Noto Sans KR"', '"Malgun Gothic"', 'sans-serif'],
+        'heading': ['"Outfit"', '"Pretendard Variable"', '"Pretendard"', 'system-ui', 'sans-serif'],
+        'mono': ['"Outfit"', '"Pretendard Variable"', '"Pretendard"', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'scroll-left': {

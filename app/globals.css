@@ -10,7 +10,7 @@
   
   body {
     @apply text-black bg-white;
-    font-family: "Asta Sans", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, Roboto, "Noto Sans KR", "Segoe UI", "Malgun Gothic", sans-serif;
+    font-family: "Outfit", "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-weight: 300;

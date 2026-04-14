@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import './globals.css'
 import './fonts.css'
+import './globals.css'
 import Footer from '@/components/Footer'
 import Script from 'next/script'
 
@@ -567,11 +567,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <link rel="preload" href="/fonts/AstaSans-300.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/AstaSans-400.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/AstaSans-500.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/AstaSans-700.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/AstaSans-800.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <meta name="theme-color" content="#4B52AE" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
