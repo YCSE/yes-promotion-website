@@ -42,12 +42,10 @@ const Hero = () => {
       <div className="flex flex-col items-center justify-start pt-[40px] md:pt-[200px] gap-[30px] md:gap-[80px] px-4 md:px-6">
         <div className="flex flex-col items-center gap-6 md:gap-10 z-10">
           <div className="text-center">
-            <h1 className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
-              말하게 되는 영어
+            <h1 className="type-h1 text-black">
+              <span className="block">말하게 되는 영어</span>
+              <span className="block">진짜 시작은 <span lang="en" className="font-en font-extrabold text-yes-blue">YES</span></span>
             </h1>
-            <p className="text-[32px] md:text-[50px] lg:text-[70px] font-bold leading-[40px] md:leading-[60px] lg:leading-[85px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-2.1px] text-black">
-              진짜 시작은 <span lang="en" className="font-en font-extrabold text-yes-blue">YES</span>
-            </p>
           </div>
 
           <div className="flex flex-row gap-3 md:gap-4">
@@ -58,7 +56,7 @@ const Hero = () => {
               className="group relative w-[150px] md:w-[200px] border border-black text-black py-2.5 md:py-3.5 rounded-[100px] flex items-center justify-center gap-2 hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
             >
               <img src={getAssetPath('images/70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg')} alt="Apple" className="w-[16px] h-[20px] md:w-[20px] md:h-[24px] invert group-hover:invert-0 transition-all duration-300" />
-              <span lang="en" className="font-en text-[14px] md:text-[16px] font-medium">App Store</span>
+              <span lang="en" className="font-en type-button-text">App Store</span>
             </a>
 
             <a
@@ -68,7 +66,7 @@ const Hero = () => {
               className="group relative w-[150px] md:w-[200px] border border-black text-black py-2.5 md:py-3.5 rounded-[100px] flex items-center justify-center gap-2 hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
             >
               <img src={getAssetPath('images/e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')} alt="Google" className="w-[18px] h-[20px] md:w-[22px] md:h-[24px] invert group-hover:invert-0 transition-all duration-300" />
-              <span lang="en" className="font-en text-[14px] md:text-[16px] font-medium">Google Play</span>
+              <span lang="en" className="font-en type-button-text">Google Play</span>
             </a>
           </div>
         </div>

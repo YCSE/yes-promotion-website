@@ -148,7 +148,7 @@ const ReviewCarousel = () => {
     return (
         <section className="py-20 bg-gray-50 overflow-hidden">
             <div className="container mx-auto px-4 mb-12 text-center">
-                <h2 className="text-[32px] md:text-[40px] font-bold text-gray-900 mb-4">
+                <h2 className="type-h2 text-gray-900 mb-4">
                     수강생들의 생생한 후기
                 </h2>
                 <p className="text-gray-600 text-lg">

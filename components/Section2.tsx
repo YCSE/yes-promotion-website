@@ -33,7 +33,7 @@ const Section2 = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center text-black tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
+          <h2 className="type-h2 text-center text-black">
             실전에서는 막막한 영어,<br/>
             나만 그런가요?
           </h2>

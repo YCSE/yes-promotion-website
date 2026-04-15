@@ -48,7 +48,7 @@ const Section5 = () => {
     <section className="relative w-full bg-white pt-[40px] md:pt-[75px] lg:pt-[100px] pb-[80px] md:pb-[150px] lg:pb-[200px]">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         {/* Title */}
-        <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center mb-[50px] md:mb-[80px] lg:mb-[100px] text-black tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
+        <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px] text-black">
           지금 레벨테스트 신청하고<br/>
           무료 수업 받으세요
         </h2>
@@ -80,9 +80,9 @@ const Section5 = () => {
                   />
                 </div>
                 <div className="max-w-[300px]">
-                  <h3 className="text-[18px] md:text-[20px] lg:text-[22px] font-bold mb-4 md:mb-5 lg:mb-6 text-black tracking-[-0.54px] md:tracking-[-0.6px] lg:tracking-[-0.66px]">
+                  <h4 className="type-h4 mb-4 md:mb-5 lg:mb-6 text-black">
                     {feature.title}
-                  </h3>
+                  </h4>
                   <p className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-gray-600 whitespace-pre-line leading-[20px] md:leading-[22px] lg:leading-[24px] tracking-[-0.42px] md:tracking-[-0.45px] lg:tracking-[-0.48px]">
                     {feature.description}
                   </p>
@@ -95,19 +95,21 @@ const Section5 = () => {
         {/* FAQ Section - Exact Figma Design */}
         <div className="max-w-[1080px] mx-auto mt-[50px] md:mt-[80px] lg:mt-[100px]">
           {faqs.map((faq, index) => (
-            <div 
-              key={index}
-              className="cursor-pointer"
-              onClick={() => setOpenFaq(openFaq === index ? null : index)}
-            >
+            <div key={index}>
               {index > 0 && <div className="w-full h-[1px] bg-gray-200 my-[30px] md:my-[40px] lg:my-[50px]" />}
               
               <div className="py-[2px]">
-                <h4 className={`text-[16px] md:text-[17px] lg:text-[18px] text-center tracking-[-0.48px] md:tracking-[-0.51px] lg:tracking-[-0.54px] transition-all ${
-                  openFaq === index ? 'text-[#3E86D9] font-bold' : 'text-black font-light'
-                }`}>
-                  {faq.question}
-                </h4>
+                <button
+                  type="button"
+                  className="block w-full cursor-pointer"
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                >
+                  <span className={`type-faq-title block text-center transition-all ${
+                    openFaq === index ? 'text-[#3E86D9] font-bold' : 'text-black font-light'
+                  }`}>
+                    {faq.question}
+                  </span>
+                </button>
                 
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openFaq === index ? 'max-h-[250px] md:max-h-[200px] opacity-100' : 'max-h-0 opacity-0'

@@ -17,9 +17,9 @@ const Section4 = () => {
       
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 md:px-6 max-w-[800px]">
-        <h2 className="text-[18px] md:text-[24px] lg:text-[30px] font-light leading-[27px] md:leading-[36px] lg:leading-[45px] tracking-[-0.54px] md:tracking-[-0.72px] lg:tracking-[-0.9px] mb-[8px] md:mb-[10px]">
+        <p className="text-[18px] md:text-[24px] lg:text-[30px] font-light leading-[27px] md:leading-[36px] lg:leading-[45px] tracking-[-0.54px] md:tracking-[-0.72px] lg:tracking-[-0.9px] mb-[8px] md:mb-[10px]">
           3개월 만에 영어 회화 실력이 눈에 띄게 향상되었어요.
-        </h2>
+        </p>
         <p className="text-[18px] md:text-[24px] lg:text-[30px] font-light leading-[27px] md:leading-[36px] lg:leading-[45px] tracking-[-0.54px] md:tracking-[-0.72px] lg:tracking-[-0.9px] mb-[30px] md:mb-[35px] lg:mb-[40px]">
           특히 AI 코치 Tia의 맞춤형 연습이 큰 도움이 되었습니다!
         </p>

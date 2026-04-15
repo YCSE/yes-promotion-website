@@ -14,7 +14,7 @@ export default function BlogSection() {
     <section className="relative w-full pt-[80px] md:pt-[150px] lg:pt-[200px] pb-[40px] md:pb-[75px] lg:pb-[100px] bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Title */}
-        <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold text-center mb-[50px] md:mb-[80px] lg:mb-[100px] leading-[36px] md:leading-[50px] lg:leading-[60px] tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
+        <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">
           <span lang="en" className="font-en">YES</span> 블로그에 초대합니다
         </h2>
 
@@ -46,9 +46,9 @@ export default function BlogSection() {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h3 className="text-[14px] font-medium mb-1 line-clamp-2 leading-[20px] tracking-[-0.42px] group-hover:text-[#3E86D9] transition-colors">
+                  <h4 className="type-h4 font-medium mb-1 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
-                  </h3>
+                  </h4>
                   
                   <p className="text-[12px] text-[#555555] line-clamp-2 font-light leading-[18px] tracking-[-0.36px]">
                     {post.excerpt}
@@ -87,9 +87,9 @@ export default function BlogSection() {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h3 className="text-[18px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[28px] tracking-[-0.54px] group-hover:text-[#3E86D9] transition-colors">
+                  <h4 className="type-h4 font-medium mb-2 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
-                  </h3>
+                  </h4>
                   
                   <p className="text-[14px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[24px] tracking-[-0.48px]">
                     {post.excerpt}
@@ -107,7 +107,7 @@ export default function BlogSection() {
             className="relative block w-[200px] h-[60px] md:w-[300px] md:h-[80px] lg:w-[350px] lg:h-[100px] rounded-[100px] border border-black border-solid hover:bg-black hover:text-white transition-all duration-300 group"
           >
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-bold text-[18px] md:text-[22px] lg:text-[25px] leading-[28px] md:leading-[35px] lg:leading-[40px] tracking-[-0.54px] md:tracking-[-0.66px] lg:tracking-[-0.75px] text-center text-black group-hover:text-white transition-colors duration-300">
+              <span className="type-button-text text-center text-black group-hover:text-white transition-colors duration-300">
                 더 보기
               </span>
             </div>
