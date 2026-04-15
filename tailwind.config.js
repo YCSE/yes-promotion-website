@@ -13,6 +13,7 @@ module.exports = {
         'accent-blue': '#3E86D9', // Interactive elements, links
         'bg-dark': '#222222', // Dark background
         'text-primary': '#111111', // Main text
+        'text-identity-dark': '#5AA4F9', // Identity text on dark background
 
         // Semantic Colors for Typography (Slate scale for better readability)
         gray: {

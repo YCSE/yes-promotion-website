@@ -75,7 +75,7 @@ const Section3 = () => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <p className="text-[14px] md:text-[16px] lg:text-[18px] font-bold text-[#868BC7] mb-[15px] md:mb-[18px] lg:mb-[22px] tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] leading-[24px] md:leading-[28px] lg:leading-[32px]">{feature.title}</p>
+                <p className="text-[14px] md:text-[16px] lg:text-[18px] font-bold text-text-identity-dark mb-[15px] md:mb-[18px] lg:mb-[22px] tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] leading-[24px] md:leading-[28px] lg:leading-[32px]">{feature.title}</p>
                 <h3 className="text-[20px] md:text-[25px] lg:text-[30px] font-bold text-white mb-[15px] md:mb-[20px] lg:mb-[23px] tracking-[-0.6px] md:tracking-[-0.75px] lg:tracking-[-0.9px] leading-[28px] md:leading-[34px] lg:leading-[40px]">{feature.subtitle}</h3>
                 <p className="text-[14px] md:text-[16px] lg:text-[18px] font-light text-white/90 whitespace-pre-line tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] leading-[24px] md:leading-[28px] lg:leading-[32px]">
                   {feature.description}

@@ -73,7 +73,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative w-full h-[238px] md:h-[794px] overflow-visible mt-[10px] md:-mt-[40px]">
+        <div className="relative w-full h-[238px] md:h-[794px] overflow-hidden mt-[10px] md:-mt-[40px]">
           <div
             ref={sliderRef}
             className="flex absolute h-full items-center"

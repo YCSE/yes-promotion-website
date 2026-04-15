@@ -21,7 +21,7 @@ const Section2 = () => {
   ]
 
   return (
-    <section className="relative w-full py-[80px] md:py-[150px] lg:py-[200px] bg-white -mt-[60px]">
+    <section className="relative w-full py-[80px] md:py-[150px] lg:py-[200px] bg-white">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center mb-[50px] md:mb-[85px]">
           <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[130px] lg:h-[130px] mb-[20px] md:mb-[30px] relative flex items-center justify-center">
@@ -73,58 +73,18 @@ const Section2 = () => {
           ))}
         </div>
 
-        {/* Mobile version - alternating two-column layout with overlapping */}
-        <div className="md:hidden relative">
-          <div className="grid grid-cols-2 gap-0">
-            {/* Left column */}
-            <div className="flex flex-col gap-2">
-              {mobileSpeechBubbles.filter((_, index) => index % 2 === 0).map((bubble, index) => {
-                // For left column: indices 0, 2, 4 -> z-index: 1, 3, 5
-                const actualIndex = index * 2;  // 0, 2, 4
-                const zIndex = actualIndex + 1;  // 1, 3, 5
-                
-                return (
-                  <div
-                    key={actualIndex}
-                    className={`relative bg-white rounded-[20px] px-3 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform ${index > 0 ? 'mt-6' : ''}`}
-                    style={{
-                      width: 'calc(100% + 20px)',
-                      zIndex: zIndex
-                    }}
-                  >
-                    <p className="text-[14px] leading-[20px] text-black font-light whitespace-pre-line text-center tracking-[-0.42px]">
-                      {bubble.text}
-                    </p>
-                  </div>
-                );
-              })}
+        {/* Mobile version - single-column cards to avoid viewport overflow */}
+        <div className="md:hidden flex flex-col gap-3">
+          {mobileSpeechBubbles.map((bubble, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-[20px] px-4 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+            >
+              <p className="text-[14px] leading-[20px] text-black font-light whitespace-pre-line text-center tracking-[-0.42px]">
+                {bubble.text}
+              </p>
             </div>
-            
-            {/* Right column - offset down and overlapping left */}
-            <div className="flex flex-col gap-2 mt-[50px] -ml-5">
-              {mobileSpeechBubbles.filter((_, index) => index % 2 === 1).map((bubble, index) => {
-                // For right column: indices 1, 3, 5 -> z-index: 2, 4, 6
-                const actualIndex = index * 2 + 1;  // 1, 3, 5
-                const zIndex = actualIndex + 1;  // 2, 4, 6
-                
-                return (
-                  <div
-                    key={actualIndex}
-                    className={`relative bg-white rounded-[20px] px-3 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform ${index > 0 ? 'mt-6' : ''}`}
-                    style={{
-                      width: 'calc(100% + 20px)',
-                      marginLeft: '-10px',
-                      zIndex: zIndex
-                    }}
-                  >
-                    <p className="text-[14px] leading-[20px] text-black font-light whitespace-pre-line text-center tracking-[-0.42px]">
-                      {bubble.text}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

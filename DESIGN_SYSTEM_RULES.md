@@ -169,6 +169,7 @@ $yes-blue: #3E86D9;    // Primary brand color
 // Text Colors
 $text-primary: #111111;        // Main text
 $text-secondary: ;             // Secondary text
+$text-identity-dark: #5AA4F9;  // Identity text on dark background
 $text-light: #999999;          // Disabled/placeholder
 $text-white: #FFFFFF;          // Inverted text
 $text-white-90: rgba(255, 255, 255, 0.9);  // Slightly transparent white
