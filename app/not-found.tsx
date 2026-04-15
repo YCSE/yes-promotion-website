@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="max-w-2xl w-full text-center">
         {/* 404 Error Number */}
         <div className="mb-8">
-          <h1 className="text-[120px] md:text-[180px] font-extrabold text-[#4B52AE] leading-none">
+          <h1 className="text-[120px] md:text-[180px] font-extrabold text-[#3E86D9] leading-none">
             404
           </h1>
         </div>
@@ -27,13 +27,13 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
             href="/" 
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-[#4B52AE] rounded-[100px] hover:bg-[#3A4199] transition-colors duration-300"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-[#3E86D9] rounded-[100px] hover:bg-[#3676BF] transition-colors duration-300"
           >
             홈으로 돌아가기
           </Link>
           <Link 
             href="/blog/" 
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-[#4B52AE] border-2 border-[#4B52AE] rounded-[100px] hover:bg-[#4B52AE] hover:text-white transition-colors duration-300"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-[#3E86D9] border-2 border-[#3E86D9] rounded-[100px] hover:bg-[#3E86D9] hover:text-white transition-colors duration-300"
           >
             블로그 둘러보기
           </Link>
@@ -45,21 +45,21 @@ export default function NotFound() {
           <div className="flex flex-wrap gap-4 justify-center text-sm">
             <Link 
               href="/#features" 
-              className="text-[#4B52AE] hover:underline"
+              className="text-[#3E86D9] hover:underline"
             >
               YES 화상영어 특징
             </Link>
             <span className="text-gray-300">|</span>
             <Link 
               href="/#level-test" 
-              className="text-[#4B52AE] hover:underline"
+              className="text-[#3E86D9] hover:underline"
             >
               레벨테스트
             </Link>
             <span className="text-gray-300">|</span>
             <Link 
               href="/#faq" 
-              className="text-[#4B52AE] hover:underline"
+              className="text-[#3E86D9] hover:underline"
             >
               자주 묻는 질문
             </Link>

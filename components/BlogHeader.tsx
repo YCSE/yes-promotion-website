@@ -31,13 +31,13 @@ const BlogHeader = () => {
           <nav className="flex items-center gap-6">
             <Link
               href="/"
-              className="text-sm md:text-base text-gray-600 hover:text-[#4B52AE] transition-colors font-medium"
+              className="text-sm md:text-base text-gray-600 hover:text-[#3E86D9] transition-colors font-medium"
             >
               홈
             </Link>
             <Link
               href="/blog"
-              className="text-sm md:text-base text-[#4B52AE] font-medium"
+              className="text-sm md:text-base text-[#3E86D9] font-medium"
             >
               블로그
             </Link>

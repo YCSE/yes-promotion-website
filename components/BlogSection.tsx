@@ -46,7 +46,7 @@ export default function BlogSection() {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h3 className="text-[14px] font-medium mb-1 line-clamp-2 leading-[20px] tracking-[-0.42px] group-hover:text-[#4B52AE] transition-colors">
+                  <h3 className="text-[14px] font-medium mb-1 line-clamp-2 leading-[20px] tracking-[-0.42px] group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h3>
                   
@@ -87,7 +87,7 @@ export default function BlogSection() {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h3 className="text-[18px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[28px] tracking-[-0.54px] group-hover:text-[#4B52AE] transition-colors">
+                  <h3 className="text-[18px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[28px] tracking-[-0.54px] group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h3>
                   

@@ -104,7 +104,7 @@ const Section5 = () => {
               
               <div className="py-[2px]">
                 <h4 className={`text-[16px] md:text-[17px] lg:text-[18px] text-center tracking-[-0.48px] md:tracking-[-0.51px] lg:tracking-[-0.54px] transition-all ${
-                  openFaq === index ? 'text-[#4B52AE] font-bold' : 'text-black font-light'
+                  openFaq === index ? 'text-[#3E86D9] font-bold' : 'text-black font-light'
                 }`}>
                   {faq.question}
                 </h4>

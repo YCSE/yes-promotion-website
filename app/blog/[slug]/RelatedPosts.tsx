@@ -36,7 +36,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
           <p className="text-[20px] font-bold mb-4">더 많은 영어 학습 팁이 필요하신가요?</p>
           <Link
             href="/blog"
-            className="inline-block px-8 py-3 bg-[#4B52AE] text-white rounded-full hover:bg-[#3A4199] transition-colors text-[16px] font-medium"
+            className="inline-block px-8 py-3 bg-[#3E86D9] text-white rounded-full hover:bg-[#3676BF] transition-colors text-[16px] font-medium"
           >
             다른 글 보기
           </Link>
@@ -81,7 +81,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
 
-                  <h3 className="text-[16px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[24px] md:leading-[28px] tracking-[-0.48px] md:tracking-[-0.54px] group-hover:text-[#4B52AE] transition-colors">
+                  <h3 className="text-[16px] md:text-[20px] font-medium mb-2 line-clamp-2 leading-[24px] md:leading-[28px] tracking-[-0.48px] md:tracking-[-0.54px] group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h3>
 

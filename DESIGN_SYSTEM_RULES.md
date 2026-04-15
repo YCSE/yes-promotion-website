@@ -161,29 +161,24 @@ font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK
 
 ### Primary Colors
 ```scss
-$yes-blue: #4B52AE;    // Primary brand color
-$yes-navy: #1A1F3A;    // Dark backgrounds, section bg
-$yes-gray: #F8F9FA;    // Light backgrounds
+$yes-blue: #3E86D9;    // Primary brand color
 ```
 
 ### Extended Palette
 ```scss
 // Text Colors
-$text-primary: #000000;        // Main text
-$text-secondary: #666666;      // Secondary text
+$text-primary: #111111;        // Main text
+$text-secondary: ;             // Secondary text
 $text-light: #999999;          // Disabled/placeholder
 $text-white: #FFFFFF;          // Inverted text
 $text-white-90: rgba(255, 255, 255, 0.9);  // Slightly transparent white
 
 // Accent Colors
-$accent-purple: #868BC7;       // Feature labels in dark sections
-$accent-blue: #4B52AE;         // Interactive elements, links
+$accent-blue: #3E86D9;         // Interactive elements, links
 
 // Background Colors
 $bg-white: #FFFFFF;            // Default background
-$bg-dark: #1A1F3A;            // Dark sections
-$bg-black: #000000;           // Footer background
-$bg-gray-light: #F8F9FA;      // Alternate sections
+$bg-dark: #222222;             // Dark sections
 
 // UI Colors
 $border-white: #FFFFFF;       // White borders
@@ -194,7 +189,7 @@ $shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
 ### Color Usage Patterns
 - **Hero Section:** White background, black text, yes-blue for brand
 - **Section 2:** White background, gray-700 text in bubbles
-- **Section 3:** Dark navy background, white text, purple accents
+- **Section 3:** Dark background, white text, blue accents
 - **Section 4:** Image overlay with white text
 - **Section 5:** White background, black primary text, gray secondary
 - **Footer:** Black background, white text, gray legal text
@@ -300,7 +295,7 @@ $shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
 ### 3. Section3 - Dark Feature Section
 ```typescript
 // Background & Theme
-className="bg-[#1A1F3A] text-white"
+className="bg-[#222222] text-white"
 
 // Two-part structure:
 // Part 1: Feature Grid
@@ -358,7 +353,7 @@ className="bg-[#1A1F3A] text-white"
 <div className="max-w-[1080px] mx-auto">
   {faqs.map(faq => (
     // Accordion with smooth height animation
-    // Color change on active (#4B52AE)
+    // Color change on active (#3E86D9)
   ))}
 </div>
 
@@ -452,7 +447,7 @@ mb-[100px] -> mb-[80px] -> mb-[50px]
   
   &:hover {
     background: white;
-    color: $yes-navy;
+    color: $bg-dark;
   }
 }
 ```
@@ -611,7 +606,7 @@ className="md:hidden"        // Mobile only
 - Padding: Mobile (px-3 py-4), Desktop (px-8 py-6)
 
 ### Section3 (Features)
-- Background: #1A1F3A
+- Background: #222222
 - Text: White primary, #868BC7 accent
 - Icon size: 70px -> 90px -> 110px
 - Video container: 360x632px with white frame
@@ -627,7 +622,7 @@ className="md:hidden"        // Mobile only
 - Phone mockup: 300x607px
 - Icon size: 100x100px
 - FAQ max-height animation: 250px
-- Active FAQ color: #4B52AE
+- Active FAQ color: #3E86D9
 
 ### Footer
 - Fixed bar height: py-4 -> py-5 -> py-6

@@ -9,9 +9,10 @@ module.exports = {
     extend: {
       colors: {
         // Refined Brand Colors
-        'yes-blue': '#4B52AE', // Primary Brand Color
-        'yes-navy': '#1A1F3A', // Deep Navy for headings/footer
-        'yes-gray': '#F8F9FA', // Light background
+        'yes-blue': '#3E86D9', // Primary Brand Color
+        'accent-blue': '#3E86D9', // Interactive elements, links
+        'bg-dark': '#222222', // Dark background
+        'text-primary': '#111111', // Main text
 
         // Semantic Colors for Typography (Slate scale for better readability)
         gray: {
@@ -89,7 +90,7 @@ module.exports = {
               borderBottom: `1px solid ${theme('colors.yes-blue')}`,
               transition: 'all 0.2s ease',
               '&:hover': {
-                color: theme('colors.yes-navy'),
+                color: theme('colors.bg-dark'),
                 borderBottomWidth: '2px',
               },
             },

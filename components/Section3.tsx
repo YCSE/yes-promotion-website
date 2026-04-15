@@ -54,7 +54,7 @@ const Section3 = () => {
   ]
 
   return (
-    <section className="relative w-full bg-[#1A1F3A] text-white py-[80px] md:py-[150px] lg:py-[200px]">
+    <section className="relative w-full bg-[#222222] text-white py-[80px] md:py-[150px] lg:py-[200px]">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         {/* Section 3-1 */}
         <div className="mb-[80px] md:mb-[150px] lg:mb-[200px]">
@@ -135,7 +135,7 @@ const Section3 = () => {
           
           <button 
             onClick={() => setIsTiaModalOpen(true)}
-            className="w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white text-[16px] md:text-[22px] lg:text-[25px] font-bold tracking-[-0.48px] md:tracking-[-0.66px] lg:tracking-[-0.75px] hover:bg-white hover:text-[#1A1F3A] transition-colors"
+            className="w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white text-[16px] md:text-[22px] lg:text-[25px] font-bold tracking-[-0.48px] md:tracking-[-0.66px] lg:tracking-[-0.75px] hover:bg-white hover:text-[#222222] transition-colors"
           >
             <span lang="en" className="font-en">Tia</span> 자세히 보기
           </button>

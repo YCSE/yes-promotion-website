@@ -56,7 +56,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
         <div className="max-w-[900px] mx-auto px-6">
           <Link 
             href="/blog" 
-            className="inline-flex items-center text-[#4B52AE] hover:underline mb-6 text-[16px]"
+            className="inline-flex items-center text-[#3E86D9] hover:underline mb-6 text-[16px]"
           >
             ← 블로그로 돌아가기
           </Link>

@@ -22,14 +22,14 @@ const Footer = () => {
           <div className="flex gap-4 justify-center lg:justify-start mt-4">
             <Link
               href="/"
-              className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
+              className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#3E86D9] transition-colors"
             >
               홈
             </Link>
             <span className="text-white/30">|</span>
             <Link
               href="/blog"
-              className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#4B52AE] transition-colors"
+              className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#3E86D9] transition-colors"
             >
               블로그
             </Link>

@@ -206,7 +206,7 @@ trailingSlash: true      // GitHub Pages compatibility
 - Refer to DESIGN_SYSTEM_RULES.md for comprehensive styling guidelines
 - Component-specific patterns documented in detail
 - Responsive breakpoints: mobile (default), md (768px), lg (1024px)
-- Color system: YES blue (#4B52AE), navy (#1A1F3A), grays
+- Color system: YES blue (#3E86D9), navy (#1A1F3A), grays
 
 ### Performance Considerations
 - Lazy load below-fold content

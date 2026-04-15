@@ -43,7 +43,7 @@ export const MDXComponents = {
   // Links
   a: ({ href, children, node, ...props }: any) => {
     const isExternal = href?.startsWith('http')
-    const className = "font-medium text-yes-blue underline underline-offset-4 hover:text-yes-navy transition-colors"
+    const className = "font-medium text-yes-blue underline underline-offset-4 hover:text-bg-dark transition-colors"
 
     if (isExternal) {
       return (

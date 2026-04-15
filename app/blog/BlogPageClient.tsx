@@ -86,7 +86,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                         {featuredPost.excerpt}
                       </p>
                       
-                      <div className="mt-6 text-[#4B52AE] font-medium text-[18px] group-hover:underline">
+                      <div className="mt-6 text-[#3E86D9] font-medium text-[18px] group-hover:underline">
                         자세히 읽기 →
                       </div>
                     </div>
@@ -126,7 +126,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                         </time>
                         
-                        <h3 className="text-[14px] md:text-[20px] font-medium mb-1 md:mb-2 line-clamp-2 leading-[20px] md:leading-[28px] tracking-[-0.42px] md:tracking-[-0.54px] group-hover:text-[#4B52AE] transition-colors">
+                        <h3 className="text-[14px] md:text-[20px] font-medium mb-1 md:mb-2 line-clamp-2 leading-[20px] md:leading-[28px] tracking-[-0.42px] md:tracking-[-0.54px] group-hover:text-[#3E86D9] transition-colors">
                           {post.title}
                         </h3>
                         

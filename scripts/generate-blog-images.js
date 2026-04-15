@@ -156,7 +156,7 @@ async function generateFallbackImage(outputPath, isFeatured = false) {
     ? `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#4B52AE;stop-opacity:1" />
+            <stop offset="0%" style="stop-color:#3E86D9;stop-opacity:1" />
             <stop offset="100%" style="stop-color:#868BC7;stop-opacity:1" />
           </linearGradient>
         </defs>
