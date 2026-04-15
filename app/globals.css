@@ -4,16 +4,33 @@
 
 
 @layer base {
+  :root {
+    --font-latin: "Outfit", "Inter", -apple-system, "Roboto";
+    --font-korean: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK KR";
+    --font-ui: "Outfit", "Inter", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK KR";
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
     @apply text-black bg-white;
-    font-family: "Outfit", "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", sans-serif;
+    font-family: var(--font-ui), sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-weight: 300;
+  }
+
+  :lang(en),
+  [lang="en"],
+  .font-en {
+    font-family: var(--font-latin), sans-serif;
+    letter-spacing: 0 !important;
+  }
+
+  .font-ko {
+    font-family: var(--font-korean), sans-serif;
   }
   
   /* Prevent image dragging */

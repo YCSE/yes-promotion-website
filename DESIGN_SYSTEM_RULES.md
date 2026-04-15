@@ -30,7 +30,14 @@ This document provides comprehensive design guidelines and component-specific pa
 
 ### Font Family
 ```css
-font-family: "Asta Sans", sans-serif;
+/* Mixed UI */
+font-family: "Outfit", "Inter", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK KR", sans-serif;
+
+/* English-only */
+font-family: "Outfit", "Inter", -apple-system, "Roboto", sans-serif;
+
+/* Korean-only */
+font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK KR", sans-serif;
 ```
 
 ### Font Weights

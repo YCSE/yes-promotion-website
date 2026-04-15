@@ -44,7 +44,7 @@ const Footer = () => {
             className="relative border-2 border-white text-white px-6 md:px-7 lg:px-8 py-[18px] md:py-[22px] lg:py-[25px] rounded-[100px] flex items-center gap-2 md:gap-2.5 hover:bg-white hover:text-black transition-colors w-[220px] md:w-[240px] lg:w-[260px] justify-center"
           >
             <img src={imgApple} alt="Apple" className="w-[20px] h-[24px] md:w-[22px] md:h-[27px] lg:w-[25px] lg:h-[30px]" />
-            <span className="text-[18px] md:text-[20px] lg:text-[22px] font-light">App Store</span>
+            <span lang="en" className="font-en text-[18px] md:text-[20px] lg:text-[22px] font-light">App Store</span>
           </a>
 
           <a
@@ -54,7 +54,7 @@ const Footer = () => {
             className="relative border-2 border-white text-white px-6 md:px-7 lg:px-8 py-[18px] md:py-[22px] lg:py-[25px] rounded-[100px] flex items-center gap-2 md:gap-2.5 hover:bg-white hover:text-black transition-colors w-[220px] md:w-[240px] lg:w-[260px] justify-center"
           >
             <img src={imgGoogle} alt="Google" className="w-[22px] h-[24px] md:w-[24px] md:h-[27px] lg:w-[27px] lg:h-[30px]" />
-            <span className="text-[18px] md:text-[20px] lg:text-[22px] font-light">Google Play</span>
+            <span lang="en" className="font-en text-[18px] md:text-[20px] lg:text-[22px] font-light">Google Play</span>
           </a>
         </div>
       </div>

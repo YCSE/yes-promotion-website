@@ -28,9 +28,9 @@ module.exports = {
         },
       },
       fontFamily: {
-        'sans': ['"Outfit"', '"Pretendard Variable"', '"Pretendard"', 'system-ui', '-apple-system', '"Apple SD Gothic Neo"', '"Noto Sans KR"', '"Malgun Gothic"', 'sans-serif'],
-        'heading': ['"Outfit"', '"Pretendard Variable"', '"Pretendard"', 'system-ui', 'sans-serif'],
-        'mono': ['"Outfit"', '"Pretendard Variable"', '"Pretendard"', 'system-ui', 'sans-serif'],
+        'sans': ['"Outfit"', '"Inter"', '"Pretendard"', '"Noto Sans KR"', '"Apple SD Gothic Neo"', '"Noto Sans CJK KR"', 'sans-serif'],
+        'heading': ['"Outfit"', '"Inter"', '"Pretendard"', '"Noto Sans KR"', '"Apple SD Gothic Neo"', '"Noto Sans CJK KR"', 'sans-serif'],
+        'mono': ['"Outfit"', '"Inter"', '"Pretendard"', '"Noto Sans KR"', '"Apple SD Gothic Neo"', '"Noto Sans CJK KR"', 'sans-serif'],
       },
       keyframes: {
         'scroll-left': {

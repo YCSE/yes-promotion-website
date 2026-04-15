@@ -106,7 +106,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
                             <div className="flex items-center gap-2 font-bold">
                                 <span className="text-gray-900 blur-[4px]">{koreanName}</span>
                                 {englishName && (
-                                    <span className="text-yes-blue">
+                                    <span lang="en" className="font-en text-yes-blue">
                                         {englishName}
                                     </span>
                                 )}

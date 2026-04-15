@@ -60,7 +60,7 @@ const Section3 = () => {
         <div className="mb-[80px] md:mb-[150px] lg:mb-[200px]">
           <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[50px] lg:leading-[60px] text-center mb-[50px] md:mb-[80px] lg:mb-[100px] tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
             교과서 밖에서 통하는 영어,<br/>
-            YES로 시작하세요!
+            <span lang="en" className="font-en">YES</span>로 시작하세요!
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 lg:gap-20">
@@ -89,7 +89,7 @@ const Section3 = () => {
         <div className="flex flex-col items-center gap-[40px] md:gap-[70px] lg:gap-[100px]">
           <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold leading-[36px] md:leading-[52px] lg:leading-[65px] text-center tracking-[-0.8px] md:tracking-[-0.9px] lg:tracking-[-1px] whitespace-pre">
             수업 이후에도<br/>
-            Tia가 여러분의 코치가 되어줍니다
+            <span lang="en" className="font-en">Tia</span>가 여러분의 코치가 되어줍니다
           </h2>
           
           <div className="w-[280px] h-[500px] md:w-[320px] md:h-[570px] lg:w-[360px] lg:h-[632px] bg-white rounded-[15px] overflow-hidden flex items-center justify-center p-2">
@@ -104,7 +104,7 @@ const Section3 = () => {
           </div>
           
           <p className="text-[16px] md:text-[20px] lg:text-[25px] font-light leading-[26px] md:leading-[32px] lg:leading-[40px] text-center tracking-[-0.48px] md:tracking-[-0.6px] lg:tracking-[-0.75px] whitespace-pre-line px-4">
-            Tia는 여러분의 영어 여정을 함께하는 AI 선생님입니다.
+            <span lang="en" className="font-en">Tia</span>는 여러분의 영어 여정을 함께하는 <span lang="en" className="font-en">AI</span> 선생님입니다.
             수업 중에 했던 표현과 피드백을 분석해 여러분을 돕는 똑똑한 학습 파트너죠.
             수업이 끝난 뒤에도 실력이 향상될 수 있도록 계속해서 코치해 줍니다.
           </p>
@@ -137,7 +137,7 @@ const Section3 = () => {
             onClick={() => setIsTiaModalOpen(true)}
             className="w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white text-[16px] md:text-[22px] lg:text-[25px] font-bold tracking-[-0.48px] md:tracking-[-0.66px] lg:tracking-[-0.75px] hover:bg-white hover:text-[#1A1F3A] transition-colors"
           >
-            Tia 자세히 보기
+            <span lang="en" className="font-en">Tia</span> 자세히 보기
           </button>
         </div>
       </div>

@@ -362,7 +362,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 
                 {/* Example Sentence */}
                 <div className="bg-white rounded-[20px] p-6 mb-6 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
-                  <p className="text-[18px] md:text-[20px] font-medium text-black mb-2">
+                  <p lang="en" className="font-en text-[18px] md:text-[20px] font-medium text-black mb-2">
                     "I've been studying English for years, but I still struggle with speaking fluently."
                   </p>
                   <p className="text-[16px] md:text-[18px] font-light text-gray-600 italic">
@@ -382,16 +382,16 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
                     <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">💡 핵심 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
-                      "struggle with ~" : ~하는 데 어려움을 겪다<br/>
-                      "fluently" : 유창하게, 막힘없이
+                      <span lang="en" className="font-en">"struggle with ~"</span> : ~하는 데 어려움을 겪다<br/>
+                      <span lang="en" className="font-en">"fluently"</span> : 유창하게, 막힘없이
                     </p>
                   </div>
 
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
                     <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">🔄 비슷한 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
-                      "I find it difficult to speak English fluently"<br/>
-                      "Speaking English fluently is still challenging for me"
+                      <span lang="en" className="font-en">"I find it difficult to speak English fluently"</span><br/>
+                      <span lang="en" className="font-en">"Speaking English fluently is still challenging for me"</span>
                     </p>
                   </div>
 
@@ -399,7 +399,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     <h4 className="text-[18px] md:text-[20px] font-bold text-[#4B52AE] mb-3">✅ 연습 팁</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       이 패턴으로 다른 문장도 만들어보세요:<br/>
-                      "I've been working here for..." 등
+                      <span lang="en" className="font-en">"I've been working here for..."</span> 등
                     </p>
                   </div>
                 </div>

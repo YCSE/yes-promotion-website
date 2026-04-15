@@ -97,13 +97,13 @@ export const MDXComponents = {
     const isInline = !className
     if (isInline) {
       return (
-        <code className="relative rounded bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-pink-600" {...props}>
+        <code lang="en" className="font-en relative rounded bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-pink-600" {...props}>
           {children}
         </code>
       )
     }
     return (
-      <code className={`${className} block font-mono text-sm`} {...props}>
+      <code lang="en" className={`font-en ${className} block font-mono text-sm`} {...props}>
         {children}
       </code>
     )

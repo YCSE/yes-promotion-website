@@ -15,7 +15,7 @@ export default function BlogSection() {
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Title */}
         <h2 className="text-[28px] md:text-[40px] lg:text-[50px] font-bold text-center mb-[50px] md:mb-[80px] lg:mb-[100px] leading-[36px] md:leading-[50px] lg:leading-[60px] tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.5px]">
-          YES 블로그에 초대합니다
+          <span lang="en" className="font-en">YES</span> 블로그에 초대합니다
         </h2>
 
         {/* Blog Posts Grid */}
