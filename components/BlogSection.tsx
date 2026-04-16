@@ -46,7 +46,7 @@ export default function BlogSection() {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h4 className="type-h4 font-medium mb-1 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
+                  <h4 className="type-h5 mb-1 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h4>
                   
@@ -87,7 +87,7 @@ export default function BlogSection() {
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h4 className="type-h4 font-medium mb-2 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
+                  <h4 className="type-h5 mb-2 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h4>
                   
