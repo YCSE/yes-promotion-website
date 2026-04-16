@@ -127,7 +127,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             {/* Content */}
             <div className="relative z-10">
             <div className="max-w-[900px] mx-auto text-center">
-              <h1 className="text-[36px] md:text-[50px] lg:text-[60px] font-bold leading-[44px] md:leading-[60px] lg:leading-[72px] tracking-[-1px] md:tracking-[-1.5px] lg:tracking-[-1.8px] mb-6">
+              <h1 className="type-h1 mb-6">
                 AI 영어 선생님 Tia
               </h1>
               <p className="text-[18px] md:text-[20px] lg:text-[24px] font-light leading-[28px] md:leading-[32px] lg:leading-[36px] tracking-[-0.54px] md:tracking-[-0.6px] lg:tracking-[-0.72px] text-white/90 max-w-[600px] mx-auto">
@@ -289,7 +289,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           {/* Main Features */}
           <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
             <div className="max-w-[1000px] mx-auto">
-              <h2 className="text-[28px] md:text-[36px] lg:text-[42px] font-bold text-center text-black mb-4 tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px]">
+              <h2 className="type-h2 text-center text-black mb-4">
                 Tia와 함께라면
               </h2>
               <p className="text-[16px] md:text-[18px] font-light text-center text-gray-600 mb-12 md:mb-16 tracking-[-0.48px] md:tracking-[-0.54px]">
@@ -330,7 +330,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           {/* How It Works Section */}
           <div className="px-8 md:px-16 py-12 md:py-16 bg-[#F8F9FA]">
             <div className="max-w-[1000px] mx-auto">
-              <h2 className="text-[28px] md:text-[36px] lg:text-[42px] font-bold text-center text-black mb-12 md:mb-16 tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px]">
+              <h2 className="type-h2 text-center text-black mb-12 md:mb-16">
                 이렇게 도와드려요
               </h2>
 
@@ -356,7 +356,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
             <div className="max-w-[1000px] mx-auto">
               <div className="bg-gradient-to-br from-[#3E86D9]/10 to-[#868BC7]/10 rounded-[30px] p-8 md:p-12">
-                <h2 className="text-[24px] md:text-[30px] lg:text-[36px] font-bold text-black mb-8 tracking-[-0.72px] md:tracking-[-0.9px] lg:tracking-[-1px]">
+                <h2 className="type-h2 text-black mb-8">
                   문장 분석 기능 예시
                 </h2>
                 
@@ -373,14 +373,14 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 {/* Analysis Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#3E86D9] mb-3">📚 문법 포인트</h4>
+                    <h4 className="type-h4 text-[#3E86D9] mb-3">📚 문법 포인트</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       현재완료진행형 (have been + ~ing)을 사용해 과거부터 현재까지 계속되는 행동을 표현했습니다.
                     </p>
                   </div>
                   
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#3E86D9] mb-3">💡 핵심 표현</h4>
+                    <h4 className="type-h4 text-[#3E86D9] mb-3">💡 핵심 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       <span lang="en" className="font-en">"struggle with ~"</span> : ~하는 데 어려움을 겪다<br/>
                       <span lang="en" className="font-en">"fluently"</span> : 유창하게, 막힘없이
@@ -388,7 +388,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                   </div>
 
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#3E86D9] mb-3">🔄 비슷한 표현</h4>
+                    <h4 className="type-h4 text-[#3E86D9] mb-3">🔄 비슷한 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       <span lang="en" className="font-en">"I find it difficult to speak English fluently"</span><br/>
                       <span lang="en" className="font-en">"Speaking English fluently is still challenging for me"</span>
@@ -396,7 +396,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                   </div>
 
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="text-[18px] md:text-[20px] font-bold text-[#3E86D9] mb-3">✅ 연습 팁</h4>
+                    <h4 className="type-h4 text-[#3E86D9] mb-3">✅ 연습 팁</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       이 패턴으로 다른 문장도 만들어보세요:<br/>
                       <span lang="en" className="font-en">"I've been working here for..."</span> 등
@@ -410,7 +410,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           {/* Stats Section */}
           <div className="px-8 md:px-16 py-12 md:py-16 bg-gradient-to-r from-[#222222] to-[#3E86D9] text-white">
             <div className="max-w-[800px] mx-auto">
-              <h2 className="text-[28px] md:text-[36px] font-bold text-center mb-10 md:mb-12 tracking-[-0.8px] md:tracking-[-1px]">
+              <h2 className="type-h2 text-center mb-10 md:mb-12">
                 Tia 사용자들의 성과
               </h2>
               <div className="grid grid-cols-3 gap-4 md:gap-8">
@@ -437,7 +437,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             </p>
             <button 
               onClick={handleClose}
-              className="bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full text-[16px] md:text-[18px] font-bold hover:bg-[#3676BF] transition-colors shadow-[0_8px_24px_rgba(62,134,217,0.3)]"
+              className="type-button-text bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-[#3676BF] transition-colors shadow-[0_8px_24px_rgba(62,134,217,0.3)]"
             >
               닫기
             </button>
