@@ -83,7 +83,7 @@ const Section5 = () => {
                   <h4 className="type-h4 mb-4 md:mb-5 lg:mb-6 text-black">
                     {feature.title}
                   </h4>
-                  <p className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-gray-600 whitespace-pre-line leading-[20px] md:leading-[22px] lg:leading-[24px] tracking-[-0.42px] md:tracking-[-0.45px] lg:tracking-[-0.48px]">
+                  <p className="type-body-base text-gray-600 whitespace-pre-line">
                     {feature.description}
                   </p>
                 </div>
@@ -104,7 +104,7 @@ const Section5 = () => {
                   className="block w-full cursor-pointer"
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
                 >
-                  <span className={`type-faq-title block text-center transition-all ${
+                  <span className={`type-faq block text-center transition-all ${
                     openFaq === index ? 'text-[#3E86D9] font-bold' : 'text-black font-light'
                   }`}>
                     {faq.question}
@@ -114,7 +114,7 @@ const Section5 = () => {
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openFaq === index ? 'max-h-[250px] md:max-h-[200px] opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                  <p className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-gray-600 mt-6 md:mt-7 lg:mt-8 text-center max-w-[800px] mx-auto leading-[1.6em] tracking-[-0.42px] md:tracking-[-0.45px] lg:tracking-[-0.48px] px-4 md:px-0">
+                  <p className="type-body-base text-gray-600 mt-6 md:mt-7 lg:mt-8 text-center max-w-[800px] mx-auto px-4 md:px-0">
                     {faq.answer}
                   </p>
                 </div>

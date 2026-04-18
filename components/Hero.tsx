@@ -56,7 +56,7 @@ const Hero = () => {
               className="group relative w-[150px] md:w-[200px] border border-black text-black py-2.5 md:py-3.5 rounded-[100px] flex items-center justify-center gap-2 hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
             >
               <img src={getAssetPath('images/70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg')} alt="Apple" className="w-[16px] h-[20px] md:w-[20px] md:h-[24px] invert group-hover:invert-0 transition-all duration-300" />
-              <span lang="en" className="font-en type-button-text">App Store</span>
+              <span lang="en" className="font-en type-button-primary">App Store</span>
             </a>
 
             <a
@@ -66,7 +66,7 @@ const Hero = () => {
               className="group relative w-[150px] md:w-[200px] border border-black text-black py-2.5 md:py-3.5 rounded-[100px] flex items-center justify-center gap-2 hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
             >
               <img src={getAssetPath('images/e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')} alt="Google" className="w-[18px] h-[20px] md:w-[22px] md:h-[24px] invert group-hover:invert-0 transition-all duration-300" />
-              <span lang="en" className="font-en type-button-text">Google Play</span>
+              <span lang="en" className="font-en type-button-primary">Google Play</span>
             </a>
           </div>
         </div>

@@ -437,7 +437,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             </p>
             <button 
               onClick={handleClose}
-              className="type-button-text bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-[#3676BF] transition-colors shadow-[0_8px_24px_rgba(62,134,217,0.3)]"
+              className="type-button-primary bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-[#3676BF] transition-colors shadow-[0_8px_24px_rgba(62,134,217,0.3)]"
             >
               닫기
             </button>

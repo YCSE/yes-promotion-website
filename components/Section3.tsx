@@ -77,7 +77,7 @@ const Section3 = () => {
                 </div>
                 <h6 className="type-h6 text-text-identity-dark mb-[15px] md:mb-[18px] lg:mb-[22px]">{feature.title}</h6>
                 <h4 className="type-h4 text-white mb-[15px] md:mb-[20px] lg:mb-[23px]">{feature.subtitle}</h4>
-                <p className="text-[14px] md:text-[16px] lg:text-[18px] font-light text-white/90 whitespace-pre-line tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] leading-[24px] md:leading-[28px] lg:leading-[32px]">
+                <p className="type-body-base text-white/90 whitespace-pre-line">
                   {feature.description}
                 </p>
               </div>
@@ -103,7 +103,7 @@ const Section3 = () => {
             />
           </div>
           
-          <p className="text-[16px] md:text-[20px] lg:text-[25px] font-light leading-[26px] md:leading-[32px] lg:leading-[40px] text-center tracking-[-0.48px] md:tracking-[-0.6px] lg:tracking-[-0.75px] whitespace-pre-line px-4">
+          <p className="type-body-emphasis text-center whitespace-pre-line px-4">
             <span lang="en" className="font-en">Tia</span>는 여러분의 영어 여정을 함께하는 <span lang="en" className="font-en">AI</span> 선생님입니다.
             수업 중에 했던 표현과 피드백을 분석해 여러분을 돕는 똑똑한 학습 파트너죠.
             수업이 끝난 뒤에도 실력이 향상될 수 있도록 계속해서 코치해 줍니다.
@@ -125,7 +125,7 @@ const Section3 = () => {
                   <h4 className="type-h4">
                     {feature.title}
                   </h4>
-                  <p className="text-[14px] md:text-[16px] lg:text-[18px] font-light leading-[24px] md:leading-[28px] lg:leading-[32px] tracking-[-0.42px] md:tracking-[-0.48px] lg:tracking-[-0.54px] whitespace-pre">
+                  <p className="type-body-base whitespace-pre">
                     {feature.description}
                   </p>
                 </div>
@@ -135,7 +135,7 @@ const Section3 = () => {
           
           <button 
             onClick={() => setIsTiaModalOpen(true)}
-            className="type-button-text w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
+            className="type-button-primary w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
           >
             <span lang="en" className="font-en">Tia</span> 자세히 보기
           </button>

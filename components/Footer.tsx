@@ -15,21 +15,21 @@ const Footer = () => {
             실전 영어 감각,<br />
             YES에서 키워보세요!
           </h2>
-          <p className="text-[11px] md:text-[12px] lg:text-[13px] font-light text-[#999999] uppercase leading-[30px] md:leading-[35px] lg:leading-[40px]">
+          <p lang="en" className="type-body-support text-[#999999] uppercase tracking-[0.08em]">
             © 2025 YCSE. All rights reserved.
           </p>
 
           <div className="flex gap-4 justify-center lg:justify-start mt-4">
             <Link
               href="/"
-              className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#3E86D9] transition-colors"
+              className="type-body-support text-white hover:text-[#3E86D9] transition-colors"
             >
               홈
             </Link>
             <span className="text-white/30">|</span>
             <Link
               href="/blog"
-              className="text-[14px] md:text-[15px] lg:text-[16px] font-light text-white hover:text-[#3E86D9] transition-colors"
+              className="type-body-support text-white hover:text-[#3E86D9] transition-colors"
             >
               블로그
             </Link>
@@ -44,7 +44,7 @@ const Footer = () => {
             className="relative border-2 border-white text-white px-6 md:px-7 lg:px-8 py-[18px] md:py-[22px] lg:py-[25px] rounded-[100px] flex items-center gap-2 md:gap-2.5 hover:bg-white hover:text-black transition-colors w-[220px] md:w-[240px] lg:w-[260px] justify-center"
           >
             <img src={imgApple} alt="Apple" className="w-[20px] h-[24px] md:w-[22px] md:h-[27px] lg:w-[25px] lg:h-[30px]" />
-            <span lang="en" className="font-en type-button-text">App Store</span>
+            <span lang="en" className="font-en type-button-primary">App Store</span>
           </a>
 
           <a
@@ -54,7 +54,7 @@ const Footer = () => {
             className="relative border-2 border-white text-white px-6 md:px-7 lg:px-8 py-[18px] md:py-[22px] lg:py-[25px] rounded-[100px] flex items-center gap-2 md:gap-2.5 hover:bg-white hover:text-black transition-colors w-[220px] md:w-[240px] lg:w-[260px] justify-center"
           >
             <img src={imgGoogle} alt="Google" className="w-[22px] h-[24px] md:w-[24px] md:h-[27px] lg:w-[27px] lg:h-[30px]" />
-            <span lang="en" className="font-en type-button-text">Google Play</span>
+            <span lang="en" className="font-en type-button-primary">Google Play</span>
           </a>
         </div>
       </div>
