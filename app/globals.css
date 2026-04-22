@@ -10,7 +10,7 @@
     --font-ui: "Outfit", "Inter", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK KR";
 
     /* Landing typography tokens - mobile default (375) */
-    --type-h1-size: 36px;
+    --type-h1-size: 32px;
     --type-h2-size: 26px;
     --type-h3-size: 20px;
     --type-h4-size: 18px;
@@ -238,6 +238,11 @@
     font-weight: 700;
   }
 
+  .hero-question-line {
+    font-size: 26px;
+    font-weight: 300;
+  }
+
   .type-h2 {
     font-size: var(--type-h2-size);
     line-height: 1.4;
@@ -353,5 +358,17 @@
 
   .cta-pill-button-dark {
     border-width: 1.5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-question-line {
+    font-size: 46px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-question-line {
+    font-size: 56px;
   }
 }
