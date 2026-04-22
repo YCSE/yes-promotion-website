@@ -1,8 +1,20 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
+
+const HERO_CARDS = [
+  { name: 'hero-call1' },
+  { name: 'hero-call2' },
+  { name: 'hero-call3' },
+  { name: 'hero-call4' },
+  { name: 'hero-call5' },
+  { name: 'hero-call6' },
+  { name: 'hero-call7' },
+  { name: 'hero-call8' },
+] as const
+
+const heroImageSrcCache = new Map<string, string>()
 
 function AppleStoreIcon() {
   return (
@@ -40,51 +52,132 @@ function GooglePlayIcon() {
   )
 }
 
+function HeroCallCard({
+  name,
+  index,
+}: {
+  name: string
+  index: number
+}) {
+  const candidates = [
+    getAssetPath(`images/hero/${name}-540.webp`),
+    getAssetPath(`images/hero/${name}-1080.webp`),
+    getAssetPath(`images/hero/${name}.png`),
+  ]
+  const [resolvedSrc, setResolvedSrc] = useState<string | null>(() => heroImageSrcCache.get(name) ?? null)
+
+  useEffect(() => {
+    if (heroImageSrcCache.has(name)) {
+      setResolvedSrc(heroImageSrcCache.get(name) ?? null)
+      return
+    }
+
+    let cancelled = false
+    let probeImage: HTMLImageElement | null = null
+
+    const tryLoad = (candidateIndex: number) => {
+      if (candidateIndex >= candidates.length) {
+        setResolvedSrc(candidates[candidates.length - 1] ?? null)
+        return
+      }
+
+      probeImage = new window.Image()
+      probeImage.onload = () => {
+        if (cancelled) return
+        heroImageSrcCache.set(name, candidates[candidateIndex])
+        setResolvedSrc(candidates[candidateIndex])
+      }
+      probeImage.onerror = () => {
+        if (cancelled) return
+        tryLoad(candidateIndex + 1)
+      }
+      probeImage.src = candidates[candidateIndex]
+    }
+
+    tryLoad(0)
+
+    return () => {
+      cancelled = true
+      if (probeImage) {
+        probeImage.onload = null
+        probeImage.onerror = null
+      }
+    }
+  }, [candidates, name])
+
+  return (
+    <div
+      className="relative h-[294px] w-[190px] overflow-hidden bg-white/12 md:h-[294px] md:w-[190px] lg:h-[294px] lg:w-[190px]"
+    >
+      {resolvedSrc ? (
+        <img
+          src={resolvedSrc}
+          alt={`Hero call thumbnail ${index + 1}`}
+          className="h-full w-full object-cover object-top"
+          loading={index < 4 ? 'eager' : 'lazy'}
+          decoding="async"
+          draggable="false"
+        />
+      ) : null}
+    </div>
+  )
+}
+
 const Hero = () => {
   const sliderRef = useRef<HTMLDivElement>(null)
+  const firstSetRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const slider = sliderRef.current
-    if (!slider) return
+    const firstSet = firstSetRef.current
+    if (!slider || !firstSet) return
 
     let animationId: number
     let position = 0
-    const speed = 0.5
+    let trackWidth = 0
+
+    const updateTrackWidth = () => {
+      trackWidth = firstSet.getBoundingClientRect().width
+
+      if (trackWidth > 0 && position <= -trackWidth) {
+        position += trackWidth
+      }
+    }
 
     const animate = () => {
+      const speed = window.innerWidth < 768 ? 0.35 : window.innerWidth < 1280 ? 0.5 : 0.65
       position -= speed
 
-      // When the first image has scrolled completely out of view, reset position
-      // Check screen size and use appropriate width
-      const isMobile = window.innerWidth < 768
-      const imageWidth = isMobile ? 1448 : 3634
-      if (position <= -imageWidth) {
-        position = 0
+      if (trackWidth > 0 && position <= -trackWidth) {
+        position += trackWidth
       }
 
-      slider.style.transform = `translateX(${position}px)`
+      slider.style.transform = `translate3d(${position}px, 0, 0)`
       animationId = requestAnimationFrame(animate)
     }
 
+    updateTrackWidth()
+    window.addEventListener('resize', updateTrackWidth)
     animationId = requestAnimationFrame(animate)
 
     return () => {
+      window.removeEventListener('resize', updateTrackWidth)
       cancelAnimationFrame(animationId)
     }
   }, [])
 
   return (
-    <section className="relative w-full h-[90svh] overflow-hidden bg-yes-blue">
-      <div className="flex h-full flex-col items-center justify-start gap-[24px] px-4 pt-[32px] md:gap-[48px] md:px-6 md:pt-[80px] lg:pt-[96px]">
-        <div className="flex flex-col items-center gap-6 md:gap-10 z-10">
-          <div className="text-center">
+    <section className="hero-section relative w-full h-[90svh] overflow-hidden bg-yes-blue lg:h-[100svh]">
+      <div className="hero-layout flex h-full flex-col">
+        <div className="hero-content-wrapper flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-4 md:gap-[27px] md:px-6">
+          <div className="z-10 text-center">
             <h1 className="type-h1 text-white">
               <span className="block hero-question-line">영어가 너무 어렵다고?</span>
               <span className="block">답은 이미 정해져 <span className="font-ko font-extrabold text-white">익스</span></span>
             </h1>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 items-center">
+          <div className="flex flex-col items-center gap-3 md:gap-4 sm:flex-row">
             <a
               href="https://apps.apple.com/app/id6745255649"
               target="_blank"
@@ -107,33 +200,33 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative mt-[8px] w-full min-h-0 flex-1 overflow-hidden md:mt-0">
+        <div className="hero-carousel relative -mx-4 h-[294px] w-[calc(100%+32px)] overflow-hidden md:-mx-6 md:h-[294px] md:w-[calc(100%+48px)] lg:h-[294px]">
           <div
             ref={sliderRef}
-            className="absolute inset-y-0 flex h-full items-center"
+            className="absolute bottom-0 left-0 flex h-full items-end"
             style={{ willChange: 'transform' }}
           >
-            {/* First copy of the image */}
-            <div className="relative h-full flex-shrink-0 w-[1448px] md:w-[3634px]">
-              <Image
-                src={getAssetPath('images/thumbnail_PC.webp')}
-                alt="Students and Teachers"
-                width={3480}
-                height={454}
-                className="h-full w-full object-contain object-center"
-                priority
-              />
+            <div
+              ref={firstSetRef}
+              className="flex h-full flex-none items-end gap-[40px] pr-[40px] md:gap-[50px] md:pr-[50px] lg:gap-[60px] lg:pr-[60px]"
+            >
+              {HERO_CARDS.map((card, index) => (
+                <HeroCallCard
+                  key={card.name}
+                  name={card.name}
+                  index={index}
+                />
+              ))}
             </div>
-            {/* Second copy for seamless loop */}
-            <div className="relative h-full flex-shrink-0 w-[1448px] md:w-[3634px]">
-              <Image
-                src={getAssetPath('images/thumbnail_PC.webp')}
-                alt="Students and Teachers"
-                width={3480}
-                height={454}
-                className="h-full w-full object-contain object-center"
-                priority
-              />
+
+            <div className="flex h-full flex-none items-end gap-[40px] pr-[40px] md:gap-[50px] md:pr-[50px] lg:gap-[60px] lg:pr-[60px]">
+              {HERO_CARDS.map((card, index) => (
+                <HeroCallCard
+                  key={`${card.name}-duplicate`}
+                  name={card.name}
+                  index={index}
+                />
+              ))}
             </div>
           </div>
         </div>
