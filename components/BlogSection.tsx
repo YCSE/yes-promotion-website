@@ -104,7 +104,7 @@ export default function BlogSection() {
         <div className="flex justify-center">
           <Link 
             href="/blog"
-            className="cta-pill-button cta-pill-button-light relative border-black border-solid hover:bg-black hover:text-white transition-all duration-300 group"
+            className="cta-pill-button cta-pill-button-light relative border-border-gray2 border-solid hover:bg-black hover:text-white transition-all duration-300 group"
           >
             <div className="flex items-center justify-center">
               <span className="type-button-primary text-center text-black group-hover:text-white transition-colors duration-300">

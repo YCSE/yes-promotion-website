@@ -328,6 +328,11 @@
     text-align: center;
   }
 
+  .cta-store-button {
+    padding-top: 11px;
+    padding-bottom: 13px;
+  }
+
   .cta-pill-icon {
     display: block;
     flex: 0 0 auto;
@@ -343,7 +348,7 @@
   }
 
   .cta-pill-button-light {
-    border-width: 1px;
+    border-width: 1.2px;
   }
 
   .cta-pill-button-dark {

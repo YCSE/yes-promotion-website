@@ -41,7 +41,7 @@ const Footer = () => {
             href="https://apps.apple.com/app/id6745255649"
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-pill-button cta-pill-button-dark group relative border-white text-white hover:bg-white hover:text-black transition-colors"
+            className="cta-pill-button cta-store-button cta-pill-button-dark group relative border-white text-white hover:bg-white hover:text-black transition-colors"
           >
             <img src={imgApple} alt="Apple" className="cta-pill-icon cta-pill-icon-apple group-hover:invert transition-all duration-300" />
             <span lang="en" className="font-en type-button-primary">App Store</span>
@@ -51,7 +51,7 @@ const Footer = () => {
             href="https://play.google.com/store/apps/details?id=kr.ycse"
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-pill-button cta-pill-button-dark group relative border-white text-white hover:bg-white hover:text-black transition-colors"
+            className="cta-pill-button cta-store-button cta-pill-button-dark group relative border-white text-white hover:bg-white hover:text-black transition-colors"
           >
             <img src={imgGoogle} alt="Google" className="cta-pill-icon cta-pill-icon-google h-[18px] w-[16.2px] group-hover:invert transition-all duration-300" />
             <span lang="en" className="font-en type-button-primary">Google Play</span>

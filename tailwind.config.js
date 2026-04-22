@@ -12,6 +12,7 @@ module.exports = {
         'yes-blue': '#3E86D9', // Primary Brand Color
         'accent-blue': '#3E86D9', // Interactive elements, links
         'bg-dark': '#222222', // Dark background
+        'border-gray2': '#666666', // CTA/button stroke on light backgrounds
         'text-primary': '#111111', // Main text
         'text-identity-dark': '#5AA4F9', // Identity text on dark background
 

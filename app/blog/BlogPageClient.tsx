@@ -145,7 +145,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
               <div className="flex justify-center mb-[100px]">
                 <button
                   onClick={handleLoadMore}
-                  className="cta-pill-button cta-pill-button-light relative border-black border-solid hover:bg-black hover:text-white transition-all duration-300 group"
+                  className="cta-pill-button cta-pill-button-light relative border-border-gray2 border-solid hover:bg-black hover:text-white transition-all duration-300 group"
                 >
                   <div className="flex items-center justify-center">
                     <span className="font-bold text-[18px] md:text-[22px] lg:text-[25px] leading-[23.4px] md:leading-[28.6px] lg:leading-[32.5px] tracking-[-0.54px] md:tracking-[-0.66px] lg:tracking-[-0.75px] text-center text-black group-hover:text-white transition-colors duration-300">
