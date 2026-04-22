@@ -92,7 +92,7 @@ const Section3 = () => {
             <span className="font-ko">티아</span>가 여러분의 코치가 되어줍니다
           </h2>
           
-          <div className="w-[280px] h-[500px] md:w-[320px] md:h-[570px] lg:w-[360px] lg:h-[632px] bg-white rounded-[15px] overflow-hidden flex items-center justify-center p-2">
+          <div className="w-[280px] h-[500px] md:w-[320px] md:h-[570px] lg:w-[360px] lg:h-[632px] bg-white rounded-[10px] overflow-hidden flex items-center justify-center p-2">
             <video 
               className="w-full h-full object-contain rounded-[10px]"
               src={getAssetPath('images/section3-2/tia.mp4')}

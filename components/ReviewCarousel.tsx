@@ -98,7 +98,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
     const englishName = nameMatch ? nameMatch[2] : ''
 
     return (
-        <div className="flex-shrink-0 w-[300px] md:w-[350px] bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mx-3 flex flex-col justify-between h-[220px]">
+        <div className="flex-shrink-0 w-[300px] md:w-[350px] bg-white p-6 rounded-[10px] border border-gray-100 mx-3 flex flex-col justify-between h-[220px]">
             <div>
                 <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">

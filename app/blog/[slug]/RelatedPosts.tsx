@@ -61,7 +61,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
             >
               <article className="h-full flex flex-col">
                 {/* Square Image */}
-                <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[20px] mb-4">
+                <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[10px] mb-4">
                   {post.featuredImage ? (
                     <Image
                       src={post.featuredImage}

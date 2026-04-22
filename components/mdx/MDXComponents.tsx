@@ -87,7 +87,7 @@ export const MDXComponents = {
 
   // Blockquote
   blockquote: ({ children, node, ...props }: any) => (
-    <blockquote className="mt-6 border-l-4 border-yes-blue pl-6 italic text-gray-700 bg-gray-50 py-4 pr-4 rounded-r-lg" {...props}>
+    <blockquote className="mt-6 border-l-4 border-yes-blue pl-6 italic text-gray-700 bg-gray-50 py-4 pr-4 rounded-r-[10px]" {...props}>
       {children}
     </blockquote>
   ),
@@ -97,7 +97,7 @@ export const MDXComponents = {
     const isInline = !className
     if (isInline) {
       return (
-        <code lang="en" className="font-en relative rounded bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-pink-600" {...props}>
+        <code lang="en" className="font-en relative rounded-[10px] bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold text-pink-600" {...props}>
           {children}
         </code>
       )
@@ -110,7 +110,7 @@ export const MDXComponents = {
   },
 
   pre: ({ children, node, ...props }: any) => (
-    <pre className="mb-4 mt-6 overflow-x-auto rounded-lg border border-gray-200 bg-gray-900 p-4 shadow-sm" {...props}>
+    <pre className="mb-4 mt-6 overflow-x-auto rounded-[10px] border border-gray-200 bg-gray-900 p-4" {...props}>
       {children}
     </pre>
   ),
@@ -123,7 +123,7 @@ export const MDXComponents = {
         alt={alt || ''}
         width={900}
         height={500}
-        className="rounded-xl border border-gray-100 shadow-md w-full h-auto"
+        className="rounded-[10px] border border-gray-100 w-full h-auto shadow-none"
         {...props}
       />
       {alt && <span className="block text-center text-sm text-gray-500 mt-2 italic">{alt}</span>}
@@ -132,7 +132,7 @@ export const MDXComponents = {
 
   // Tables
   table: ({ children, node, ...props }: any) => (
-    <div className="my-6 w-full overflow-y-auto rounded-lg border border-gray-200 shadow-sm">
+    <div className="my-6 w-full overflow-y-auto rounded-[10px] border border-gray-200">
       <table className="w-full" {...props}>
         {children}
       </table>
@@ -171,7 +171,7 @@ export const MDXComponents = {
 
   // Special: English Examples Box (Clean, Professional)
   ExampleBox: ({ children, title }: { children: React.ReactNode; title?: string }) => (
-    <div className="my-8 rounded-lg border border-blue-100 bg-blue-50/50 p-6 shadow-sm">
+    <div className="my-8 rounded-[10px] border border-blue-100 bg-blue-50/50 p-6">
       {title && (
         <div className="flex items-center gap-2 mb-3 text-yes-blue font-bold text-lg">
           <span className="text-xl">📝</span>
@@ -186,7 +186,7 @@ export const MDXComponents = {
 
   // Special: Practice Exercise Box
   PracticeBox: ({ children, title }: { children: React.ReactNode; title?: string }) => (
-    <div className="my-8 rounded-lg border border-amber-200 bg-amber-50/50 p-6 shadow-sm">
+    <div className="my-8 rounded-[10px] border border-amber-200 bg-amber-50/50 p-6">
       <div className="flex items-center gap-2 mb-3 text-amber-800 font-bold text-lg">
         <span className="text-xl">✏️</span>
         {title || '연습 문제'}
@@ -199,7 +199,7 @@ export const MDXComponents = {
 
   // Special: Tip Box
   TipBox: ({ children, title }: { children: React.ReactNode; title?: string }) => (
-    <div className="my-8 rounded-lg border-l-4 border-emerald-500 bg-emerald-50 p-6 shadow-sm">
+    <div className="my-8 rounded-[10px] border-l-4 border-emerald-500 bg-emerald-50 p-6">
       <div className="flex items-center gap-2 mb-3 text-emerald-800 font-bold text-lg">
         <span className="text-xl">💡</span>
         {title || 'YES 팁'}

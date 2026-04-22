@@ -28,7 +28,7 @@ export default function BlogSection() {
             >
               <article className="h-full flex flex-col">
                 {/* Square Image */}
-                <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[15px] mb-3">
+                <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[10px] mb-3">
                   {post.featuredImage ? (
                     <img
                       src={post.featuredImage}
@@ -69,7 +69,7 @@ export default function BlogSection() {
             >
               <article className="h-full flex flex-col">
                 {/* Square Image */}
-                <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[20px] mb-4">
+                <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[10px] mb-4">
                   {post.featuredImage ? (
                     <img
                       src={post.featuredImage}

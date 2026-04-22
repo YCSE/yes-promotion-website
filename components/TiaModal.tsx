@@ -95,7 +95,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
       
       {/* Modal Content */}
       <div 
-        className={`relative bg-white rounded-[30px] w-[90vw] max-w-[1200px] max-h-[85vh] overflow-hidden transform transition-all duration-300 ${
+        className={`relative bg-white rounded-[10px] w-[90vw] max-w-[1200px] max-h-[85vh] overflow-hidden transform transition-all duration-300 ${
           isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-10'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -103,7 +103,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
         {/* Close Button - Glassmorphism */}
         <button 
           onClick={handleClose}
-          className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md border border-white/30 hover:bg-white/90 z-10 shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-all"
+          className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md border border-white/30 hover:bg-white/90 z-10 transition-all"
         >
           <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
@@ -176,7 +176,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     선생님의 귀중한 조언과 교정 내용들이 수업이 끝나면 사라지고, 같은 실수를 반복하게 됩니다. 
                     이러한 한계들은 학습자의 시간과 비용 대비 효과를 떨어뜨리는 주요 원인이 되고 있습니다.
                   </p>
-                  <p className="text-[15px] md:text-[17px] font-medium text-[#3E86D9] leading-[26px] md:leading-[30px] bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[12px] p-4">
+                  <p className="text-[15px] md:text-[17px] font-medium text-[#3E86D9] leading-[26px] md:leading-[30px] bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[10px] p-4">
                     이 모든 문제를 해결하기 위해 우리는 티아를 설계했습니다. 
                     언어 학습의 말하기, 듣기, 읽기, 쓰기 4가지 영역을 균형 있게 발달시키고, 체계적인 문법과 어휘 학습을 지원하며, 
                     개인별 맞춤형 학습 경로를 제공하여 실력 정체를 돌파할 수 있도록 돕습니다.
@@ -195,7 +195,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     최신 AI 기술로 구현한 과학적 학습 도구입니다.
                   </p>
                   
-                  <div className="bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[16px] p-5 md:p-6 mb-6">
+                  <div className="bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[10px] p-5 md:p-6 mb-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       <span className="font-bold text-[#3E86D9]">Stephen Krashen의 이해가능한 입력 이론(i+1)</span>은 
                       언어 학습의 핵심 원리를 제시합니다. 학습자의 현재 수준(i)보다 약간 높은 수준(+1)의 입력을 받을 때 
@@ -204,7 +204,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[16px] p-5 md:p-6 mb-6">
+                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[10px] p-5 md:p-6 mb-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       <span className="font-bold text-[#3E86D9]">Merrill Swain의 출력 가설</span>은 
                       단순히 듣고 이해하는 것만으로는 부족하다고 지적합니다. 직접 말하고 쓰는 과정에서 
@@ -214,7 +214,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[16px] p-5 md:p-6 mb-6">
+                  <div className="bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[10px] p-5 md:p-6 mb-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       <span className="font-bold text-[#3E86D9]">Michael Long의 상호작용 가설</span>은 
                       의미 협상(meaning negotiation) 과정의 중요성을 강조합니다. 대화 중 이해하지 못한 부분을 
@@ -224,7 +224,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[16px] p-5 md:p-6">
+                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[10px] p-5 md:p-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       마지막으로 <span className="font-bold text-[#3E86D9]">정의적 여과 가설(Affective Filter)</span>은 
                       감정 상태가 학습에 미치는 영향을 설명합니다. 불안, 자신감 부족, 동기 결여 등의 부정적 감정은 
@@ -257,7 +257,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 </div>
                 
                 {/* 통계 시각화 */}
-                <div className="bg-gradient-to-br from-[#222222] to-[#3E86D9] rounded-[24px] p-8 md:p-10 text-white">
+                <div className="bg-gradient-to-br from-[#222222] to-[#3E86D9] rounded-[10px] p-8 md:p-10 text-white">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
                     <div className="text-center">
                       <div className="text-[36px] md:text-[42px] font-extrabold mb-1">3.2배</div>
@@ -300,7 +300,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 {features.map((feature, index) => (
                   <div 
                     key={index}
-                    className="bg-gradient-to-r from-gray-50 to-white rounded-[20px] p-6 md:p-8 border border-gray-100 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-all duration-300"
+                    className="bg-gradient-to-r from-gray-50 to-white rounded-[10px] p-6 md:p-8 border border-gray-100 transition-all duration-300"
                   >
                     <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
                       <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] flex-shrink-0">
@@ -337,7 +337,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                 {howItWorks.map((step, index) => (
                   <div key={index} className="text-center">
-                    <div className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-[#3E86D9] text-white rounded-full mb-4 md:mb-6">
+                    <div className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] bg-[#3E86D9] text-white rounded-[10px] mb-4 md:mb-6">
                       <span className="text-[24px] md:text-[32px] font-bold">{step.number}</span>
                     </div>
                     <h3 className="text-[20px] md:text-[24px] font-bold text-black mb-3 tracking-[-0.6px] md:tracking-[-0.72px]">
@@ -355,13 +355,13 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           {/* Detailed Explanation Feature */}
           <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
             <div className="max-w-[1000px] mx-auto">
-              <div className="bg-gradient-to-br from-[#3E86D9]/10 to-[#868BC7]/10 rounded-[30px] p-8 md:p-12">
+              <div className="bg-gradient-to-br from-[#3E86D9]/10 to-[#868BC7]/10 rounded-[10px] p-8 md:p-12">
                 <h2 className="type-h2 text-black mb-8">
                   문장 분석 기능 예시
                 </h2>
                 
                 {/* Example Sentence */}
-                <div className="bg-white rounded-[20px] p-6 mb-6 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+                <div className="bg-white rounded-[10px] p-6 mb-6">
                   <p lang="en" className="font-en text-[18px] md:text-[20px] font-medium text-black mb-2">
                     "I've been studying English for years, but I still struggle with speaking fluently."
                   </p>
@@ -372,14 +372,14 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
 
                 {/* Analysis Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                  <div className="bg-white rounded-[10px] p-4 md:p-6">
                     <h4 className="type-h3 text-[#3E86D9] mb-3">📚 문법 포인트</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       현재완료진행형 (have been + ~ing)을 사용해 과거부터 현재까지 계속되는 행동을 표현했습니다.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                  <div className="bg-white rounded-[10px] p-4 md:p-6">
                     <h4 className="type-h3 text-[#3E86D9] mb-3">💡 핵심 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       <span lang="en" className="font-en">"struggle with ~"</span> : ~하는 데 어려움을 겪다<br/>
@@ -387,7 +387,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                  <div className="bg-white rounded-[10px] p-4 md:p-6">
                     <h4 className="type-h3 text-[#3E86D9] mb-3">🔄 비슷한 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       <span lang="en" className="font-en">"I find it difficult to speak English fluently"</span><br/>
@@ -395,7 +395,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-[16px] p-4 md:p-6">
+                  <div className="bg-white rounded-[10px] p-4 md:p-6">
                     <h4 className="type-h3 text-[#3E86D9] mb-3">✅ 연습 팁</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       이 패턴으로 다른 문장도 만들어보세요:<br/>
@@ -437,7 +437,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             </p>
             <button 
               onClick={handleClose}
-              className="type-button-primary bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-[#3676BF] transition-colors shadow-[0_8px_24px_rgba(62,134,217,0.3)]"
+              className="type-button-primary bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-[#3676BF] transition-colors"
             >
               닫기
             </button>

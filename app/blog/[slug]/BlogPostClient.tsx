@@ -82,12 +82,12 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
       {/* Featured Image */}
       {post.featuredImage && (
         <div className="max-w-[900px] mx-auto px-6 -mt-[30px] mb-[60px]">
-          <div className="relative w-full h-[300px] md:h-[500px] rounded-[20px] overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.12)]">
+          <div className="relative w-full h-[300px] md:h-[500px] rounded-[10px] overflow-hidden">
             <Image
               src={post.featuredImage}
               alt={post.title}
               fill
-              className="object-cover"
+              className="object-cover shadow-none"
               priority
               sizes="(max-width: 768px) 100vw, 900px"
             />

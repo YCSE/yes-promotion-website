@@ -51,7 +51,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                 <article className="bg-white">
                   <div className="flex flex-col">
                     {/* Featured Image */}
-                    <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] bg-gray-100 overflow-hidden rounded-[20px] mb-8">
+                    <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] bg-gray-100 overflow-hidden rounded-[10px] mb-8">
                       {featuredPost.featuredImage ? (
                         <Image
                           src={featuredPost.featuredImage}
@@ -106,7 +106,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                   >
                     <article className="bg-white h-full flex flex-col">
                       {/* Square Image */}
-                      <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[20px] mb-4">
+                      <div className="relative w-full aspect-square bg-gray-100 overflow-hidden rounded-[10px] mb-4">
                         {post.featuredImage ? (
                           <Image
                             src={post.featuredImage}

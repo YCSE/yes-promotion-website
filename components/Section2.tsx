@@ -44,7 +44,7 @@ const Section2 = () => {
           {speechBubbles.map((bubble, index) => (
             <div
               key={index}
-              className="absolute bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
+              className="absolute bg-white rounded-[10px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
               style={{
                 top: `${bubble.top}px`,
                 left: `${bubble.left}px`,
@@ -64,7 +64,7 @@ const Section2 = () => {
           {mobileSpeechBubbles.map((bubble, index) => (
             <div
               key={index}
-              className="bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
+              className="bg-white rounded-[10px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
             >
               <p className="type-body-base text-black whitespace-pre-line text-center">
                 {bubble.text}
@@ -78,7 +78,7 @@ const Section2 = () => {
           {mobileSpeechBubbles.map((bubble, index) => (
             <div
               key={index}
-              className="bg-white rounded-[20px] px-4 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              className="bg-white rounded-[10px] px-4 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
             >
               <p className="type-body-base text-black whitespace-pre-line text-center">
                 {bubble.text}
