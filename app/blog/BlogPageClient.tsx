@@ -68,7 +68,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                     
                     {/* Content below image */}
                     <div className="flex flex-col">
-                      <time className="text-[14px] leading-[21px] text-gray-500 mb-3">
+                      <time className="type-h6 blog-list-meta font-num text-gray-500 mb-3">
                         {format(new Date(featuredPost.date), 'yyyy년 M월 d일', { locale: ko })}
                       </time>
                       
@@ -77,12 +77,12 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                       </h2>
                       
                       {featuredPost.subtitle && (
-                        <p className="text-[18px] leading-[27px] text-gray-600 mb-4 font-light tracking-[-0.54px]">
+                        <p className="blog-list-copy text-[18px] leading-[27px] text-gray-600 mb-4 font-light tracking-[-0.54px]">
                           {featuredPost.subtitle}
                         </p>
                       )}
                       
-                      <p className="text-[16px] lg:text-[18px] text-[#555555] line-clamp-3 font-light leading-[24px] lg:leading-[27px] tracking-[-0.54px]">
+                      <p className="blog-list-copy text-[16px] lg:text-[18px] text-[#555555] line-clamp-3 font-light leading-[24px] lg:leading-[27px] tracking-[-0.54px]">
                         {featuredPost.excerpt}
                       </p>
                       
@@ -122,7 +122,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                       
                       {/* Content */}
                       <div className="flex-1 flex flex-col">
-                        <time className="text-[12px] md:text-[14px] leading-[18px] md:leading-[21px] text-gray-500 mb-1 md:mb-2">
+                        <time className="type-h6 blog-list-meta font-num text-gray-500 mb-1 md:mb-2">
                           {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                         </time>
                         
@@ -130,7 +130,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           {post.title}
                         </h3>
                         
-                        <p className="text-[12px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[18px] md:leading-[24px] tracking-[-0.36px] md:tracking-[-0.48px]">
+                        <p className="blog-list-copy text-[12px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[18px] md:leading-[24px] tracking-[-0.36px] md:tracking-[-0.48px]">
                           {post.excerpt}
                         </p>
                       </div>

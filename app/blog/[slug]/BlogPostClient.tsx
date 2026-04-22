@@ -97,7 +97,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
 
       {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 py-[40px] md:py-[80px]">
-        <article className="prose prose-lg max-w-none">
+        <article className="blog-content prose prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}

@@ -15,7 +15,7 @@ export default function BlogSection() {
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Title */}
         <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">
-          <span lang="en" className="font-en">YES</span> 블로그에 초대합니다
+          <span className="font-ko">익스</span> 블로그에 초대합니다
         </h2>
 
         {/* Blog Posts Grid */}
@@ -42,11 +42,11 @@ export default function BlogSection() {
                 
                 {/* Content */}
                 <div className="flex-1 flex flex-col">
-                  <time className="type-body-support font-num text-gray-500 mb-1">
+                  <time className="type-h6 font-num text-gray-500 mb-1">
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h4 className="type-h5 mb-1 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
+                  <h4 className="type-h4 mb-1 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h4>
                   
@@ -83,11 +83,11 @@ export default function BlogSection() {
                 
                 {/* Content */}
                 <div className="flex-1 flex flex-col">
-                  <time className="type-body-support font-num text-gray-500 mb-2">
+                  <time className="type-h6 font-num text-gray-500 mb-2">
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
                   
-                  <h4 className="type-h5 mb-2 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
+                  <h4 className="type-h4 mb-2 line-clamp-2 group-hover:text-[#3E86D9] transition-colors">
                     {post.title}
                   </h4>
                   

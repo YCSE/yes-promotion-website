@@ -36,13 +36,13 @@ const REVIEWS: Review[] = [
     { id: 21, name: '문승현 (Andrew)', role: '회사원', rating: 5, content: '출퇴근길에 폰으로 예습 복습하니까 시간 활용 굿. 효율적인 거 좋아하는 분들 추천.', date: '2023.12.05' },
     { id: 22, name: '손민규 (Matthew)', role: '대학원생', rating: 5, content: '논문 쓰다 막히면 튜터님한테 물어보기도 해요 ㅋㅋ 진짜 친절하게 알려주심.', date: '2023.12.08' },
     { id: 23, name: '양재원 (Jason)', role: '개발자', rating: 5, content: '해외 취업 오퍼 받았어요! 인터뷰 준비 도와주신 튜터님 진짜 감사합니다 ㅠㅠ', date: '2023.12.10' },
-    { id: 24, name: '배성민 (Robert)', role: '마케터', rating: 4, content: '트렌드 파악하려면 영어는 필수죠. YES 덕분에 외신 기사 읽는 속도가 빨라졌어요.', date: '2023.12.12' },
+    { id: 24, name: '배성민 (Robert)', role: '마케터', rating: 4, content: '트렌드 파악하려면 영어는 필수죠. 익스 덕분에 외신 기사 읽는 속도가 빨라졌어요.', date: '2023.12.12' },
     { id: 25, name: '백지원 (Alice)', role: '영업직', rating: 5, content: '바이어랑 밥 먹을 때 스몰토크가 제일 두려웠는데, 이젠 날씨 얘기부터 자연스럽게 나옵니다.', date: '2023.12.15' },
     { id: 26, name: '허동현 (Mark)', role: 'CEO', rating: 5, content: '파트너사 미팅에서 통역 없이 대화하니까 분위기가 훨씬 좋아지더군요.', date: '2023.12.18' },
     { id: 27, name: '유승민 (Patrick)', role: '디자이너', rating: 5, content: '해외 튜토리얼 영상 자막 없이 보는 게 목표였는데 달성했습니다! 뿌듯해요.', date: '2023.12.20' },
     { id: 28, name: '남기현 (Simon)', role: '뮤지션', rating: 5, content: '팝송 가사 뉘앙스를 제대로 이해하고 부르니까 노래 맛이 달라지네요.', date: '2023.12.22' },
     { id: 29, name: '심재호 (Peter)', role: '변호사', rating: 4, content: '논리적으로 말하는 훈련이 많이 됩니다. 토론 수업 강추해요.', date: '2023.12.25' },
-    { id: 30, name: '노태윤 (Harry)', role: '회계사', rating: 5, content: '다시 영어 공부 시작하는 게 두려웠는데, YES가 그 벽을 깨줬습니다.', date: '2023.12.28' },
+    { id: 30, name: '노태윤 (Harry)', role: '회계사', rating: 5, content: '다시 영어 공부 시작하는 게 두려웠는데, 익스가 그 벽을 깨줬습니다.', date: '2023.12.28' },
     { id: 31, name: '하준영 (Leo)', role: '트레이너', rating: 5, content: '운동이나 영어나 매일 하는 게 중요함. 하루 20분 루틴 만드세요.', date: '2024.01.01' },
     { id: 32, name: '곽민호 (Tony)', role: '사진작가', rating: 5, content: '해외 촬영 나가서 모델이랑 소통 안 돼서 답답했는데 이젠 속이 다 시원합니다.', date: '2024.01.03' },
     { id: 33, name: '성진우 (Jack)', role: '교사', rating: 5, content: '방학 동안 집중적으로 했는데 실력이 확 늘었어요. 역시 몰입이 중요!', date: '2024.01.05' },
@@ -50,7 +50,7 @@ const REVIEWS: Review[] = [
     { id: 35, name: '주현석 (George)', role: '요리사', rating: 5, content: '유튜브로 램지 형님 영상 보는데 자막 없이 들려서 소름 돋았음.', date: '2024.01.10' },
     { id: 36, name: '우도현 (Henry)', role: '플로리스트', rating: 5, content: '꽃말 영어로 설명해주니까 외국인 손님들이 너무 좋아해요!', date: '2024.01.12' },
     { id: 37, name: '구민석 (Ian)', role: '모델', rating: 5, content: '해외 에이전시 미팅에서 제 매력을 100% 어필하고 왔습니다.', date: '2024.01.15' },
-    { id: 38, name: '신재영 (Jacob)', role: '의사', rating: 5, content: '국제 학회 발표 준비 YES로 끝냈습니다. Q&A 시간도 두렵지 않았어요.', date: '2024.01.18' },
+    { id: 38, name: '신재영 (Jacob)', role: '의사', rating: 5, content: '국제 학회 발표 준비 익스로 끝냈습니다. Q&A 시간도 두렵지 않았어요.', date: '2024.01.18' },
     { id: 39, name: '임성훈 (Kyle)', role: '연구원', rating: 5, content: '해외 논문 읽고 동료들이랑 영어로 토론하는데 막힘이 없네요.', date: '2024.01.20' },
     { id: 40, name: '전민재 (Liam)', role: '개발자', rating: 4, content: 'I형 인간이라 전화 영어 부담스러웠는데 이건 얼굴 보고 하니까 오히려 편함.', date: '2024.01.22' },
     { id: 41, name: '류현석 (Mason)', role: '약사', rating: 5, content: '외국인 환자분 오셔도 이제 당황하지 않고 복약지도 척척 합니다.', date: '2024.01.25' },
@@ -59,14 +59,14 @@ const REVIEWS: Review[] = [
     { id: 44, name: '한승준 (Philip)', role: '헬스 트레이너', rating: 5, content: 'PT 받을 때 영어로 숫자 세주면 회원님들이 더 좋아하심 ㅋㅋ', date: '2024.02.03' },
     { id: 45, name: '강민우 (Quinn)', role: '건축가', rating: 5, content: '유학 다녀온 지 오래돼서 감 잃을까 봐 시작했는데 유지 잘 하고 있습니다.', date: '2024.02.05' },
     { id: 46, name: '서지훈 (Ray)', role: '바리스타', rating: 5, content: '카페 오는 외국인 단골이랑 친구 먹었어요. 영어 배우길 잘했다!', date: '2024.02.08' },
-    { id: 47, name: '윤도훈 (Sean)', role: '청년 창업가', rating: 5, content: '글로벌 진출이 목표인데 YES 덕분에 첫걸음을 잘 뗀 것 같습니다.', date: '2024.02.10' },
+    { id: 47, name: '윤도훈 (Sean)', role: '청년 창업가', rating: 5, content: '글로벌 진출이 목표인데 익스 덕분에 첫걸음을 잘 뗀 것 같습니다.', date: '2024.02.10' },
     { id: 48, name: '장성우 (Teddy)', role: '대학생', rating: 5, content: '교환학생 가기 전에 입 좀 풀려고 했는데 기대 이상으로 많이 늘었어요.', date: '2024.02.12' },
     { id: 49, name: '김현준 (Victor)', role: '댄서', rating: 5, content: '해외 댄서들이랑 춤으로만 소통하다가 말로 하니까 더 친해짐.', date: '2024.02.15' },
     { id: 50, name: '이재현 (William)', role: '유치원 교사', rating: 5, content: '애들한테 영어 동요 불러주면 눈이 초롱초롱해져요 ㅎㅎ', date: '2024.02.18' },
 
     // 초등학생 그룹 (15명 추가, 아이들 말투)
     { id: 51, name: '김지민 (Amy)', role: '초등학생', rating: 5, content: '선생님이랑 게임하면서 공부하니까 하나도 안 지루해요! 맨날 하고 싶어요!', date: '2024.02.20' },
-    { id: 52, name: '이준우 (Ben)', role: '초등학생', rating: 5, content: '학교 영어 시간엔 졸린데 YES 쌤이랑 얘기하는 건 꿀잼 ㅋㅋ', date: '2024.02.21' },
+    { id: 52, name: '이준우 (Ben)', role: '초등학생', rating: 5, content: '학교 영어 시간엔 졸린데 익스 쌤이랑 얘기하는 건 꿀잼 ㅋㅋ', date: '2024.02.21' },
     { id: 53, name: '박서아 (Chloe)', role: '초등학생', rating: 5, content: '엄마가 영어 학원 가라고 안 해서 너무 좋아요. 집에서 하니까 편해요.', date: '2024.02.22' },
     { id: 54, name: '최현준 (Danny)', role: '초등학생', rating: 5, content: '이제 외국인 아저씨 만나도 안 도망갈 수 있어요! 헬로우~ 할 거예요.', date: '2024.02.23' },
     { id: 55, name: '정하은 (Ellie)', role: '초등학생', rating: 5, content: '선생님이 내 발음 좋다고 칭찬해줬다! 영어 짱 쉬움!', date: '2024.02.24' },
@@ -77,7 +77,7 @@ const REVIEWS: Review[] = [
     { id: 60, name: '임준호 (Jack)', role: '초등학생', rating: 5, content: '게임 레벨업 하는 것처럼 영어가 늘어서 신기해요.', date: '2024.02.29' },
     { id: 61, name: '한지우 (Kate)', role: '초등학생', rating: 5, content: '엄마랑 해외여행 갔을 때 내가 아이스크림 주문했다! 완전 뿌듯!', date: '2024.03.01' },
     { id: 62, name: '오승우 (Leo)', role: '초등학생', rating: 4, content: '단어 외우는 건 싫은데 말하는 건 재밌어요.', date: '2024.03.02' },
-    { id: 63, name: '서하윤 (Mia)', role: '초등학생', rating: 5, content: '내 꿈은 외교관! YES로 영어 짱 잘하게 될 거예요.', date: '2024.03.03' },
+    { id: 63, name: '서하윤 (Mia)', role: '초등학생', rating: 5, content: '내 꿈은 외교관! 익스로 영어 짱 잘하게 될 거예요.', date: '2024.03.03' },
     { id: 64, name: '신동현 (Nick)', role: '초등학생', rating: 5, content: '학교 원어민 선생님이랑 얘기할 때 이제 손들고 발표해요!', date: '2024.03.04' },
     { id: 65, name: '권유진 (Olivia)', role: '초등학생', rating: 5, content: '영어 유치원 나온 친구보다 내가 발음 더 좋은 거 같음 ㅋㅋ', date: '2024.03.05' },
 ]
@@ -111,7 +111,6 @@ const ReviewCard = ({ review }: { review: Review }) => {
                                     </span>
                                 )}
                             </div>
-                            <p className="text-xs text-gray-500">{review.role}</p>
                         </div>
                     </div>
                     <div className="flex text-yellow-400 text-sm">
@@ -120,11 +119,11 @@ const ReviewCard = ({ review }: { review: Review }) => {
                         ))}
                     </div>
                 </div>
-                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                <p className="type-body-support text-gray-600 line-clamp-3">
                     "{review.content}"
                 </p>
             </div>
-            <p className="text-xs text-gray-400 mt-4 text-right">{review.date}</p>
+            <p className="type-h6 text-gray-400 mt-4 text-right">{review.date}</p>
         </div>
     )
 }
@@ -152,7 +151,7 @@ const ReviewCarousel = () => {
                     수강생들의 생생한 후기
                 </h2>
                 <p className="text-gray-600 text-lg">
-                    이미 많은 분들이 YES 화상영어와 함께 변화를 경험하고 있습니다.
+                    이미 많은 분들이 익스 화상영어와 함께 변화를 경험하고 있습니다.
                 </p>
             </div>
 

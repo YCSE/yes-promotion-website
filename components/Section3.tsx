@@ -13,7 +13,7 @@ const Section3 = () => {
       icon: getAssetPath('images/section3/A1.webp'),
       title: '검증된 원어민급 강사',
       subtitle: '믿을 수 있는 진짜 원어민급 선생님만',
-      description: '매칭될 선생님에 대한 걱정은 이제 그만.\nYES는 선생님의 가치관과 티칭 역량까지 꼼꼼히 검증합니다.'
+      description: '매칭될 선생님에 대한 걱정은 이제 그만.\n익스는 선생님의 가치관과 티칭 역량까지 꼼꼼히 검증합니다.'
     },
     {
       icon: getAssetPath('images/section3/A2.webp'),
@@ -60,7 +60,7 @@ const Section3 = () => {
         <div className="mb-[80px] md:mb-[150px] lg:mb-[200px]">
           <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">
             교과서 밖에서 통하는 영어,<br/>
-            <span lang="en" className="font-en">YES</span>로 시작하세요!
+            <span className="font-ko">익스</span>로 시작하세요!
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 lg:gap-20">
@@ -75,8 +75,8 @@ const Section3 = () => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <h6 className="type-h6 text-text-identity-dark mb-[15px] md:mb-[18px] lg:mb-[22px]">{feature.title}</h6>
-                <h4 className="type-h4 text-white mb-[15px] md:mb-[20px] lg:mb-[23px]">{feature.subtitle}</h4>
+                <h6 className="type-h5 text-text-identity-dark mb-[15px] md:mb-[18px] lg:mb-[22px]">{feature.title}</h6>
+                <h4 className="type-h3 text-white mb-[15px] md:mb-[20px] lg:mb-[23px]">{feature.subtitle}</h4>
                 <p className="type-body-base text-white/90 whitespace-pre-line">
                   {feature.description}
                 </p>
@@ -89,7 +89,7 @@ const Section3 = () => {
         <div className="flex flex-col items-center gap-[40px] md:gap-[70px] lg:gap-[100px]">
           <h2 className="type-h2 text-center whitespace-pre">
             수업 이후에도<br/>
-            <span lang="en" className="font-en">Tia</span>가 여러분의 코치가 되어줍니다
+            <span className="font-ko">티아</span>가 여러분의 코치가 되어줍니다
           </h2>
           
           <div className="w-[280px] h-[500px] md:w-[320px] md:h-[570px] lg:w-[360px] lg:h-[632px] bg-white rounded-[15px] overflow-hidden flex items-center justify-center p-2">
@@ -104,7 +104,7 @@ const Section3 = () => {
           </div>
           
           <p className="type-body-emphasis text-center whitespace-pre-line px-4">
-            <span lang="en" className="font-en">Tia</span>는 여러분의 영어 여정을 함께하는 <span lang="en" className="font-en">AI</span> 선생님입니다.
+            <span className="font-ko">티아</span>는 여러분의 영어 여정을 함께하는 <span lang="en" className="font-en">AI</span> 선생님입니다.
             수업 중에 했던 표현과 피드백을 분석해 여러분을 돕는 똑똑한 학습 파트너죠.
             수업이 끝난 뒤에도 실력이 향상될 수 있도록 계속해서 코치해 줍니다.
           </p>
@@ -122,7 +122,7 @@ const Section3 = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-4 md:gap-5 lg:gap-7 items-center text-center">
-                  <h4 className="type-h4">
+                  <h4 className="type-h3">
                     {feature.title}
                   </h4>
                   <p className="type-body-base whitespace-pre">
@@ -137,7 +137,7 @@ const Section3 = () => {
             onClick={() => setIsTiaModalOpen(true)}
             className="type-button-primary w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
           >
-            <span lang="en" className="font-en">Tia</span> 자세히 보기
+            <span className="font-ko">티아</span> 자세히 보기
           </button>
         </div>
       </div>

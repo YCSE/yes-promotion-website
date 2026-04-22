@@ -50,7 +50,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
     {
       icon: getAssetPath('images/frame4/C3.webp'),
       title: '실시간 대화 연습',
-      description: '수업 시간 외에도 Tia와 자유롭게 영어 대화를 연습할 수 있습니다. 한국어 지원으로 막힘없이 학습하세요.',
+      description: '수업 시간 외에도 티아와 자유롭게 영어 대화를 연습할 수 있습니다. 한국어 지원으로 막힘없이 학습하세요.',
     },
     {
       icon: getAssetPath('images/frame4/C1.webp'),
@@ -63,7 +63,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
     {
       number: '01',
       title: '수업 내용 자동 분석',
-      description: 'YES 수업이 끝나면 Tia가 자동으로 수업 내용과 피드백을 분석합니다.'
+      description: '익스 수업이 끝나면 티아가 자동으로 수업 내용과 피드백을 분석합니다.'
     },
     {
       number: '02',
@@ -128,10 +128,10 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
             <div className="relative z-10">
             <div className="max-w-[900px] mx-auto text-center">
               <h1 className="type-h1 mb-6">
-                AI 영어 선생님 Tia
+                AI 영어 선생님 티아
               </h1>
               <p className="text-[18px] md:text-[20px] lg:text-[24px] font-light leading-[28px] md:leading-[32px] lg:leading-[36px] tracking-[-0.54px] md:tracking-[-0.6px] lg:tracking-[-0.72px] text-white/90 max-w-[600px] mx-auto">
-                YES 수업의 효과를 극대화하는<br/>
+                익스 수업의 효과를 극대화하는<br/>
                 개인 맞춤형 AI 영어 학습 파트너
               </p>
             </div>
@@ -177,7 +177,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     이러한 한계들은 학습자의 시간과 비용 대비 효과를 떨어뜨리는 주요 원인이 되고 있습니다.
                   </p>
                   <p className="text-[15px] md:text-[17px] font-medium text-[#3E86D9] leading-[26px] md:leading-[30px] bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[12px] p-4">
-                    이 모든 문제를 해결하기 위해 우리는 Tia를 설계했습니다. 
+                    이 모든 문제를 해결하기 위해 우리는 티아를 설계했습니다. 
                     언어 학습의 말하기, 듣기, 읽기, 쓰기 4가지 영역을 균형 있게 발달시키고, 체계적인 문법과 어휘 학습을 지원하며, 
                     개인별 맞춤형 학습 경로를 제공하여 실력 정체를 돌파할 수 있도록 돕습니다.
                   </p>
@@ -191,7 +191,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 </h3>
                 <div className="prose prose-lg max-w-none">
                   <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-6">
-                    Tia는 오직 영어교육만을 위해 정교하게 설계한 AI 입니다. <span className="font-medium text-[#3E86D9]">수십 년간 검증된 언어습득 이론</span>을 
+                    티아는 오직 영어교육만을 위해 정교하게 설계한 AI 입니다. <span className="font-medium text-[#3E86D9]">수십 년간 검증된 언어습득 이론</span>을 
                     최신 AI 기술로 구현한 과학적 학습 도구입니다.
                   </p>
                   
@@ -200,7 +200,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                       <span className="font-bold text-[#3E86D9]">Stephen Krashen의 이해가능한 입력 이론(i+1)</span>은 
                       언어 학습의 핵심 원리를 제시합니다. 학습자의 현재 수준(i)보다 약간 높은 수준(+1)의 입력을 받을 때 
                       가장 효과적인 학습이 일어난다는 것입니다. 너무 쉬우면 지루하고, 너무 어려우면 좌절하게 됩니다. 
-                      <span className="font-medium text-[#3E86D9]">Tia는 AI 분석을 통해 각 학습자에게 정확히 i+1 수준의 콘텐츠를 실시간으로 제공</span>합니다.
+                      <span className="font-medium text-[#3E86D9]">티아는 AI 분석을 통해 각 학습자에게 정확히 i+1 수준의 콘텐츠를 실시간으로 제공</span>합니다.
                     </p>
                   </div>
 
@@ -209,7 +209,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                       <span className="font-bold text-[#3E86D9]">Merrill Swain의 출력 가설</span>은 
                       단순히 듣고 이해하는 것만으로는 부족하다고 지적합니다. 직접 말하고 쓰는 과정에서 
                       자신의 부족한 점을 인식하고, 가설을 세우고 검증하며, 언어 구조를 내재화합니다. 
-                      <span className="font-medium text-[#3E86D9]">Tia는 24시간 대화 파트너가 되어 충분한 아웃풋 기회를 제공하고, 
+                      <span className="font-medium text-[#3E86D9]">티아는 24시간 대화 파트너가 되어 충분한 아웃풋 기회를 제공하고, 
                       즉각적인 피드백으로 가설 검증을 돕습니다</span>.
                     </p>
                   </div>
@@ -219,7 +219,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                       <span className="font-bold text-[#3E86D9]">Michael Long의 상호작용 가설</span>은 
                       의미 협상(meaning negotiation) 과정의 중요성을 강조합니다. 대화 중 이해하지 못한 부분을 
                       명확히 하고, 다시 표현하고, 확인하는 과정에서 언어 습득이 가속화됩니다. 
-                      <span className="font-medium text-[#3E86D9]">Tia는 실시간 대화를 통해 자연스러운 의미 협상을 유도하고, 
+                      <span className="font-medium text-[#3E86D9]">티아는 실시간 대화를 통해 자연스러운 의미 협상을 유도하고, 
                       이해하지 못한 부분을 다양한 방식으로 재설명합니다</span>.
                     </p>
                   </div>
@@ -229,7 +229,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                       마지막으로 <span className="font-bold text-[#3E86D9]">정의적 여과 가설(Affective Filter)</span>은 
                       감정 상태가 학습에 미치는 영향을 설명합니다. 불안, 자신감 부족, 동기 결여 등의 부정적 감정은 
                       '정의적 여과'를 높여 언어 입력을 차단합니다. 
-                      <span className="font-medium text-[#3E86D9]">Tia와의 대화는 실수를 두려워할 필요가 없는 안전한 환경을 제공해 
+                      <span className="font-medium text-[#3E86D9]">티아와의 대화는 실수를 두려워할 필요가 없는 안전한 환경을 제공해 
                       정의적 여과를 낮추고 학습 효율을 극대화합니다</span>.
                     </p>
                   </div>
@@ -290,7 +290,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
             <div className="max-w-[1000px] mx-auto">
               <h2 className="type-h2 text-center text-black mb-4">
-                Tia와 함께라면
+                티아와 함께라면
               </h2>
               <p className="text-[16px] md:text-[18px] font-light text-center text-gray-600 mb-12 md:mb-16 tracking-[-0.48px] md:tracking-[-0.54px]">
                 수업 시간 이외에도 지속적인 영어 학습이 가능합니다
@@ -373,14 +373,14 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 {/* Analysis Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="type-h4 text-[#3E86D9] mb-3">📚 문법 포인트</h4>
+                    <h4 className="type-h3 text-[#3E86D9] mb-3">📚 문법 포인트</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       현재완료진행형 (have been + ~ing)을 사용해 과거부터 현재까지 계속되는 행동을 표현했습니다.
                     </p>
                   </div>
                   
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="type-h4 text-[#3E86D9] mb-3">💡 핵심 표현</h4>
+                    <h4 className="type-h3 text-[#3E86D9] mb-3">💡 핵심 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       <span lang="en" className="font-en">"struggle with ~"</span> : ~하는 데 어려움을 겪다<br/>
                       <span lang="en" className="font-en">"fluently"</span> : 유창하게, 막힘없이
@@ -388,7 +388,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                   </div>
 
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="type-h4 text-[#3E86D9] mb-3">🔄 비슷한 표현</h4>
+                    <h4 className="type-h3 text-[#3E86D9] mb-3">🔄 비슷한 표현</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       <span lang="en" className="font-en">"I find it difficult to speak English fluently"</span><br/>
                       <span lang="en" className="font-en">"Speaking English fluently is still challenging for me"</span>
@@ -396,7 +396,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                   </div>
 
                   <div className="bg-white rounded-[16px] p-4 md:p-6">
-                    <h4 className="type-h4 text-[#3E86D9] mb-3">✅ 연습 팁</h4>
+                    <h4 className="type-h3 text-[#3E86D9] mb-3">✅ 연습 팁</h4>
                     <p className="text-[14px] md:text-[16px] font-light text-gray-700 leading-[22px] md:leading-[24px]">
                       이 패턴으로 다른 문장도 만들어보세요:<br/>
                       <span lang="en" className="font-en">"I've been working here for..."</span> 등
@@ -411,7 +411,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           <div className="px-8 md:px-16 py-12 md:py-16 bg-gradient-to-r from-[#222222] to-[#3E86D9] text-white">
             <div className="max-w-[800px] mx-auto">
               <h2 className="type-h2 text-center mb-10 md:mb-12">
-                Tia 사용자들의 성과
+                티아 사용자들의 성과
               </h2>
               <div className="grid grid-cols-3 gap-4 md:gap-8">
                 {stats.map((stat, index) => (
@@ -422,7 +422,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 ))}
               </div>
               <p className="text-center text-[12px] md:text-[14px] font-light text-white/70 mt-8">
-                * 2024년 YES 사용자 2,847명 대상 설문조사 결과
+                * 2024년 익스 사용자 2,847명 대상 설문조사 결과
               </p>
             </div>
           </div>
@@ -430,10 +430,10 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           {/* CTA Section */}
           <div className="px-8 md:px-16 py-10 md:py-12 bg-white text-center border-t border-gray-100">
             <h3 className="text-[24px] md:text-[30px] font-bold text-black mb-4 tracking-[-0.72px] md:tracking-[-0.9px]">
-              지금 바로 Tia를 만나보세요
+              지금 바로 티아를 만나보세요
             </h3>
             <p className="text-[16px] md:text-[18px] font-light text-gray-600 mb-8 tracking-[-0.48px] md:tracking-[-0.54px]">
-              누구나 Tia의 모든 기능을 무료로 이용하실 수 있습니다
+              누구나 티아의 모든 기능을 무료로 이용하실 수 있습니다
             </p>
             <button 
               onClick={handleClose}

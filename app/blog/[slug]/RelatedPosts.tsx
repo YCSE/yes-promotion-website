@@ -77,7 +77,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
 
                 {/* Content */}
                 <div className="flex-1 flex flex-col">
-                  <time className="text-[12px] md:text-[14px] text-gray-500 mb-2">
+                  <time className="type-h6 blog-list-meta font-num text-gray-500 mb-2">
                     {format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}
                   </time>
 
@@ -85,7 +85,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                     {post.title}
                   </h3>
 
-                  <p className="text-[14px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[20px] md:leading-[24px] tracking-[-0.42px] md:tracking-[-0.48px]">
+                  <p className="blog-list-copy text-[14px] md:text-[16px] text-[#555555] line-clamp-2 font-light leading-[20px] md:leading-[24px] tracking-[-0.42px] md:tracking-[-0.48px]">
                     {post.excerpt}
                   </p>
                 </div>

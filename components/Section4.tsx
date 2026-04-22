@@ -21,7 +21,7 @@ const Section4 = () => {
           3개월 만에 영어 회화 실력이 눈에 띄게 향상되었어요.
         </p>
         <p className="type-body-emphasis mb-[30px] md:mb-[35px] lg:mb-[40px]">
-          특히 AI 코치 Tia의 맞춤형 연습이 큰 도움이 되었습니다!
+          특히 AI 코치 티아의 맞춤형 연습이 큰 도움이 되었습니다!
         </p>
         <p className="type-body-support text-white/90">
           김지현, <span lang="en" className="font-en">OPIc AL</span> 달성

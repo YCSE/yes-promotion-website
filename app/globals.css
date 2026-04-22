@@ -12,15 +12,16 @@
     /* Landing typography tokens - mobile default (375) */
     --type-h1-size: 36px;
     --type-h2-size: 26px;
-    --type-h4-size: 20px;
-    --type-h5-size: 18px;
-    --type-h6-size: 16px;
+    --type-h3-size: 20px;
+    --type-h4-size: 18px;
+    --type-h5-size: 16px;
+    --type-h6-size: 13px;
     --type-body-base-size: 15px;
     --type-body-base-leading: 22.4px;
     --type-body-emphasis-size: 18px;
     --type-body-emphasis-leading: 28.8px;
-    --type-body-support-size: 13px;
-    --type-body-support-leading: 19.2px;
+    --type-body-support-size: 14px;
+    --type-body-support-leading: 23.8px;
     --type-button-size: 18px;
     --type-button-2-size: 13px;
     --type-button-2-leading: 16.9px;
@@ -151,25 +152,55 @@
     padding-left: 0;
     margin-bottom: 8px;
   }
+
+  .blog-page :is(h1, h2, h3, h4, p, li, time, a, button, span) {
+    letter-spacing: 0;
+  }
+
+  .blog-page .blog-list-meta,
+  .blog-page .blog-list-copy {
+    line-height: 1.7;
+  }
+
+  .blog-content p,
+  .blog-content li {
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+
+  .blog-content ul,
+  .blog-content ol,
+  .blog-content li,
+  .blog-content li p {
+    line-height: 1.7;
+  }
 }
 
 @media (min-width: 768px) {
   :root {
     --type-h1-size: 56px;
     --type-h2-size: 36px;
-    --type-h4-size: 26px;
-    --type-h5-size: 24px;
-    --type-h6-size: 18px;
+    --type-h3-size: 26px;
+    --type-h4-size: 24px;
+    --type-h5-size: 18px;
+    --type-h6-size: 14px;
     --type-body-base-size: 16px;
     --type-body-base-leading: 24px;
     --type-body-emphasis-size: 22px;
     --type-body-emphasis-leading: 35.2px;
-    --type-body-support-size: 14px;
-    --type-body-support-leading: 20.8px;
+    --type-body-support-size: 15px;
+    --type-body-support-leading: 25.5px;
     --type-button-size: 18px;
     --type-button-2-size: 14px;
     --type-button-2-leading: 18.2px;
     --type-faq-size: 18px;
+  }
+
+  .blog-content p,
+  .blog-content li {
+    font-size: 16px;
   }
 }
 
@@ -177,19 +208,25 @@
   :root {
     --type-h1-size: 68px;
     --type-h2-size: 38px;
-    --type-h4-size: 26px;
-    --type-h5-size: 24px;
-    --type-h6-size: 18px;
+    --type-h3-size: 26px;
+    --type-h4-size: 24px;
+    --type-h5-size: 18px;
+    --type-h6-size: 14px;
     --type-body-base-size: 16px;
     --type-body-base-leading: 25.6px;
     --type-body-emphasis-size: 26px;
     --type-body-emphasis-leading: 41.6px;
-    --type-body-support-size: 14px;
-    --type-body-support-leading: 22.4px;
+    --type-body-support-size: 15px;
+    --type-body-support-leading: 25.5px;
     --type-button-size: 20px;
     --type-button-2-size: 14px;
     --type-button-2-leading: 18.2px;
     --type-faq-size: 20px;
+  }
+
+  .blog-content p,
+  .blog-content li {
+    font-size: 16px;
   }
 }
 
@@ -203,70 +240,77 @@
 
   .type-h2 {
     font-size: var(--type-h2-size);
-    line-height: 1.3;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  .type-h3 {
+    font-size: var(--type-h3-size);
+    line-height: 1.4;
     letter-spacing: -0.03em;
     font-weight: 700;
   }
 
   .type-h4 {
     font-size: var(--type-h4-size);
-    line-height: 1.3;
-    letter-spacing: -0.03em;
-    font-weight: 700;
-  }
-
-  .type-h5 {
-    font-size: var(--type-h5-size);
-    line-height: 1.3;
+    line-height: 1.4;
     letter-spacing: -0.02em;
     font-weight: 500;
   }
 
-  .type-h6 {
-    font-size: var(--type-h6-size);
-    line-height: 1.3;
+  .type-h5 {
+    font-size: var(--type-h5-size);
+    line-height: 1.4;
     letter-spacing: -0.02em;
     font-weight: 600;
   }
 
+  .type-h6 {
+    font-size: var(--type-h6-size);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    font-weight: 300;
+  }
+
   .type-body-base {
     font-size: var(--type-body-base-size);
-    line-height: var(--type-body-base-leading);
+    line-height: 1.7;
     letter-spacing: -0.03em;
     font-weight: 300;
   }
 
   .type-body-emphasis {
     font-size: var(--type-body-emphasis-size);
-    line-height: var(--type-body-emphasis-leading);
+    line-height: 1.7;
     letter-spacing: -0.03em;
     font-weight: 300;
   }
 
   .type-body-support {
     font-size: var(--type-body-support-size);
-    line-height: var(--type-body-support-leading);
+    line-height: 1.7;
     letter-spacing: -0.02em;
     font-weight: 300;
   }
 
   .type-button-primary {
     font-size: var(--type-button-size);
-    line-height: 1.3;
+    line-height: 1.4;
     letter-spacing: 0;
     font-weight: 500;
   }
 
   .type-button-secondary {
     font-size: var(--type-button-2-size);
-    line-height: var(--type-button-2-leading);
+    line-height: 1.4;
     letter-spacing: 0;
     font-weight: 600;
   }
 
   .type-faq {
     font-size: var(--type-faq-size);
-    line-height: 1.3;
+    line-height: 1.4;
     letter-spacing: -0.02em;
   }
 }

@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="flex flex-col gap-[20px] md:gap-[25px] lg:gap-[30px] text-center lg:text-left">
           <h2 className="type-h2 text-white">
             실전 영어 감각,<br />
-            YES에서 키워보세요!
+            익스에서 키워보세요!
           </h2>
           <p lang="en" className="type-body-support text-[#999999] uppercase tracking-[0.08em]">
             © 2025 YCSE. All rights reserved.

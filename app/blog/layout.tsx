@@ -117,8 +117,10 @@ export default function BlogLayout({
           __html: JSON.stringify(breadcrumbJsonLd)
         }}
       />
-      <BlogHeader />
-      {children}
+      <div className="blog-page">
+        <BlogHeader />
+        {children}
+      </div>
     </>
   )
 }
