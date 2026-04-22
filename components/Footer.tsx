@@ -41,9 +41,9 @@ const Footer = () => {
             href="https://apps.apple.com/app/id6745255649"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative border-2 border-white text-white px-6 md:px-7 lg:px-8 py-[18px] md:py-[22px] lg:py-[25px] rounded-[100px] flex items-center gap-2 md:gap-2.5 hover:bg-white hover:text-black transition-colors w-[220px] md:w-[240px] lg:w-[260px] justify-center"
+            className="cta-pill-button cta-pill-button-dark relative border-white text-white hover:bg-white hover:text-black transition-colors"
           >
-            <img src={imgApple} alt="Apple" className="w-[20px] h-[24px] md:w-[22px] md:h-[27px] lg:w-[25px] lg:h-[30px]" />
+            <img src={imgApple} alt="Apple" className="cta-pill-icon cta-pill-icon-apple" />
             <span lang="en" className="font-en type-button-primary">App Store</span>
           </a>
 
@@ -51,9 +51,9 @@ const Footer = () => {
             href="https://play.google.com/store/apps/details?id=kr.ycse"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative border-2 border-white text-white px-6 md:px-7 lg:px-8 py-[18px] md:py-[22px] lg:py-[25px] rounded-[100px] flex items-center gap-2 md:gap-2.5 hover:bg-white hover:text-black transition-colors w-[220px] md:w-[240px] lg:w-[260px] justify-center"
+            className="cta-pill-button cta-pill-button-dark relative border-white text-white hover:bg-white hover:text-black transition-colors"
           >
-            <img src={imgGoogle} alt="Google" className="w-[22px] h-[24px] md:w-[24px] md:h-[27px] lg:w-[27px] lg:h-[30px]" />
+            <img src={imgGoogle} alt="Google" className="cta-pill-icon cta-pill-icon-google" />
             <span lang="en" className="font-en type-button-primary">Google Play</span>
           </a>
         </div>

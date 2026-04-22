@@ -135,7 +135,7 @@ const Section3 = () => {
           
           <button 
             onClick={() => setIsTiaModalOpen(true)}
-            className="type-button-primary w-[200px] h-[60px] md:w-[320px] md:h-[90px] lg:w-[350px] lg:h-[100px] rounded-[100px] border-2 border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
+            className="cta-pill-button cta-pill-button-dark type-button-primary border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
           >
             <span className="font-ko">티아</span> 자세히 보기
           </button>

@@ -313,4 +313,40 @@
     line-height: 1.4;
     letter-spacing: -0.02em;
   }
+
+  .cta-pill-button {
+    box-sizing: border-box;
+    display: inline-flex;
+    min-width: 200px;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 100px;
+    border-style: solid;
+    text-align: center;
+  }
+
+  .cta-pill-icon {
+    display: block;
+    flex: 0 0 auto;
+    height: 20px;
+  }
+
+  .cta-pill-icon-apple {
+    width: 16.67px;
+  }
+
+  .cta-pill-icon-google {
+    width: 18px;
+  }
+
+  .cta-pill-button-light {
+    border-width: 1px;
+  }
+
+  .cta-pill-button-dark {
+    border-width: 1.5px;
+  }
 }
