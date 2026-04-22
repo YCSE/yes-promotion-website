@@ -53,7 +53,7 @@ const Hero = () => {
               href="https://apps.apple.com/app/id6745255649"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-pill-button cta-pill-button-light group relative border-black text-black hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
+              className="cta-pill-button cta-pill-button-light group relative border-black text-black hover:bg-black hover:text-white transition-all duration-300"
             >
               <img src={getAssetPath('images/70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg')} alt="Apple" className="cta-pill-icon cta-pill-icon-apple invert group-hover:invert-0 transition-all duration-300" />
               <span lang="en" className="font-en type-button-primary">App Store</span>
@@ -63,9 +63,9 @@ const Hero = () => {
               href="https://play.google.com/store/apps/details?id=kr.ycse"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-pill-button cta-pill-button-light group relative border-black text-black hover:border-yes-blue hover:bg-yes-blue hover:text-white transition-all duration-300"
+              className="cta-pill-button cta-pill-button-light group relative border-black text-black hover:bg-black hover:text-white transition-all duration-300"
             >
-              <img src={getAssetPath('images/e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')} alt="Google" className="cta-pill-icon cta-pill-icon-google invert group-hover:invert-0 transition-all duration-300" />
+              <img src={getAssetPath('images/e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')} alt="Google" className="cta-pill-icon cta-pill-icon-google h-[18px] w-[16.2px] invert group-hover:invert-0 transition-all duration-300" />
               <span lang="en" className="font-en type-button-primary">Google Play</span>
             </a>
           </div>
