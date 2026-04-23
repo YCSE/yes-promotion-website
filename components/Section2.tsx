@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import { getAssetPath } from '@/lib/utils'
-
 const Section2 = () => {
   const speechBubbles = [
     { text: "질문은 알아들었는데\n뭐라고 대답해야 할지 모르겠다", top: 15, left: 159 },
@@ -21,18 +18,9 @@ const Section2 = () => {
   ]
 
   return (
-    <section className="relative w-full py-[80px] md:py-[150px] lg:py-[200px] bg-white">
+    <section className="landing-section-spacing relative w-full bg-white">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center mb-[50px] md:mb-[85px]">
-          <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[130px] lg:h-[130px] mb-[20px] md:mb-[30px] relative flex items-center justify-center">
-            <Image 
-              src={getAssetPath('images/section2/D1.webp')} 
-              alt="Question icon" 
-              width={130} 
-              height={130}
-              className="w-full h-full object-contain"
-            />
-          </div>
           <h2 className="type-h2 text-center text-black">
             실전에서는 막막한 영어,<br/>
             나만 그런가요?

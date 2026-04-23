@@ -11,6 +11,8 @@ module.exports = {
         // Refined Brand Colors
         'yes-blue': '#3E86D9', // Primary Brand Color
         'accent-blue': '#3E86D9', // Interactive elements, links
+        'bg-blue': '#EFF4FA', // Soft blue section background
+        'br-gray': '#f6f6f6', // Bright neutral section background
         'bg-dark': '#222222', // Dark background
         'border-gray2': '#666666', // CTA/button stroke on light backgrounds
         'text-primary': '#111111', // Main text

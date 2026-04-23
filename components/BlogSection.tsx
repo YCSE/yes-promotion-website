@@ -11,7 +11,7 @@ export default function BlogSection() {
   const randomPosts = getRandomPosts(allPosts, 3)
 
   return (
-    <section className="relative w-full pt-[80px] md:pt-[150px] lg:pt-[200px] pb-[40px] md:pb-[75px] lg:pb-[100px] bg-white">
+    <section className="landing-section-spacing relative w-full bg-white">
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Title */}
         <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">

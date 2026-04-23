@@ -79,44 +79,44 @@ font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Noto Sans CJK
 // Primary Section Title
 .section-title {
   // Desktop
-  font-size: 50px;
-  line-height: 60px;
-  letter-spacing: -1.5px;
+  font-size: 36px;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
   font-weight: 800; // extrabold
   
   // Tablet
   @media (max-width: 1024px) {
-    font-size: 40px;
-    line-height: 50px;
-    letter-spacing: -1.2px;
+    font-size: 34px;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
   }
   
   // Mobile
   @media (max-width: 768px) {
-    font-size: 28px;
-    line-height: 36px;
-    letter-spacing: -0.8px;
+    font-size: 24px;
+    line-height: 1.4;
+    letter-spacing: -0.03em;
   }
 }
 
 // Subsection Title
 .subsection-title {
   // Desktop
-  font-size: 30px;
+  font-size: 22px;
   line-height: 40px;
   letter-spacing: -0.9px;
   font-weight: 700;
   
   // Tablet
   @media (max-width: 1024px) {
-    font-size: 25px;
+    font-size: 22px;
     line-height: 34px;
     letter-spacing: -0.75px;
   }
   
   // Mobile
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.6px;
   }
@@ -179,6 +179,8 @@ $accent-blue: #3E86D9;         // Interactive elements, links
 
 // Background Colors
 $bg-white: #FFFFFF;            // Default background
+$bg-blue: #EFF4FA;            // Soft blue section background
+$br-gray: #f6f6f6;            // Bright neutral section background
 $bg-dark: #222222;             // Dark sections
 
 // UI Colors
@@ -191,9 +193,10 @@ $shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
 ### Color Usage Patterns
 - **Hero Section:** White background, black text, yes-blue for brand
 - **Section 2:** White background, gray-700 text in bubbles
-- **Section 3:** Dark background, white text, blue accents
+- **Section 3:** br-gray background, dark text, blue accents
 - **Section 4:** Image overlay with white text
 - **Section 5:** White background, black primary text, gray secondary
+- **FAQ Section:** br-gray background, black primary text, gray secondary
 - **Footer:** Black background, white text, gray legal text
 
 ## Spacing & Layout
