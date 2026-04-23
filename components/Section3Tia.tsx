@@ -33,7 +33,7 @@ const Section3Tia = () => {
           <div className="flex flex-col items-center">
             <h2 className="type-h2 text-center">
               수업 이후에도<br />
-              <span className="font-ko">티아</span>가 여러분의 코치가 되어줍니다
+              <span className="font-ko">티아</span>가 함께합니다
             </h2>
             <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
               막히는 순간, 망설이지 말고 물어보세요!<br />
@@ -86,7 +86,7 @@ const Section3Tia = () => {
             onClick={() => setIsTiaModalOpen(true)}
             className="cta-pill-button cta-pill-button-dark type-button-primary border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
           >
-            <span className="font-ko">티아</span> 자세히 보기
+            자세히 보기
           </button>
         </div>
       </div>

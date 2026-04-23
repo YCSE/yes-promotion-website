@@ -1,10 +1,78 @@
-const Section2 = () => {
-  const speechBubbles = [
-    { text: "인사만 잘 하고\n그다음은 눈빛으로 승부했다" },
-    { text: "머릿속에선 완벽했는데\n입 밖으로는 한 마디도 안 나왔다" },
-    { text: "나를 제외한 모든 사람이\n농담을 듣고 웃고 있었다" },
+'use client'
+
+import { useEffect, useState } from 'react'
+import { getAssetPath } from '@/lib/utils'
+
+const speechBubbles = [
+  {
+    iconName: 'emoji-a1',
+    align: 'left',
+    text: '인사만 잘 하고\n그다음은 눈빛으로 승부했다',
+  },
+  {
+    iconName: 'emoji-a2',
+    align: 'right',
+    text: '머릿속에선 완벽했는데\n입 밖으로는 한 마디도 안 나왔다',
+  },
+  {
+    iconName: 'emoji-a3',
+    align: 'left',
+    text: '나를 제외한 모든 사람이\n농담을 듣고 박장대소하고 있었다',
+  },
+]
+
+function Section2CardIcon({ iconName }: { iconName: string }) {
+  const fallbackPng = getAssetPath(`images/icon/${iconName}.png`)
+  const sources = [
+    getAssetPath(`images/icon/${iconName}-1540.webp`),
+    getAssetPath(`images/icon/${iconName}-1080.webp`),
   ]
 
+  const [resolvedSrc, setResolvedSrc] = useState(fallbackPng)
+
+  useEffect(() => {
+    let cancelled = false
+    let probeImage: HTMLImageElement | null = null
+
+    const tryLoad = (candidateIndex: number) => {
+      if (candidateIndex >= sources.length) return
+
+      probeImage = new window.Image()
+      probeImage.onload = () => {
+        if (cancelled) return
+        setResolvedSrc(sources[candidateIndex])
+      }
+      probeImage.onerror = () => {
+        if (cancelled) return
+        tryLoad(candidateIndex + 1)
+      }
+      probeImage.src = sources[candidateIndex]
+    }
+
+    tryLoad(0)
+
+    return () => {
+      cancelled = true
+      if (probeImage) {
+        probeImage.onload = null
+        probeImage.onerror = null
+      }
+    }
+  }, [sources])
+
+  return (
+    <img
+      src={resolvedSrc}
+      alt=""
+      aria-hidden="true"
+      className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
+      decoding="async"
+      draggable="false"
+    />
+  )
+}
+
+const Section2 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-white">
       <div className="page-shell">
@@ -20,40 +88,53 @@ const Section2 = () => {
         </div>
 
         <div className="hidden lg:grid grid-cols-3 gap-6 w-full mx-auto">
-          {speechBubbles.map((bubble, index) => (
+          {speechBubbles.map((bubble) => (
             <div
-              key={index}
-              className="bg-white rounded-[10px] px-8 py-6 min-h-[150px] shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
+              key={bubble.iconName}
+              className="bg-white rounded-[10px] px-8 py-6 min-h-[150px] shadow-card transform hover:scale-105 transition-transform"
             >
-              <p className="type-body-base text-black whitespace-pre-line text-center flex items-center justify-center h-full">
-                {bubble.text}
-              </p>
+              <div className="flex h-full flex-col items-center justify-center gap-4">
+                <Section2CardIcon iconName={bubble.iconName} />
+                <p className="type-body-base text-black whitespace-pre-line text-center">
+                  {bubble.text}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="hidden md:grid lg:hidden grid-cols-2 gap-6">
-          {speechBubbles.map((bubble, index) => (
+        <div className="hidden md:grid lg:hidden grid-cols-3 gap-6 w-full mx-auto">
+          {speechBubbles.map((bubble) => (
             <div
-              key={index}
-              className="bg-white rounded-[10px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)] transform hover:scale-105 transition-transform"
+              key={bubble.iconName}
+              className="bg-white rounded-[10px] px-8 py-6 shadow-card transform hover:scale-105 transition-transform"
             >
-              <p className="type-body-base text-black whitespace-pre-line text-center">
-                {bubble.text}
-              </p>
+              <div className="flex h-full flex-col items-center justify-center gap-4">
+                <Section2CardIcon iconName={bubble.iconName} />
+                <p className="type-body-base text-black whitespace-pre-line text-center">
+                  {bubble.text}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="md:hidden flex flex-col gap-3">
-          {speechBubbles.map((bubble, index) => (
+        <div className="md:hidden flex flex-col gap-5">
+          {speechBubbles.map((bubble) => (
             <div
-              key={index}
-              className="bg-white rounded-[10px] px-4 py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              key={bubble.iconName}
+              className="bg-white rounded-[10px] px-4 py-6 shadow-card"
             >
-              <p className="type-body-base text-black whitespace-pre-line text-center">
-                {bubble.text}
-              </p>
+              <div className="flex h-full w-full items-center justify-center">
+                <div className={`flex items-center gap-4 ${bubble.align === 'right' ? 'flex-row-reverse text-right' : 'text-left'}`}>
+                <Section2CardIcon iconName={bubble.iconName} />
+                <div className="text-left">
+                  <p className={`type-body-base text-black whitespace-pre-line ${bubble.align === 'right' ? 'text-right' : 'text-left'}`}>
+                    {bubble.text}
+                  </p>
+                </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

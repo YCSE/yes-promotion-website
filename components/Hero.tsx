@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { getAssetPath } from '@/lib/utils'
 
 const HERO_CARDS = [
@@ -76,48 +75,6 @@ function HeroCallCard({
 }
 
 const Hero = () => {
-  const sliderRef = useRef<HTMLDivElement>(null)
-  const firstSetRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const slider = sliderRef.current
-    const firstSet = firstSetRef.current
-    if (!slider || !firstSet) return
-
-    let animationId: number
-    let position = 0
-    let trackWidth = 0
-
-    const updateTrackWidth = () => {
-      trackWidth = firstSet.getBoundingClientRect().width
-
-      if (trackWidth > 0 && position <= -trackWidth) {
-        position += trackWidth
-      }
-    }
-
-    const animate = () => {
-      const speed = window.innerWidth < 768 ? 0.35 : window.innerWidth < 1280 ? 0.5 : 0.65
-      position -= speed
-
-      if (trackWidth > 0 && position <= -trackWidth) {
-        position += trackWidth
-      }
-
-      slider.style.transform = `translate3d(${position}px, 0, 0)`
-      animationId = requestAnimationFrame(animate)
-    }
-
-    updateTrackWidth()
-    window.addEventListener('resize', updateTrackWidth)
-    animationId = requestAnimationFrame(animate)
-
-    return () => {
-      window.removeEventListener('resize', updateTrackWidth)
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
-
   return (
     <section className="hero-section relative w-full h-[90svh] overflow-hidden bg-yes-blue lg:h-[100svh]">
       <div className="hero-layout flex h-full flex-col">
@@ -153,13 +110,8 @@ const Hero = () => {
         </div>
 
         <div className="hero-carousel relative -mx-4 h-[294px] w-[calc(100%+32px)] overflow-hidden md:-mx-6 md:h-[294px] md:w-[calc(100%+48px)] lg:h-[294px]">
-          <div
-            ref={sliderRef}
-            className="absolute bottom-0 left-0 flex h-full items-end"
-            style={{ willChange: 'transform' }}
-          >
+          <div className="hero-carousel-track absolute bottom-0 left-0 flex h-full items-end">
             <div
-              ref={firstSetRef}
               className="flex h-full flex-none items-end gap-[40px] pr-[40px] md:gap-[50px] md:pr-[50px] lg:gap-[60px] lg:pr-[60px]"
             >
               {HERO_CARDS.map((card, index) => (

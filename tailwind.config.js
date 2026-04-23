@@ -14,6 +14,7 @@ module.exports = {
         'bg-blue': '#EFF4FA', // Soft blue section background
         'br-gray': '#f6f6f6', // Bright neutral section background
         'bg-dark': '#222222', // Dark background
+        'border-blue': '#D4E3F4', // Soft blue border/divider
         'border-gray2': '#666666', // CTA/button stroke on light backgrounds
         'text-primary': '#111111', // Main text
         'text-identity-dark': '#5AA4F9', // Identity text on dark background
@@ -50,6 +51,9 @@ module.exports = {
       animation: {
         'scroll-left': 'scroll-left 120s linear infinite',
         'scroll-right': 'scroll-right 120s linear infinite',
+      },
+      boxShadow: {
+        'card': '2px 2px 10px rgba(0, 0, 0, 0.1)',
       },
       // Typography Customization
       typography: (theme) => ({

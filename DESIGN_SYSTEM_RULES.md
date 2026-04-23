@@ -185,8 +185,10 @@ $bg-dark: #222222;             // Dark sections
 
 // UI Colors
 $border-white: #FFFFFF;       // White borders
+$border-blue: #D4E3F4;        // Soft blue border/divider
 $border-gray1: #E5E5E5;       // Dividers
 $border-gray2: #666666;       // CTA/button stroke on light backgrounds
+$shadow-card: 2px 2px 10px rgba(0, 0, 0, 0.1);  // Default card shadow
 $shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
 ```
 
