@@ -27,7 +27,7 @@ const Section3Tia = () => {
   ]
 
   return (
-    <section className="landing-section-spacing relative w-full overflow-hidden bg-bg-dark text-white">
+    <section className="landing-section-spacing relative w-full overflow-hidden bg-bg-blue text-black">
       <div className="page-shell">
         <div className="flex flex-col items-center gap-[40px] md:gap-[70px] lg:gap-[100px]">
           <div className="flex flex-col items-center">
@@ -35,7 +35,7 @@ const Section3Tia = () => {
               수업 이후에도<br />
               <span className="font-ko">티아</span>가 함께합니다
             </h2>
-            <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
+            <p className="type-body-base text-center text-primary mt-[12px] md:mt-[16px] lg:mt-[20px]">
               막히는 순간, 망설이지 말고 물어보세요!<br />
               티아가 항상 옆에서 코치해 드릴 거예요.
             </p>
@@ -52,7 +52,7 @@ const Section3Tia = () => {
             />
           </div>
 
-          <p className="type-body-emphasis text-center whitespace-pre-line px-4">
+          <p className="type-body-emphasis px-4 text-center whitespace-pre-line text-black">
             <span className="font-ko">티아</span>는 여러분의 영어 여정을 함께하는 <span lang="en" className="font-en">AI</span> 선생님입니다.
             수업 중에 했던 표현과 피드백을 분석해 여러분을 돕는 똑똑한 학습 파트너죠.
             수업이 끝난 뒤에도 실력이 향상될 수 있도록 계속해서 코치해 줍니다.
@@ -74,7 +74,7 @@ const Section3Tia = () => {
                   <h4 className="type-h3">
                     {feature.title}
                   </h4>
-                  <p className="type-body-base whitespace-pre text-white/80">
+                  <p className="type-body-base whitespace-pre text-black/70">
                     {feature.description}
                   </p>
                 </div>
@@ -84,7 +84,7 @@ const Section3Tia = () => {
 
           <button
             onClick={() => setIsTiaModalOpen(true)}
-            className="cta-pill-button cta-pill-button-dark type-button-primary border-white text-white hover:bg-white hover:text-[#222222] transition-colors"
+            className="cta-pill-button cta-pill-button-light type-button-primary border-black text-black hover:bg-black hover:text-white transition-colors"
           >
             자세히 보기
           </button>
