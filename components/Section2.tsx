@@ -21,7 +21,7 @@ const speechBubbles = [
   },
 ]
 
-function Section2CardIcon({ iconName }: { iconName: string }) {
+function Section2CardIcon({ iconName, floatIndex = 0 }: { iconName: string; floatIndex?: number }) {
   const fallbackPng = getAssetPath(`images/icon/${iconName}.png`)
   const sources = [
     getAssetPath(`images/icon/${iconName}-1540.webp`),
@@ -61,14 +61,22 @@ function Section2CardIcon({ iconName }: { iconName: string }) {
   }, [sources])
 
   return (
-    <img
-      src={resolvedSrc}
-      alt=""
-      aria-hidden="true"
-      className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
-      decoding="async"
-      draggable="false"
-    />
+    <span
+      className="section2-floating-icon inline-flex"
+      style={{
+        animationDelay: `${floatIndex * 0.45}s`,
+        animationDuration: `${3.2 + floatIndex * 0.3}s`,
+      }}
+    >
+      <img
+        src={resolvedSrc}
+        alt=""
+        aria-hidden="true"
+        className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
+        decoding="async"
+        draggable="false"
+      />
+    </span>
   )
 }
 
@@ -88,13 +96,13 @@ const Section2 = () => {
         </div>
 
         <div className="hidden lg:grid grid-cols-3 gap-6 w-full mx-auto">
-          {speechBubbles.map((bubble) => (
+          {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
               className="bg-white rounded-[10px] px-8 py-6 min-h-[150px] shadow-card transform hover:scale-105 transition-transform"
             >
-              <div className="flex h-full flex-col items-center justify-center gap-4">
-                <Section2CardIcon iconName={bubble.iconName} />
+              <div className="flex h-full flex-col items-center justify-center gap-[10px]">
+                <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
                 <p className="type-body-base text-black whitespace-pre-line text-center">
                   {bubble.text}
                 </p>
@@ -104,13 +112,13 @@ const Section2 = () => {
         </div>
 
         <div className="hidden md:grid lg:hidden grid-cols-3 gap-6 w-full mx-auto">
-          {speechBubbles.map((bubble) => (
+          {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
               className="bg-white rounded-[10px] px-8 py-6 shadow-card transform hover:scale-105 transition-transform"
             >
-              <div className="flex h-full flex-col items-center justify-center gap-4">
-                <Section2CardIcon iconName={bubble.iconName} />
+              <div className="flex h-full flex-col items-center justify-center gap-[10px]">
+                <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
                 <p className="type-body-base text-black whitespace-pre-line text-center">
                   {bubble.text}
                 </p>
@@ -120,14 +128,14 @@ const Section2 = () => {
         </div>
 
         <div className="md:hidden flex flex-col gap-5">
-          {speechBubbles.map((bubble) => (
+          {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
               className="bg-white rounded-[10px] px-4 py-6 shadow-card"
             >
               <div className="flex h-full w-full items-center justify-center">
                 <div className={`flex items-center gap-4 ${bubble.align === 'right' ? 'flex-row-reverse text-right' : 'text-left'}`}>
-                <Section2CardIcon iconName={bubble.iconName} />
+                <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
                 <div className="text-left">
                   <p className={`type-body-base text-black whitespace-pre-line ${bubble.align === 'right' ? 'text-right' : 'text-left'}`}>
                     {bubble.text}

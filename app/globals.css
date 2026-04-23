@@ -410,6 +410,24 @@
   animation: hero-marquee 36s linear infinite;
 }
 
+@keyframes section2-icon-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+.section2-floating-icon {
+  will-change: transform;
+  animation-name: section2-icon-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
 @keyframes hero-marquee {
   from {
     transform: translate3d(0, 0, 0);
