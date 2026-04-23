@@ -25,17 +25,20 @@ const Section5 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue text-black">
       <div className="page-shell">
-        {/* Title */}
-        <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px] text-black">
-          지금 레벨테스트 신청하고<br/>
-          무료 수업 받으세요
-        </h2>
+        <div className="flex flex-col items-center mb-[30px] md:mb-[40px] lg:mb-[50px]">
+          <h2 className="type-h2 text-center text-black">
+            지금 레벨테스트 신청하고<br />
+            무료 수업 받으세요
+          </h2>
+          <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
+            가볍게 시작해 보셔도 괜찮아요.<br />
+            여러분에게 맞는 방향으로 차근차근 안내해 드립니다.
+          </p>
+        </div>
 
-        {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-[50px] md:gap-[70px] lg:gap-[100px] items-center justify-center">
-          {/* Video Call UI - img 3.png */}
           <div className="relative w-[250px] h-[500px] md:w-[280px] md:h-[560px] lg:w-[300px] lg:h-[607px]">
-            <Image 
+            <Image
               src={getAssetPath('images/frame4/img 3.webp')}
               alt="Video Call Interface"
               width={300}
@@ -44,12 +47,11 @@ const Section5 = () => {
             />
           </div>
 
-          {/* Features */}
           <div className="flex flex-col gap-[40px] md:gap-[60px] lg:gap-[75px]">
             {features.map((feature, index) => (
               <div key={index} className="flex gap-4 md:gap-5 lg:gap-6 items-start">
                 <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] flex items-center justify-center flex-shrink-0">
-                  <Image 
+                  <Image
                     src={feature.icon}
                     alt={feature.title}
                     width={100}
@@ -69,7 +71,6 @@ const Section5 = () => {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   )

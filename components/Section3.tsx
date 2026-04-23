@@ -32,17 +32,23 @@ const Section3 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue text-black">
       <div className="page-shell">
-        <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">
-          교과서 밖에서 통하는 영어,<br/>
-          <span className="font-ko">익스</span>로 시작하세요!
-        </h2>
-        
+        <div className="flex flex-col items-center mb-[30px] md:mb-[40px] lg:mb-[50px]">
+          <h2 className="type-h2 text-center">
+            교과서 밖에서 통하는 영어,<br />
+            <span className="font-ko">익스</span>로 시작하세요!
+          </h2>
+          <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
+            이번에도 흐지부지될까 걱정하지 않아도 돼요.<br />
+            익스는 당신만을 위한 로드맵으로 함께하니까요.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 lg:gap-20">
           {features.map((feature, index) => (
             <div key={index} className="flex flex-col items-center text-center">
               <div className="w-[70px] h-[70px] md:w-[90px] md:h-[90px] lg:w-[110px] lg:h-[110px] mb-[20px] md:mb-[25px] relative">
-                <Image 
-                  src={feature.icon} 
+                <Image
+                  src={feature.icon}
                   alt={feature.title}
                   width={110}
                   height={110}

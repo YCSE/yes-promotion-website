@@ -365,7 +365,7 @@
   }
 
   .page-shell {
-    @apply w-full max-w-full mx-auto px-5 md:max-w-[768px] md:px-6 lg:max-w-[1200px] lg:px-8;
+    @apply w-full max-w-full min-w-0 mx-auto px-5 md:max-w-[768px] md:px-6 lg:max-w-[1200px] lg:px-8;
   }
 }
 

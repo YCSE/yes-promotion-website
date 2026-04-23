@@ -146,13 +146,15 @@ const ReviewCarousel = () => {
 
     return (
         <section className="landing-section-spacing bg-white overflow-hidden">
-            <div className="page-shell mb-12 text-center">
-                <h2 className="type-h2 text-gray-900 mb-4">
+            <div className="page-shell mb-[30px] md:mb-[40px] lg:mb-[50px] text-center">
+                <div className="flex flex-col items-center">
+                <h2 className="type-h2 text-gray-900">
                     수강생들의 생생한 후기
                 </h2>
-                <p className="text-gray-600 text-lg">
+                <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
                     이미 많은 분들이 익스 화상영어와 함께 변화를 경험하고 있습니다.
                 </p>
+                </div>
             </div>
 
             <div className="relative w-full">

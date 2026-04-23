@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { getAssetPath } from '@/lib/utils'
 
 const HERO_CARDS = [
@@ -13,8 +13,6 @@ const HERO_CARDS = [
   { name: 'hero-call7' },
   { name: 'hero-call8' },
 ] as const
-
-const heroImageSrcCache = new Map<string, string>()
 
 function AppleStoreIcon() {
   return (
@@ -59,66 +57,20 @@ function HeroCallCard({
   name: string
   index: number
 }) {
-  const candidates = [
-    getAssetPath(`images/hero/${name}-540.webp`),
-    getAssetPath(`images/hero/${name}-1080.webp`),
-    getAssetPath(`images/hero/${name}.png`),
-  ]
-  const [resolvedSrc, setResolvedSrc] = useState<string | null>(() => heroImageSrcCache.get(name) ?? null)
-
-  useEffect(() => {
-    if (heroImageSrcCache.has(name)) {
-      setResolvedSrc(heroImageSrcCache.get(name) ?? null)
-      return
-    }
-
-    let cancelled = false
-    let probeImage: HTMLImageElement | null = null
-
-    const tryLoad = (candidateIndex: number) => {
-      if (candidateIndex >= candidates.length) {
-        setResolvedSrc(candidates[candidates.length - 1] ?? null)
-        return
-      }
-
-      probeImage = new window.Image()
-      probeImage.onload = () => {
-        if (cancelled) return
-        heroImageSrcCache.set(name, candidates[candidateIndex])
-        setResolvedSrc(candidates[candidateIndex])
-      }
-      probeImage.onerror = () => {
-        if (cancelled) return
-        tryLoad(candidateIndex + 1)
-      }
-      probeImage.src = candidates[candidateIndex]
-    }
-
-    tryLoad(0)
-
-    return () => {
-      cancelled = true
-      if (probeImage) {
-        probeImage.onload = null
-        probeImage.onerror = null
-      }
-    }
-  }, [candidates, name])
+  const resolvedSrc = getAssetPath(`images/hero/${name}.png`)
 
   return (
     <div
       className="relative h-[294px] w-[190px] overflow-hidden bg-white/12 md:h-[294px] md:w-[190px] lg:h-[294px] lg:w-[190px]"
     >
-      {resolvedSrc ? (
-        <img
-          src={resolvedSrc}
-          alt={`Hero call thumbnail ${index + 1}`}
-          className="h-full w-full object-cover object-top"
-          loading={index < 4 ? 'eager' : 'lazy'}
-          decoding="async"
-          draggable="false"
-        />
-      ) : null}
+      <img
+        src={resolvedSrc}
+        alt={`Hero call thumbnail ${index + 1}`}
+        className="h-full w-full object-cover object-top"
+        loading={index < 4 ? 'eager' : 'lazy'}
+        decoding="async"
+        draggable="false"
+      />
     </div>
   )
 }
