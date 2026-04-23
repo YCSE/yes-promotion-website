@@ -146,7 +146,7 @@ const ReviewCarousel = () => {
 
     return (
         <section className="landing-section-spacing bg-white overflow-hidden">
-            <div className="container mx-auto px-4 mb-12 text-center">
+            <div className="page-shell mb-12 text-center">
                 <h2 className="type-h2 text-gray-900 mb-4">
                     수강생들의 생생한 후기
                 </h2>

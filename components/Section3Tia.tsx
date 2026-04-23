@@ -28,7 +28,7 @@ const Section3Tia = () => {
 
   return (
     <section className="landing-section-spacing relative w-full bg-bg-dark text-white">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+      <div className="page-shell">
         <div className="flex flex-col items-center gap-[40px] md:gap-[70px] lg:gap-[100px]">
           <h2 className="type-h2 text-center whitespace-pre">
             수업 이후에도<br/>

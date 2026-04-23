@@ -9,7 +9,7 @@ const imgGoogle = getAssetPath('e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg');
 const Footer = () => {
   return (
     <footer id="footer-section" className="landing-section-spacing bg-black">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-6 flex flex-col lg:flex-row justify-center items-center lg:items-start gap-[40px] md:gap-[50px] lg:gap-[60px]">
+      <div className="page-shell flex flex-col lg:flex-row justify-center items-center lg:items-start gap-[40px] md:gap-[50px] lg:gap-[60px]">
         <div className="flex flex-col gap-[20px] md:gap-[25px] lg:gap-[30px] text-center lg:text-left">
           <h2 className="type-h2 text-white">
             실전 영어 감각,<br />

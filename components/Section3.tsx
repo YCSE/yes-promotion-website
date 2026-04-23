@@ -31,7 +31,7 @@ const Section3 = () => {
 
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue text-black">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+      <div className="page-shell">
         <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">
           교과서 밖에서 통하는 영어,<br/>
           <span className="font-ko">익스</span>로 시작하세요!

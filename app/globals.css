@@ -363,6 +363,10 @@
   .landing-section-spacing {
     @apply py-[60px] md:py-[80px] lg:py-[100px];
   }
+
+  .page-shell {
+    @apply w-full max-w-full mx-auto px-5 md:max-w-[768px] md:px-6 lg:max-w-[1200px] lg:px-8;
+  }
 }
 
 @media (min-width: 768px) {

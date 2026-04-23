@@ -53,7 +53,8 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
     <article className="min-h-screen bg-white">
       {/* Header */}
       <div className="w-full py-[60px] md:py-[100px] bg-[#F8F9FA]">
-        <div className="max-w-[900px] mx-auto px-6">
+        <div className="page-shell">
+          <div className="max-w-[900px] mx-auto">
           <Link 
             href="/blog" 
             className="inline-flex items-center text-[#3E86D9] hover:underline mb-6 text-[16px]"
@@ -76,12 +77,14 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
             <span>•</span>
             <time>{format(new Date(post.date), 'yyyy년 M월 d일', { locale: ko })}</time>
           </div>
+          </div>
         </div>
       </div>
 
       {/* Featured Image */}
       {post.featuredImage && (
-        <div className="max-w-[900px] mx-auto px-6 -mt-[30px] mb-[60px]">
+        <div className="page-shell -mt-[30px] mb-[60px]">
+          <div className="max-w-[900px] mx-auto">
           <div className="relative w-full h-[300px] md:h-[500px] rounded-[10px] overflow-hidden">
             <Image
               src={post.featuredImage}
@@ -92,11 +95,13 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
               sizes="(max-width: 768px) 100vw, 900px"
             />
           </div>
+          </div>
         </div>
       )}
 
       {/* Content */}
-      <div className="max-w-[900px] mx-auto px-6 py-[40px] md:py-[80px]">
+      <div className="page-shell py-[40px] md:py-[80px]">
+        <div className="max-w-[900px] mx-auto">
         <article className="blog-content prose prose-lg max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -106,6 +111,7 @@ export default function BlogPostClient({ post, relatedPosts }: BlogPostClientPro
             {preprocessBoldMarkers(post.content)}
           </ReactMarkdown>
         </article>
+        </div>
       </div>
 
       {/* Related Posts Section */}

@@ -4,8 +4,9 @@ import { getAssetPath } from '@/lib/utils'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
-      <div className="max-w-2xl w-full text-center">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center">
+      <div className="page-shell">
+      <div className="max-w-2xl mx-auto text-center">
         {/* 404 Error Number */}
         <div className="mb-8">
           <h1 className="text-[120px] md:text-[180px] font-extrabold text-[#3E86D9] leading-none">
@@ -65,6 +66,7 @@ export default function NotFound() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </div>
   )

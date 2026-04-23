@@ -169,7 +169,7 @@ const Hero = () => {
   return (
     <section className="hero-section relative w-full h-[90svh] overflow-hidden bg-yes-blue lg:h-[100svh]">
       <div className="hero-layout flex h-full flex-col">
-        <div className="hero-content-wrapper flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-4 md:gap-[27px] md:px-6">
+        <div className="hero-content-wrapper flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-5 md:gap-[27px] md:px-6 lg:px-8">
           <div className="z-10 text-center">
             <h1 className="type-h1 text-white">
               <span className="block hero-question-line">영어가 너무 어렵다고?</span>

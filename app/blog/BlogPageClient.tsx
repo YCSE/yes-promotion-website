@@ -33,7 +33,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Blog Posts Section */}
-      <div className="max-w-[1280px] mx-auto px-6 py-[80px] md:py-[100px]">
+      <div className="page-shell py-[80px] md:py-[100px]">
         {posts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-500 text-[18px] leading-[27px]">

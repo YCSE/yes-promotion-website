@@ -26,7 +26,7 @@ const FAQSection = () => {
 
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+      <div className="page-shell">
         <div className="max-w-[1080px] mx-auto">
           {faqs.map((faq, index) => (
             <div key={index}>

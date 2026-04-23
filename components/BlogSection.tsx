@@ -12,7 +12,7 @@ export default function BlogSection() {
 
   return (
     <section className="landing-section-spacing relative w-full bg-white">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="page-shell">
         {/* Title */}
         <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px]">
           <span className="font-ko">익스</span> 블로그에 초대합니다

@@ -24,7 +24,7 @@ const Section5 = () => {
 
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue text-black">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+      <div className="page-shell">
         {/* Title */}
         <h2 className="type-h2 text-center mb-[50px] md:mb-[80px] lg:mb-[100px] text-black">
           지금 레벨테스트 신청하고<br/>

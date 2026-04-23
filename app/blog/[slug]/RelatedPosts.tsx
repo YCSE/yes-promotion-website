@@ -31,8 +31,8 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
 
   if (posts.length === 0) {
     return (
-      <div className="max-w-[900px] mx-auto px-6 py-[60px] border-t border-gray-200">
-        <div className="text-center">
+      <div className="page-shell py-[60px] border-t border-gray-200">
+        <div className="max-w-[900px] mx-auto text-center">
           <p className="text-[20px] font-bold mb-4">더 많은 영어 학습 팁이 필요하신가요?</p>
           <Link
             href="/blog"
@@ -47,7 +47,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
 
   return (
     <div className="bg-[#F8F9FA] py-[60px] md:py-[100px]">
-      <div className="max-w-[1280px] mx-auto px-6">
+      <div className="page-shell">
         <h2 className="text-[24px] md:text-[32px] font-bold mb-[40px] md:mb-[60px]">
           함께 읽어볼 글
         </h2>
