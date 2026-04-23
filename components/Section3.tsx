@@ -1,39 +1,71 @@
 'use client'
 
-import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
 
 const features = [
   {
-    icon: getAssetPath('images/section3/A1.webp'),
+    imageSources: [
+      getAssetPath('images/icon/card1-feature1-1540.webp'),
+      getAssetPath('images/icon/card1-feature1-1080.webp'),
+      getAssetPath('images/icon/card1-feature1.png'),
+    ],
     title: '검증된 원어민급 강사',
     subtitle: '믿을 수 있는 진짜 원어민급 선생님만',
     description:
       '매칭될 선생님에 대한 걱정은 이제 그만.\n익스는 선생님의 가치관과 티칭 역량까지 꼼꼼히 검증합니다.',
   },
   {
-    icon: getAssetPath('images/section3/A2.webp'),
+    imageSources: [
+      getAssetPath('images/icon/card1-feature2-1540.webp'),
+      getAssetPath('images/icon/card1-feature2-1080.webp'),
+      getAssetPath('images/icon/card1-feature2.png'),
+    ],
     title: '개별 맞춤 커리큘럼',
     subtitle: '나에게 딱 맞는 영어 로드맵',
     description:
       '모두에게 똑같은 수업은 없습니다.\n내 실력에 맞춘 커리큘럼으로 빠르게 성장할 수 있습니다.',
   },
   {
-    icon: getAssetPath('images/section3/A3.webp'),
+    imageSources: [
+      getAssetPath('images/icon/card1-feature3-1540.webp'),
+      getAssetPath('images/icon/card1-feature3-1080.webp'),
+      getAssetPath('images/icon/card1-feature3.png'),
+    ],
     title: '세계가 인정한 학습법',
     subtitle: '과학적으로 검증된 언어 습득 이론',
     description:
       'GPA(성장 참여 접근법)와 OPOL(1인 1언어) 원칙을 적용하여\n체계적이고 효과적인 실력 향상을 보장합니다.',
   },
   {
-    icon: getAssetPath('images/section3/A5.webp'),
+    imageSources: [
+      getAssetPath('images/icon/card1-feature4-1540.webp'),
+      getAssetPath('images/icon/card1-feature4-1080.webp'),
+      getAssetPath('images/icon/card1-feature4.png'),
+    ],
     title: '효율적인 시간 활용',
     subtitle: '틈새 시간만 활용해도 충분한 성과를',
     description:
       '잠깐의 투자로도 충분한 학습 효과를 누릴 수 있어요.\n효율적인 수업으로 시간을 최대한 활용할 수 있도록 도와드립니다.',
   },
 ]
+
+const FeatureCardImage = ({ sources, alt }: { sources: string[]; alt: string }) => {
+  return (
+    <div className="relative aspect-[4/2] w-full overflow-hidden rounded-[10px]">
+      <picture>
+        <source srcSet={sources[0]} type="image/webp" />
+        <source srcSet={sources[1]} type="image/webp" />
+        <img
+          src={sources[2]}
+          alt={alt}
+          className="absolute inset-0 h-full w-full object-cover"
+          draggable="false"
+        />
+      </picture>
+    </div>
+  )
+}
 
 type DragState = {
   pointerId: number
@@ -146,18 +178,19 @@ const Section3 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue text-black">
       <div className="page-shell">
-        <div className="flex flex-col items-center mb-[30px] md:mb-[40px] lg:mb-[50px]">
+        <div className="mb-[30px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-black">
             교과서 밖에서 통하는 영어,
             <br />
             <span className="font-ko">익스</span>로 시작하세요!
           </h2>
-          <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
+          <p className="type-body-base mt-[12px] text-center text-primary md:mt-[16px] lg:mt-[20px]">
             이번에도 흐지부지될까 걱정하지 않아도 돼요.
             <br />
             익스는 당신만을 위한 로드맵으로 함께하니까요.
           </p>
         </div>
+
         <div className="section3-carousel-bleed">
           <div
             ref={trackRef}
@@ -175,32 +208,19 @@ const Section3 = () => {
                 key={feature.title}
                 className="section3-carousel-card snap-start shrink-0 rounded-[10px] bg-white shadow-card"
               >
-                <div className="flex min-h-[560px] flex-col gap-8 p-6 md:min-h-[320px] md:flex-row md:items-center md:justify-between md:gap-10 md:px-8 md:py-8 lg:min-h-[340px] lg:px-10 lg:py-10">
-                  <div className="md:max-w-[340px] lg:max-w-[400px]">
-                    <h6 className="type-h5 text-text-identity-dark mb-[15px] md:mb-[18px] lg:mb-[22px]">
+                <div className="flex min-h-[420px] flex-col p-6 md:min-h-[460px] md:px-8 md:py-8 lg:min-h-[500px] lg:px-10 lg:py-10">
+                  <FeatureCardImage sources={feature.imageSources} alt={feature.title} />
+
+                  <div className="mt-5 md:mt-6">
+                    <h6 className="type-h5 mb-2 text-yes-blue md:mb-[9px] lg:mb-[11px]">
                       {feature.title}
                     </h6>
-                    <h4 className="type-h3 text-black mb-[15px] md:mb-[20px] lg:mb-[23px]">
+                    <h4 className="type-h3 mb-[10px] text-black md:mb-[13px] lg:mb-[15px]">
                       {feature.subtitle}
                     </h4>
                     <p className="type-body-base whitespace-pre-line text-gray-600">
                       {feature.description}
                     </p>
-                  </div>
-
-                  <div className="mt-auto flex w-full justify-center md:mt-0 md:flex-1 md:justify-end">
-                    <div className="flex h-[240px] w-full items-center justify-center rounded-[10px] bg-bg-blue p-6 md:h-[220px] md:w-[240px] md:p-6 lg:h-[250px] lg:w-[270px] lg:p-8">
-                      <div className="relative h-full w-full">
-                        <Image
-                          src={feature.icon}
-                          alt={feature.title}
-                          fill
-                          className="object-contain"
-                          sizes="(max-width: 767px) calc((100vw - 40px) * 0.8 - 48px), (max-width: 1279px) 240px, 270px"
-                          draggable={false}
-                        />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </article>

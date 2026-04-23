@@ -384,6 +384,7 @@
   }
 
   .section3-carousel-track {
+    --section3-card-width: clamp(260px, calc((100vw - 40px) * 0.8), 360px);
     --section3-side-gap: calc((100vw - var(--section3-card-width)) / 2);
     padding-inline: var(--section3-side-gap);
     scroll-padding-inline: var(--section3-side-gap);
@@ -402,7 +403,7 @@
   }
 
   .section3-carousel-card {
-    width: clamp(260px, calc((100vw - 40px) * 0.8), 360px);
+    width: var(--section3-card-width);
   }
 }
 
@@ -411,8 +412,12 @@
     font-size: 46px;
   }
 
+  .section3-carousel-track {
+    --section3-card-width: min(540px, calc(100vw - 180px));
+  }
+
   .section3-carousel-card {
-    width: min(760px, calc(100vw - 280px));
+    width: var(--section3-card-width);
   }
 }
 
@@ -421,8 +426,12 @@
     font-size: 46px;
   }
 
+  .section3-carousel-track {
+    --section3-card-width: min(620px, calc(100vw - 260px));
+  }
+
   .section3-carousel-card {
-    width: min(860px, calc(100vw - 420px));
+    width: var(--section3-card-width);
   }
 }
 

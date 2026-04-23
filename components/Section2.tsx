@@ -72,7 +72,7 @@ function Section2CardIcon({ iconName, floatIndex = 0 }: { iconName: string; floa
         src={resolvedSrc}
         alt=""
         aria-hidden="true"
-        className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
+        className="h-12 w-12 object-contain md:h-14 md:w-14 lg:h-16 lg:w-16"
         decoding="async"
         draggable="false"
       />
@@ -84,63 +84,66 @@ const Section2 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-white">
       <div className="page-shell">
-        <div className="flex flex-col items-center mb-[30px] md:mb-[40px] lg:mb-[50px]">
+        <div className="mb-[30px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-black">
-            실전에서는 막막한 영어,<br />
+            실전에서는 막막한 영어,
+            <br />
             나만 그런가요?
           </h2>
-          <p className="type-body-base text-primary text-center mt-[12px] md:mt-[16px] lg:mt-[20px]">
-            문제는 실력이 아니라 ‘말하는 경험’이에요.<br />
+          <p className="type-body-base mt-[12px] text-center text-primary md:mt-[16px] lg:mt-[20px]">
+            문제는 실력이 아니라 ‘말하는 경험’이에요.
+            <br />
             실전에서 바로 꺼내 쓰는 연습이 필요합니다.
           </p>
         </div>
 
-        <div className="hidden lg:grid grid-cols-3 gap-6 w-full mx-auto">
+        <div className="mx-auto hidden w-full grid-cols-3 gap-6 lg:grid">
           {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
-              className="bg-white rounded-[10px] px-8 py-6 min-h-[150px] shadow-card transform hover:scale-105 transition-transform"
+              className="transform rounded-[10px] bg-white px-8 py-6 shadow-card transition-transform hover:scale-105 min-h-[150px]"
             >
               <div className="flex h-full flex-col items-center justify-center gap-[10px]">
                 <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
-                <p className="type-body-base text-black whitespace-pre-line text-center">
-                  {bubble.text}
-                </p>
+                <p className="type-body-base whitespace-pre-line text-center text-black">{bubble.text}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="hidden md:grid lg:hidden grid-cols-3 gap-6 w-full mx-auto">
+        <div className="mx-auto hidden w-full grid-cols-3 gap-6 md:grid lg:hidden">
           {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
-              className="bg-white rounded-[10px] px-8 py-6 shadow-card transform hover:scale-105 transition-transform"
+              className="transform rounded-[10px] bg-white px-8 py-6 shadow-card transition-transform hover:scale-105"
             >
               <div className="flex h-full flex-col items-center justify-center gap-[10px]">
                 <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
-                <p className="type-body-base text-black whitespace-pre-line text-center">
-                  {bubble.text}
-                </p>
+                <p className="type-body-base whitespace-pre-line text-center text-black">{bubble.text}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="md:hidden flex flex-col gap-5">
+        <div className="flex flex-col gap-5 md:hidden">
           {speechBubbles.map((bubble, index) => (
-            <div
-              key={bubble.iconName}
-              className="bg-white rounded-[10px] px-4 py-6 shadow-card"
-            >
+            <div key={bubble.iconName} className="rounded-[10px] bg-white px-4 py-6 shadow-card">
               <div className="flex h-full w-full items-center justify-center">
-                <div className={`flex items-center gap-4 ${bubble.align === 'right' ? 'flex-row-reverse text-right' : 'text-left'}`}>
-                <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
-                <div className="text-left">
-                  <p className={`type-body-base text-black whitespace-pre-line ${bubble.align === 'right' ? 'text-right' : 'text-left'}`}>
-                    {bubble.text}
-                  </p>
-                </div>
+                <div
+                  className={`flex items-center gap-4 ${
+                    bubble.align === 'right' ? 'flex-row-reverse text-right' : 'text-left'
+                  }`}
+                >
+                  <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
+                  <div>
+                    <p
+                      className={`type-body-base whitespace-pre-line text-black ${
+                        bubble.align === 'right' ? 'text-right' : 'text-left'
+                      }`}
+                    >
+                      {bubble.text}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
