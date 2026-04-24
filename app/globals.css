@@ -461,7 +461,7 @@
 
 .hero-carousel-track {
   will-change: transform;
-  animation: hero-marquee 36s linear infinite;
+  animation: hero-marquee 54s linear infinite;
 }
 
 @keyframes section2-icon-float {
