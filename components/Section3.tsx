@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
 
 const features = [
@@ -51,18 +51,52 @@ const features = [
 ]
 
 const FeatureCardImage = ({ sources, alt }: { sources: string[]; alt: string }) => {
+  const fallbackSource = sources[sources.length - 1]
+  const [resolvedSource, setResolvedSource] = useState(fallbackSource)
+
+  useEffect(() => {
+    let isCancelled = false
+
+    setResolvedSource(fallbackSource)
+
+    const loadSource = (index: number) => {
+      if (index >= sources.length) {
+        return
+      }
+
+      const candidate = sources[index]
+      const image = new window.Image()
+
+      image.onload = () => {
+        if (!isCancelled) {
+          setResolvedSource(candidate)
+        }
+      }
+
+      image.onerror = () => {
+        if (!isCancelled) {
+          loadSource(index + 1)
+        }
+      }
+
+      image.src = candidate
+    }
+
+    loadSource(0)
+
+    return () => {
+      isCancelled = true
+    }
+  }, [fallbackSource, sources])
+
   return (
-    <div className="relative aspect-[4/2] w-full overflow-hidden rounded-[10px]">
-      <picture>
-        <source srcSet={sources[0]} type="image/webp" />
-        <source srcSet={sources[1]} type="image/webp" />
-        <img
-          src={sources[2]}
-          alt={alt}
-          className="absolute inset-0 h-full w-full object-cover"
-          draggable="false"
-        />
-      </picture>
+    <div className="relative aspect-[5/2] w-full overflow-hidden">
+      <img
+        src={resolvedSource}
+        alt={alt}
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        draggable="false"
+      />
     </div>
   )
 }
@@ -206,12 +240,12 @@ const Section3 = () => {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="section3-carousel-card snap-start shrink-0 rounded-[10px] bg-white shadow-card"
+                className="section3-carousel-card snap-start shrink-0 overflow-hidden rounded-[10px] bg-white shadow-card"
               >
-                <div className="flex min-h-[420px] flex-col p-6 md:min-h-[460px] md:px-8 md:py-8 lg:min-h-[500px] lg:px-10 lg:py-10">
+                <div className="flex flex-col">
                   <FeatureCardImage sources={feature.imageSources} alt={feature.title} />
 
-                  <div className="mt-5 md:mt-6">
+                  <div className="p-6 md:p-8 lg:p-10">
                     <h6 className="type-h5 mb-2 text-yes-blue md:mb-[9px] lg:mb-[11px]">
                       {feature.title}
                     </h6>
