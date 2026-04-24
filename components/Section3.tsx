@@ -90,7 +90,7 @@ const FeatureCardImage = ({ sources, alt }: { sources: string[]; alt: string }) 
   }, [fallbackSource, sources])
 
   return (
-    <div className="relative aspect-[5/2] w-full overflow-hidden">
+    <div className="relative aspect-[20/7] w-full overflow-hidden">
       <img
         src={resolvedSource}
         alt={alt}
