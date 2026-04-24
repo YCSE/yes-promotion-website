@@ -112,7 +112,7 @@ const Hero = () => {
         <div className="hero-carousel relative -mx-4 h-[294px] w-[calc(100%+32px)] overflow-hidden md:-mx-6 md:h-[294px] md:w-[calc(100%+48px)] lg:h-[294px]">
           <div className="hero-carousel-track absolute bottom-0 left-0 flex h-full items-end">
             <div
-              className="flex h-full flex-none items-end gap-[40px] pr-[40px] md:gap-[50px] md:pr-[50px] lg:gap-[60px] lg:pr-[60px]"
+              className="flex h-full flex-none items-end gap-[35px] pr-[35px] md:gap-[45px] md:pr-[45px] lg:gap-[45px] lg:pr-[45px]"
             >
               {HERO_CARDS.map((card, index) => (
                 <HeroCallCard
@@ -123,7 +123,7 @@ const Hero = () => {
               ))}
             </div>
 
-            <div className="flex h-full flex-none items-end gap-[40px] pr-[40px] md:gap-[50px] md:pr-[50px] lg:gap-[60px] lg:pr-[60px]">
+            <div className="flex h-full flex-none items-end gap-[35px] pr-[35px] md:gap-[45px] md:pr-[45px] lg:gap-[45px] lg:pr-[45px]">
               {HERO_CARDS.map((card, index) => (
                 <HeroCallCard
                   key={`${card.name}-duplicate`}
