@@ -127,7 +127,7 @@ const Section2 = () => {
 
         <div className="flex flex-col gap-5 md:hidden">
           {speechBubbles.map((bubble, index) => (
-            <div key={bubble.iconName} className="rounded-[10px] bg-white px-4 py-6 shadow-card">
+            <div key={bubble.iconName} className="rounded-[10px] bg-white px-4 py-[30px] shadow-card">
               <div className="flex h-full w-full items-center justify-center">
                 <div
                   className={`flex items-center gap-4 ${
