@@ -212,7 +212,7 @@ const Section3 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-bg-dark text-white">
       <div className="page-shell">
-        <div className="mb-[30px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
+        <div className="mb-[40px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-white">
             교과서 밖에서 통하는 영어,
             <br />

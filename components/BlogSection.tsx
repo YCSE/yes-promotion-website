@@ -10,7 +10,7 @@ export default function BlogSection() {
   return (
     <section className="landing-section-spacing relative w-full bg-white">
       <div className="page-shell">
-        <div className="flex flex-col items-center mb-[30px] md:mb-[40px] lg:mb-[50px]">
+        <div className="flex flex-col items-center mb-[40px] md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center">
             <span className="font-ko">익스</span> 블로그에 초대합니다
           </h2>

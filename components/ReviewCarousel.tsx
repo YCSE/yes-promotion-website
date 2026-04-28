@@ -146,7 +146,7 @@ const ReviewCarousel = () => {
 
     return (
         <section className="landing-section-spacing bg-white overflow-hidden">
-            <div className="page-shell mb-[30px] md:mb-[40px] lg:mb-[50px] text-center">
+            <div className="page-shell mb-[40px] md:mb-[40px] lg:mb-[50px] text-center">
                 <div className="flex flex-col items-center">
                 <h2 className="type-h2 text-gray-900">
                     수강생들의 생생한 후기

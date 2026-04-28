@@ -25,7 +25,7 @@ const Section5 = () => {
   return (
     <section className="landing-section-spacing relative w-full bg-bg-blue text-black">
       <div className="page-shell">
-        <div className="flex flex-col items-center mb-[30px] md:mb-[40px] lg:mb-[50px]">
+        <div className="flex flex-col items-center mb-[40px] md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-black">
             지금 레벨테스트 신청하고<br />
             무료 수업 받으세요
