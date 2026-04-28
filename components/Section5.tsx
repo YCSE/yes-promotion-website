@@ -36,7 +36,7 @@ const Section5 = () => {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-[50px] md:gap-[70px] lg:gap-[100px] items-center justify-center">
+        <div className="flex flex-col lg:flex-row gap-[40px] md:gap-[40px] lg:gap-[80px] items-center justify-center">
           <div className="relative w-[250px] h-[500px] md:w-[280px] md:h-[560px] lg:w-[300px] lg:h-[607px]">
             <Image
               src={getAssetPath('images/frame4/img 3.webp')}
@@ -50,7 +50,7 @@ const Section5 = () => {
           <div className="flex flex-col gap-[40px] md:gap-[60px] lg:gap-[75px]">
             {features.map((feature, index) => (
               <div key={index} className="flex gap-4 md:gap-5 lg:gap-6 items-start">
-                <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] flex items-center justify-center flex-shrink-0">
+                <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center flex-shrink-0">
                   <Image
                     src={feature.icon}
                     alt={feature.title}
