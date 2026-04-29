@@ -20,7 +20,7 @@ export default function BlogSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:hidden gap-4 mb-[50px]">
+        <div className="grid grid-cols-2 md:hidden gap-4 mb-[40px]">
           {randomPosts.slice(0, 2).map((post) => (
             <Link
               key={post.slug}
@@ -58,7 +58,7 @@ export default function BlogSection() {
           ))}
         </div>
 
-        <div className="hidden md:grid md:grid-cols-3 gap-10 mb-[80px]">
+        <div className="hidden md:grid md:grid-cols-3 gap-10 mb-[40px] lg:mb-[50px]">
           {randomPosts.map((post) => (
             <Link
               key={post.slug}
