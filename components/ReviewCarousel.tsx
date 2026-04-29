@@ -83,16 +83,14 @@ const secondRow = REVIEWS.slice(halfLength)
 
 const ReviewCard = ({ review }: { review: Review }) => {
   const nameMatch = review.name.match(/^(.+) \((.+)\)$/)
-  const koreanName = nameMatch ? nameMatch[1] : review.name
   const englishName = nameMatch ? nameMatch[2] : ''
 
   return (
-    <div className="mx-3 flex h-[220px] w-[300px] flex-shrink-0 flex-col justify-between rounded-[10px] border border-gray-100 bg-white p-6 md:w-[350px]">
+    <div className="mx-3 flex h-[200px] w-[300px] flex-shrink-0 flex-col justify-between rounded-[10px] border border-gray-100 bg-white p-6 md:w-[350px]">
       <div>
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 font-bold">
-              <span className="text-gray-900 blur-[4px]">{koreanName}</span>
               {englishName && (
                 <span lang="en" className="font-en text-yes-blue">
                   {englishName}
@@ -107,17 +105,17 @@ const ReviewCard = ({ review }: { review: Review }) => {
           </div>
         </div>
         <p className="type-body-support line-clamp-3 text-gray-600">
-          "{review.content}"
+          {review.content}
         </p>
       </div>
-      <p className="type-h6 mt-4 text-right text-gray-400">{review.date}</p>
+      <p className="type-h6 font-num mt-4 text-right text-gray-400">{review.date}</p>
     </div>
   )
 }
 
 const ReviewCarousel = () => {
   return (
-    <section className="landing-section-spacing overflow-hidden bg-white">
+    <section className="landing-section-spacing overflow-hidden bg-bg-gray">
       <div className="page-shell mb-[40px] text-center md:mb-[40px] lg:mb-[50px]">
         <div className="flex flex-col items-center">
           <h2 className="type-h2 text-gray-900">
@@ -132,8 +130,8 @@ const ReviewCarousel = () => {
       </div>
 
       <div className="relative w-full">
-        <div className="absolute left-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-r from-white to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-l from-white to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-r from-bg-gray to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-l from-bg-gray to-transparent" />
 
         <div className="mb-8 flex overflow-hidden">
           <div className="flex animate-scroll-left hover:[animation-play-state:paused]">

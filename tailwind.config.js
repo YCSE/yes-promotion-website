@@ -54,7 +54,7 @@ module.exports = {
         'scroll-right': 'scroll-right 120s linear infinite',
       },
       boxShadow: {
-        'card': '2px 2px 10px rgba(0, 0, 0, 0.1)',
+        'card': '2px 2px 10px rgba(0, 0, 0, 0.08)',
       },
       // Typography Customization
       typography: (theme) => ({
