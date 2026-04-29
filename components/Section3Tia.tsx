@@ -1,36 +1,32 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
-import TiaModal from './TiaModal'
 import { getAssetPath } from '@/lib/utils'
 
 const tiaFeatures = [
   {
     icon: getAssetPath('images/section3-2/list2-1.webp'),
-    title: '누적 피드백 기반 지도',
-    description: '누적된 피드백을 바탕으로\n개인별 맞춤 지도를 합니다',
+    title: '맞춤형 학습 코칭',
+    description: '수업에서 받은 피드백을 분석해\n개인별 맞춤 학습과 코칭을 제공합니다',
   },
   {
     icon: getAssetPath('images/section3-2/list2-2.webp'),
-    title: '필요할 땐 한국어로 소통',
-    description: '표현하기 어려운 내용도\n한국어로 쉽게 상담할 수 있습니다',
+    title: '실시간 영어 대화 연습',
+    description: '수업 외에도 언제든 티아와 영어로 대화하며\n막히는 부분은 한국어로 도움받을 수 있습니다',
   },
   {
     icon: getAssetPath('images/section3-2/list2-2.webp'),
-    title: '필요할 땐 한국어로 소통',
-    description: '표현하기 어려운 내용도\n한국어로 쉽게 상담할 수 있습니다',
+    title: '문장 분석 및 해설',
+    description: '자세히 알고 싶은 문장이 있나요?\n문법, 어휘, 표현까지 쉽게 풀어드립니다',
   },
   {
     icon: getAssetPath('images/section3-2/list2-3.webp'),
-    title: '누구나 언제든 이용 가능',
-    description: '수강 여부와 관계없이\n100% 무료로 이용 가능합니다',
+    title: '게임처럼 배우는 영어',
+    description: '티아와 함께하는 다양한 게임으로\n영어를 더 자연스럽고 재미있게 익힐 수 있습니다',
   },
 ]
 
 const Section3Tia = () => {
-  const [isTiaModalOpen, setIsTiaModalOpen] = useState(false)
-
   return (
     <section className="landing-section-spacing relative w-full overflow-hidden bg-bg-blue text-black">
       <div className="page-shell">
@@ -72,7 +68,7 @@ const Section3Tia = () => {
                       className="h-full w-full object-contain"
                     />
                   </div>
-                  <div className="flex flex-col gap-4 text-left md:gap-5 lg:gap-7">
+                  <div className="flex flex-col gap-2 text-left md:gap-[10px] lg:gap-[14px]">
                     <h4 className="type-h3 text-black">{feature.title}</h4>
                     <p className="type-body-base whitespace-pre-line text-black/70">
                       {feature.description}
@@ -82,20 +78,8 @@ const Section3Tia = () => {
               ))}
             </div>
           </div>
-
-          <button
-            onClick={() => setIsTiaModalOpen(true)}
-            className="cta-pill-button cta-pill-button-light type-button-primary border-black text-black transition-colors hover:bg-black hover:text-white lg:col-span-2"
-          >
-            자세히 보기
-          </button>
         </div>
       </div>
-
-      <TiaModal
-        isOpen={isTiaModalOpen}
-        onClose={() => setIsTiaModalOpen(false)}
-      />
     </section>
   )
 }

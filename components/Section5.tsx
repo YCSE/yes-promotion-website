@@ -60,7 +60,7 @@ const Section5 = () => {
                   />
                 </div>
                 <div className="max-w-[300px]">
-                  <h4 className="type-h3 mb-4 md:mb-5 lg:mb-6 text-black">
+                  <h4 className="type-h3 mb-2 md:mb-[10px] lg:mb-3 text-black">
                     {feature.title}
                   </h4>
                   <p className="type-body-base text-gray-600 whitespace-pre-line">
