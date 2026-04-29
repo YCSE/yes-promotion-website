@@ -18,7 +18,7 @@ const ReviewIntroSection = () => {
             이미 많은 사용자들이 그 차이를 경험하고 있습니다.
           </p>
 
-          <div className="mt-[34px] w-full max-w-[clamp(260px,calc((100vw-40px)*0.8),360px)] overflow-hidden rounded-[10px] bg-bg-blue md:mt-[38px] md:max-w-[980px] lg:mt-[42px]">
+          <div className="mt-[34px] w-full max-w-[clamp(260px,calc((100vw-40px)*0.8),360px)] overflow-hidden rounded-[10px] bg-yes-blue md:mt-[38px] md:max-w-[980px] lg:mt-[42px]">
             <div className="grid grid-cols-1 md:grid-cols-3">
               {performanceStats.map((stat, index) => (
                 <div
@@ -32,18 +32,18 @@ const ReviewIntroSection = () => {
                   }`}
                 >
                   <div
-                    className="review-intro-value font-en text-[52px] font-bold leading-none tracking-[-0.05em] text-text-primary md:text-[62px] lg:text-[70px]"
+                    className="review-intro-value font-en text-[52px] font-bold leading-none tracking-[-0.05em] text-white md:text-[62px] lg:text-[70px]"
                     style={{ animationDelay: `${index * 110 + 70}ms` }}
                   >
                     {stat.value}
                   </div>
-                  <p className="type-body-emphasis mt-2 md:mt-[10px] text-gray-900">
+                  <p className="type-body-emphasis mt-2 text-white md:mt-[10px]">
                     {stat.label}
                   </p>
                   {index < performanceStats.length - 1 && (
                     <>
-                      <div className="absolute bottom-0 left-1/2 h-px w-[50px] -translate-x-1/2 bg-[#C6D6EE] md:hidden" />
-                      <div className="absolute right-0 top-1/2 hidden h-[50px] w-px -translate-y-1/2 bg-[#C6D6EE] md:block" />
+                      <div className="absolute bottom-0 left-1/2 h-px w-[50px] -translate-x-1/2 bg-white/30 md:hidden" />
+                      <div className="absolute right-0 top-1/2 hidden h-[50px] w-px -translate-y-1/2 bg-white/30 md:block" />
                     </>
                   )}
                 </div>
