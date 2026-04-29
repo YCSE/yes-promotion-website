@@ -7,7 +7,7 @@ const imgGoogle = getAssetPath('e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')
 
 const Footer = () => {
   return (
-    <footer id="footer-section" className="landing-section-spacing bg-black">
+    <footer id="footer-section" data-header-theme="dark" className="landing-section-spacing bg-black">
       <div className="page-shell flex flex-col items-center gap-[40px] lg:gap-[60px]">
         <div className="flex flex-col items-center gap-[22px] md:gap-[24px] lg:gap-[30px] text-center">
           <h2 className="type-h2 text-white">

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './fonts.css'
 import './globals.css'
-import Footer from '@/components/Footer'
+import SiteFrame from '@/components/SiteFrame'
 import Script from 'next/script'
 
 export const viewport = {
@@ -638,8 +638,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
-        <Footer />
+        <SiteFrame>{children}</SiteFrame>
       </body>
     </html>
   )

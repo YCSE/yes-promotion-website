@@ -28,7 +28,7 @@ const tiaFeatures = [
 
 const Section3Tia = () => {
   return (
-    <section className="landing-section-spacing relative w-full overflow-hidden bg-bg-blue text-black">
+    <section data-header-theme="light" className="landing-section-spacing relative w-full overflow-hidden bg-bg-blue text-black">
       <div className="page-shell">
         <div className="grid grid-cols-1 justify-items-center gap-[40px] md:gap-[40px] lg:grid-cols-[360px_minmax(360px,420px)] lg:justify-center lg:items-start lg:gap-x-[80px] lg:gap-y-[50px]">
           <div className="flex flex-col items-center lg:col-span-2">

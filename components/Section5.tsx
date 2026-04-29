@@ -23,7 +23,7 @@ const Section5 = () => {
   ]
 
   return (
-    <section className="landing-section-spacing relative w-full bg-white text-black">
+    <section data-header-theme="light" className="landing-section-spacing relative w-full bg-white text-black">
       <div className="page-shell">
         <div className="flex flex-col items-center mb-[40px] md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-black">

@@ -115,7 +115,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
 
 const ReviewCarousel = () => {
   return (
-    <section className="landing-section-spacing overflow-hidden bg-bg-gray">
+    <section data-header-theme="light" className="landing-section-spacing overflow-hidden bg-bg-gray">
       <div className="page-shell mb-[40px] text-center md:mb-[40px] lg:mb-[50px]">
         <div className="flex flex-col items-center">
           <h2 className="type-h2 text-gray-900">

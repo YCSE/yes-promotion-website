@@ -6,7 +6,7 @@ const performanceStats = [
 
 const ReviewIntroSection = () => {
   return (
-    <section className="landing-section-spacing bg-white">
+    <section data-header-theme="light" className="landing-section-spacing bg-white">
       <div className="page-shell text-center">
         <div className="flex flex-col items-center">
           <h2 className="type-h2 text-gray-900">

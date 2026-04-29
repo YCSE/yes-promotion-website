@@ -50,7 +50,7 @@ function preprocessBoldMarkers(content: string): string {
 export default function BlogPostClient({ post, relatedPosts }: BlogPostClientProps) {
 
   return (
-    <article className="min-h-screen bg-white">
+    <article data-header-theme="light" className="min-h-screen bg-white">
       {/* Header */}
       <div className="w-full py-[60px] md:py-[100px] bg-[#F8F9FA]">
         <div className="page-shell">
