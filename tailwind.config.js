@@ -12,11 +12,12 @@ module.exports = {
         'yes-blue': '#3E86D9', // Primary Brand Color
         'accent-blue': '#3E86D9', // Interactive elements, links
         'bg-blue': '#EFF4FA', // Soft blue section background
-        'br-gray': '#f6f6f6', // Bright neutral section background
+        'bg-gray': '#F6F6F6', // Bright neutral section background
         'bg-dark': '#222222', // Dark background
         'border-blue': '#D4E3F4', // Soft blue border/divider
         'border-gray2': '#666666', // CTA/button stroke on light backgrounds
         'text-primary': '#111111', // Main text
+        'text-gray': '#666666', // Secondary gray text
         'text-identity-dark': '#5AA4F9', // Identity text on dark background
 
         // Semantic Colors for Typography (Slate scale for better readability)

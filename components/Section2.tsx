@@ -90,7 +90,7 @@ const Section2 = () => {
             <br />
             나만 그런가요?
           </h2>
-          <p className="type-body-base mt-[12px] text-center text-primary md:mt-[16px] lg:mt-[20px]">
+          <p className="type-body-base mt-[12px] text-center text-primary md:mt-[16px] lg:mt-[18px]">
             문제는 실력이 아니라 ‘말하는 경험’이에요.
             <br />
             실전에서 바로 꺼내 쓰는 연습이 필요합니다.
