@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
+import ResponsiveAssetImage from '@/components/ResponsiveAssetImage'
 
 const speechBubbles = [
   {
@@ -22,44 +22,6 @@ const speechBubbles = [
 ]
 
 function Section2CardIcon({ iconName, floatIndex = 0 }: { iconName: string; floatIndex?: number }) {
-  const fallbackPng = getAssetPath(`images/icon/${iconName}.png`)
-  const sources = [
-    getAssetPath(`images/icon/${iconName}-1540.webp`),
-    getAssetPath(`images/icon/${iconName}-1080.webp`),
-  ]
-
-  const [resolvedSrc, setResolvedSrc] = useState(fallbackPng)
-
-  useEffect(() => {
-    let cancelled = false
-    let probeImage: HTMLImageElement | null = null
-
-    const tryLoad = (candidateIndex: number) => {
-      if (candidateIndex >= sources.length) return
-
-      probeImage = new window.Image()
-      probeImage.onload = () => {
-        if (cancelled) return
-        setResolvedSrc(sources[candidateIndex])
-      }
-      probeImage.onerror = () => {
-        if (cancelled) return
-        tryLoad(candidateIndex + 1)
-      }
-      probeImage.src = sources[candidateIndex]
-    }
-
-    tryLoad(0)
-
-    return () => {
-      cancelled = true
-      if (probeImage) {
-        probeImage.onload = null
-        probeImage.onerror = null
-      }
-    }
-  }, [sources])
-
   return (
     <span
       className="section2-floating-icon inline-flex"
@@ -68,13 +30,15 @@ function Section2CardIcon({ iconName, floatIndex = 0 }: { iconName: string; floa
         animationDuration: `${3.2 + floatIndex * 0.3}s`,
       }}
     >
-      <img
-        src={resolvedSrc}
+      <ResponsiveAssetImage
+        high={getAssetPath(`images/icon/${iconName}-1540.webp`)}
+        medium={getAssetPath(`images/icon/${iconName}-1080.webp`)}
+        fallback={getAssetPath(`images/icon/${iconName}.png`)}
         alt=""
         aria-hidden="true"
         className="h-12 w-12 object-contain md:h-14 md:w-14 lg:h-16 lg:w-16"
         decoding="async"
-        draggable="false"
+        draggable={false}
       />
     </span>
   )

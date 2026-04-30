@@ -1,26 +1,26 @@
 'use client'
 
-import Image from 'next/image'
 import { getAssetPath } from '@/lib/utils'
+import ResponsiveAssetImage from '@/components/ResponsiveAssetImage'
 
 const tiaFeatures = [
   {
-    icon: getAssetPath('images/icon/B1.png'),
+    iconName: 'B1',
     title: '맞춤형 학습 코칭',
     description: '수업에서 받은 피드백을 분석해\n개인별 맞춤 학습과 코칭을 제공합니다',
   },
   {
-    icon: getAssetPath('images/icon/B2.png'),
+    iconName: 'B2',
     title: '실시간 영어 대화 연습',
     description: '수업 외에도 언제든 티아와 영어로 대화하며\n막히는 부분은 한국어로 도움받을 수 있습니다',
   },
   {
-    icon: getAssetPath('images/icon/B3.png'),
+    iconName: 'B3',
     title: '문장 분석 및 해설',
     description: '자세히 알고 싶은 문장이 있나요?\n문법, 어휘, 표현까지 쉽게 풀어드립니다',
   },
   {
-    icon: getAssetPath('images/icon/B4.png'),
+    iconName: 'B4',
     title: '게임처럼 배우는 영어',
     description: '티아와 함께하는 다양한 게임으로\n영어를 더 자연스럽고 재미있게 익힐 수 있습니다',
   },
@@ -33,11 +33,11 @@ const Section3Tia = () => {
         {tiaFeatures.map((feature, index) => (
           <div key={index} className="flex w-fit max-w-full items-center gap-4 md:gap-5 lg:w-full lg:items-start lg:gap-6">
             <div className="relative h-[60px] w-[60px] flex-shrink-0 md:h-[80px] md:w-[80px] lg:h-[80px] lg:w-[80px]">
-              <Image
-                src={feature.icon}
+              <ResponsiveAssetImage
+                high={getAssetPath(`images/icon/${feature.iconName}-1540.webp`)}
+                medium={getAssetPath(`images/icon/${feature.iconName}-1080.webp`)}
+                fallback={getAssetPath(`images/icon/${feature.iconName}.png`)}
                 alt={feature.title}
-                width={90}
-                height={90}
                 className="h-full w-full object-contain"
               />
             </div>

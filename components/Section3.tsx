@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
+import ResponsiveAssetImage from '@/components/ResponsiveAssetImage'
 
 const features = [
   {
@@ -51,51 +52,15 @@ const features = [
 ]
 
 const FeatureCardImage = ({ sources, alt }: { sources: string[]; alt: string }) => {
-  const fallbackSource = sources[sources.length - 1]
-  const [resolvedSource, setResolvedSource] = useState(fallbackSource)
-
-  useEffect(() => {
-    let isCancelled = false
-
-    setResolvedSource(fallbackSource)
-
-    const loadSource = (index: number) => {
-      if (index >= sources.length) {
-        return
-      }
-
-      const candidate = sources[index]
-      const image = new window.Image()
-
-      image.onload = () => {
-        if (!isCancelled) {
-          setResolvedSource(candidate)
-        }
-      }
-
-      image.onerror = () => {
-        if (!isCancelled) {
-          loadSource(index + 1)
-        }
-      }
-
-      image.src = candidate
-    }
-
-    loadSource(0)
-
-    return () => {
-      isCancelled = true
-    }
-  }, [fallbackSource, sources])
-
   return (
     <div className="relative aspect-[20/7] w-full overflow-hidden">
-      <img
-        src={resolvedSource}
+      <ResponsiveAssetImage
+        high={sources[0]}
+        medium={sources[1]}
+        fallback={sources[2]}
         alt={alt}
         className="absolute inset-0 h-full w-full object-cover object-center"
-        draggable="false"
+        draggable={false}
       />
     </div>
   )

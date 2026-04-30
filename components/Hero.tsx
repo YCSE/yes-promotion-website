@@ -1,6 +1,7 @@
 'use client'
 
 import { getAssetPath } from '@/lib/utils'
+import ResponsiveAssetImage from '@/components/ResponsiveAssetImage'
 
 const HERO_CARDS = [
   { name: 'hero-call1' },
@@ -56,19 +57,19 @@ function HeroCallCard({
   name: string
   index: number
 }) {
-  const resolvedSrc = getAssetPath(`images/hero/${name}.png`)
-
   return (
     <div
       className="relative h-[294px] w-[190px] overflow-hidden bg-white/12 md:h-[294px] md:w-[190px] lg:h-[294px] lg:w-[190px]"
     >
-      <img
-        src={resolvedSrc}
+      <ResponsiveAssetImage
+        high={getAssetPath(`images/hero/${name}-1540.webp`)}
+        medium={getAssetPath(`images/hero/${name}-1080.webp`)}
+        fallback={getAssetPath(`images/hero/${name}.png`)}
         alt={`Hero call thumbnail ${index + 1}`}
         className="h-full w-full object-cover object-top"
         loading={index < 4 ? 'eager' : 'lazy'}
         decoding="async"
-        draggable="false"
+        draggable={false}
       />
     </div>
   )
