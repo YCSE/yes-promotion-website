@@ -1,7 +1,7 @@
 import Hero from '@/components/Hero'
 import Section2 from '@/components/Section2'
 import Section3 from '@/components/Section3'
-import Section3Tia from '@/components/Section3Tia'
+import TiaSection from '@/components/TiaSection'
 import ReviewCarousel from '@/components/ReviewCarousel'
 import ReviewIntroSection from '@/components/ReviewIntroSection'
 import BlogSection from '@/components/BlogSection'
@@ -36,7 +36,7 @@ export default function Home() {
         <Hero />
         <Section2 />
         <Section3 />
-        <Section3Tia />
+        <TiaSection />
         <ReviewIntroSection />
         <ReviewCarousel />
         <Section5 />
