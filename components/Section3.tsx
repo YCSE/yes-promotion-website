@@ -53,7 +53,7 @@ const features = [
 
 const FeatureCardImage = ({ sources, alt }: { sources: string[]; alt: string }) => {
   return (
-    <div className="relative aspect-[20/7] w-full overflow-hidden">
+    <div className="relative aspect-[20/11] w-full overflow-hidden">
       <ResponsiveAssetImage
         high={sources[0]}
         medium={sources[1]}

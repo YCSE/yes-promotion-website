@@ -28,10 +28,10 @@ const tiaFeatures = [
 
 const Section3Tia = () => {
   return (
-    <div className="mx-auto flex w-fit max-w-full flex-col gap-[40px] md:gap-[50px] lg:col-start-2 lg:row-start-2 lg:w-full lg:max-w-[420px] lg:gap-[60px] lg:self-center">
+    <div className="mx-auto mt-[10px] flex w-fit max-w-full flex-col gap-[40px] md:mt-[10px] md:gap-[50px] lg:col-start-2 lg:row-start-2 lg:mt-0 lg:w-full lg:max-w-[420px] lg:gap-[60px] lg:self-center">
       <div className="flex w-fit max-w-full flex-col gap-[40px] md:gap-[50px] lg:w-full lg:gap-[60px]">
         {tiaFeatures.map((feature, index) => (
-          <div key={index} className="flex w-fit max-w-full items-center gap-4 md:gap-5 lg:w-full lg:items-start lg:gap-6">
+          <div key={index} className="flex w-fit max-w-full items-start gap-4 md:gap-5 lg:w-full lg:gap-6">
             <div className="relative h-[60px] w-[60px] flex-shrink-0 md:h-[80px] md:w-[80px] lg:h-[80px] lg:w-[80px]">
               <ResponsiveAssetImage
                 high={getAssetPath(`images/icon/${feature.iconName}-1540.webp`)}

@@ -361,7 +361,7 @@
   }
 
   .landing-section-spacing {
-    @apply py-[60px] md:py-[80px] lg:py-[100px];
+    @apply py-[80px] md:py-[90px] lg:py-[110px];
   }
 
   .page-shell {

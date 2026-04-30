@@ -26,23 +26,25 @@ const faqs = [
 ]
 
 const FAQSection = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
     <section
       id="faq"
       data-header-theme="light"
-      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-blue md:scroll-mt-28"
+      className="relative w-full scroll-mt-24 bg-white py-0 md:scroll-mt-28"
     >
       <div className="page-shell">
         <div className="mx-auto max-w-[1080px]">
+          <div className="mb-[30px] w-full bg-[#e0e0e0] md:mb-[40px] lg:mb-[50px]" style={{ height: '1px' }} />
+
           {faqs.map((faq, index) => {
             const isOpen = openFaq === index
 
             return (
               <div key={faq.question}>
                 {index > 0 && (
-                  <div className="my-[30px] h-[1px] w-full bg-gray-200 md:my-[40px] lg:my-[50px]" />
+                  <div className="my-[30px] w-full bg-[#e0e0e0] md:my-[40px] lg:my-[50px]" style={{ height: '1px' }} />
                 )}
 
                 <div className="py-[2px]">
@@ -53,8 +55,8 @@ const FAQSection = () => {
                     aria-expanded={isOpen}
                   >
                     <span
-                      className={`type-faq block text-center transition-all ${
-                        isOpen ? 'font-bold text-[#3E86D9]' : 'font-light text-text-primary'
+                      className={`type-faq block text-center text-text-primary transition-all ${
+                        isOpen ? 'font-bold' : 'font-light'
                       }`}
                     >
                       {faq.question}
@@ -76,6 +78,8 @@ const FAQSection = () => {
               </div>
             )
           })}
+
+          <div className="mt-[30px] w-full bg-[#e0e0e0] md:mt-[40px] lg:mt-[50px]" style={{ height: '1px' }} />
         </div>
       </div>
     </section>

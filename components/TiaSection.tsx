@@ -8,7 +8,7 @@ export default function TiaSection() {
     <section
       id="tia"
       data-header-theme="light"
-      className="landing-section-spacing relative w-full scroll-mt-24 overflow-hidden bg-bg-blue text-black md:scroll-mt-28"
+      className="landing-section-spacing relative w-full scroll-mt-24 overflow-hidden bg-bg-gray text-black md:scroll-mt-28"
     >
       <div className="page-shell">
         <div className="grid grid-cols-1 justify-items-center gap-[40px] md:gap-[40px] lg:grid-cols-[auto_minmax(360px,420px)] lg:justify-center lg:items-start lg:gap-x-[80px] lg:gap-y-[50px]">

@@ -77,13 +77,15 @@ function HeroCallCard({
 
 const Hero = () => {
   return (
-    <section data-header-theme="dark" className="hero-section relative w-full h-[90svh] overflow-hidden bg-yes-blue lg:h-[100svh]">
-      <div className="hero-layout flex h-full flex-col">
+    <section data-header-theme="light" className="hero-section relative w-full h-[90svh] overflow-hidden bg-white lg:h-[100svh]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[24%] bg-[linear-gradient(to_bottom,#ffffff_0%,#ffffff_58%,#e5e5e5_100%)]" />
+
+      <div className="hero-layout relative z-10 flex h-full flex-col">
         <div className="hero-content-wrapper flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-5 md:gap-[27px] md:px-6 lg:px-8">
           <div className="z-10 text-center">
-            <h1 className="type-h1 text-white">
+            <h1 className="type-h1 text-black">
               <span className="block hero-question-line">영어가 너무 어렵다고?</span>
-              <span className="block">답은 이미 정해져 <span className="font-ko font-extrabold text-white">익스</span></span>
+              <span className="block">답은 이미 정해져 <span className="font-ko font-extrabold text-black">익스</span></span>
             </h1>
           </div>
 
@@ -92,20 +94,20 @@ const Hero = () => {
               href="https://apps.apple.com/app/id6745255649"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-pill-button cta-store-button cta-pill-button-dark group relative border-white text-white hover:bg-white hover:text-yes-blue transition-colors duration-300"
+              className="cta-pill-button cta-store-button cta-pill-button-light group relative border-border-gray2 border-solid text-black hover:bg-black hover:text-white transition-all duration-300"
             >
               <AppleStoreIcon />
-              <span lang="en" className="font-en type-button-primary">App Store</span>
+              <span lang="en" className="font-en type-button-primary text-black transition-colors duration-300 group-hover:text-white">App Store</span>
             </a>
 
             <a
               href="https://play.google.com/store/apps/details?id=kr.ycse"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-pill-button cta-store-button cta-pill-button-dark group relative border-white text-white hover:bg-white hover:text-yes-blue transition-colors duration-300"
+              className="cta-pill-button cta-store-button cta-pill-button-light group relative border-border-gray2 border-solid text-black hover:bg-black hover:text-white transition-all duration-300"
             >
               <GooglePlayIcon />
-              <span lang="en" className="font-en type-button-primary">Google Play</span>
+              <span lang="en" className="font-en type-button-primary text-black transition-colors duration-300 group-hover:text-white">Google Play</span>
             </a>
           </div>
         </div>
