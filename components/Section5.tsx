@@ -23,7 +23,11 @@ const Section5 = () => {
   ]
 
   return (
-    <section data-header-theme="light" className="landing-section-spacing relative w-full bg-white text-black">
+    <section
+      id="level-test"
+      data-header-theme="light"
+      className="landing-section-spacing relative w-full scroll-mt-24 bg-white text-black md:scroll-mt-28"
+    >
       <div className="page-shell">
         <div className="flex flex-col items-center mb-[40px] md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-black">

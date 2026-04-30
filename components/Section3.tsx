@@ -210,7 +210,11 @@ const Section3 = () => {
   }
 
   return (
-    <section data-header-theme="dark" className="landing-section-spacing relative w-full bg-bg-dark text-white">
+    <section
+      id="features"
+      data-header-theme="dark"
+      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-dark text-white md:scroll-mt-28"
+    >
       <div className="page-shell">
         <div className="mb-[40px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-white">

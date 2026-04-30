@@ -198,13 +198,16 @@ export default function RootLayout({
   const siteNavigationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SiteNavigationElement',
-    name: ['홈', '블로그', '화상영어 소개', '수업 방식', '레벨 테스트'],
+    name: ['홈', '블로그', '화상영어 소개', '수업 방식', '레벨 테스트', '티아 학습', '수강 후기', '자주 묻는 질문'],
     url: [
       'https://yourenglishschool.co.kr/',
       'https://yourenglishschool.co.kr/blog',
-      'https://yourenglishschool.co.kr/',
-      'https://yourenglishschool.co.kr/',
-      'https://yourenglishschool.co.kr/'
+      'https://yourenglishschool.co.kr/#about',
+      'https://yourenglishschool.co.kr/#features',
+      'https://yourenglishschool.co.kr/#level-test',
+      'https://yourenglishschool.co.kr/#tia',
+      'https://yourenglishschool.co.kr/#reviews',
+      'https://yourenglishschool.co.kr/#faq'
     ]
   }
 

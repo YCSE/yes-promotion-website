@@ -29,7 +29,11 @@ const FAQSection = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
 
   return (
-    <section data-header-theme="light" className="landing-section-spacing relative w-full bg-bg-blue">
+    <section
+      id="faq"
+      data-header-theme="light"
+      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-blue md:scroll-mt-28"
+    >
       <div className="page-shell">
         <div className="mx-auto max-w-[1080px]">
           {faqs.map((faq, index) => {

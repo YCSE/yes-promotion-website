@@ -33,7 +33,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
   return (
     <div data-header-theme="light" className="min-h-screen bg-white">
       {/* Blog Posts Section */}
-      <div className="page-shell py-[80px] md:py-[100px]">
+      <div className="page-shell pt-5 pb-[80px] md:pt-6 md:pb-[100px] lg:pt-8 lg:pb-[100px]">
         {posts.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-gray-500 text-[18px] leading-[27px]">
@@ -46,6 +46,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
             {featuredPost && (
               <Link 
                 href={`/blog/${featuredPost.slug}`}
+                data-header-static-zone="true"
                 className="group block mb-[80px] md:mb-[100px]"
               >
                 <article className="bg-white">
@@ -97,7 +98,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
 
             {/* Remaining Posts Grid */}
             {remainingPosts.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10 mb-[80px]">
+              <div className="mx-auto grid w-full max-w-[1080px] grid-cols-2 gap-4 mb-[40px] md:grid-cols-2 md:gap-10 lg:grid-cols-3 lg:mb-[50px]">
                 {remainingPosts.map((post) => (
                   <Link 
                     key={post.slug} 
@@ -142,7 +143,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
 
             {/* Load More Button */}
             {hasMore && (
-              <div className="flex justify-center mb-[100px]">
+              <div className="mx-auto flex w-full max-w-[1080px] justify-center">
                 <button
                   onClick={handleLoadMore}
                   className="cta-pill-button cta-pill-button-light relative border-border-gray2 border-solid hover:bg-black hover:text-white transition-all duration-300 group"
