@@ -36,7 +36,7 @@ const FAQSection = () => {
     >
       <div className="page-shell">
         <div className="mx-auto max-w-[1080px]">
-          <div className="mb-[30px] w-full bg-[#e0e0e0] md:mb-[40px] lg:mb-[50px]" style={{ height: '1px' }} />
+          <div className="mb-[30px] w-full bg-[#eeeeee] md:mb-[40px] lg:mb-[50px]" style={{ height: '1px' }} />
 
           {faqs.map((faq, index) => {
             const isOpen = openFaq === index
@@ -44,7 +44,7 @@ const FAQSection = () => {
             return (
               <div key={faq.question}>
                 {index > 0 && (
-                  <div className="my-[30px] w-full bg-[#e0e0e0] md:my-[40px] lg:my-[50px]" style={{ height: '1px' }} />
+                  <div className="my-[30px] w-full bg-[#eeeeee] md:my-[40px] lg:my-[50px]" style={{ height: '1px' }} />
                 )}
 
                 <div className="py-[2px]">
@@ -79,7 +79,7 @@ const FAQSection = () => {
             )
           })}
 
-          <div className="mt-[30px] w-full bg-[#e0e0e0] md:mt-[40px] lg:mt-[50px]" style={{ height: '1px' }} />
+          <div className="mt-[30px] w-full bg-[#eeeeee] md:mt-[40px] lg:mt-[50px]" style={{ height: '1px' }} />
         </div>
       </div>
     </section>
