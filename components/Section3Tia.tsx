@@ -5,22 +5,22 @@ import { getAssetPath } from '@/lib/utils'
 
 const tiaFeatures = [
   {
-    icon: getAssetPath('images/section3-2/list2-1.webp'),
+    icon: getAssetPath('images/icon/B1.png'),
     title: '맞춤형 학습 코칭',
     description: '수업에서 받은 피드백을 분석해\n개인별 맞춤 학습과 코칭을 제공합니다',
   },
   {
-    icon: getAssetPath('images/section3-2/list2-2.webp'),
+    icon: getAssetPath('images/icon/B2.png'),
     title: '실시간 영어 대화 연습',
     description: '수업 외에도 언제든 티아와 영어로 대화하며\n막히는 부분은 한국어로 도움받을 수 있습니다',
   },
   {
-    icon: getAssetPath('images/section3-2/list2-2.webp'),
+    icon: getAssetPath('images/icon/B3.png'),
     title: '문장 분석 및 해설',
     description: '자세히 알고 싶은 문장이 있나요?\n문법, 어휘, 표현까지 쉽게 풀어드립니다',
   },
   {
-    icon: getAssetPath('images/section3-2/list2-3.webp'),
+    icon: getAssetPath('images/icon/B4.png'),
     title: '게임처럼 배우는 영어',
     description: '티아와 함께하는 다양한 게임으로\n영어를 더 자연스럽고 재미있게 익힐 수 있습니다',
   },

@@ -54,7 +54,7 @@ const FAQSection = () => {
                   >
                     <span
                       className={`type-faq block text-center transition-all ${
-                        isOpen ? 'font-bold text-yes-blue' : 'font-light text-text-primary'
+                        isOpen ? 'font-bold text-[#3E86D9]' : 'font-light text-text-primary'
                       }`}
                     >
                       {faq.question}

@@ -43,17 +43,17 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
 
   const features = [
     {
-      icon: getAssetPath('images/frame4/C2.webp'),
+      icon: getAssetPath('images/icon/C2.png'),
       title: '맞춤형 학습 코칭',
       description: '수업에서 받은 피드백을 기반으로 개인별 약점을 분석하고, 맞춤형 추가 학습 자료를 제공합니다.',
     },
     {
-      icon: getAssetPath('images/frame4/C3.webp'),
+      icon: getAssetPath('images/icon/C3.png'),
       title: '실시간 대화 연습',
       description: '수업 시간 외에도 티아와 자유롭게 영어 대화를 연습할 수 있습니다. 한국어 지원으로 막힘없이 학습하세요.',
     },
     {
-      icon: getAssetPath('images/frame4/C1.webp'),
+      icon: getAssetPath('images/icon/C1.png'),
       title: '문장 분석 & 해설',
       description: '어려운 영어 문장을 선택하면 문법, 어휘, 대체 표현까지 상세하게 분석해드립니다.',
     }

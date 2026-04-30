@@ -6,17 +6,17 @@ import { getAssetPath } from '@/lib/utils'
 const Section5 = () => {
   const features = [
     {
-      icon: getAssetPath('images/frame4/C1.webp'),
+      icon: getAssetPath('images/icon/C1.png'),
       title: '현재 영어 레벨 정확 진단',
       description: '문법, 어휘 등으로 영역을 세분화하여\n구체적으로 진단합니다'
     },
     {
-      icon: getAssetPath('images/frame4/C2.webp'),
+      icon: getAssetPath('images/icon/C2.png'),
       title: '맞춤형 학습 방향 제시',
       description: '나에게 딱 맞는 학습 전략과 수업을 추천해\n막막한 영어 공부의 길을 열어줍니다'
     },
     {
-      icon: getAssetPath('images/frame4/C3.webp'),
+      icon: getAssetPath('images/icon/C3.png'),
       title: 'AI 기반 회화 습관 분석',
       description: '대화한 내용 분석해서\n나도 몰랐던 습관을 발견할 수 있어요'
     }
@@ -43,7 +43,7 @@ const Section5 = () => {
         <div className="flex flex-col lg:flex-row gap-[40px] md:gap-[40px] lg:gap-[80px] items-center justify-center">
           <div className="relative w-[250px] h-[500px] md:w-[280px] md:h-[560px] lg:w-[300px] lg:h-[607px]">
             <Image
-              src={getAssetPath('images/frame4/img 3.webp')}
+              src={getAssetPath('images/img/video call.png')}
               alt="Video Call Interface"
               width={300}
               height={607}
