@@ -14,7 +14,7 @@ export default function SiteHeader() {
   const [isVisible, setIsVisible] = useState(true)
   const homeIsActive = pathname === '/'
   const blogIsActive = pathname.startsWith('/blog')
-  const headerShadowClass = blogIsActive ? '' : 'shadow-sm'
+  const headerShadowClass = blogIsActive ? '' : 'shadow-header'
 
   useEffect(() => {
     const clearHideTimer = () => {

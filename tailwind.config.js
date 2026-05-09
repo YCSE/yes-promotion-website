@@ -54,7 +54,8 @@ module.exports = {
         'scroll-right': 'scroll-right 120s linear infinite',
       },
       boxShadow: {
-        'card': '2px 2px 10px rgba(0, 0, 0, 0.08)',
+        'header': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        'surface': '2px 2px 10px rgba(0, 0, 0, 0.08)',
       },
       // Typography Customization
       typography: (theme) => ({
@@ -153,7 +154,7 @@ module.exports = {
               borderRadius: '0.75rem',
               marginTop: '2.5rem',
               marginBottom: '2.5rem',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              boxShadow: 'none',
             },
 
             // Horizontal Rule

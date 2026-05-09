@@ -188,8 +188,8 @@ $border-white: #FFFFFF;       // White borders
 $border-blue: #D4E3F4;        // Soft blue border/divider
 $border-gray1: #E5E5E5;       // Dividers
 $border-gray2: #666666;       // CTA/button stroke on light backgrounds
-$shadow-card: 2px 2px 10px rgba(0, 0, 0, 0.1);  // Default card shadow
-$shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
+$shadow-header: 0 1px 2px 0 rgba(0, 0, 0, 0.05);  // Header shadow
+$shadow-surface: 2px 2px 10px rgba(0, 0, 0, 0.08);  // Default surface/card shadow
 ```
 
 ### Color Usage Patterns
@@ -273,7 +273,7 @@ $shadow-default: 0 8px 24px rgba(0, 0, 0, 0.08);  // Card shadows
 <div className="relative h-[539px] w-full max-w-[1030px]">
   // Absolutely positioned bubbles
   {speechBubbles.map(bubble => (
-    <div className="absolute bg-white rounded-[20px] px-8 py-6 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+    <div className="absolute bg-white rounded-[20px] px-8 py-6 shadow-surface"
          style={{ top: bubble.top, left: bubble.left, width: '340px', height: '150px' }}>
   ))}
 </div>
@@ -566,7 +566,7 @@ export default ComponentName
 3. **Spacing:** `px-6`, `py-[200px]`, `gap-20`
 4. **Typography:** `text-[50px]`, `font-bold`, `leading-[60px]`
 5. **Colors:** `text-black`, `bg-white`
-6. **Effects:** `shadow-lg`, `rounded-[20px]`
+6. **Effects:** `shadow-surface`, `rounded-[20px]`
 7. **Animations:** `hover:scale-105`, `transition-transform`
 
 ### Mobile-First Implementation
@@ -608,7 +608,7 @@ className="md:hidden"        // Mobile only
 ### Section2 (Speech Bubbles)
 - Desktop: Absolute positioning, 340x150px bubbles
 - Mobile: Two-column grid with overlap
-- Shadow: 0 8px 24px rgba(0,0,0,0.08)
+- Shadow: `shadow-surface`
 - Border radius: 20px
 - Padding: Mobile (px-3 py-4), Desktop (px-8 py-6)
 

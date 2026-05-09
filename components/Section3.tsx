@@ -209,7 +209,7 @@ const Section3 = () => {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="section3-carousel-card snap-start shrink-0 overflow-hidden rounded-[10px] bg-white shadow-card"
+                className="section3-carousel-card snap-start shrink-0 overflow-hidden rounded-[10px] bg-white shadow-surface"
               >
                 <div className="flex flex-col">
                   <FeatureCardImage sources={feature.imageSources} alt={feature.title} />
