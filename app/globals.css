@@ -176,6 +176,10 @@
   .blog-content li p {
     line-height: 1.7;
   }
+
+  .blog-content img {
+    box-shadow: none !important;
+  }
 }
 
 @media (min-width: 768px) {

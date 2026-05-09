@@ -14,6 +14,7 @@ export default function SiteHeader() {
   const [isVisible, setIsVisible] = useState(true)
   const homeIsActive = pathname === '/'
   const blogIsActive = pathname.startsWith('/blog')
+  const headerShadowClass = blogIsActive ? '' : 'shadow-sm'
 
   useEffect(() => {
     const clearHideTimer = () => {
@@ -85,7 +86,7 @@ export default function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 w-full border-b border-gray-100 bg-white shadow-sm transition-transform duration-500 ease-out ${
+      className={`fixed inset-x-0 top-0 z-40 w-full border-b border-gray-100 bg-white ${headerShadowClass} transition-transform duration-500 ease-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
