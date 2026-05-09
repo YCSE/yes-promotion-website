@@ -177,17 +177,17 @@ const Section3 = () => {
   return (
     <section
       id="features"
-      data-header-theme="dark"
-      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-dark text-white md:scroll-mt-28"
+      data-header-theme="light"
+      className="landing-section-spacing relative w-full scroll-mt-24 bg-white text-black md:scroll-mt-28"
     >
       <div className="page-shell">
         <div className="mb-[40px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
-          <h2 className="type-h2 text-center text-white">
+          <h2 className="type-h2 text-center text-black">
             교과서 밖에서 통하는 영어,
             <br />
             <span className="font-ko">익스</span>로 시작하세요!
           </h2>
-          <p className="type-body-base mt-[12px] text-center text-white/80 md:mt-[16px] lg:mt-[20px]">
+          <p className="type-body-base mt-[12px] text-center text-primary md:mt-[16px] lg:mt-[20px]">
             이번에도 흐지부지될까 걱정하지 않아도 돼요.
             <br />
             익스는 당신만을 위한 로드맵으로 함께하니까요.

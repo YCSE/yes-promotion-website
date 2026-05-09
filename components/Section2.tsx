@@ -49,7 +49,7 @@ const Section2 = () => {
     <section
       id="about"
       data-header-theme="light"
-      className="landing-section-spacing relative w-full scroll-mt-24 bg-white md:scroll-mt-28"
+      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-gray md:scroll-mt-28"
     >
       <div className="page-shell">
         <div className="mb-[40px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">

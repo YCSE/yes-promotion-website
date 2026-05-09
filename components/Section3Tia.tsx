@@ -42,8 +42,8 @@ const Section3Tia = () => {
               />
             </div>
             <div className="flex flex-col gap-2 text-left md:gap-[10px] lg:gap-[14px]">
-              <h4 className="type-h3 text-white">{feature.title}</h4>
-              <p className="type-body-base whitespace-pre-line text-white/80">
+              <h4 className="type-h3 text-black">{feature.title}</h4>
+              <p className="type-body-base whitespace-pre-line text-text-gray">
                 {feature.description}
               </p>
             </div>

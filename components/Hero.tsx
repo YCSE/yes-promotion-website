@@ -77,8 +77,8 @@ function HeroCallCard({
 
 const Hero = () => {
   return (
-    <section data-header-theme="light" className="hero-section relative w-full h-[90svh] overflow-hidden bg-white lg:h-[100svh]">
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[24%] bg-[linear-gradient(to_bottom,#ffffff_0%,#ffffff_58%,#e5e5e5_100%)]" />
+    <section data-header-theme="light" className="hero-section relative h-[90svh] w-full overflow-hidden bg-white lg:h-[100svh]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[24%] bg-white" />
 
       <div className="hero-layout relative z-10 flex h-full flex-col">
         <div className="hero-content-wrapper flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-5 md:gap-[27px] md:px-6 lg:px-8">

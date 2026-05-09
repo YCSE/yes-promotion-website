@@ -3,7 +3,6 @@ import Section2 from '@/components/Section2'
 import Section3 from '@/components/Section3'
 import TiaSection from '@/components/TiaSection'
 import ReviewCarousel from '@/components/ReviewCarousel'
-import ReviewIntroSection from '@/components/ReviewIntroSection'
 import BlogSection from '@/components/BlogSection'
 import Section5 from '@/components/Section5'
 import FAQSection from '@/components/FAQSection'
@@ -37,7 +36,6 @@ export default function Home() {
         <Section2 />
         <Section3 />
         <TiaSection />
-        <ReviewIntroSection />
         <ReviewCarousel />
         <Section5 />
         <FAQSection />
