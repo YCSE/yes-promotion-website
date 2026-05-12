@@ -37,6 +37,11 @@ const features = [
     subtitle: '과학적으로 검증된 언어 습득 이론',
     description:
       'GPA(성장 참여 접근법)와 OPOL(1인 1언어) 원칙을 적용하여\n체계적이고 효과적인 실력 향상을 보장합니다.',
+    mobileDescriptionLines: [
+      'GPA(성장 참여 접근법)와',
+      'OPOL(1인 1언어) 원칙을 적용하여',
+      '체계적이고 효과적인 실력 향상을 보장합니다.',
+    ],
   },
   {
     imageSources: [
@@ -221,9 +226,25 @@ const Section3 = () => {
                     <h4 className="type-h3 mb-[10px] text-black md:mb-[13px] lg:mb-[15px]">
                       {feature.subtitle}
                     </h4>
-                    <p className="type-body-base whitespace-pre-line text-gray-600">
-                      {feature.description}
-                    </p>
+                    {feature.mobileDescriptionLines ? (
+                      <>
+                        <p className="type-body-base whitespace-pre-line text-gray-600 md:hidden">
+                          {feature.mobileDescriptionLines.map((line, index) => (
+                            <span key={`${feature.title}-mobile-line-${index}`}>
+                              {line}
+                              {index < feature.mobileDescriptionLines.length - 1 ? <br /> : null}
+                            </span>
+                          ))}
+                        </p>
+                        <p className="type-body-base hidden whitespace-pre-line text-gray-600 md:block">
+                          {feature.description}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="type-body-base whitespace-pre-line text-gray-600">
+                        {feature.description}
+                      </p>
+                    )}
                   </div>
                 </div>
               </article>
