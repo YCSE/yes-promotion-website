@@ -118,7 +118,7 @@ const ReviewCarousel = () => {
     <section
       id="reviews"
       data-header-theme="light"
-      className="landing-section-spacing scroll-mt-24 overflow-hidden bg-bg-gray md:scroll-mt-28"
+      className="landing-section-spacing scroll-mt-24 overflow-hidden bg-bg-blue md:scroll-mt-28"
     >
       <div className="page-shell mb-[40px] text-center md:mb-[40px] lg:mb-[50px]">
         <div className="flex flex-col items-center">
@@ -134,8 +134,8 @@ const ReviewCarousel = () => {
       </div>
 
       <div className="relative w-full">
-        <div className="absolute left-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-r from-bg-gray to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-l from-bg-gray to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-r from-bg-blue to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 z-10 w-20 bg-gradient-to-l from-bg-blue to-transparent" />
 
         <div className="mb-8 flex overflow-hidden">
           <div className="flex animate-scroll-left hover:[animation-play-state:paused]">

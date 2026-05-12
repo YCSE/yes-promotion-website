@@ -197,7 +197,7 @@ const Section3 = () => {
         <div className="section3-carousel-bleed">
           <div
             ref={trackRef}
-            className={`section3-carousel-track no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible pb-4 md:gap-6 md:pb-5 lg:gap-8 ${
+            className={`section3-carousel-track no-scrollbar flex items-stretch snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible pb-4 md:gap-6 md:pb-5 lg:gap-8 ${
               isDragging ? 'section3-carousel-track-dragging' : ''
             }`}
             onPointerDown={handlePointerDown}
@@ -209,12 +209,12 @@ const Section3 = () => {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="section3-carousel-card snap-start shrink-0 overflow-hidden rounded-[10px] bg-white shadow-surface"
+                className="section3-carousel-card snap-start shrink-0 self-stretch overflow-hidden rounded-[10px] bg-white"
               >
-                <div className="flex flex-col">
+                <div className="flex h-full flex-col">
                   <FeatureCardImage sources={feature.imageSources} alt={feature.title} />
 
-                  <div className="p-6 md:p-8 lg:p-10">
+                  <div className="flex flex-1 flex-col bg-bg-blue px-6 py-7 md:px-8 md:py-9 lg:px-10 lg:py-11">
                     <h6 className="type-h5 mb-2 text-yes-blue md:mb-[9px] lg:mb-[11px]">
                       {feature.title}
                     </h6>

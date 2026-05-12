@@ -49,7 +49,7 @@ const Section2 = () => {
     <section
       id="about"
       data-header-theme="light"
-      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-gray md:scroll-mt-28"
+      className="landing-section-spacing relative w-full scroll-mt-24 bg-bg-blue md:scroll-mt-28"
     >
       <div className="page-shell">
         <div className="mb-[40px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
@@ -69,7 +69,7 @@ const Section2 = () => {
           {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
-              className="transform rounded-[10px] bg-white px-8 py-6 shadow-surface transition-transform hover:scale-105 min-h-[150px]"
+              className="transform rounded-[10px] bg-white px-8 py-6 transition-transform hover:scale-105 min-h-[150px]"
             >
               <div className="flex h-full flex-col items-center justify-center gap-[10px]">
                 <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
@@ -83,7 +83,7 @@ const Section2 = () => {
           {speechBubbles.map((bubble, index) => (
             <div
               key={bubble.iconName}
-              className="transform rounded-[10px] bg-white px-8 py-6 shadow-surface transition-transform hover:scale-105"
+              className="transform rounded-[10px] bg-white px-8 py-6 transition-transform hover:scale-105"
             >
               <div className="flex h-full flex-col items-center justify-center gap-[10px]">
                 <Section2CardIcon iconName={bubble.iconName} floatIndex={index} />
@@ -95,7 +95,7 @@ const Section2 = () => {
 
         <div className="flex flex-col gap-5 md:hidden">
           {speechBubbles.map((bubble, index) => (
-            <div key={bubble.iconName} className="rounded-[10px] bg-white px-4 py-[30px] shadow-surface">
+            <div key={bubble.iconName} className="rounded-[10px] bg-white px-4 py-[30px]">
               <div className="flex h-full w-full items-center justify-center">
                 <div
                   className={`flex items-center gap-4 ${
