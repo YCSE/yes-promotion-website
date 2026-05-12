@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
 import ResponsiveAssetImage from '@/components/ResponsiveAssetImage'
 
@@ -81,11 +82,40 @@ type DragState = {
 }
 
 const Section3 = () => {
+  const pageShellRef = useRef<HTMLDivElement | null>(null)
   const trackRef = useRef<HTMLDivElement | null>(null)
   const dragStateRef = useRef<DragState | null>(null)
   const frameRef = useRef<number | null>(null)
   const targetScrollLeftRef = useRef<number | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [sideGap, setSideGap] = useState<number | null>(null)
+
+  useEffect(() => {
+    const pageShell = pageShellRef.current
+    if (!pageShell) return
+
+    const updateSideGap = () => {
+      const rect = pageShell.getBoundingClientRect()
+      const styles = window.getComputedStyle(pageShell)
+      const paddingLeft = parseFloat(styles.paddingLeft) || 0
+      const paddingRight = parseFloat(styles.paddingRight) || 0
+      const leftGap = rect.left + paddingLeft
+      const rightGap = window.innerWidth - rect.right + paddingRight
+
+      setSideGap(Math.max(0, Math.min(leftGap, rightGap)))
+    }
+
+    updateSideGap()
+
+    const resizeObserver = new ResizeObserver(updateSideGap)
+    resizeObserver.observe(pageShell)
+    window.addEventListener('resize', updateSideGap, { passive: true })
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateSideGap)
+    }
+  }, [])
 
   const flushScroll = () => {
     if (frameRef.current !== null) return
@@ -185,7 +215,7 @@ const Section3 = () => {
       data-header-theme="light"
       className="landing-section-spacing relative w-full scroll-mt-24 bg-white text-black md:scroll-mt-28"
     >
-      <div className="page-shell">
+      <div ref={pageShellRef} className="page-shell">
         <div className="mb-[40px] flex flex-col items-center md:mb-[40px] lg:mb-[50px]">
           <h2 className="type-h2 text-center text-black">
             교과서 밖에서 통하는 영어,
@@ -205,6 +235,11 @@ const Section3 = () => {
             className={`section3-carousel-track no-scrollbar flex items-stretch snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible pb-4 md:gap-6 md:pb-5 lg:gap-8 ${
               isDragging ? 'section3-carousel-track-dragging' : ''
             }`}
+            style={
+              sideGap !== null
+                ? ({ '--section3-side-gap': `${sideGap}px` } as CSSProperties)
+                : undefined
+            }
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={(event) => stopDragging(event.pointerId)}
