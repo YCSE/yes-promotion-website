@@ -8,14 +8,14 @@ const BlogHeader = () => {
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-gray-100">
       <div className="page-shell">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo with Home Link */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center group transition-all hover:opacity-80"
             aria-label="YES 화상영어 홈으로 이동"
           >
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
+            <div className="relative h-10 w-10">
               <Image
                 src={getAssetPath('fav.webp')}
                 alt="YES 화상영어 로고"

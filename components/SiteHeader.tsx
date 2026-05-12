@@ -30,7 +30,7 @@ export default function SiteHeader() {
 
       if (staticZones.length === 0) return false
 
-      const headerHeight = window.innerWidth >= 768 ? 80 : 64
+      const headerHeight = 64
       const probeY = window.scrollY + headerHeight + 8
 
       return staticZones.some((zone) => {
@@ -91,13 +91,13 @@ export default function SiteHeader() {
       }`}
     >
       <div className="page-shell">
-        <div className="flex h-16 items-center justify-between md:h-20">
+        <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
             className="flex items-center transition-all hover:opacity-80"
             aria-label="YES 화상영어 홈으로 이동"
           >
-            <div className="relative h-10 w-10 md:h-12 md:w-12">
+            <div className="relative h-10 w-10">
               <Image
                 src={getAssetPath('fav.webp')}
                 alt="YES 화상영어 로고"
