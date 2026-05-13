@@ -443,6 +443,33 @@
   }
 }
 
+.hero-carousel {
+  --hero-card-height: clamp(220px, 25svh, 252px);
+  --hero-card-width: calc(var(--hero-card-height) * 190 / 294);
+  height: var(--hero-card-height);
+  min-height: 220px;
+  max-height: 252px;
+}
+
+.hero-call-card {
+  width: var(--hero-card-width);
+  height: var(--hero-card-height);
+  min-height: 220px;
+  max-height: 252px;
+}
+
+@media (min-width: 768px) {
+  .hero-carousel {
+    --hero-card-height: clamp(228px, 24svh, 258px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-carousel {
+    --hero-card-height: clamp(236px, 23svh, 266px);
+  }
+}
+
 @media (orientation: landscape) and (max-height: 500px) {
   .hero-section {
     height: 100svh;

@@ -59,14 +59,14 @@ function HeroCallCard({
 }) {
   return (
     <div
-      className="relative h-[294px] w-[190px] overflow-hidden bg-white/12 md:h-[294px] md:w-[190px] lg:h-[294px] lg:w-[190px]"
+      className="hero-call-card relative shrink-0 overflow-hidden bg-white/12"
     >
       <ResponsiveAssetImage
         high={getAssetPath(`images/hero/${name}-1540.webp`)}
         medium={getAssetPath(`images/hero/${name}-1080.webp`)}
         fallback={getAssetPath(`images/hero/${name}.png`)}
         alt={`Hero call thumbnail ${index + 1}`}
-        className="h-full w-full object-cover object-top"
+        className="h-full w-full object-cover object-top md:object-[center_4%] lg:object-[center_2%]"
         loading={index < 4 ? 'eager' : 'lazy'}
         decoding="async"
         draggable={false}
@@ -77,7 +77,7 @@ function HeroCallCard({
 
 const Hero = () => {
   return (
-    <section data-header-theme="light" className="hero-section relative h-[90svh] w-full overflow-hidden bg-white lg:h-[100svh]">
+    <section data-header-theme="light" className="hero-section relative h-[90svh] w-full overflow-hidden bg-white">
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[24%] bg-white" />
 
       <div className="hero-layout relative z-10 flex h-full flex-col">
@@ -112,7 +112,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hero-carousel relative -mx-4 h-[294px] w-[calc(100%+32px)] overflow-hidden md:-mx-6 md:h-[294px] md:w-[calc(100%+48px)] lg:h-[294px]">
+        <div className="hero-carousel relative -mx-4 w-[calc(100%+32px)] overflow-hidden md:-mx-6 md:w-[calc(100%+48px)]">
           <div className="hero-carousel-track absolute bottom-0 left-0 flex h-full items-end">
             <div
               className="flex h-full flex-none items-end gap-[35px] pr-[35px] md:gap-[45px] md:pr-[45px] lg:gap-[45px] lg:pr-[45px]"
