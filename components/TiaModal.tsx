@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
@@ -113,27 +113,37 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
         {/* Scrollable Content */}
         <div className="overflow-y-auto max-h-[85vh] scroll-smooth">
           {/* Header Section */}
-          <div className="relative text-white px-8 md:px-16 py-12 md:py-20 overflow-hidden">
+          <div className="relative overflow-hidden bg-[#f4e9dc] px-8 pb-0 pt-12 text-black md:px-16 md:pb-0 md:pt-16">
             {/* Background Image */}
             <Image 
               src={getAssetPath('images/tia-hero-background-new.webp')}
               alt="AI Technology Background"
               fill
-              className="object-cover"
+              className="hidden"
               priority
             />
             {/* Gradient Overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#222222]/85 to-[#3E86D9]/75"></div>
+            <div className="hidden" />
             {/* Content */}
             <div className="relative z-10">
             <div className="max-w-[900px] mx-auto text-center">
-              <h1 className="type-h1 mb-6">
+              <h1 className="type-h1 mb-2 text-black md:mb-2">
                 AI 영어 선생님 티아
               </h1>
-              <p className="text-[18px] md:text-[20px] lg:text-[24px] font-light leading-[28px] md:leading-[32px] lg:leading-[36px] tracking-[-0.54px] md:tracking-[-0.6px] lg:tracking-[-0.72px] text-white/90 max-w-[600px] mx-auto">
+              <p className="mx-auto max-w-[600px] text-[18px] font-light leading-[28px] tracking-[-0.54px] text-primary md:text-[20px] md:leading-[32px] md:tracking-[-0.6px] lg:text-[24px] lg:leading-[36px] lg:tracking-[-0.72px]">
                 익스 수업의 효과를 극대화하는<br/>
                 개인 맞춤형 AI 영어 학습 파트너
               </p>
+              <div className="mt-6 flex justify-center overflow-hidden md:mt-8">
+                <div className="relative flex h-[264px] w-full max-w-[288px] items-end justify-center md:h-[336px] md:max-w-[336px]">
+                  <Image
+                    src={getAssetPath('images/tia/tia4.png')}
+                    alt="Tia character"
+                    fill
+                    className="object-contain object-bottom"
+                  />
+                </div>
+              </div>
             </div>
             </div>
           </div>
@@ -176,7 +186,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     선생님의 귀중한 조언과 교정 내용들이 수업이 끝나면 사라지고, 같은 실수를 반복하게 됩니다. 
                     이러한 한계들은 학습자의 시간과 비용 대비 효과를 떨어뜨리는 주요 원인이 되고 있습니다.
                   </p>
-                  <p className="text-[15px] md:text-[17px] font-medium text-[#3E86D9] leading-[26px] md:leading-[30px] bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[10px] p-4">
+                  <p className="text-[15px] md:text-[17px] font-medium text-black leading-[26px] md:leading-[30px] rounded-[10px] bg-bg-blue p-4">
                     이 모든 문제를 해결하기 위해 우리는 티아를 설계했습니다. 
                     언어 학습의 말하기, 듣기, 읽기, 쓰기 4가지 영역을 균형 있게 발달시키고, 체계적인 문법과 어휘 학습을 지원하며, 
                     개인별 맞춤형 학습 경로를 제공하여 실력 정체를 돌파할 수 있도록 돕습니다.
@@ -191,45 +201,45 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 </h3>
                 <div className="prose prose-lg max-w-none">
                   <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px] mb-6">
-                    티아는 오직 영어교육만을 위해 정교하게 설계한 AI 입니다. <span className="font-medium text-[#3E86D9]">수십 년간 검증된 언어습득 이론</span>을 
+                    티아는 오직 영어교육만을 위해 정교하게 설계한 AI 입니다. <span className="font-medium text-black">수십 년간 검증된 언어습득 이론</span>을 
                     최신 AI 기술로 구현한 과학적 학습 도구입니다.
                   </p>
                   
-                  <div className="bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[10px] p-5 md:p-6 mb-6">
+                  <div className="rounded-[10px] bg-bg-blue p-5 md:p-6 mb-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       <span className="font-bold text-[#3E86D9]">Stephen Krashen의 이해가능한 입력 이론(i+1)</span>은 
                       언어 학습의 핵심 원리를 제시합니다. 학습자의 현재 수준(i)보다 약간 높은 수준(+1)의 입력을 받을 때 
                       가장 효과적인 학습이 일어난다는 것입니다. 너무 쉬우면 지루하고, 너무 어려우면 좌절하게 됩니다. 
-                      <span className="font-medium text-[#3E86D9]">티아는 AI 분석을 통해 각 학습자에게 정확히 i+1 수준의 콘텐츠를 실시간으로 제공</span>합니다.
+                      <span className="font-medium text-black">티아는 AI 분석을 통해 각 학습자에게 정확히 i+1 수준의 콘텐츠를 실시간으로 제공</span>합니다.
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[10px] p-5 md:p-6 mb-6">
+                  <div className="rounded-[10px] bg-bg-blue p-5 md:p-6 mb-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       <span className="font-bold text-[#3E86D9]">Merrill Swain의 출력 가설</span>은 
                       단순히 듣고 이해하는 것만으로는 부족하다고 지적합니다. 직접 말하고 쓰는 과정에서 
                       자신의 부족한 점을 인식하고, 가설을 세우고 검증하며, 언어 구조를 내재화합니다. 
-                      <span className="font-medium text-[#3E86D9]">티아는 24시간 대화 파트너가 되어 충분한 아웃풋 기회를 제공하고, 
+                      <span className="font-medium text-black">티아는 24시간 대화 파트너가 되어 충분한 아웃풋 기회를 제공하고, 
                       즉각적인 피드백으로 가설 검증을 돕습니다</span>.
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-[#3E86D9]/5 to-transparent rounded-[10px] p-5 md:p-6 mb-6">
+                  <div className="rounded-[10px] bg-bg-blue p-5 md:p-6 mb-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       <span className="font-bold text-[#3E86D9]">Michael Long의 상호작용 가설</span>은 
                       의미 협상(meaning negotiation) 과정의 중요성을 강조합니다. 대화 중 이해하지 못한 부분을 
                       명확히 하고, 다시 표현하고, 확인하는 과정에서 언어 습득이 가속화됩니다. 
-                      <span className="font-medium text-[#3E86D9]">티아는 실시간 대화를 통해 자연스러운 의미 협상을 유도하고, 
+                      <span className="font-medium text-black">티아는 실시간 대화를 통해 자연스러운 의미 협상을 유도하고, 
                       이해하지 못한 부분을 다양한 방식으로 재설명합니다</span>.
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-[#868BC7]/5 to-transparent rounded-[10px] p-5 md:p-6">
+                  <div className="rounded-[10px] bg-bg-blue p-5 md:p-6">
                     <p className="text-[15px] md:text-[17px] font-light text-gray-700 leading-[26px] md:leading-[30px]">
                       마지막으로 <span className="font-bold text-[#3E86D9]">정의적 여과 가설(Affective Filter)</span>은 
                       감정 상태가 학습에 미치는 영향을 설명합니다. 불안, 자신감 부족, 동기 결여 등의 부정적 감정은 
                       '정의적 여과'를 높여 언어 입력을 차단합니다. 
-                      <span className="font-medium text-[#3E86D9]">티아와의 대화는 실수를 두려워할 필요가 없는 안전한 환경을 제공해 
+                      <span className="font-medium text-black">티아와의 대화는 실수를 두려워할 필요가 없는 안전한 환경을 제공해 
                       정의적 여과를 낮추고 학습 효율을 극대화합니다</span>.
                     </p>
                   </div>
@@ -257,7 +267,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                 </div>
                 
                 {/* 통계 시각화 */}
-                <div className="bg-gradient-to-br from-[#222222] to-[#3E86D9] rounded-[10px] p-8 md:p-10 text-white">
+                <div className="rounded-[10px] bg-[#222222] p-8 text-white md:p-10">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
                     <div className="text-center">
                       <div className="text-[36px] md:text-[42px] font-extrabold mb-1">3.2배</div>
@@ -287,7 +297,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           </div>
 
           {/* Main Features */}
-          <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
+          <div className="bg-bg-blue px-8 pb-12 pt-0 md:px-16 md:pb-16 md:pt-0">
             <div className="max-w-[1000px] mx-auto">
               <h2 className="type-h2 text-center text-black mb-4">
                 티아와 함께라면
@@ -303,12 +313,12 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
                     className="bg-gradient-to-r from-gray-50 to-white rounded-[10px] p-6 md:p-8 border border-gray-100 transition-all duration-300"
                   >
                     <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
-                      <div className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] flex-shrink-0">
+                      <div className="h-[64px] w-[64px] flex-shrink-0 md:h-[80px] md:w-[80px]">
                         <Image 
                           src={feature.icon}
                           alt={feature.title}
-                          width={100}
-                          height={100}
+                          width={80}
+                          height={80}
                           className="w-full h-full object-contain"
                         />
                       </div>
@@ -328,7 +338,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           </div>
 
           {/* How It Works Section */}
-          <div className="px-8 md:px-16 py-12 md:py-16 bg-[#F8F9FA]">
+          <div className="bg-bg-blue px-8 md:px-16 py-12 md:py-16">
             <div className="max-w-[1000px] mx-auto">
               <h2 className="type-h2 text-center text-black mb-12 md:mb-16">
                 이렇게 도와드려요
@@ -355,7 +365,7 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           {/* Detailed Explanation Feature */}
           <div className="px-8 md:px-16 py-12 md:py-16 bg-white">
             <div className="max-w-[1000px] mx-auto">
-              <div className="bg-gradient-to-br from-[#3E86D9]/10 to-[#868BC7]/10 rounded-[10px] p-8 md:p-12">
+              <div className="rounded-[10px] bg-bg-blue p-8 md:p-12">
                 <h2 className="type-h2 text-black mb-8">
                   문장 분석 기능 예시
                 </h2>
@@ -408,9 +418,9 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           </div>
 
           {/* Stats Section */}
-          <div className="px-8 md:px-16 py-12 md:py-16 bg-gradient-to-r from-[#222222] to-[#3E86D9] text-white">
+          <div className="bg-black px-8 py-12 text-white md:px-16 md:py-16">
             <div className="max-w-[800px] mx-auto">
-              <h2 className="type-h2 text-center mb-10 md:mb-12">
+              <h2 className="type-h2 text-center mb-5 md:mb-6">
                 티아 사용자들의 성과
               </h2>
               <div className="grid grid-cols-3 gap-4 md:gap-8">
@@ -428,19 +438,23 @@ const TiaModal = ({ isOpen, onClose }: TiaModalProps) => {
           </div>
 
           {/* CTA Section */}
-          <div className="px-8 md:px-16 py-10 md:py-12 bg-white text-center border-t border-gray-100">
-            <h3 className="text-[24px] md:text-[30px] font-bold text-black mb-4 tracking-[-0.72px] md:tracking-[-0.9px]">
+          <div className="border-t border-gray-100 bg-white px-8 pt-12 text-center md:px-16 md:pt-16">
+            <h3 className="text-[24px] md:text-[30px] font-bold text-black mb-2 tracking-[-0.72px] md:mb-2 md:tracking-[-0.9px]">
               지금 바로 티아를 만나보세요
             </h3>
-            <p className="text-[16px] md:text-[18px] font-light text-gray-600 mb-8 tracking-[-0.48px] md:tracking-[-0.54px]">
+            <p className="text-[16px] md:text-[18px] font-light text-gray-600 mb-4 tracking-[-0.48px] md:mb-5 md:tracking-[-0.54px]">
               누구나 티아의 모든 기능을 무료로 이용하실 수 있습니다
             </p>
-            <button 
-              onClick={handleClose}
-              className="type-button-primary bg-[#3E86D9] text-white px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-[#3676BF] transition-colors"
-            >
-              닫기
-            </button>
+            <div className="flex justify-center overflow-hidden">
+              <div className="relative flex h-[264px] w-full max-w-[288px] items-end justify-center md:h-[336px] md:max-w-[336px]">
+                <Image
+                  src={getAssetPath('images/tia/tia2.png')}
+                  alt="Tia character"
+                  fill
+                  className="object-contain object-bottom"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
