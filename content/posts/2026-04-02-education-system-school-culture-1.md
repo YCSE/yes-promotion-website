@@ -7,7 +7,7 @@ excerpt: "단순히 단어를 외우는 것보다 중요한 것은 그 나라의
 featuredImage: /images/blog/2026-04-02-education-system-school-culture-1.jpg
 ---
 
-안녕하세요, YES 학생 여러분! 에디터 오혜리입니다. 영어를 공부하다 보면 문법도 다 알고 단어도 꽤 많이 외웠는데, 막상 원어민과 대화를 하거나 미드를 볼 때 왜 저런 상황에서 저런 말을 하는지 이해가 안 갈 때가 많으셨을 거예요. 그건 우리가 언어만 배우고 그 언어가 뿌리 내린 교육 시스템과 학교 문화를 제대로 들여다보지 못했기 때문입니다.
+안녕하세요, 익스 학생 여러분! 에디터 오혜리입니다. 영어를 공부하다 보면 문법도 다 알고 단어도 꽤 많이 외웠는데, 막상 원어민과 대화를 하거나 미드를 볼 때 왜 저런 상황에서 저런 말을 하는지 이해가 안 갈 때가 많으셨을 거예요. 그건 우리가 언어만 배우고 그 언어가 뿌리 내린 교육 시스템과 학교 문화를 제대로 들여다보지 못했기 때문입니다.
 
 저 역시 처음에는 무조건 정답만 맞히는 영어 공부에 매달렸던 적이 있었습니다. 하지만 영어권 국가의 교육 철학을 이해하고 난 뒤에는 영어를 대하는 태도 자체가 완전히 달라졌어요. 오늘은 제가 경험한 비포 앤 애프터 이야기를 통해 여러분의 영어 시야를 넓혀드리고자 합니다.
 
@@ -31,7 +31,7 @@ featuredImage: /images/blog/2026-04-02-education-system-school-culture-1.jpg
 
 저는 처음에 에세이 과제를 받았을 때 큰 충격을 받았습니다. 책에 나온 내용을 그대로 요약했더니 좋은 점수를 받지 못했거든요. 선생님은 "Where is your voice?"라고 물으셨습니다. 이후 저는 정보를 수집하는 것에 그치지 않고, "I found that the industrial revolution had a significant impact on social class structures in the 19th century."와 같이 스스로 분석한 문장을 쓰기 시작했습니다.
 
-이런 변화는 평소 영어를 읽을 때도 큰 도움이 되었습니다. 기사를 읽을 때 단순히 내용을 파악하는 것을 넘어 '작가는 왜 이런 단어를 선택했을까?' 혹은 '이 주장의 허점은 무엇일까?'를 생각하게 된 것이죠. 여러분도 YES 수업에서 읽기 지문을 접할 때 "The article suggests that remote work increases productivity, but I think it can also lead to social isolation."처럼 비판적인 시각을 곁들인 문장을 연습해 보세요.
+이런 변화는 평소 영어를 읽을 때도 큰 도움이 되었습니다. 기사를 읽을 때 단순히 내용을 파악하는 것을 넘어 '작가는 왜 이런 단어를 선택했을까?' 혹은 '이 주장의 허점은 무엇일까?'를 생각하게 된 것이죠. 여러분도 익스 수업에서 읽기 지문을 접할 때 "The article suggests that remote work increases productivity, but I think it can also lead to social isolation."처럼 비판적인 시각을 곁들인 문장을 연습해 보세요.
 
 ## 방과 후 학원이 아닌 다양한 클럽 활동과 스포츠가 만드는 사회성
 
@@ -53,6 +53,6 @@ featuredImage: /images/blog/2026-04-02-education-system-school-culture-1.jpg
 
 학생들이 교무실에 찾아가 "Excuse me, Professor Kim, could you clarify the requirements for the final presentation?"이라고 당당하게 질문하는 모습은 매우 흔합니다. 선생님 또한 학생을 인격적으로 존중하며 "That's a great question, Sarah. Let's look at the syllabus together to find the answer."라고 답해줍니다. 이러한 상호 존중의 문화는 곧 자신감 있는 스피킹으로 이어집니다.
 
-YES에서 원어민 선생님과 수업을 할 때도 이 점을 꼭 기억하세요. 선생님은 여러분을 평가하는 무서운 존재가 아니라 여러분의 영어 여행을 도와주는 파트너입니다. 질문하는 것을 두려워하지 마세요. "I'm sorry, I didn't quite catch that. Could you please repeat it more slowly?"라고 솔직하게 말하는 것이 훨씬 더 스마트하고 원어민다운 태도입니다.
+익스에서 원어민 선생님과 수업을 할 때도 이 점을 꼭 기억하세요. 선생님은 여러분을 평가하는 무서운 존재가 아니라 여러분의 영어 여행을 도와주는 파트너입니다. 질문하는 것을 두려워하지 마세요. "I'm sorry, I didn't quite catch that. Could you please repeat it more slowly?"라고 솔직하게 말하는 것이 훨씬 더 스마트하고 원어민다운 태도입니다.
 
 영어를 잘한다는 것은 단순히 유창한 발음을 뽐내는 것이 아니라, 그들의 사고방식과 문화를 이해하고 그 안에서 내 목소리를 내는 과정입니다. 오늘 소개해 드린 영어권 교육 문화의 특징들을 머릿속에 그리며 다음 수업에 참여해 보세요. 훨씬 더 풍부하고 깊이 있는 대화가 가능해질 것입니다. 여러분의 빛나는 영어 성장을 에디터 오혜리가 항상 응원하겠습니다!
