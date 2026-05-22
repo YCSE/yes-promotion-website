@@ -9,7 +9,7 @@ featuredImage: /images/blog/2026-04-21-holiday-traditions-vocabulary-1.jpg
 
 영어 공부를 하면서 가장 즐거운 순간 중 하나는 내가 배운 언어로 다른 나라의 문화를 깊이 이해하게 될 때입니다. 단순히 단어를 암기하는 것을 넘어, 그 단어가 어떤 상황에서 쓰이는지 배경지식을 함께 익히면 훨씬 더 기억에 오래 남기 때문이죠. 특히 전 세계의 다양한 휴일 전통은 영어를 더 풍성하게 만들어주는 훌륭한 학습 소재가 됩니다.
 
-오늘은 YES 학생 여러분을 위해 세계 각국의 흥미로운 휴일 전통을 살펴보고, 그 과정에서 사용할 수 있는 핵심 표현들을 '지금 바로 실험해보는' 방식으로 소개해 드리려고 합니다. 머리로만 이해하는 영어가 아니라, 실제로 원어민과 대화할 때 바로 꺼내 쓸 수 있는 생생한 어휘들을 만나보세요.
+오늘은 익스 학생 여러분을 위해 세계 각국의 흥미로운 휴일 전통을 살펴보고, 그 과정에서 사용할 수 있는 핵심 표현들을 '지금 바로 실험해보는' 방식으로 소개해 드리려고 합니다. 머리로만 이해하는 영어가 아니라, 실제로 원어민과 대화할 때 바로 꺼내 쓸 수 있는 생생한 어휘들을 만나보세요.
 
 ## 미국의 추수감사절과 나눔을 표현하는 영어
 
@@ -36,7 +36,7 @@ featuredImage: /images/blog/2026-04-21-holiday-traditions-vocabulary-1.jpg
 
 최근 애니메이션 코코를 통해 대중에게 널리 알려진 멕시코의 '망자의 날'은 세상을 떠난 이들을 기리는 아름다운 전통입니다. 이 전통을 설명할 때 핵심이 되는 단어는 **'Commemorate'**입니다. 단순히 기억하는 것을 넘어 공식적으로 기리거나 축하한다는 의미를 담고 있습니다. 또한 조상을 모시는 제단이나 장식된 공간을 뜻하는 **'Altar'**라는 단어도 자주 등장합니다.
 
-이 문화를 영어로 설명해야 한다면 이렇게 시작해보세요. "People in Mexico set up beautiful altars with marigolds and photos to commemorate their ancestors." 이 문장은 문화적 맥락을 정확히 짚어주는 고급스러운 표현입니다. 또한 "This tradition is not about sadness, but about celebrating the lives of those who have passed away"라고 덧붙여 이 휴일의 진정한 의미를 전달할 수 있습니다. 특정 문화를 설명하는 어휘를 익히면 YES 강사님과의 수업에서도 훨씬 깊이 있는 대화가 가능해집니다.
+이 문화를 영어로 설명해야 한다면 이렇게 시작해보세요. "People in Mexico set up beautiful altars with marigolds and photos to commemorate their ancestors." 이 문장은 문화적 맥락을 정확히 짚어주는 고급스러운 표현입니다. 또한 "This tradition is not about sadness, but about celebrating the lives of those who have passed away"라고 덧붙여 이 휴일의 진정한 의미를 전달할 수 있습니다. 특정 문화를 설명하는 어휘를 익히면 익스 강사님과의 수업에서도 훨씬 깊이 있는 대화가 가능해집니다.
 
 ## 나만의 휴일 전통을 영어로 설계하기
 
@@ -47,4 +47,4 @@ featuredImage: /images/blog/2026-04-21-holiday-traditions-vocabulary-1.jpg
 
 또한 어떤 활동을 매년 거르지 않고 한다는 점을 강조하고 싶다면 **'Make it a point to'**라는 구문을 활용해보세요. 예를 들어 "We make it a point to take a family photo in front of the same tree every Christmas"라고 말하면 정기적으로 지키는 우리만의 규칙임을 명확히 알릴 수 있습니다. 지금 바로 여러분의 가장 소중한 휴일 기억을 떠올려보세요. 그리고 그 장면을 "Every year, I look forward to gathering with my relatives to share a special meal and exchange small gifts"와 같이 구체적인 문장으로 완성해 보시기 바랍니다.
 
-언어는 문화라는 그릇에 담겨 있을 때 가장 빛이 납니다. 오늘 배운 어휘와 문장들을 YES 화상영어 수업에서 강사님께 직접 들려드려 보세요. "I learned about the concept of 'potluck' recently, and I think it's a great way to host a party"라고 대화를 시작한다면, 훨씬 더 풍성하고 즐거운 영어 학습의 시간을 만끽하실 수 있을 것입니다. 여러분의 매일이 배움의 즐거움으로 가득한 휴일 같기를 응원합니다.
+언어는 문화라는 그릇에 담겨 있을 때 가장 빛이 납니다. 오늘 배운 어휘와 문장들을 익스 화상영어 수업에서 강사님께 직접 들려드려 보세요. "I learned about the concept of 'potluck' recently, and I think it's a great way to host a party"라고 대화를 시작한다면, 훨씬 더 풍성하고 즐거운 영어 학습의 시간을 만끽하실 수 있을 것입니다. 여러분의 매일이 배움의 즐거움으로 가득한 휴일 같기를 응원합니다.

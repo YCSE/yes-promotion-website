@@ -1,13 +1,13 @@
 ---
 title: "해외에서 내 집 마련이나 렌트를 꿈꾸는 분들을 위한 필수 부동산 영어 가이드"
-subtitle: "YES 화상영어 코치와 학생의 대화를 통해 계약부터 유지 보수까지 실전 회화를 마스터해보세요"
+subtitle: "익스 화상영어 코치와 학생의 대화를 통해 계약부터 유지 보수까지 실전 회화를 마스터해보세요"
 date: 2026-03-14T03:25:01.746Z
 author: "에디터 김가혜(Kay)"
-excerpt: "해외에서 집을 구할 때 마주하는 낯선 부동산 용어와 복잡한 계약 과정을 완벽히 정리했습니다. YES 코치와의 대화형 학습을 통해 실제 상황에서 바로 사용할 수 있는 구체적인 예문을 익혀보세요."
+excerpt: "해외에서 집을 구할 때 마주하는 낯선 부동산 용어와 복잡한 계약 과정을 완벽히 정리했습니다. 익스 코치와의 대화형 학습을 통해 실제 상황에서 바로 사용할 수 있는 구체적인 예문을 익혀보세요."
 featuredImage: /images/blog/2026-03-14-real-estate-english-1.jpg
 ---
 
-낯선 외국 땅에서 나만의 안식처를 찾는 일은 설레면서도 동시에 두려운 일입니다. 특히 한국과는 다른 부동산 시스템과 생소한 전문 용어들은 영어를 어느 정도 하는 분들에게도 큰 장벽으로 다가오곤 하죠. 하지만 걱정하지 마세요. 오늘 YES 화상영어에서는 학생 민수님과 사라 코치님의 대화를 통해, 집을 구하는 첫 단계부터 계약서 작성, 그리고 입주 후 문제 해결까지의 과정을 생생하게 담아보았습니다. 이 가이드만 있다면 여러분도 해외에서 당당하게 원하는 집을 계약하실 수 있을 거예요.
+낯선 외국 땅에서 나만의 안식처를 찾는 일은 설레면서도 동시에 두려운 일입니다. 특히 한국과는 다른 부동산 시스템과 생소한 전문 용어들은 영어를 어느 정도 하는 분들에게도 큰 장벽으로 다가오곤 하죠. 하지만 걱정하지 마세요. 오늘 익스 화상영어에서는 학생 민수님과 사라 코치님의 대화를 통해, 집을 구하는 첫 단계부터 계약서 작성, 그리고 입주 후 문제 해결까지의 과정을 생생하게 담아보았습니다. 이 가이드만 있다면 여러분도 해외에서 당당하게 원하는 집을 계약하실 수 있을 거예요.
 
 ## 집을 보러 갈 때 반드시 알고 있어야 할 핵심 용어와 표현
 
@@ -40,7 +40,7 @@ featuredImage: /images/blog/2026-03-14-real-estate-english-1.jpg
 
 사라 코치님은 협상에도 기술이 필요하다고 조언합니다. 무턱대고 깎아달라고 하기보다는 명분을 제시하는 것이 좋습니다. "**'Is the rent negotiable if I sign a two-year lease instead of one?'**처럼 계약 기간을 늘리는 조건으로 제안해 보세요. 집주인 입장에서는 세입자가 오래 머무는 것을 선호하기 때문에 효과적인 전략이 될 수 있습니다. 혹은 **'I can pay the first six months of rent in advance if you can reduce the monthly rate by one hundred dollars.'**와 같이 선납을 조건으로 제시할 수도 있습니다."
 
-또한 입주 날짜를 조율하는 것도 협상의 일부입니다. **'Could we move the move-in date to August 15th to align with my current contract ending?'**과 같이 구체적인 날짜를 제시하며 대화를 이끌어가야 합니다. 사라 코치님은 협상할 때 가장 중요한 것은 당당한 태도라고 덧붙였습니다. "YES에서 배운 표현들을 활용해 자신 있게 의견을 전달하세요. 원어민 코치와 롤플레이를 해보는 것이 실제 협상에서 당황하지 않는 가장 좋은 방법입니다."
+또한 입주 날짜를 조율하는 것도 협상의 일부입니다. **'Could we move the move-in date to August 15th to align with my current contract ending?'**과 같이 구체적인 날짜를 제시하며 대화를 이끌어가야 합니다. 사라 코치님은 협상할 때 가장 중요한 것은 당당한 태도라고 덧붙였습니다. "익스에서 배운 표현들을 활용해 자신 있게 의견을 전달하세요. 원어민 코치와 롤플레이를 해보는 것이 실제 협상에서 당황하지 않는 가장 좋은 방법입니다."
 
 ## 입주 후 발생하는 문제에 대처하는 당당한 컴플레인 방법
 
@@ -51,6 +51,6 @@ featuredImage: /images/blog/2026-03-14-real-estate-english-1.jpg
 
 사라 코치님은 객관적인 사실 전달이 우선이라고 말합니다. "**'I am writing to inform you that the air conditioner in the living room is leaking water and making a loud noise since yesterday morning.'**처럼 구체적인 시점과 증상을 설명하는 것이 좋습니다. 그리고 수리 일정을 확인해야겠죠. **'Could you please send a technician to fix it as soon as possible?'**이라고 정중하지만 단호하게 요청하세요."
 
-만약 수리가 늦어진다면 더 강한 표현을 사용할 수도 있습니다. **'This issue is causing significant inconvenience, and I would appreciate a prompt response regarding the repair schedule.'**과 같은 문장은 상대방에게 문제의 심각성을 알리는 데 효과적입니다. 사라 코치님은 평소에 집안 시설의 명칭(faucet, drain, thermostat 등)을 익혀두면 문제가 생겼을 때 훨씬 수월하게 소통할 수 있다고 강조했습니다. YES 화상영어 수업을 통해 이러한 실전 상황을 미리 연습해본다면, 낯선 환경에서도 당황하지 않고 문제를 해결하는 '프로 거주자'가 될 수 있을 것입니다.
+만약 수리가 늦어진다면 더 강한 표현을 사용할 수도 있습니다. **'This issue is causing significant inconvenience, and I would appreciate a prompt response regarding the repair schedule.'**과 같은 문장은 상대방에게 문제의 심각성을 알리는 데 효과적입니다. 사라 코치님은 평소에 집안 시설의 명칭(faucet, drain, thermostat 등)을 익혀두면 문제가 생겼을 때 훨씬 수월하게 소통할 수 있다고 강조했습니다. 익스 화상영어 수업을 통해 이러한 실전 상황을 미리 연습해본다면, 낯선 환경에서도 당황하지 않고 문제를 해결하는 '프로 거주자'가 될 수 있을 것입니다.
 
-해외에서의 부동산 거래는 단순한 언어 지식을 넘어 그 나라의 문화를 이해하는 과정이기도 합니다. 오늘 배운 표현들을 토대로 YES의 전문 코치진과 함께 실전 같은 연습을 시작해보세요. 여러분의 새로운 시작이 훨씬 더 즐겁고 편안해질 것입니다. 에디터 김가혜(Kay)였습니다.
+해외에서의 부동산 거래는 단순한 언어 지식을 넘어 그 나라의 문화를 이해하는 과정이기도 합니다. 오늘 배운 표현들을 토대로 익스의 전문 코치진과 함께 실전 같은 연습을 시작해보세요. 여러분의 새로운 시작이 훨씬 더 즐겁고 편안해질 것입니다. 에디터 김가혜(Kay)였습니다.

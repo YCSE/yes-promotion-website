@@ -1,13 +1,13 @@
 ---
 title: "대학 성공을 위한 학술 어휘 마스터 클래스"
-subtitle: "YES 학생이라면 꼭 알아야 할 Critical Thinking 기반의 필수 단어"
+subtitle: "익스 학생이라면 꼭 알아야 할 Critical Thinking 기반의 필수 단어"
 date: 2026-01-09T02:56:13.348Z
 author: "에디터 오혜리(Hailey)"
-excerpt: "대학 수업을 따라가고 에세이를 쓰는 데 필요한 학술 어휘력을 기르는 방법을 제시합니다. YES 학생들을 위한 4단계 마스터 플랜과 구체적인 예문을 통해 성공적인 유학 또는 학업 생활을 준비하세요."
+excerpt: "대학 수업을 따라가고 에세이를 쓰는 데 필요한 학술 어휘력을 기르는 방법을 제시합니다. 익스 학생들을 위한 4단계 마스터 플랜과 구체적인 예문을 통해 성공적인 유학 또는 학업 생활을 준비하세요."
 featuredImage: /images/blog/2026-01-09-academic-vocabulary-university-1.jpg
 ---
 
-안녕하세요, YES 학생 여러분! 에디터 오혜리(Hailey)입니다.
+안녕하세요, 익스 학생 여러분! 에디터 오혜리(Hailey)입니다.
 
 유창하게 말하는 것만큼이나 중요한 것이 바로 '학술적 사고'를 영어로 표현하는 능력입니다. 만약 여러분이 대학 진학이나 유학을 꿈꾸고 있다면, 원어민 교수님과 토론하고, 수백 페이지에 달하는 텍스트를 이해하며, 논리적인 에세이를 작성해야 하는 과제에 직면하게 될 것입니다.
 
@@ -35,7 +35,7 @@ featuredImage: /images/blog/2026-01-09-academic-vocabulary-university-1.jpg
 
 학술 에세이나 보고서에서 가장 중요한 역할을 하는 것은 바로 '동사'입니다. 이 동사들은 여러분이 연구를 통해 '무엇을 했는지'를 명확하게 보여줍니다. 단순히 'Show'나 'Say' 같은 일반 동사 대신, 더 강력하고 전문적인 동사를 사용해야 합니다.
 
-다음은 YES 학생들이 Critical Thinking을 표현할 때 즉시 활용할 수 있는 핵심 동사 4가지입니다.
+다음은 익스 학생들이 Critical Thinking을 표현할 때 즉시 활용할 수 있는 핵심 동사 4가지입니다.
 
 ### 1. Delineate (윤곽을 그리다, 정확히 기술하다)
 
@@ -129,14 +129,14 @@ featuredImage: /images/blog/2026-01-09-academic-vocabulary-university-1.jpg
 
 *   **학술어 예문:** The initial hypothesis was rejected, but the **subsequent** experiments focused on different variables yielded more compelling data. (초기 가설은 기각되었지만, 그 후 다른 변수들에 초점을 맞춘 실험들은 훨씬 더 설득력 있는 데이터를 산출했습니다.)
 
-## 마무리: YES 세션에서 바로 적용하기
+## 마무리: 익스 세션에서 바로 적용하기
 
 이번 마스터클래스에서 배운 학술 어휘들은 여러분의 영어 학습 여정에서 단순한 '추가'가 아니라 '기반'이 되어야 합니다. 이러한 단어들은 영어 말하기 능력(Speaking)을 넘어, 학문적 사고(Thinking)의 깊이를 결정짓습니다.
 
-YES 화상영어 세션을 통해 이 단어들을 실전에서 활용해 보세요. 선생님과 토론할 때 다음과 같이 의도적으로 연습해 볼 수 있습니다.
+익스 화상영어 세션을 통해 이 단어들을 실전에서 활용해 보세요. 선생님과 토론할 때 다음과 같이 의도적으로 연습해 볼 수 있습니다.
 
 1.  **의견 제시할 때:** "I would like to **articulate** my view that..."
 2.  **뉴스 기사 분석 시:** "How should we **scrutinize** the claims made in this article?"
 3.  **결과를 설명할 때:** "The lack of data **consequently** limits the scope of our conclusion."
 
-학술 어휘를 꾸준히 학습하고 활용하는 YES 학생이야말로, 미래의 대학 생활에서 누구보다 빠르게 성공적인 궤도에 오를 수 있을 것입니다. 여러분의 학문적 성장을 응원합니다!
+학술 어휘를 꾸준히 학습하고 활용하는 익스 학생이야말로, 미래의 대학 생활에서 누구보다 빠르게 성공적인 궤도에 오를 수 있을 것입니다. 여러분의 학문적 성장을 응원합니다!

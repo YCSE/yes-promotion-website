@@ -7,7 +7,7 @@ excerpt: "영어권 국가의 교육 체계와 독특한 학교 문화를 단계
 featuredImage: /images/blog/2026-03-21-education-system-school-culture-1.jpg
 ---
 
-영어를 배우는 목적은 단순히 문법을 익히는 것에 그치지 않습니다. 언어는 그 나라의 문화를 담고 있는 그릇이기 때문입니다. 특히 미국이나 영국 등 주요 영어권 국가의 교육 시스템을 이해하면, 그들이 왜 특정한 방식으로 대화하고 사고하는지를 깊이 있게 파악할 수 있습니다. 오늘은 YES 학생 여러분이 궁금해할 만한 영어권 학교의 구조와 그들만의 독특한 문화를 단계별로 살펴보겠습니다.
+영어를 배우는 목적은 단순히 문법을 익히는 것에 그치지 않습니다. 언어는 그 나라의 문화를 담고 있는 그릇이기 때문입니다. 특히 미국이나 영국 등 주요 영어권 국가의 교육 시스템을 이해하면, 그들이 왜 특정한 방식으로 대화하고 사고하는지를 깊이 있게 파악할 수 있습니다. 오늘은 익스 학생 여러분이 궁금해할 만한 영어권 학교의 구조와 그들만의 독특한 문화를 단계별로 살펴보겠습니다.
 
 ## 미국과 영국의 학제 시스템 이해하기
 
@@ -27,7 +27,7 @@ featuredImage: /images/blog/2026-03-21-education-system-school-culture-1.jpg
 
 영어권 학교 문화의 핵심은 능동적인 참여입니다. 교사는 지식을 전달하는 역할에 그치지 않고 학생들이 자신의 의견을 자유롭게 개진할 수 있도록 돕는 조력자 역할을 합니다. 수업 시간의 상당 부분은 토론과 그룹 프로젝트로 채워지며, 정답을 맞히는 것보다 논리적으로 자신의 생각을 설명하는 과정에 더 높은 점수를 부여합니다.
 
-이러한 환경에서는 단순히 듣고만 있는 것이 아니라, 적절한 타이밍에 자신의 의견을 덧붙이는 기술이 필요합니다. 처음에는 낯설 수 있지만, 짧은 문장부터 시작해 점차 논리를 확장하는 연습을 해야 합니다. YES 수업에서도 튜터와 대화할 때 단순히 단답형으로 대답하기보다 자신의 이유를 덧붙이는 연습을 하면 실제 현지 수업에 적응하는 데 큰 도움이 됩니다.
+이러한 환경에서는 단순히 듣고만 있는 것이 아니라, 적절한 타이밍에 자신의 의견을 덧붙이는 기술이 필요합니다. 처음에는 낯설 수 있지만, 짧은 문장부터 시작해 점차 논리를 확장하는 연습을 해야 합니다. 익스 수업에서도 튜터와 대화할 때 단순히 단답형으로 대답하기보다 자신의 이유를 덧붙이는 연습을 하면 실제 현지 수업에 적응하는 데 큰 도움이 됩니다.
 
 실제 수업 시간에 사용할 수 있는 유용한 표현을 살펴보겠습니다. 상대방의 의견에 동의하며 자신의 생각을 보태고 싶을 때는 **"I totally agree with what Sarah said about the environmental impact of plastic use."**라고 말할 수 있습니다. 반대로 정중하게 다른 의견을 제시하고 싶다면 **"That is an interesting point, but I think we should also consider the economic perspective of this issue."**와 같이 부드럽게 대화를 이어가는 것이 좋습니다.
 
@@ -51,6 +51,6 @@ featuredImage: /images/blog/2026-03-21-education-system-school-culture-1.jpg
 
 선생님께 과제에 대해 질문할 때는 다음과 같이 말해 보세요. **"Mr. Smith, I am having some trouble understanding the instructions for the final essay due next week."** 이렇게 구체적으로 어떤 부분이 힘든지 명시하는 것이 좋습니다. 또한 친구에게 노트 빌리기를 부탁할 때는 **"Could I please borrow your history notes from yesterday? I missed the class because I had a doctor's appointment."**라고 이유를 곁들여 정중하게 요청하는 것이 매너입니다.
 
-시험 성적이나 진로에 대해 상담할 때도 명확한 표현이 중요합니다. **"I would like to discuss my midterm exam results and see how I can improve my grade in this course."**라는 표현은 자신의 발전을 위해 적극적으로 노력하고 있음을 보여줍니다. 이러한 실전 표현들을 YES 화상영어 수업 중에 튜터와 역할극을 통해 연습해 본다면, 실제 상황에서 당황하지 않고 자연스럽게 말을 꺼낼 수 있을 것입니다.
+시험 성적이나 진로에 대해 상담할 때도 명확한 표현이 중요합니다. **"I would like to discuss my midterm exam results and see how I can improve my grade in this course."**라는 표현은 자신의 발전을 위해 적극적으로 노력하고 있음을 보여줍니다. 이러한 실전 표현들을 익스 화상영어 수업 중에 튜터와 역할극을 통해 연습해 본다면, 실제 상황에서 당황하지 않고 자연스럽게 말을 꺼낼 수 있을 것입니다.
 
 영어권 학교 문화는 개방적이고 자율적이지만, 그 안에는 명확한 규칙과 존중이 바탕에 깔려 있습니다. 오늘 살펴본 내용들을 바탕으로 영어 공부의 폭을 넓혀보시기 바랍니다. 언어를 배우는 것은 결국 그들의 삶 속에 스며드는 과정이니까요. 여러분의 글로벌한 도전을 에디터 황요섭이 항상 응원하겠습니다!

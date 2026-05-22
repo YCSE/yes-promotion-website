@@ -7,7 +7,7 @@ excerpt: "영어 학습자들이 가장 헷갈려 하는 시제인 현재완료�
 featuredImage: /images/blog/2026-01-23-present-perfect-vs-past-simple-1.jpg
 ---
 
-안녕하세요, YES 학생 여러분! 에디터 손온유(Olive)입니다.
+안녕하세요, 익스 학생 여러분! 에디터 손온유(Olive)입니다.
 
 영어 스피킹을 하다 보면, 현재완료(Present Perfect)와 과거시제(Past Simple) 앞에서 망설여지는 순간이 꼭 찾아옵니다. 둘 다 '과거'에 일어난 일을 이야기하는데, 도대체 언제 `I saw`를 쓰고 언제 `I have seen`을 써야 할까요?
 
@@ -88,7 +88,7 @@ featuredImage: /images/blog/2026-01-23-present-perfect-vs-past-simple-1.jpg
 2.  "Oh no! Someone **has broken** my phone, so I need to buy a new one immediately." (결과)
     (폰이 부서진 행위는 과거에 일어났지만, 그 결과(폰이 고장 난 상태)가 '지금'의 행동(새 폰 구매 필요)에 영향을 줍니다.)
 
-3.  "I **have been** in this YES class since January." (계속)
+3.  "I **have been** in this YCSE class since January." (계속)
     (1월에 수업을 시작했고, '지금 이 순간에도' 수업을 듣고 있습니다. 현재까지 지속되는 상황입니다.)
 
 4.  "I **haven't eaten** anything today." (미완료)
@@ -123,10 +123,10 @@ featuredImage: /images/blog/2026-01-23-present-perfect-vs-past-simple-1.jpg
 
 현재까지 이어지는 상황(계속)을 설명할 때는 반드시 현재완료를 써야 합니다.
 
-*   ❌ **틀린 문장:** "I *studied* in YES for two years."
-    (이 문장은 지금은 더 이상 YES에서 공부하지 않는다는 의미를 내포합니다. 과거의 완결된 행동입니다.)
-*   ✅ **올바른 문장:** "I **have studied** in YES for two years."
-    (2년 전에 시작해서 '지금까지도' YES에서 공부하고 있다는 의미를 전달합니다.)
+*   ❌ **틀린 문장:** "I *studied* in YCSE for two years."
+    (이 문장은 지금은 더 이상 익스에서 공부하지 않는다는 의미를 내포합니다. 과거의 완결된 행동입니다.)
+*   ✅ **올바른 문장:** "I **have studied** in YCSE for two years."
+    (2년 전에 시작해서 '지금까지도' 익스에서 공부하고 있다는 의미를 전달합니다.)
 
 ---
 
@@ -137,6 +137,6 @@ featuredImage: /images/blog/2026-01-23-present-perfect-vs-past-simple-1.jpg
 1.  **과거시제 (Past Simple):** 특정한 시간, 끝난 행동, 명확한 기록. (컷!)
 2.  **현재완료 (Present Perfect):** 시간 불명확, 경험, 현재까지의 결과/지속. (레거시/내러티브!)
 
-이제 여러분은 어떤 장면을 언제, 어떻게 보여줄지 결정할 수 있는 언어 감독입니다. YES 화상영어 수업을 통해 이 시제들을 적극적으로 활용하여 현재와 과거를 잇는 생생한 스토리텔링을 연습해 보세요. 여러분의 영어 회화 실력이 한 단계 더 레벨업할 것입니다!
+이제 여러분은 어떤 장면을 언제, 어떻게 보여줄지 결정할 수 있는 언어 감독입니다. 익스 화상영어 수업을 통해 이 시제들을 적극적으로 활용하여 현재와 과거를 잇는 생생한 스토리텔링을 연습해 보세요. 여러분의 영어 회화 실력이 한 단계 더 레벨업할 것입니다!
 
 다음에도 여러분의 언어 퍼포먼스를 업그레이드할 유용한 팁을 가지고 돌아오겠습니다. 감사합니다!
