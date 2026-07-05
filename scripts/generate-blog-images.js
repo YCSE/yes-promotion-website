@@ -217,7 +217,7 @@ async function generateImageTurn(ai, history, userPrompt, outputPath, isFeatured
     // Attempt 1: normal generation
     console.log('Generating image (attempt 1)...');
     const response = await ai.models.generateContent({
-      model: 'gemini-3.1-flash-image',
+      model: 'gemini-3.1-flash-lite-image',
       contents: history,
       config,
     });
@@ -245,7 +245,7 @@ async function generateImageTurn(ai, history, userPrompt, outputPath, isFeatured
     try {
       console.log('Retrying with people-free prompt...');
       const response = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-image-preview',
+        model: 'gemini-3.1-flash-lite-image',
         contents: history,
         config,
       });
