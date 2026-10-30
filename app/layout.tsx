@@ -3,7 +3,6 @@ import './fonts.css'
 import './globals.css'
 import SiteFrame from '@/components/SiteFrame'
 import Analytics from '@/components/Analytics'
-import Script from 'next/script'
 import { FB_DOMAIN_VERIFICATION } from '@/lib/analytics'
 
 export const viewport = {
@@ -308,49 +307,50 @@ export default function RootLayout({
         <meta property="article:published_time" content="2025-01-01T00:00:00.000Z" />
         <meta property="article:modified_time" content={new Date().toISOString()} />
         <link rel="alternate" type="application/rss+xml" title="YES 화상영어 블로그 RSS" href="/rss.xml" />
-        <Script
+        {/* JSON-LD는 next/script가 아닌 <script>로 넣어야 정적 HTML에 포함된다 (next/script는 hydration 후 주입) */}
+        <script
           id="structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd)
           }}
         />
-        <Script
+        <script
           id="website-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteJsonLd)
           }}
         />
-        <Script
+        <script
           id="site-navigation-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(siteNavigationJsonLd)
           }}
         />
-        <Script
+        <script
           id="faq-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(faqJsonLd)
           }}
         />
-        <Script
+        <script
           id="local-business-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessJsonLd)
           }}
         />
-        <Script
+        <script
           id="course-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(courseJsonLd)
           }}
         />
-        <Script
+        <script
           id="product-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{

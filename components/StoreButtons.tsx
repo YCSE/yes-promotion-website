@@ -51,32 +51,33 @@ const STORES: { id: AppStore; label: string }[] = [
 // 랜딩 URL의 UTM 값을 스토어 링크로 넘긴다.
 // - Google Play: referrer 파라미터에 utm_* 쿼리스트링을 URL 인코딩해서 전달 (Install Referrer)
 // - App Store: ct=<utm_campaign>, pt=<provider token> (App Analytics 캠페인 링크)
+// URLSearchParams는 공백을 '+'로 직렬화하는데, 스토어/앱 쪽 파서가 '+'를 공백으로 복원한다는
+// 보장이 없으므로 encodeURIComponent(공백 → %20)로 직접 인코딩한다.
 function buildStoreUrls(search: string): Record<AppStore, string> {
   const query = new URLSearchParams(search)
 
-  const referrer = new URLSearchParams()
-  UTM_KEYS.forEach((key) => {
-    const value = query.get(key)
-    if (value) referrer.set(key, value)
-  })
+  const referrer = UTM_KEYS.filter((key) => query.get(key))
+    .map((key) => `${key}=${encodeURIComponent(query.get(key) as string)}`)
+    .join('&')
 
-  const googlePlay = new URL(GOOGLE_PLAY_URL)
-  if (referrer.toString()) {
-    googlePlay.searchParams.set('referrer', referrer.toString())
-  }
+  const googlePlay = referrer
+    ? `${GOOGLE_PLAY_URL}&referrer=${encodeURIComponent(referrer)}`
+    : GOOGLE_PLAY_URL
 
-  const appStore = new URL(APP_STORE_URL)
+  let appStore = APP_STORE_URL
   const campaign = query.get('utm_campaign')
   if (campaign) {
-    appStore.searchParams.set('ct', campaign.slice(0, APP_STORE_CAMPAIGN_MAX_LENGTH))
+    // 코드 포인트 단위로 잘라 이모지 등 서로게이트 쌍이 깨지지 않게 한다
+    const ct = Array.from(campaign).slice(0, APP_STORE_CAMPAIGN_MAX_LENGTH).join('')
+    appStore += `?ct=${encodeURIComponent(ct)}`
     if (APPSTORE_PROVIDER_TOKEN) {
-      appStore.searchParams.set('pt', APPSTORE_PROVIDER_TOKEN)
+      appStore += `&pt=${encodeURIComponent(APPSTORE_PROVIDER_TOKEN)}`
     }
   }
 
   return {
-    ios: appStore.toString(),
-    android: googlePlay.toString(),
+    ios: appStore,
+    android: googlePlay,
   }
 }
 
