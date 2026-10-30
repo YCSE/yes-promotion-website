@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import './fonts.css'
 import './globals.css'
 import SiteFrame from '@/components/SiteFrame'
-import Script from 'next/script'
+import Analytics from '@/components/Analytics'
+import { FB_DOMAIN_VERIFICATION } from '@/lib/analytics'
 
 export const viewport = {
   width: 'device-width',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://yourenglishschool.co.kr'),
   title: 'YES 화상영어 - 선생님과 1:1 화상영어회화 수업',
   description: '화상영어 추천! YES로 선생님과 1:1 실시간 영어회화. AI 선생님 Tia와 체계적인 커리큘럼. 무료체험!',
-  keywords: '화상영어, 화상영어회화, 화상영어추천, 화상영어가격, 영어회화, 영어스피킹, 원어민영어, 성인영어회화, 직장인영어회화, 온라인영어학원, 실전영어회화, 아침영어회화, 화상영어무료체험, YES화상영어, TIA영어, 캠블리, 링글, 스픽, 말해보카, 엔구, 민트영어, 어메이징토커, 프렙, 튜터링, 링고다, 버블링, 아이튜터, 민병철유폰, 야나두, 시원스쿨, 리얼클래스',
+  keywords: '화상영어, 화상영어회화, 화상영어추천, 화상영어가격, 영어회화, 영어스피킹, 원어민영어, 성인영어회화, 직장인영어회화, 온라인영어학원, 실전영어회화, 아침영어회화, 화상영어무료체험, YES화상영어, TIA영어',
   authors: [{ name: 'YES' }],
   creator: 'YES',
   publisher: 'YES',
@@ -39,9 +40,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/ogimage.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'YES 화상영어 - 원어민 화상영어 1:1 수업',
+        width: 1024,
+        height: 500,
+        alt: 'YES 화상영어 - 원어민급 화상영어 1:1 수업',
         type: 'image/jpeg',
       }
     ],
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'YES 화상영어 - 원어민 화상영어 1:1 수업',
+    title: 'YES 화상영어 - 원어민급 화상영어 1:1 수업',
     description: 'YES 화상영어로 선생님과 실시간 화상영어회화! 전문 화상영어 튜터와 맞춤 수업!',
     images: ['/ogimage.jpg'],
     creator: '@yesenglish',
@@ -75,17 +76,51 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'YOUR_GOOGLE_VERIFICATION_CODE', // Google Search Console에서 받은 코드로 교체
-    yandex: 'YOUR_YANDEX_VERIFICATION_CODE', // Yandex Webmaster에서 받은 코드로 교체
-    yahoo: 'YOUR_YAHOO_VERIFICATION_CODE', // Yahoo에서 받은 코드로 교체
     other: {
       'naver-site-verification': '80beba25833830552b38dc574c01c9ebbd92a4a0',
-      'msvalidate.01': 'YOUR_BING_VERIFICATION_CODE', // Bing Webmaster에서 받은 코드로 교체
-      'facebook-domain-verification': 'YOUR_FB_VERIFICATION_CODE' // Facebook에서 받은 코드로 교체
-    }
+      ...(FB_DOMAIN_VERIFICATION
+        ? { 'facebook-domain-verification': FB_DOMAIN_VERIFICATION }
+        : {}),
+    },
   },
   category: 'education',
 }
+
+// 실제 판매 중인 월 구독 플랜 (KRW)
+const SUBSCRIPTION_PLANS = [
+  { name: '주2회 (월 8회)', price: '89000' },
+  { name: '주3회 (월 12회)', price: '129000' },
+  { name: '주5회 (월 20회)', price: '178000' },
+]
+
+const freeTrialOffer = {
+  '@type': 'Offer',
+  name: '무료 체험 수업',
+  description: '레벨 테스트 후 무료 체험 수업',
+  price: '0',
+  priceCurrency: 'KRW',
+  availability: 'https://schema.org/InStock',
+  url: 'https://yourenglishschool.co.kr/',
+}
+
+const subscriptionOffers = SUBSCRIPTION_PLANS.map((plan) => ({
+  '@type': 'Offer',
+  name: `월 정기 구독 ${plan.name}`,
+  description: `1:1 화상영어 수업 ${plan.name} 월 구독`,
+  price: plan.price,
+  priceCurrency: 'KRW',
+  priceSpecification: {
+    '@type': 'UnitPriceSpecification',
+    price: plan.price,
+    priceCurrency: 'KRW',
+    unitCode: 'MON',
+    unitText: '월',
+  },
+  availability: 'https://schema.org/InStock',
+  url: 'https://yourenglishschool.co.kr/',
+}))
+
+const allOffers = [freeTrialOffer, ...subscriptionOffers]
 
 export default function RootLayout({
   children,
@@ -100,79 +135,6 @@ export default function RootLayout({
     url: 'https://yourenglishschool.co.kr/',
     logo: 'https://yourenglishschool.co.kr/ogimage.jpg',
     description: 'YES 화상영어로 선생님과 1:1 화상영어 수업! 실시간 피드백과 AI 맞춤형 학습 시스템으로 영어 실력 향상!',
-    sameAs: [
-      'https://www.facebook.com/yesenglish',
-      'https://www.instagram.com/yesenglish',
-      'https://www.youtube.com/yesenglish'
-    ],
-    offers: {
-      '@type': 'Offer',
-      category: '화상영어 학습 앱',
-      availability: 'https://schema.org/InStock',
-      price: '0',
-      priceCurrency: 'KRW',
-      priceValidUntil: '2025-12-31',
-      description: '화상영어 무료 체험 가능',
-      url: 'https://yourenglishschool.co.kr/',
-      hasMerchantReturnPolicy: {
-        '@type': 'MerchantReturnPolicy',
-        applicableCountry: 'KR',
-        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-        merchantReturnDays: 7,
-        returnMethod: 'https://schema.org/ReturnByMail',
-        returnFees: 'https://schema.org/FreeReturn'
-      },
-      shippingDetails: {
-        '@type': 'OfferShippingDetails',
-        deliveryTime: {
-          '@type': 'ShippingDeliveryTime',
-          handlingTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 0,
-            maxValue: 0,
-            unitCode: 'DAY'
-          },
-          transitTime: {
-            '@type': 'QuantitativeValue',
-            minValue: 0,
-            maxValue: 0,
-            unitCode: 'DAY'
-          }
-        },
-        shippingRate: {
-          '@type': 'MonetaryAmount',
-          value: '0',
-          currency: 'KRW'
-        },
-        shippingDestination: {
-          '@type': 'DefinedRegion',
-          addressCountry: 'KR'
-        },
-        doesNotShip: true
-      }
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      bestRating: '5',
-      worstRating: '1',
-      ratingCount: '12500'
-    },
-    review: [
-      {
-        '@type': 'Review',
-        reviewRating: {
-          '@type': 'Rating',
-          ratingValue: '5',
-          bestRating: '5'
-        },
-        author: {
-          '@type': 'Person',
-          name: '김서연'
-        },
-        reviewBody: 'YES 화상영어 덕분에 영어 울렁증을 극복했어요! 화상영어로 선생님과 직접 대화하니 실전 영어가 늘어요. 최고의 화상영어 플랫폼이에요!'
-      }
-    ],
     areaServed: {
       '@type': 'Country',
       name: 'South Korea'
@@ -184,15 +146,7 @@ export default function RootLayout({
     '@type': 'WebSite',
     name: 'YES 화상영어',
     alternateName: 'YES English',
-    url: 'https://yourenglishschool.co.kr/',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://yourenglishschool.co.kr/search?q={search_term_string}'
-      },
-      'query-input': 'required name=search_term_string'
-    }
+    url: 'https://yourenglishschool.co.kr/'
   }
 
   const siteNavigationJsonLd = {
@@ -215,7 +169,7 @@ export default function RootLayout({
   const courseJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Course',
-    name: 'YES 화상영어 1:1 원어민 회화 수업',
+    name: 'YES 화상영어 1:1 원어민급 회화 수업',
     description: '원어민급 선생님과 1:1 실시간 화상영어 수업. 개인 맞춤 커리큘럼으로 효과적인 영어 실력 향상',
     provider: {
       '@type': 'Organization',
@@ -248,139 +202,7 @@ export default function RootLayout({
       '@type': 'Brand',
       name: 'YES 화상영어'
     },
-    offers: [
-      {
-        '@type': 'Offer',
-        name: '무료 체험 수업',
-        price: '0',
-        priceCurrency: 'KRW',
-        availability: 'https://schema.org/InStock',
-        validFrom: '2025-01-01',
-        priceValidUntil: '2025-12-31',
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          applicableCountry: 'KR',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-          merchantReturnDays: 7,
-          returnMethod: 'https://schema.org/ReturnByMail',
-          returnFees: 'https://schema.org/FreeReturn'
-        },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY'
-            },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY'
-            }
-          },
-          shippingRate: {
-            '@type': 'MonetaryAmount',
-            value: '0',
-            currency: 'KRW'
-          },
-          shippingDestination: {
-            '@type': 'DefinedRegion',
-            addressCountry: 'KR'
-          },
-          doesNotShip: true
-        }
-      },
-      {
-        '@type': 'Offer',
-        name: '월 정기 구독',
-        price: '86000',
-        priceCurrency: 'KRW',
-        availability: 'https://schema.org/InStock',
-        validFrom: '2025-01-01',
-        priceValidUntil: '2025-12-31',
-        hasMerchantReturnPolicy: {
-          '@type': 'MerchantReturnPolicy',
-          applicableCountry: 'KR',
-          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-          merchantReturnDays: 7,
-          returnMethod: 'https://schema.org/ReturnByMail',
-          returnFees: 'https://schema.org/FreeReturn'
-        },
-        shippingDetails: {
-          '@type': 'OfferShippingDetails',
-          deliveryTime: {
-            '@type': 'ShippingDeliveryTime',
-            handlingTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY'
-            },
-            transitTime: {
-              '@type': 'QuantitativeValue',
-              minValue: 0,
-              maxValue: 0,
-              unitCode: 'DAY'
-            }
-          },
-          shippingRate: {
-            '@type': 'MonetaryAmount',
-            value: '0',
-            currency: 'KRW'
-          },
-          shippingDestination: {
-            '@type': 'DefinedRegion',
-            addressCountry: 'KR'
-          },
-          doesNotShip: true
-        }
-      }
-    ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      bestRating: '5',
-      ratingCount: '12500',
-      reviewCount: '8750'
-    },
-    review: {
-      '@type': 'Review',
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5'
-      },
-      author: {
-        '@type': 'Person',
-        name: '김서연'
-      },
-      reviewBody: 'YES 화상영어 덕분에 영어 실력이 정말 늘었어요! 선생님들이 친절하고 체계적입니다.'
-    }
-  }
-
-  // VideoObject Schema - TIA 소개 비디오
-  const videoJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name: 'TIA - YES 화상영어 AI 튜터 소개',
-    description: 'YES 화상영어의 AI 튜터 TIA를 소개합니다. 수업 후에도 지속적인 학습을 도와드립니다.',
-    thumbnailUrl: 'https://yourenglishschool.co.kr/images/section3-2/tia-thumbnail.png',
-    uploadDate: '2025-01-01',
-    duration: 'PT1M30S',
-    contentUrl: 'https://yourenglishschool.co.kr/images/section3-2/tia.mp4',
-    embedUrl: 'https://yourenglishschool.co.kr/#tia',
-    publisher: {
-      '@type': 'Organization',
-      name: 'YES 화상영어',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://yourenglishschool.co.kr/ogimage.jpg'
-      }
-    }
+    offers: allOffers
   }
 
   const localBusinessJsonLd = {
@@ -389,13 +211,10 @@ export default function RootLayout({
     '@id': 'https://yourenglishschool.co.kr/#business',
     name: 'YES 화상영어',
     alternateName: 'YES English',
-    description: 'YES 화상영어는 한국 최고의 1:1 온라인 화상영어 교육 플랫폼입니다. 원어민급 튜터와 실시간 화상영어 수업, AI 학습 시스템으로 효과적인 영어 실력 향상을 지원합니다.',
+    description: 'YES 화상영어는 1:1 온라인 화상영어 교육 플랫폼입니다. 원어민급 튜터와 실시간 화상영어 수업, AI 학습 시스템으로 영어 실력 향상을 지원합니다.',
     url: 'https://yourenglishschool.co.kr/',
     logo: 'https://yourenglishschool.co.kr/ogimage.jpg',
-    image: [
-      'https://yourenglishschool.co.kr/ogimage.jpg',
-      'https://yourenglishschool.co.kr/images/thumbnail_PC.png'
-    ],
+    image: 'https://yourenglishschool.co.kr/ogimage.jpg',
     telephone: '1670-2905',
     email: 'admin@ycse.kr',
     address: {
@@ -437,102 +256,7 @@ export default function RootLayout({
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: '화상영어 수업 플랜',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          name: '무료 체험 수업',
-          description: '25분 무료 레벨 테스트 및 체험 수업',
-          price: '0',
-          priceCurrency: 'KRW',
-          hasMerchantReturnPolicy: {
-            '@type': 'MerchantReturnPolicy',
-            applicableCountry: 'KR',
-            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-            merchantReturnDays: 7,
-            returnMethod: 'https://schema.org/ReturnByMail',
-            returnFees: 'https://schema.org/FreeReturn'
-          },
-          shippingDetails: {
-            '@type': 'OfferShippingDetails',
-            deliveryTime: {
-              '@type': 'ShippingDeliveryTime',
-              handlingTime: {
-                '@type': 'QuantitativeValue',
-                minValue: 0,
-                maxValue: 0,
-                unitCode: 'DAY'
-              },
-              transitTime: {
-                '@type': 'QuantitativeValue',
-                minValue: 0,
-                maxValue: 0,
-                unitCode: 'DAY'
-              }
-            },
-            shippingRate: {
-              '@type': 'MonetaryAmount',
-              value: '0',
-              currency: 'KRW'
-            },
-            shippingDestination: {
-              '@type': 'DefinedRegion',
-              addressCountry: 'KR'
-            },
-            doesNotShip: true
-          }
-        },
-        {
-          '@type': 'Offer',
-          name: '월 정기 구독',
-          description: '매일 25분 1:1 화상영어 수업',
-          price: '86000',
-          priceCurrency: 'KRW',
-          hasMerchantReturnPolicy: {
-            '@type': 'MerchantReturnPolicy',
-            applicableCountry: 'KR',
-            returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-            merchantReturnDays: 7,
-            returnMethod: 'https://schema.org/ReturnByMail',
-            returnFees: 'https://schema.org/FreeReturn'
-          },
-          shippingDetails: {
-            '@type': 'OfferShippingDetails',
-            deliveryTime: {
-              '@type': 'ShippingDeliveryTime',
-              handlingTime: {
-                '@type': 'QuantitativeValue',
-                minValue: 0,
-                maxValue: 0,
-                unitCode: 'DAY'
-              },
-              transitTime: {
-                '@type': 'QuantitativeValue',
-                minValue: 0,
-                maxValue: 0,
-                unitCode: 'DAY'
-              }
-            },
-            shippingRate: {
-              '@type': 'MonetaryAmount',
-              value: '0',
-              currency: 'KRW'
-            },
-            shippingDestination: {
-              '@type': 'DefinedRegion',
-              addressCountry: 'KR'
-            },
-            doesNotShip: true
-          }
-        }
-      ]
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      bestRating: '5',
-      worstRating: '1',
-      ratingCount: '12500',
-      reviewCount: '8750'
+      itemListElement: allOffers
     }
   }
 
@@ -553,7 +277,7 @@ export default function RootLayout({
         name: 'YES 화상영어 가격은 어떻게 되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'YES 화상영어는 합리적인 가격으로 고품질 화상영어 수업을 제공합니다. 무료체험 후 본인에게 맞는 플랜을 선택할 수 있습니다.'
+          text: 'YES 화상영어는 월 구독제로 운영됩니다. 주2회(월 8회) 89,000원, 주3회(월 12회) 129,000원, 주5회(월 20회) 178,000원이며, 앱에서 본인에게 맞는 플랜을 선택할 수 있습니다.'
         }
       },
       {
@@ -583,65 +307,60 @@ export default function RootLayout({
         <meta property="article:published_time" content="2025-01-01T00:00:00.000Z" />
         <meta property="article:modified_time" content={new Date().toISOString()} />
         <link rel="alternate" type="application/rss+xml" title="YES 화상영어 블로그 RSS" href="/rss.xml" />
-        <Script
+        {/* JSON-LD는 next/script가 아닌 <script>로 넣어야 정적 HTML에 포함된다 (next/script는 hydration 후 주입) */}
+        <script
           id="structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd)
           }}
         />
-        <Script
+        <script
           id="website-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteJsonLd)
           }}
         />
-        <Script
+        <script
           id="site-navigation-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(siteNavigationJsonLd)
           }}
         />
-        <Script
+        <script
           id="faq-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(faqJsonLd)
           }}
         />
-        <Script
+        <script
           id="local-business-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessJsonLd)
           }}
         />
-        <Script
+        <script
           id="course-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(courseJsonLd)
           }}
         />
-        <Script
+        <script
           id="product-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(productJsonLd)
           }}
         />
-        <Script
-          id="video-structured-data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(videoJsonLd)
-          }}
-        />
       </head>
       <body>
         <SiteFrame>{children}</SiteFrame>
+        <Analytics />
       </body>
     </html>
   )

@@ -86,8 +86,8 @@ export default function BlogPost({ params }: BlogPostProps) {
     "image": {
       "@type": "ImageObject",
       "url": `https://yourenglishschool.co.kr${post.featuredImage || '/ogimage.jpg'}`,
-      "width": 1200,
-      "height": 630
+      "width": post.featuredImage ? 1200 : 1024,
+      "height": post.featuredImage ? 630 : 500
     },
     "author": {
       "@type": "Person",
@@ -100,8 +100,8 @@ export default function BlogPost({ params }: BlogPostProps) {
       "logo": {
         "@type": "ImageObject",
         "url": "https://yourenglishschool.co.kr/ogimage.jpg",
-        "width": 1200,
-        "height": 630
+        "width": 1024,
+        "height": 500
       }
     },
     "datePublished": post.date,
@@ -156,8 +156,8 @@ export async function generateMetadata({ params }: BlogPostProps) {
         alt: post.title
       }] : [{
         url: '/ogimage.jpg',
-        width: 1200,
-        height: 630,
+        width: 1024,
+        height: 500,
         alt: 'YES 화상영어'
       }],
       siteName: 'YES 화상영어',
