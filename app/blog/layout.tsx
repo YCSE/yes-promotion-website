@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     url: 'https://yourenglishschool.co.kr/blog',
     images: [{
       url: '/ogimage.jpg',
-      width: 1200,
-      height: 630,
+      width: 1024,
+      height: 500,
       alt: 'YES 화상영어 블로그'
     }],
     siteName: 'YES 화상영어',

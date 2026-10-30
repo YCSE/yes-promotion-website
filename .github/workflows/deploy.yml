@@ -35,6 +35,11 @@ jobs:
         
       - name: Build with Next.js
         run: npm run build
+        env:
+          NEXT_PUBLIC_META_PIXEL_ID: ${{ vars.NEXT_PUBLIC_META_PIXEL_ID }}
+          NEXT_PUBLIC_FB_DOMAIN_VERIFICATION: ${{ vars.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION }}
+          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+          NEXT_PUBLIC_APPSTORE_PROVIDER_TOKEN: ${{ vars.NEXT_PUBLIC_APPSTORE_PROVIDER_TOKEN }}
         
       - name: Create .nojekyll file
         run: touch ./out/.nojekyll
