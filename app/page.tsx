@@ -6,6 +6,8 @@ import ReviewCarousel from '@/components/ReviewCarousel'
 import BlogSection from '@/components/BlogSection'
 import Section5 from '@/components/Section5'
 import FAQSection from '@/components/FAQSection'
+import JsonLd from '@/components/JsonLd'
+import { courseJsonLd, faqJsonLd, localBusinessJsonLd, productJsonLd } from '@/lib/structuredData'
 
 export default function Home() {
   const homeBreadcrumbJsonLd = {
@@ -23,14 +25,12 @@ export default function Home() {
 
   return (
     <>
-      {/* next/script는 hydration 후 주입되어 정적 HTML에 남지 않으므로 일반 <script>를 쓴다 */}
-      <script
-        id="home-breadcrumb-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homeBreadcrumbJsonLd)
-        }}
-      />
+      <JsonLd id="home-breadcrumb-structured-data" data={homeBreadcrumbJsonLd} />
+      {/* 홈 전용 스키마 — 루트 레이아웃에 두면 모든 페이지에 붙는다 */}
+      <JsonLd id="faq-structured-data" data={faqJsonLd} />
+      <JsonLd id="local-business-structured-data" data={localBusinessJsonLd} />
+      <JsonLd id="course-structured-data" data={courseJsonLd} />
+      <JsonLd id="product-structured-data" data={productJsonLd} />
       <main className="min-h-screen">
         <Hero />
         <Section2 />

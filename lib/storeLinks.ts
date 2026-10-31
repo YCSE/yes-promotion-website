@@ -23,15 +23,18 @@ export function buildAppStoreCampaignToken(campaign = '', content = ''): string 
   const c = codePoints(campaign)
   const t = codePoints(content)
 
+  // 잘린 지점이 공백이면 'fall launch _video'처럼 구분자 앞에 공백이 남으므로 끝 공백을 떼어낸다
+  const cut = (chars: string[], length: number) => chars.slice(0, length).join('').trimEnd()
+
   if (!c.length || !t.length) {
-    return (c.length ? c : t).slice(0, APP_STORE_CAMPAIGN_MAX_LENGTH).join('')
+    return cut(c.length ? c : t, APP_STORE_CAMPAIGN_MAX_LENGTH)
   }
 
   const budget = APP_STORE_CAMPAIGN_MAX_LENGTH - 1 // '_' 구분자 몫
   if (c.length + t.length <= budget) return `${campaign}_${content}`
 
   const contentLength = Math.min(t.length, Math.max(Math.floor(budget / 2), budget - c.length))
-  return `${c.slice(0, budget - contentLength).join('')}_${t.slice(0, contentLength).join('')}`
+  return `${cut(c, budget - contentLength)}_${cut(t, contentLength)}`
 }
 
 // 랜딩 URL의 UTM 값을 스토어 링크로 넘긴다. 값이 없거나 공백뿐인 키는 넣지 않는다.

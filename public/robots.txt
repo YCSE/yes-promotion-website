@@ -5,7 +5,6 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
 Disallow: /node_modules/
 
 # Crawl delay for specific bots

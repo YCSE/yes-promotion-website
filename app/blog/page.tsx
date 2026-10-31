@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { getAllPosts } from '@/lib/posts'
 import BlogPageClient from './BlogPageClient'
+import JsonLd from '@/components/JsonLd'
+import { SITE_URL } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: '블로그 | YES 화상영어',
@@ -36,7 +38,6 @@ export const metadata: Metadata = {
   },
 }
 
-const SITE_URL = 'https://yourenglishschool.co.kr'
 const BLOG_URL = `${SITE_URL}/blog/`
 
 export default function BlogPage() {
@@ -90,17 +91,8 @@ export default function BlogPage() {
 
   return (
     <>
-      {/* next/script는 hydration 후 주입되어 정적 HTML에 남지 않으므로 일반 <script>를 쓴다 */}
-      <script
-        id="blog-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
-      />
-      <script
-        id="blog-breadcrumb-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+      <JsonLd id="blog-structured-data" data={blogJsonLd} />
+      <JsonLd id="blog-breadcrumb-structured-data" data={breadcrumbJsonLd} />
       <BlogPageClient posts={posts} />
     </>
   )

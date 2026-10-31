@@ -4,6 +4,8 @@ import matter from 'gray-matter'
 import { notFound } from 'next/navigation'
 import BlogPostClient from './BlogPostClient'
 import { getRelatedPosts } from '@/lib/posts'
+import { SITE_URL } from '@/lib/config'
+import JsonLd from '@/components/JsonLd'
 
 interface BlogPostProps {
   params: {
@@ -123,36 +125,27 @@ export default function BlogPost({ params }: BlogPostProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "홈",
-        "item": "https://yourenglishschool.co.kr/"
+        "item": `${SITE_URL}/`
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "블로그",
-        "item": "https://yourenglishschool.co.kr/blog/"
+        "item": `${SITE_URL}/blog/`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.title,
-        "item": `https://yourenglishschool.co.kr/blog/${params.slug}/`
+        "item": `${SITE_URL}/blog/${params.slug}/`
       }
     ]
   }
 
   return (
     <>
-      {/* 서버 컴포넌트에서 일반 <script>로 렌더해야 정적 HTML에 포함된다 (next/script는 hydration 후 주입) */}
-      <script
-        id="article-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <script
-        id="breadcrumb-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
-      />
+      <JsonLd id="article-structured-data" data={structuredData} />
+      <JsonLd id="breadcrumb-structured-data" data={breadcrumbData} />
       <BlogPostClient post={post} relatedPosts={relatedPosts} />
     </>
   )
