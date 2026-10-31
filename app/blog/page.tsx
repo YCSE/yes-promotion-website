@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import { getAllPosts } from '@/lib/posts'
 import BlogPageClient from './BlogPageClient'
+import JsonLd from '@/components/JsonLd'
+import { SITE_URL } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: '블로그 | YES 화상영어',
@@ -36,8 +38,62 @@ export const metadata: Metadata = {
   },
 }
 
+const BLOG_URL = `${SITE_URL}/blog/`
+
 export default function BlogPage() {
   const posts = getAllPosts()
-  
-  return <BlogPageClient posts={posts} />
+
+  const blogJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'YES 화상영어 블로그',
+    description: 'YES 화상영어 블로그에서 효과적인 영어학습법과 화상영어 수업 팁을 확인하세요.',
+    url: BLOG_URL,
+    publisher: {
+      '@type': 'Organization',
+      name: 'YES 화상영어',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/ogimage.jpg`
+      }
+    },
+    // 최신 글 10개 (getAllPosts는 날짜 내림차순)
+    blogPost: posts.slice(0, 10).map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `${BLOG_URL}${post.slug}/`,
+      datePublished: post.date,
+      author: {
+        '@type': 'Organization',
+        name: 'YES 화상영어'
+      }
+    }))
+  }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: '홈',
+        item: `${SITE_URL}/`
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '블로그',
+        item: BLOG_URL
+      }
+    ]
+  }
+
+  return (
+    <>
+      <JsonLd id="blog-structured-data" data={blogJsonLd} />
+      <JsonLd id="blog-breadcrumb-structured-data" data={breadcrumbJsonLd} />
+      <BlogPageClient posts={posts} />
+    </>
+  )
 }
