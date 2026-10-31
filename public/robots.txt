@@ -27,4 +27,5 @@ Disallow: /
 
 # Sitemap Locations
 Sitemap: https://yourenglishschool.co.kr/sitemap.xml
+Sitemap: https://yourenglishschool.co.kr/sitemap-image.xml
 Sitemap: https://yourenglishschool.co.kr/rss.xml

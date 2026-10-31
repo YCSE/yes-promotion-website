@@ -3,27 +3,14 @@
 import { useEffect, useState } from 'react'
 import { getAssetPath } from '@/lib/utils'
 import {
-  APPSTORE_PROVIDER_TOKEN,
   trackAppStoreClick,
   type AppStore,
   type StoreButtonPosition,
 } from '@/lib/analytics'
-
-const APP_STORE_URL = 'https://apps.apple.com/app/id6745255649'
-const GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=kr.ycse'
-
-const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign'] as const
-
-// App Analytics campaign token(ct)은 최대 40자
-const APP_STORE_CAMPAIGN_MAX_LENGTH = 40
+import { buildStoreUrls, DEFAULT_STORE_URLS } from '@/lib/storeLinks'
 
 const imgApple = getAssetPath('70def9900c5cbdff7a5a56c4cc16b8ba61c7afe3.svg')
 const imgGoogle = getAssetPath('e2db92e38f36839b53883c4e9edb8aa4098a30a5.svg')
-
-const DEFAULT_URLS: Record<AppStore, string> = {
-  ios: APP_STORE_URL,
-  android: GOOGLE_PLAY_URL,
-}
 
 const VARIANTS: Record<
   StoreButtonPosition,
@@ -47,39 +34,6 @@ const STORES: { id: AppStore; label: string }[] = [
   { id: 'ios', label: 'App Store' },
   { id: 'android', label: 'Google Play' },
 ]
-
-// 랜딩 URL의 UTM 값을 스토어 링크로 넘긴다.
-// - Google Play: referrer 파라미터에 utm_* 쿼리스트링을 URL 인코딩해서 전달 (Install Referrer)
-// - App Store: ct=<utm_campaign>, pt=<provider token> (App Analytics 캠페인 링크)
-// URLSearchParams는 공백을 '+'로 직렬화하는데, 스토어/앱 쪽 파서가 '+'를 공백으로 복원한다는
-// 보장이 없으므로 encodeURIComponent(공백 → %20)로 직접 인코딩한다.
-function buildStoreUrls(search: string): Record<AppStore, string> {
-  const query = new URLSearchParams(search)
-
-  const referrer = UTM_KEYS.filter((key) => query.get(key))
-    .map((key) => `${key}=${encodeURIComponent(query.get(key) as string)}`)
-    .join('&')
-
-  const googlePlay = referrer
-    ? `${GOOGLE_PLAY_URL}&referrer=${encodeURIComponent(referrer)}`
-    : GOOGLE_PLAY_URL
-
-  let appStore = APP_STORE_URL
-  const campaign = query.get('utm_campaign')
-  if (campaign) {
-    // 코드 포인트 단위로 잘라 이모지 등 서로게이트 쌍이 깨지지 않게 한다
-    const ct = Array.from(campaign).slice(0, APP_STORE_CAMPAIGN_MAX_LENGTH).join('')
-    appStore += `?ct=${encodeURIComponent(ct)}`
-    if (APPSTORE_PROVIDER_TOKEN) {
-      appStore += `&pt=${encodeURIComponent(APPSTORE_PROVIDER_TOKEN)}`
-    }
-  }
-
-  return {
-    ios: appStore,
-    android: googlePlay,
-  }
-}
 
 function AppleStoreIcon() {
   return (
@@ -131,7 +85,7 @@ function StoreIcon({ store, position }: { store: AppStore; position: StoreButton
 
 export default function StoreButtons({ position }: { position: StoreButtonPosition }) {
   // 정적 export HTML과 첫 hydration은 기본 URL로 렌더하고, 마운트 후에 UTM을 반영한다.
-  const [urls, setUrls] = useState(DEFAULT_URLS)
+  const [urls, setUrls] = useState(DEFAULT_STORE_URLS)
 
   useEffect(() => {
     if (window.location.search) {

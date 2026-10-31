@@ -2,6 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
+// output: 'export'에서 빌드 시 정적 파일로 생성되도록 명시 (Next 15부터 GET 핸들러 기본값이 dynamic)
+export const dynamic = 'force-static'
+
 function getAllBlogPosts() {
   const postsDirectory = path.join(process.cwd(), 'content/posts')
   

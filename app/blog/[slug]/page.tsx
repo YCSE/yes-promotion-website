@@ -115,11 +115,43 @@ export default function BlogPost({ params }: BlogPostProps) {
     "url": `https://yourenglishschool.co.kr/blog/${params.slug}/`
   }
 
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://yourenglishschool.co.kr/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "블로그",
+        "item": "https://yourenglishschool.co.kr/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://yourenglishschool.co.kr/blog/${params.slug}/`
+      }
+    ]
+  }
+
   return (
     <>
+      {/* 서버 컴포넌트에서 일반 <script>로 렌더해야 정적 HTML에 포함된다 (next/script는 hydration 후 주입) */}
       <script
+        id="article-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        id="breadcrumb-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
       <BlogPostClient post={post} relatedPosts={relatedPosts} />
     </>

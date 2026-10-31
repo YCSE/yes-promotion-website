@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'YES 화상영어 블로그 - 영어학습 팁과 화상영어 노하우',
@@ -38,85 +37,12 @@ export const metadata: Metadata = {
   }
 }
 
+// Blog/BreadcrumbList JSON-LD는 이 레이아웃이 아닌 app/blog/page.tsx에서 렌더한다.
+// (레이아웃에 두면 모든 글 페이지에도 붙어 글 페이지 Breadcrumb과 중복된다)
 export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const blogJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    name: 'YES 화상영어 블로그',
-    description: 'YES 화상영어 블로그에서 효과적인 영어학습법과 화상영어 수업 팁을 확인하세요.',
-    url: 'https://yourenglishschool.co.kr/blog',
-    publisher: {
-      '@type': 'Organization',
-      name: 'YES 화상영어',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://yourenglishschool.co.kr/ogimage.jpg'
-      }
-    },
-    blogPost: [
-      {
-        '@type': 'BlogPosting',
-        headline: '영화와 드라마로 영어 정복! 나만의 스마트 학습 툴킷 만들기',
-        url: 'https://yourenglishschool.co.kr/blog/2025-09-04-movies-tv-language-learning-1',
-        datePublished: '2025-09-04',
-        author: {
-          '@type': 'Organization',
-          name: 'YES 화상영어'
-        }
-      },
-      {
-        '@type': 'BlogPosting',
-        headline: '영어 도치 구문 완벽 가이드: 강조와 리듬의 예술',
-        url: 'https://yourenglishschool.co.kr/blog/2025-09-04-inversion-emphasis-english-1',
-        datePublished: '2025-09-04',
-        author: {
-          '@type': 'Organization',
-          name: 'YES 화상영어'
-        }
-      }
-    ]
-  }
-
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: '홈',
-        item: 'https://yourenglishschool.co.kr'
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: '블로그',
-        item: 'https://yourenglishschool.co.kr/blog'
-      }
-    ]
-  }
-
-  return (
-    <>
-      <Script
-        id="blog-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogJsonLd)
-        }}
-      />
-      <Script
-        id="blog-breadcrumb-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd)
-        }}
-      />
-      <div className="blog-page">{children}</div>
-    </>
-  )
+  return <div className="blog-page">{children}</div>
 }

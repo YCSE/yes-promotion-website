@@ -6,7 +6,6 @@ import ReviewCarousel from '@/components/ReviewCarousel'
 import BlogSection from '@/components/BlogSection'
 import Section5 from '@/components/Section5'
 import FAQSection from '@/components/FAQSection'
-import Script from 'next/script'
 
 export default function Home() {
   const homeBreadcrumbJsonLd = {
@@ -24,7 +23,8 @@ export default function Home() {
 
   return (
     <>
-      <Script
+      {/* next/script는 hydration 후 주입되어 정적 HTML에 남지 않으므로 일반 <script>를 쓴다 */}
+      <script
         id="home-breadcrumb-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{

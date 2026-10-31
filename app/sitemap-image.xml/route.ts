@@ -1,11 +1,9 @@
 import { NextResponse } from 'next/server'
 
+// output: 'export'에서 빌드 시 정적 파일로 생성되도록 명시 (Next 15부터 GET 핸들러 기본값이 dynamic)
+export const dynamic = 'force-static'
+
 const images = [
-  {
-    loc: 'https://yourenglishschool.co.kr/images/thumbnail_PC.png',
-    title: 'YES 화상영어 메인 배너',
-    caption: '말하게 되는 영어, 진짜 시작은 YES - 화상영어 플랫폼',
-  },
   {
     loc: 'https://yourenglishschool.co.kr/images/section2/D1.png',
     title: '화상영어 수업 특징',
@@ -50,26 +48,6 @@ const images = [
     loc: 'https://yourenglishschool.co.kr/images/section4/section4.png',
     title: '화상영어 수강 후기',
     caption: 'YES 화상영어 수강생 후기',
-  },
-  {
-    loc: 'https://yourenglishschool.co.kr/images/frame4/img%203.png',
-    title: '화상영어 앱 화면',
-    caption: 'YES 화상영어 모바일 앱',
-  },
-  {
-    loc: 'https://yourenglishschool.co.kr/images/frame4/C1.png',
-    title: '레벨 테스트',
-    caption: '무료 화상영어 레벨 테스트',
-  },
-  {
-    loc: 'https://yourenglishschool.co.kr/images/frame4/C2.png',
-    title: '맞춤 커리큘럼',
-    caption: '개인 맞춤형 화상영어 커리큘럼',
-  },
-  {
-    loc: 'https://yourenglishschool.co.kr/images/frame4/C3.png',
-    title: '학습 리포트',
-    caption: '화상영어 학습 성과 분석',
   },
   {
     loc: 'https://yourenglishschool.co.kr/ogimage.jpg',
