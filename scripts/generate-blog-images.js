@@ -19,13 +19,21 @@ Each scene is 1-3 English sentences describing only what the camera sees: who is
 People:
 - One person: a Korean person in their 20s. Write the age out, for example "a Korean woman, about 24".
 - Several people: exactly one Korean person in their 20s, and everyone else Western (Caucasian or Black). Never two or more Korean or Asian people together. Keep it to two people at most.
-- The image model drops or crops the people named later in a prompt, so the Korean person always comes first in the scene and is its main subject, facing the camera in full view; anyone else comes after.
+- The image model drops or crops the people named later in a prompt, so the Korean person always comes first in the scene and is its main subject, in full view with the face clearly visible; anyone else comes after.
+- The image model blends people who look alike, so describe the Korean person's look too (for example "straight black hair") and dress the two people differently.
 - The image model draws people as East Asian unless told otherwise, so describe each Western person by visible features, for example "a Caucasian man with blond hair and blue eyes" or "a Black woman with curly hair".
 - Exception: a historical figure or celebrity the section is about is shown as they are.
 - Natural, candid postures and everyday gestures, as if caught in real life. When someone uses a phone, they hold it in one hand; include a phone only where the scene calls for one.
 - A scene without people (objects, a study space, a place) is fine where it suits the section better.
 
-Nothing in an image may be readable: no speech or thought bubbles, captions, signs, labels, book titles, or letters of any kind. The image model writes text onto any surface that faces the camera, so keep book covers, pages, signs and screens turned away, seen edge-on, or far out of focus. No cartoon or comic elements.`;
+Screens (this rule matters most):
+- Every open laptop, phone, tablet or monitor in a scene with people is being used by one of them: its screen faces that person and sits in their line of sight, and they look at the screen, not at the camera. A screen never faces the camera or points away from the person using it.
+- The camera sees every device from behind or from the side: the back of the laptop lid, the back of the phone or tablet. What is on a screen is never shown, in video-call scenes too: there the camera is in front of the student, who looks at the screen of the open laptop between them, the laptop seen from behind.
+- A person uses one device at a time. Any other laptop in the scene has its lid closed, and other phones and tablets stay out of the scene.
+- Write the orientation out in every scene, for example "she looks at the screen of the open laptop in front of her, the laptop seen from behind" or "he reads the phone in his hand, its screen turned toward his face".
+- In a scene without people, laptops are closed.
+
+Nothing in an image may be readable: no speech or thought bubbles, captions, signs, labels, book titles, or letters of any kind. The image model writes text onto any surface that faces the camera, so keep book covers, pages and signs turned away, seen edge-on, or far out of focus. Pick settings with no signs in view: station entrances, shopfronts and street corners come with signs the model will write on. No cartoon or comic elements.`;
 
 const PROMPT_PLAN_SCHEMA = {
   type: 'object',
@@ -55,7 +63,7 @@ const QUALITY_SUFFIX = 'Photorealistic candid documentary photograph, natural li
 
 // Used only when Claude cannot plan the prompts.
 const GENERIC_STYLE = 'Soft natural window light, warm neutral palette, 35mm lens, shallow depth of field, calm everyday mood.';
-const GENERIC_FEATURED = 'A Korean woman, about 24, smiling during an English video lesson on her laptop at a bright desk at home; the laptop is seen from the side.';
+const GENERIC_FEATURED = 'A Korean woman, about 24, smiles at the laptop screen in front of her during an English video lesson at a bright desk at home, the laptop seen from behind.';
 const GENERIC_SCENES = [
   'A closed notebook, a pen, a coffee cup and a closed laptop on a wooden desk by a window.',
   'A Korean man, about 26, listening to an English podcast with wireless earbuds while looking out of a cafe window.',
