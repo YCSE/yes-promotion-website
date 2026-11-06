@@ -9,7 +9,7 @@ This is a Next.js static website project for YES Promotion with the following ke
 - **Type**: Static website (SSG - Static Site Generation) with `output: 'export'`
 - **Design Source**: Figma designs via MCP integration
 - **Testing**: End-to-end testing with Playwright MCP
-- **Blog System**: Automated content generation with Gemini AI
+- **Blog System**: Automated content generation — writing with Claude Haiku 5.5, images with the local Qwen-Image-2.1-Turbo on the DGX
 - **Deployment**: GitHub Pages via GitHub Actions
 
 ## Development Commands
@@ -143,7 +143,7 @@ The site uses Next.js 14's App Router with static export configuration. All page
 
 ### Blog System Architecture
 1. **Content Storage**: Markdown files in `content/posts/` with gray-matter frontmatter
-2. **Generation**: `blog-generation-system.js` uses Gemini AI to create daily posts
+2. **Generation**: `scripts/generate-content.js` picks a topic from `blog-generation-system.js`, writes the post with Claude Haiku 5.5 and renders its images with the local Qwen-Image-2.1-Turbo (see `scripts/README.md`)
 3. **Rendering**: Dynamic routing with `[slug]` pages, SSG at build time
 4. **Automation**: GitHub Actions runs generation daily and deploys changes
 
@@ -188,11 +188,11 @@ trailingSlash: true      // GitHub Pages compatibility
 - Runs on Node.js 18
 
 ### Blog Generation Workflow (.github/workflows/generate-blog-post.yml)
-- Runs daily at 09:00 UTC (6:00 PM KST)
+- Runs daily at 01:00 UTC (10:00 AM KST)
 - Can be manually triggered
-- Generates new blog post using Gemini AI
-- Commits and pushes changes automatically
-- Uses repository secrets for API keys
+- `generate` job runs on the DGX self-hosted runner (`[self-hosted, yes-promotion]`): Claude Haiku 5.5 writes the post, the local Qwen-Image-2.1-Turbo (loaded via ModelSwitcher) renders the images
+- Commits and pushes changes automatically; `build-and-deploy` then builds and deploys on `ubuntu-latest`
+- Uses the `ANTHROPIC_API_KEY` repository secret
 
 ## Important Implementation Notes
 

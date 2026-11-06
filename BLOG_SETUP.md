@@ -4,9 +4,10 @@ This guide explains how to set up and use the automated English learning blog po
 
 ## 🎯 Overview
 
-The system automatically generates English learning blog posts every 2 days using:
-- **Gemini 2.5 Flash** for content generation  
-- **GitHub Actions** for scheduled automation
+The system automatically generates an English learning blog post every day using:
+- **Claude Haiku 5.5** (`claude-haiku-5-5`, Anthropic API) for the post and the image prompts
+- **Qwen-Image-2.1-Turbo**, a local model on the DGX (served by ModelSwitcher), for the images
+- **GitHub Actions** for scheduled automation: generation on the DGX self-hosted runner, build and deploy on GitHub-hosted runners
 - **Static site generation** with Next.js
 
 ## 🚀 Quick Start
@@ -17,16 +18,18 @@ The system automatically generates English learning blog posts every 2 days usin
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
 3. Click **"New repository secret"**
 4. Add the following secret:
-   - **Name:** `GEMINI_API_KEY`
-   - **Value:** Your API key (provided: `your-api-secret`)
+   - **Name:** `ANTHROPIC_API_KEY`
+   - **Value:** An API key from the [Claude Console](https://platform.claude.com/)
 
-⚠️ **IMPORTANT:** In production, use your own API key from [Google AI Studio](https://aistudio.google.com/apikey)
+Or from a terminal: `gh secret set ANTHROPIC_API_KEY -R YCSE/yes-promotion-website`
 
 ### Step 2: Enable GitHub Actions
 
 The workflow is already configured and will:
-- Run automatically every 2 days at 9:00 AM KST
+- Run automatically every day at 10:00 AM KST
 - Can be triggered manually from Actions tab
+
+The generation job needs the DGX runner `spark-yes-promotion-1` online (`systemctl --user status yes-promotion-ci-runner-1`) and ModelSwitcher running; it loads the image model itself and unloads it afterwards.
 
 ### Step 3: Manual Trigger (Optional)
 
@@ -61,13 +64,13 @@ npm install
 ```
 
 ### Test Content Generation
+Run on the DGX (the image model is local to it):
 ```bash
-# Set your API key as environment variable
-GEMINI_API_KEY=your_api_key_here node scripts/generate-content.js
+# Check that both models are reachable
+ANTHROPIC_API_KEY=your_api_key_here node scripts/test-api.js
 
-# Or create .env file
-echo "GEMINI_API_KEY=your_api_key_here" > .env
-node scripts/generate-content.js
+# Generate a post
+ANTHROPIC_API_KEY=your_api_key_here node scripts/generate-content.js
 ```
 
 ### View Generated Content
@@ -85,11 +88,11 @@ npm run dev
 - **Length:** 1500-2000 characters
 - **Topics:** 20 pre-defined English learning topics
 
-### Featured Images
-- **Format:** WebP (optimized)
-- **Size:** 1200x675px (16:9)
-- **Style:** Professional gradient placeholder
-- **Note:** Imagen API integration pending
+### Images
+- **Model:** Qwen-Image-2.1-Turbo (local), prompts written by Claude Haiku 5.5
+- **Images:** one featured image plus one per H2 section
+- **Format:** JPEG, 1184x896px (about 4:3)
+- **Fallback:** an SVG placeholder when an image fails twice
 
 ## 🎨 Customization
 
@@ -131,12 +134,11 @@ After blog post generation:
 1. **API Key Security**
    - Never commit API keys to the repository
    - Always use GitHub Secrets for production
-   - The provided key is for testing only
 
 2. **Image Generation**
-   - Currently uses placeholder images
-   - Imagen API integration requires additional setup
-   - Placeholder images are professional gradients
+   - Runs only on the DGX: the generation job uses the self-hosted runner `spark-yes-promotion-1`
+   - The repository is public, so fork workflow runs need approval for all outside contributors (Settings → Actions → General); keep it that way while the runner is registered
+   - The image model is loaded through ModelSwitcher without unloading other models; if memory is short the job waits up to 30 minutes, then fails
 
 3. **Content Quality**
    - Posts are generated in Korean for Korean learners

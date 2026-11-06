@@ -1,97 +1,70 @@
 # Blog Content Generation Scripts
 
-This directory contains scripts for automatically generating blog content using Google's Gemini AI.
+These scripts generate the daily English-learning blog posts.
+
+- **Writing**: Claude Haiku 5.5 (`claude-haiku-5-5`) through the Anthropic API
+- **Images**: Qwen-Image-2.1-Turbo, a local model on the DGX, served by ModelSwitcher
 
 ## Scripts
 
 ### generate-content.js
-Main orchestration script that generates both blog post and featured image.
+Main orchestration script: loads the image model, writes the post, generates its images, and saves the post to `content/posts/`.
 
 ### generate-blog-post.js
-Generates English learning blog posts using Gemini 2.5 Flash model.
+Writes the post (markdown with frontmatter) with Claude Haiku 5.5, then puts an `[IMAGE_PLACEHOLDER_H2_n]` marker under each of the first four H2 headings. The markers are placed in code because the model does not place them reliably.
 
 ### generate-blog-images.js
-Generates all blog images (featured + H2 section images) using gemini-3.1-flash-image-preview in a single multi-turn session for visual consistency. Falls back to SVG placeholders on failure.
+Generates the featured image and one image per H2 section. Claude Haiku 5.5 writes the image prompts (one shared style line plus a scene per image, following the people and no-text rules), and the local Qwen-Image model renders them as 1184x896 JPEGs. A failed image falls back to an SVG placeholder.
 
-## Setup
+### qwen-image-client.js
+Talks to the local image server. If it is not running, asks ModelSwitcher (`127.0.0.1:18090`) to load `qwen-qwen-image-2-1-turbo`, waits until it is ready, and unloads it afterwards. It never unloads other models to make room; when memory is short it retries for up to 30 minutes.
 
-### 1. Get Gemini API Key
-1. Visit [Google AI Studio](https://aistudio.google.com/apikey)
-2. Create or sign in to your Google account
-3. Generate an API key
+### claude-client.js
+Shared Anthropic client, model ID and response checks (refusal, truncation).
 
-### 2. Configure Environment
+### test-api.js
+Checks that both models are reachable: `node scripts/test-api.js`.
 
-#### For Local Testing:
-```bash
-# Create .env file
-cp .env.example .env
+## Configuration
 
-# Add your API key to .env
-GEMINI_API_KEY=your_api_key_here
-```
-
-#### For GitHub Actions:
-1. Go to your repository on GitHub
-2. Navigate to Settings → Secrets and variables → Actions
-3. Click "New repository secret"
-4. Add secret:
-   - Name: `GEMINI_API_KEY`
-   - Value: Your Gemini API key
+| Variable | Default | Purpose |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | (required) | Anthropic API key for Claude |
+| `QWEN_IMAGE_BASE_URL` | `http://127.0.0.1:8000/v1` | Qwen image server |
+| `MODELSWITCHER_URL` | `http://127.0.0.1:18090` | ModelSwitcher daemon |
+| `QWEN_IMAGE_MODEL_ID` | `qwen-qwen-image-2-1-turbo` | ModelSwitcher catalog ID |
+| `QWEN_IMAGE_LOAD_TIMEOUT_MS` | 30 min | How long to wait for the model to load (once ModelSwitcher accepts the load, the server gets at least 10 more min to come up) |
+| `QWEN_IMAGE_GENERATE_TIMEOUT_MS` | 5 min | Per-image request timeout (Node's fetch caps it at 5 min) |
 
 ## Usage
 
-### Manual Generation (Local)
+### Manual generation (on the DGX)
 ```bash
-# Generate a new blog post
-GEMINI_API_KEY=your_api_key_here node scripts/generate-content.js
-
-# Or with .env file
-node scripts/generate-content.js
+ANTHROPIC_API_KEY=your_api_key_here node scripts/generate-content.js
 ```
 
-### Automatic Generation
-The GitHub Actions workflow runs automatically:
-- **Schedule**: Every 2 days at 9:00 AM KST
-- **Manual**: Go to Actions tab → Generate Blog Post → Run workflow
+### Automatic generation
+`.github/workflows/generate-blog-post.yml` runs every day at 10:00 KST (and from Actions → Generate Blog Post → Run workflow):
+
+1. `generate` runs on the DGX's self-hosted runner `spark-yes-promotion-1` (label `yes-promotion`, systemd user service `yes-promotion-ci-runner-1`), because the image model only exists there. It commits the post and images to `main`.
+2. `build-and-deploy` builds the site on `ubuntu-latest` and deploys it to GitHub Pages.
+
+The workflow reads the `ANTHROPIC_API_KEY` repository secret.
 
 ## Generated Content
 
-- **Blog posts**: Saved to `/content/posts/[date]-[slug].md`
-- **Images**: Saved to `/public/images/blog/[slug].webp`
-- **Format**: Markdown with frontmatter
+- **Blog posts**: `content/posts/[date]-[slug]-[n].md`
+- **Images**: `public/images/blog/[slug].jpg` and `[slug]-h2-[n].jpg`
 - **Language**: Korean with English examples
-
-## Topics
-
-The script randomly selects from 20 predefined English learning topics including:
-- Daily conversation
-- Business English
-- Travel phrases
-- Pronunciation tips
-- Grammar lessons
-- Test preparation (TOEIC/TOEFL)
-- And more...
 
 ## Troubleshooting
 
-### API Key Issues
-- Ensure the API key is correctly set in GitHub Secrets
-- Check API key has proper permissions
-- Verify billing is enabled on your Google Cloud account
-
-### Image Generation
-- If Imagen fails, a placeholder image is automatically created
-- Images are optimized to WebP format for better performance
-
-### Content Not Appearing
-- Check GitHub Actions logs for errors
-- Verify the deploy workflow runs after content generation
-- Ensure the site rebuilds after new content is added
+- **`ANTHROPIC_API_KEY is not set`**: add the repository secret (`gh secret set ANTHROPIC_API_KEY -R YCSE/yes-promotion-website`).
+- **`Claude declined the request`**: Haiku 5.5 has no server-side fallback; rerun the workflow, which picks a new topic.
+- **Image model does not load**: check `modelswitcher status`; another model may be using the memory.
+- **Job stays queued**: check the runner with `systemctl --user status yes-promotion-ci-runner-1`.
 
 ## Security Notes
 
-⚠️ **Never commit your API key to the repository!**
-- Always use environment variables or GitHub Secrets
-- The `.env` file is gitignored for safety
-- API keys in code will be rejected by GitHub
+- Never commit API keys; use environment variables or GitHub Secrets.
+- The repository is public and has a self-hosted runner, so workflow runs from forks require approval for all outside contributors (Settings → Actions → General).

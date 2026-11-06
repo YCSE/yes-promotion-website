@@ -1,51 +1,67 @@
-const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs-extra');
 const path = require('path');
+const sharp = require('sharp');
+const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
+const { withImageServer, generateImage, IMAGE_BASE_URL } = require('./qwen-image-client');
 
-// Style rules embedded as system prompt for the image generation model
-const IMAGE_STYLE_SYSTEM_PROMPT = `You are an expert visual artist creating images for an English-learning blog called "YES Promotion".
-Generate photorealistic, high-quality images that maintain a consistent visual style throughout this session.
+// Close to the 1200x896 of earlier posts; the Qwen pipeline snaps sizes to multiples of 32.
+const IMAGE_WIDTH = 1184;
+const IMAGE_HEIGHT = 896;
 
-STRICT PEOPLE RULES:
-- ONE person only: Must be a Korean person in their 20s
-- MULTIPLE people: Exactly ONE Korean person in their 20s, all others must be Western (Caucasian or Black)
-- NEVER show two or more Korean/Asian people together
-- After one Korean appears, ALL other people must be Western
-- Exception: Historical figures or celebrities shown as they are
+// Claude turns the post into image prompts; the local image model only sees those.
+const IMAGE_PROMPT_SYSTEM = `You write image prompts for a photorealistic text-to-image model (Qwen-Image). The images illustrate one post on the blog of 익스 (YCSE), a Korean video-call English-learning platform. You get the post's title, an excerpt and its H2 sections, and return:
+- style: one sentence describing the shared look of every image in this post (color palette, lighting, lens, mood), so the images read as one set.
+- featured: the scene for the post's hero image, capturing the main theme of the whole article. It also works as a thumbnail.
+- sections: one scene per H2 section. Its index is the section's number from the brackets, digits only (for [2] write "2").
 
-ANATOMY & REALISM RULES:
-- Each person must have EXACTLY 2 arms, 2 hands, 2 legs - no extra limbs
-- Natural body proportions and realistic human anatomy only
-- Hands must have 5 fingers each, properly formed
-- No distorted or impossible body positions
+Each scene is 1-3 English sentences describing only what the camera sees: who is there, what they are doing, where, and the key objects. Keep it concrete and visual, with no abstract ideas and no quotes from the post. Vary settings, props and framing across the scenes. The image model reads every word as something to draw and does not understand "no" or "never", so write only about what is in the frame: never mention a person, feature or object in order to exclude it.
 
-NATURAL BEHAVIOR RULES:
-- Phone usage: Hold with ONE hand only in natural grip
-- Natural, relaxed postures - how real people actually sit, stand, or move
-- Realistic everyday gestures and interactions
-- No staged or artificial poses
-- Candid moments as if captured in real life
+People:
+- One person: a Korean person in their 20s. Write the age out, for example "a Korean woman, about 24".
+- Several people: exactly one Korean person in their 20s, and everyone else Western (Caucasian or Black). Never two or more Korean or Asian people together. Keep it to two people at most.
+- The image model drops or crops the people named later in a prompt, so the Korean person always comes first in the scene and is its main subject, facing the camera in full view; anyone else comes after.
+- The image model draws people as East Asian unless told otherwise, so describe each Western person by visible features, for example "a Caucasian man with blond hair and blue eyes" or "a Black woman with curly hair".
+- Exception: a historical figure or celebrity the section is about is shown as they are.
+- Natural, candid postures and everyday gestures, as if caught in real life. When someone uses a phone, they hold it in one hand; include a phone only where the scene calls for one.
+- A scene without people (objects, a study space, a place) is fine where it suits the section better.
 
-ABSOLUTE PROHIBITIONS:
-- NO speech bubbles, thought bubbles, or dialogue balloons
-- NO text overlays, captions, or labels of any kind
-- NO letters, words, or writing visible anywhere
-- NO cartoon or comic-style elements
-- NO floating text or annotations
-- Pure photographic image only
+Nothing in an image may be readable: no speech or thought bubbles, captions, signs, labels, book titles, or letters of any kind. The image model writes text onto any surface that faces the camera, so keep book covers, pages, signs and screens turned away, seen edge-on, or far out of focus. No cartoon or comic elements.`;
 
-QUALITY: High detail, sharp focus, professional candid photography, natural lighting, documentary style, realistic proportions.
+const PROMPT_PLAN_SCHEMA = {
+  type: 'object',
+  properties: {
+    style: { type: 'string' },
+    featured: { type: 'string' },
+    sections: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          index: { type: 'string' },
+          scene: { type: 'string' },
+        },
+        required: ['index', 'scene'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['style', 'featured', 'sections'],
+  additionalProperties: false,
+};
 
-VISUAL CONSISTENCY: All images in this session should share a cohesive color palette, lighting style, and photographic mood.`;
+// Positive wording only: the model draws whatever the prompt names, "no text" included. There is no
+// negative prompt: QwenImage21Pipeline ignores it unless true_cfg_scale > 1, which the server does not expose.
+const QUALITY_SUFFIX = 'Photorealistic candid documentary photograph, natural light, sharp focus, realistic anatomy with natural hands.';
 
-// People-free fallback prompt addition
-const PEOPLE_FREE_ADDENDUM = `
-IMPORTANT OVERRIDE: Do NOT include any people or human figures in this image.
-Focus entirely on objects, environments, tools, and abstract concepts.
-- Educational materials, books, devices, study spaces
-- Work or study environments with natural lighting
-- Technology and learning devices
-- Symbolic representations without human figures`;
+// Used only when Claude cannot plan the prompts.
+const GENERIC_STYLE = 'Soft natural window light, warm neutral palette, 35mm lens, shallow depth of field, calm everyday mood.';
+const GENERIC_FEATURED = 'A Korean woman, about 24, smiling during an English video lesson on her laptop at a bright desk at home; the laptop is seen from the side.';
+const GENERIC_SCENES = [
+  'A closed notebook, a pen, a coffee cup and a closed laptop on a wooden desk by a window.',
+  'A Korean man, about 26, listening to an English podcast with wireless earbuds while looking out of a cafe window.',
+  'A Korean woman, about 23, laughing with a Caucasian friend with blond hair and blue eyes at a cafe table.',
+  'A tidy study corner with headphones resting on a closed laptop, a plant and morning light.',
+];
 
 /**
  * Parse H2 sections from markdown content, including typo correction
@@ -147,7 +163,6 @@ function parseH2Sections(content) {
  * Generate an SVG fallback placeholder image
  */
 async function generateFallbackImage(outputPath, isFeatured = false) {
-  const sharp = require('sharp');
 
   const width = isFeatured ? 1200 : 800;
   const height = isFeatured ? 675 : 600;
@@ -176,110 +191,77 @@ async function generateFallbackImage(outputPath, isFeatured = false) {
 }
 
 /**
- * Extract the first image part from a Gemini response
+ * Ask Claude for one shared style and a scene per image.
+ * Returns { style, featured, scenes: Map<index, scene> }.
  */
-function extractImageFromResponse(response) {
-  const parts = response.candidates?.[0]?.content?.parts;
-  if (!parts) return null;
-
-  const imagePart = parts.find(p => p.inlineData);
-  if (!imagePart) return null;
-
-  return {
-    data: imagePart.inlineData.data,
-    mimeType: imagePart.inlineData.mimeType,
-  };
-}
-
-/**
- * Extract text-only parts from a response (for keeping history lightweight)
- */
-function extractTextParts(response) {
-  const parts = response.candidates?.[0]?.content?.parts;
-  if (!parts) return [{ text: 'Image generated.' }];
-  const textParts = parts.filter(p => p.text);
-  return textParts.length > 0 ? textParts : [{ text: 'Image generated.' }];
-}
-
-/**
- * Generate a single image via multi-turn chat, with retry logic
- */
-async function generateImageTurn(ai, history, userPrompt, outputPath, isFeatured = false) {
-  // Add user message to history
-  history.push({ role: 'user', parts: [{ text: userPrompt }] });
-
-  const config = {
-    responseModalities: ['TEXT', 'IMAGE'],
-    imageConfig: { aspectRatio: '4:3' },
-  };
+async function planImagePrompts(title, bodyExcerpt, sectionList) {
+  const sectionText = sectionList
+    .map((s) => `[${s.index}] ${s.title}\n${s.content}`)
+    .join('\n\n');
 
   try {
-    // Attempt 1: normal generation
-    console.log('Generating image (attempt 1)...');
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.1-flash-lite-image',
-      contents: history,
-      config,
+    const message = await getClient().messages.create({
+      model: WRITING_MODEL,
+      max_tokens: 16000,
+      output_config: {
+        effort: 'medium',
+        format: { type: 'json_schema', schema: PROMPT_PLAN_SCHEMA },
+      },
+      system: IMAGE_PROMPT_SYSTEM,
+      messages: [{
+        role: 'user',
+        content: `Title: ${title}\n\nExcerpt:\n${bodyExcerpt}\n\nH2 sections:\n${sectionText}`,
+      }],
     });
-
-    const image = extractImageFromResponse(response);
-    if (!image) throw new Error('No image in response');
-
-    // Save image
-    const buffer = Buffer.from(image.data, 'base64');
-    await fs.writeFile(outputPath, buffer);
-    console.log(`Image saved: ${outputPath}`);
-
-    // Add model response to history (text only to save context)
-    history.push({ role: 'model', parts: extractTextParts(response) });
-    return true;
-
-  } catch (firstError) {
-    console.warn('First attempt failed:', firstError.message);
-
-    // Remove the failed user message and try people-free version
-    history.pop();
-    const peopleFreePrompt = userPrompt + '\n\n' + PEOPLE_FREE_ADDENDUM;
-    history.push({ role: 'user', parts: [{ text: peopleFreePrompt }] });
-
-    try {
-      console.log('Retrying with people-free prompt...');
-      const response = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-lite-image',
-        contents: history,
-        config,
-      });
-
-      const image = extractImageFromResponse(response);
-      if (!image) throw new Error('No image in people-free response');
-
-      const buffer = Buffer.from(image.data, 'base64');
-      await fs.writeFile(outputPath, buffer);
-      console.log(`People-free image saved: ${outputPath}`);
-
-      history.push({ role: 'model', parts: extractTextParts(response) });
-      return true;
-
-    } catch (secondError) {
-      console.error('Both attempts failed:', secondError.message);
-
-      // Remove the failed user message
-      history.pop();
-      // Add a synthetic exchange so later turns still have context
-      history.push({ role: 'user', parts: [{ text: userPrompt }] });
-      history.push({ role: 'model', parts: [{ text: 'I was unable to generate this image due to content restrictions. Continuing with the next image.' }] });
-
-      // Generate fallback placeholder
-      console.log('Generating fallback placeholder...');
-      await generateFallbackImage(outputPath, isFeatured);
-      return false;
-    }
+    const plan = JSON.parse(responseText(message));
+    // Key by the digits only, so "[2]" or "H2_2" still matches section 2.
+    const scenes = new Map(plan.sections.map((s) => [String(s.index).match(/\d+/)?.[0], s.scene]));
+    return { style: plan.style, featured: plan.featured, scenes };
+  } catch (error) {
+    console.warn(`⚠️ Image prompt planning failed, using generic scenes: ${error.message}`);
+    return { style: GENERIC_STYLE, featured: GENERIC_FEATURED, scenes: new Map() };
   }
 }
 
+function seedFromSlug(slug) {
+  let hash = 0;
+  for (const ch of slug) hash = (hash * 31 + ch.codePointAt(0)) >>> 0;
+  return hash % 1000000000;
+}
+
 /**
- * Main entry point: generate all blog images (1 featured + N H2 images) in a
- * single multi-turn session for visual consistency.
+ * Render one image to a JPEG file, retrying once; falls back to a placeholder.
+ */
+async function renderImage(scene, style, seed, outputPath, isFeatured) {
+  const prompt = `${scene} ${style} ${QUALITY_SUFFIX}`;
+  console.log(`Prompt: ${prompt}`);
+
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const started = Date.now();
+      const png = await generateImage({
+        prompt,
+        width: IMAGE_WIDTH,
+        height: IMAGE_HEIGHT,
+        seed: seed + attempt - 1,
+      });
+      await sharp(png).jpeg({ quality: 88, mozjpeg: true }).toFile(outputPath);
+      console.log(`Image saved: ${outputPath} (${((Date.now() - started) / 1000).toFixed(1)}s)`);
+      return true;
+    } catch (error) {
+      console.warn(`Attempt ${attempt} failed: ${error.message}`);
+    }
+  }
+
+  console.log('Generating fallback placeholder...');
+  await generateFallbackImage(outputPath, isFeatured);
+  return false;
+}
+
+/**
+ * Main entry point: generate all blog images (1 featured + N H2 images) with the
+ * local Qwen-Image model. The image server must be running (see withImageServer).
+ * One shared style line and related seeds keep the set visually consistent.
  *
  * @param {string} content - Full markdown content (with frontmatter)
  * @param {string} title - Blog post title
@@ -287,17 +269,11 @@ async function generateImageTurn(ai, history, userPrompt, outputPath, isFeatured
  * @returns {{ updatedContent: string, featuredImagePath: string }}
  */
 async function generateBlogImages(content, title, slug) {
-  console.log('=== Starting unified blog image generation ===');
+  console.log('=== Starting blog image generation (Qwen-Image-2.1-Turbo) ===');
   console.log(`Title: "${title}", Slug: "${slug}"`);
 
   const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
   await fs.ensureDir(imagesDir);
-
-  if (!process.env.GEMINI_API_KEY) {
-    throw new Error('GEMINI_API_KEY is not set');
-  }
-
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
   // Parse H2 sections and fix typos
   const { fixedContent, placeholders, sections } = parseH2Sections(content);
@@ -316,65 +292,56 @@ async function generateBlogImages(content, title, slug) {
   }
   const bodyExcerpt = blogBody.substring(0, 3000); // Keep context manageable
 
-  // Multi-turn conversation history
-  const history = [];
+  const sectionList = placeholders.map((placeholder) => {
+    const index = placeholder[1];
+    const section = sections.get(index);
+    return { index, title: section?.title || `Section ${index}`, content: section?.content || '' };
+  });
 
-  // ── Turn 1: Featured image ──────────────────────────────────────────
   const featuredJpgPath = path.join(imagesDir, `${slug}.jpg`);
   const featuredImagePath = `/images/blog/${slug}.jpg`;
+  const h2JpgPath = (index) => path.join(imagesDir, `${slug}-h2-${index}.jpg`);
 
-  if (await fs.pathExists(featuredJpgPath)) {
+  const featuredExists = await fs.pathExists(featuredJpgPath);
+  const h2Exists = await Promise.all(sectionList.map(({ index }) => fs.pathExists(h2JpgPath(index))));
+
+  // Plan prompts only when there is something left to render.
+  let plan = null;
+  if (!featuredExists || h2Exists.includes(false)) {
+    console.log(`🧭 Planning image prompts with ${WRITING_MODEL}...`);
+    plan = await planImagePrompts(title, bodyExcerpt, sectionList);
+    console.log(`Style: ${plan.style}`);
+  }
+  const baseSeed = seedFromSlug(slug);
+  let rendered = 0;
+  let failed = 0;
+  const track = (ok) => (ok ? rendered++ : failed++);
+
+  // ── Featured image ──────────────────────────────────────────────────
+  if (featuredExists) {
     console.log(`Featured image already exists: ${featuredJpgPath}`);
   } else {
     console.log('🎨 Generating featured image...');
-
-    const featuredPrompt = `${IMAGE_STYLE_SYSTEM_PROMPT}
-
-Here is the full blog post for context:
-
-Title: ${title}
-
-${bodyExcerpt}
-
----
-
-Now generate a photorealistic featured image for this blog post.
-The image should capture the main theme and mood of the entire article.
-It should work well as a thumbnail/hero image at 4:3 aspect ratio.
-Generate the image now.`;
-
-    await generateImageTurn(ai, history, featuredPrompt, featuredJpgPath, true);
+    track(await renderImage(plan.featured, plan.style, baseSeed, featuredJpgPath, true));
     console.log(`✅ Featured image: ${featuredImagePath}`);
   }
 
-  // ── Turns 2+: H2 section images ────────────────────────────────────
+  // ── H2 section images ──────────────────────────────────────────────
   let updatedContent = fixedContent;
 
-  for (const placeholder of placeholders) {
-    const index = placeholder[1];
-    const section = sections.get(index);
-    const h2Title = section?.title || `Section ${index}`;
-    const sectionContent = section?.content || '';
-
-    const h2JpgPath = path.join(imagesDir, `${slug}-h2-${index}.jpg`);
+  for (const [i, { index, title: h2Title }] of sectionList.entries()) {
     const h2ImagePath = `/images/blog/${slug}-h2-${index}.jpg`;
 
-    if (await fs.pathExists(h2JpgPath)) {
-      console.log(`H2 image #${index} already exists: ${h2JpgPath}`);
+    if (h2Exists[i]) {
+      console.log(`H2 image #${index} already exists: ${h2JpgPath(index)}`);
     } else {
       console.log(`🖼️ Generating H2 image #${index}: "${h2Title}"...`);
-
-      const h2Prompt = `Now generate an image for the following section of the same blog post.
-Maintain the same visual style, color palette, and photographic mood as the previous image(s).
-
-Section title: ${h2Title}
-${sectionContent ? `\nSection content:\n${sectionContent}` : ''}
-
-Generate a photorealistic image that illustrates this specific section's topic.
-The image should complement the featured image while focusing on this section's content.
-Generate the image now.`;
-
-      await generateImageTurn(ai, history, h2Prompt, h2JpgPath, false);
+      let scene = plan.scenes.get(index);
+      if (!scene) {
+        console.warn(`⚠️ No planned scene for H2 #${index}, using a generic one`);
+        scene = GENERIC_SCENES[i % GENERIC_SCENES.length];
+      }
+      track(await renderImage(scene, plan.style, baseSeed + Number(index) * 100, h2JpgPath(index), false));
       console.log(`✅ H2 image #${index}: ${h2ImagePath}`);
     }
 
@@ -386,6 +353,11 @@ Generate the image now.`;
     } else {
       console.warn(`Could not find placeholder: ${placeholderText}`);
     }
+  }
+
+  // Every render failing means the image server is down, not a bad prompt: no post rather than a post of placeholders.
+  if (failed > 0 && rendered === 0) {
+    throw new Error(`All ${failed} images failed to render; is the image server at ${IMAGE_BASE_URL} up?`);
   }
 
   // Final check for remaining placeholders
@@ -411,7 +383,7 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  generateBlogImages(testContent, testTitle, testSlug)
+  withImageServer(() => generateBlogImages(testContent, testTitle, testSlug))
     .then(result => {
       console.log('Result:', result.featuredImagePath);
       console.log('Updated content length:', result.updatedContent.length);
