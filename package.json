@@ -9,8 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@google/genai": "^1.17.0",
-    "@google/generative-ai": "^0.24.1",
+    "@anthropic-ai/sdk": "^1.6.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/typography": "^0.5.19",
     "date-fns": "^4.1.0",

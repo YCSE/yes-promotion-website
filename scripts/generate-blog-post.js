@@ -1,7 +1,21 @@
-const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } = require('@google/generative-ai');
-const fs = require('fs-extra');
-const path = require('path');
 const { format } = require('date-fns');
+const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
+
+const SYSTEM_PROMPT = `당신은 화상영어 플랫폼 익스의 블로그 에디터입니다.
+요청받은 블로그 포스트를 마크다운 문서 하나로만 출력하세요. 첫 줄은 frontmatter를 여는 '---'입니다.
+문서 앞뒤에 설명이나 인사말을 붙이지 말고, 문서 전체를 코드 블록(\`\`\`)으로 감싸지 마세요.`;
+
+/**
+ * Keep only the markdown document: drop anything before the opening frontmatter
+ * fence and a wrapping code fence, if the model added one.
+ */
+function extractMarkdownDocument(text) {
+  let doc = text.trim();
+  doc = doc.replace(/^```[a-zA-Z]*\s*\n/, '').replace(/\n```\s*$/, '');
+  const start = doc.search(/^---\s*$/m);
+  if (start > 0) doc = doc.slice(start);
+  return doc.trim() + '\n';
+}
 
 // Editor names for blog posts
 const EDITORS = [
@@ -19,38 +33,7 @@ const { BlogPostGenerator, TOPICS, WRITING_DIRECTIONS } = require('../blog-gener
 
 async function generateBlogPost() {
   try {
-    if (!process.env.GEMINI_API_KEY) {
-      throw new Error('GEMINI_API_KEY is not set');
-    }
-
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-3-flash-preview',
-      safetySettings: [
-        {
-          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-          threshold: HarmBlockThreshold.BLOCK_NONE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-          threshold: HarmBlockThreshold.BLOCK_NONE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-          threshold: HarmBlockThreshold.BLOCK_NONE,
-        },
-        {
-          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-          threshold: HarmBlockThreshold.BLOCK_NONE,
-        },
-      ],
-      generationConfig: {
-        thinkingConfig: {
-          thinkingBudget: -1,
-        },
-      },
-    });
+    const client = getClient();
 
     // Use the BlogPostGenerator to get random combination
     const generator = new BlogPostGenerator();
@@ -162,9 +145,20 @@ featuredImage: /images/blog/${slug}.jpg
 □ 총 4개의 H2 섹션과 4개의 이미지 플레이스홀더가 있는가?
 `;
 
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    let text = response.text();
+    console.log(`✍️ Writing with ${WRITING_MODEL}...`);
+    const message = await client.messages
+      .stream({
+        model: WRITING_MODEL,
+        max_tokens: 64000,
+        // high: the post has many strict formatting rules to follow
+        output_config: { effort: 'high' },
+        system: SYSTEM_PROMPT,
+        messages: [{ role: 'user', content: prompt }],
+      })
+      .finalMessage();
+    console.log(`📊 Tokens: ${message.usage.input_tokens} in / ${message.usage.output_tokens} out`);
+
+    let text = extractMarkdownDocument(responseText(message));
 
     // 오타 감지 및 자동 수정
     const typoPatterns = [

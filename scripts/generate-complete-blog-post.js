@@ -1,5 +1,6 @@
 const { generateBlogPost } = require('./generate-blog-post');
 const { generateBlogImages } = require('./generate-blog-images');
+const { withImageServer } = require('./qwen-image-client');
 const fs = require('fs-extra');
 const path = require('path');
 
@@ -7,16 +8,20 @@ async function generateCompleteBlogPost() {
   try {
     console.log('Starting complete blog post generation...');
 
-    // Step 1: Generate blog post content
-    console.log('\n1. Generating blog post content...');
-    const { slug, content, title } = await generateBlogPost();
-    console.log(`   ✓ Generated post: "${title}"`);
+    const { slug, title, updatedContent } = await withImageServer(async () => {
+      // Step 1: Generate blog post content
+      console.log('\n1. Generating blog post content...');
+      const post = await generateBlogPost();
+      console.log(`   ✓ Generated post: "${post.title}"`);
 
-    // Step 2: Generate all images (featured + H2) in one multi-turn session
-    console.log('\n2. Generating blog images with visual consistency...');
-    const { updatedContent, featuredImagePath } = await generateBlogImages(content, title, slug);
-    console.log(`   ✓ Featured image: ${featuredImagePath}`);
-    console.log('   ✓ H2 images processed');
+      // Step 2: Generate all images (featured + H2) with the local Qwen-Image model
+      console.log('\n2. Generating blog images...');
+      const images = await generateBlogImages(post.content, post.title, post.slug);
+      console.log(`   ✓ Featured image: ${images.featuredImagePath}`);
+      console.log('   ✓ H2 images processed');
+
+      return { slug: post.slug, title: post.title, updatedContent: images.updatedContent };
+    });
 
     // Step 3: Save the blog post
     console.log('\n3. Saving blog post...');
