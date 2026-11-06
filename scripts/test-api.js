@@ -2,7 +2,7 @@
 // - Claude Haiku 5.5 (writing) via ANTHROPIC_API_KEY
 // - the local Qwen-Image-2.1-Turbo server (images), checked without loading it
 const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
-const { isHealthy, IMAGE_BASE_URL, SWITCHER_MODEL_ID } = require('./qwen-image-client');
+const { isHealthy, IMAGE_BASE_URL, SWITCHER_URL, SWITCHER_MODEL_ID } = require('./qwen-image-client');
 
 async function testWritingModel() {
   try {
@@ -22,13 +22,12 @@ async function testWritingModel() {
 }
 
 async function testImageServer() {
-  const switcherUrl = process.env.MODELSWITCHER_URL || 'http://127.0.0.1:18090';
   if (await isHealthy()) {
     console.log(`✅ Image server is running at ${IMAGE_BASE_URL}`);
     return true;
   }
   try {
-    const state = await fetch(`${switcherUrl}/api/state`, { signal: AbortSignal.timeout(10000) }).then((r) => r.json());
+    const state = await fetch(`${SWITCHER_URL}/api/state`, { signal: AbortSignal.timeout(10000) }).then((r) => r.json());
     const model = state.models?.[SWITCHER_MODEL_ID];
     if (!model) {
       console.error(`❌ ModelSwitcher has no model ${SWITCHER_MODEL_ID}`);
@@ -37,7 +36,7 @@ async function testImageServer() {
     console.log(`✅ Image model is registered in ModelSwitcher (state: ${model.state}); the generator loads it on demand`);
     return true;
   } catch (error) {
-    console.error(`❌ Neither the image server nor ModelSwitcher (${switcherUrl}) answered: ${error.message}`);
+    console.error(`❌ Neither the image server nor ModelSwitcher (${SWITCHER_URL}) answered: ${error.message}`);
     return false;
   }
 }

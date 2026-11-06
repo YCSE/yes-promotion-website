@@ -11,10 +11,30 @@ const SYSTEM_PROMPT = `당신은 화상영어 플랫폼 익스의 블로그 에�
  */
 function extractMarkdownDocument(text) {
   let doc = text.trim();
-  doc = doc.replace(/^```[a-zA-Z]*\s*\n/, '').replace(/\n```\s*$/, '');
   const start = doc.search(/^---\s*$/m);
-  if (start > 0) doc = doc.slice(start);
+  if (start > 0) {
+    const preamble = doc.slice(0, start);
+    doc = doc.slice(start);
+    // Only a fence opened before the frontmatter wraps the document; a post may itself end in a code block.
+    if (/^```/m.test(preamble)) doc = doc.replace(/\n```\s*$/, '');
+  }
   return doc.trim() + '\n';
+}
+
+const MAX_H2_IMAGES = 4;
+
+/**
+ * Put one image marker right under each of the first four H2 headings. The model
+ * does not place them reliably (sometimes none at all), so markers it wrote are
+ * dropped and placed again here.
+ */
+function placeImagePlaceholders(doc) {
+  let n = 0;
+  return doc
+    .replace(/\[IMAGE_PLACEHOLDER_H2_\d+\]/g, '')
+    .replace(/^(##[ \t]+.*?)[ \t]*$/gm, (line, heading) =>
+      n < MAX_H2_IMAGES ? `${heading}\n[IMAGE_PLACEHOLDER_H2_${++n}]` : line)
+    .replace(/\n{3,}/g, '\n\n');
 }
 
 // Editor names for blog posts
@@ -196,13 +216,14 @@ featuredImage: /images/blog/${slug}.jpg
       }
     }
 
-    // 플레이스홀더 검증
-    const placeholderPattern = /\[IMAGE_PLACEHOLDER_H2_(\d+)\]/g;
-    const placeholders = [...text.matchAll(placeholderPattern)];
-    console.log(`📸 발견된 이미지 플레이스홀더: ${placeholders.length}개`);
+    // 플레이스홀더 배치 및 검증
+    const modelPlaceholders = (text.match(/\[IMAGE_PLACEHOLDER_H2_\d+\]/g) || []).length;
+    text = placeImagePlaceholders(text);
+    const placeholders = (text.match(/\[IMAGE_PLACEHOLDER_H2_\d+\]/g) || []).length;
+    console.log(`📸 이미지 플레이스홀더: 모델 작성 ${modelPlaceholders}개 → H2 아래 ${placeholders}개 배치`);
 
-    if (placeholders.length < 4) {
-      console.warn(`⚠️ 경고: 4개의 플레이스홀더가 필요하지만 ${placeholders.length}개만 발견됨`);
+    if (placeholders < MAX_H2_IMAGES) {
+      console.warn(`⚠️ 경고: H2 섹션이 ${placeholders}개뿐이라 이미지도 ${placeholders}개만 들어갑니다`);
     }
 
     // Parse frontmatter to get the title
@@ -220,7 +241,7 @@ featuredImage: /images/blog/${slug}.jpg
   }
 }
 
-module.exports = { generateBlogPost, EDITORS, BlogPostGenerator, TOPICS, WRITING_DIRECTIONS };
+module.exports = { generateBlogPost, placeImagePlaceholders, EDITORS, BlogPostGenerator, TOPICS, WRITING_DIRECTIONS };
 
 // Run if called directly
 if (require.main === module) {

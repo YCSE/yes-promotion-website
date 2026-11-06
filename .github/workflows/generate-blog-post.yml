@@ -68,9 +68,11 @@ jobs:
             git commit -m "$COMMIT_MSG"
 
             # Push changes with retry logic
+            pushed=false
             for i in 1 2 3; do
               if git push origin main; then
                 echo "✅ Blog post committed and pushed successfully"
+                pushed=true
                 break
               else
                 echo "Push failed, retrying in 5 seconds..."
@@ -78,12 +80,20 @@ jobs:
                 git pull origin main --rebase --strategy-option=theirs
               fi
             done
+            if [ "$pushed" != true ]; then
+              echo "❌ Could not push the blog post after 3 attempts"
+              exit 1
+            fi
           fi
 
   # A push made with GITHUB_TOKEN does not trigger deploy.yml, so deploy here.
   build-and-deploy:
     needs: generate
     runs-on: ubuntu-latest
+    # Same group as deploy.yml, so two Pages deployments never overlap
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
 
     permissions:
       contents: read

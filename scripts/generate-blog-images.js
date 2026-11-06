@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const sharp = require('sharp');
 const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
-const { withImageServer, generateImage } = require('./qwen-image-client');
+const { withImageServer, generateImage, IMAGE_BASE_URL } = require('./qwen-image-client');
 
 // Close to the 1200x896 of earlier posts; the Qwen pipeline snaps sizes to multiples of 32.
 const IMAGE_WIDTH = 1184;
@@ -12,13 +12,14 @@ const IMAGE_HEIGHT = 896;
 const IMAGE_PROMPT_SYSTEM = `You write image prompts for a photorealistic text-to-image model (Qwen-Image). The images illustrate one post on the blog of 익스 (YCSE), a Korean video-call English-learning platform. You get the post's title, an excerpt and its H2 sections, and return:
 - style: one sentence describing the shared look of every image in this post (color palette, lighting, lens, mood), so the images read as one set.
 - featured: the scene for the post's hero image, capturing the main theme of the whole article. It also works as a thumbnail.
-- sections: one scene per H2 section, with the section's index exactly as given.
+- sections: one scene per H2 section. Its index is the section's number from the brackets, digits only (for [2] write "2").
 
 Each scene is 1-3 English sentences describing only what the camera sees: who is there, what they are doing, where, and the key objects. Keep it concrete and visual, with no abstract ideas and no quotes from the post. Vary settings, props and framing across the scenes. The image model reads every word as something to draw and does not understand "no" or "never", so write only about what is in the frame: never mention a person, feature or object in order to exclude it.
 
 People:
 - One person: a Korean person in their 20s. Write the age out, for example "a Korean woman, about 24".
-- Several people: exactly one Korean person in their 20s, and everyone else Western (Caucasian or Black). Never two or more Korean or Asian people together.
+- Several people: exactly one Korean person in their 20s, and everyone else Western (Caucasian or Black). Never two or more Korean or Asian people together. Keep it to two people at most.
+- The image model drops or crops the people named later in a prompt, so the Korean person always comes first in the scene and is its main subject, facing the camera in full view; anyone else comes after.
 - The image model draws people as East Asian unless told otherwise, so describe each Western person by visible features, for example "a Caucasian man with blond hair and blue eyes" or "a Black woman with curly hair".
 - Exception: a historical figure or celebrity the section is about is shown as they are.
 - Natural, candid postures and everyday gestures, as if caught in real life. When someone uses a phone, they hold it in one hand; include a phone only where the scene calls for one.
@@ -48,8 +49,9 @@ const PROMPT_PLAN_SCHEMA = {
   additionalProperties: false,
 };
 
-const QUALITY_SUFFIX = 'Photorealistic candid documentary photograph, natural light, sharp focus, realistic anatomy with natural hands. No text, letters, captions, logos or speech bubbles anywhere in the image.';
-const NEGATIVE_PROMPT = 'text, letters, words, captions, watermark, logo, speech bubble, cartoon, illustration, extra fingers, extra limbs, deformed hands, distorted face';
+// Positive wording only: the model draws whatever the prompt names, "no text" included. There is no
+// negative prompt: QwenImage21Pipeline ignores it unless true_cfg_scale > 1, which the server does not expose.
+const QUALITY_SUFFIX = 'Photorealistic candid documentary photograph, natural light, sharp focus, realistic anatomy with natural hands.';
 
 // Used only when Claude cannot plan the prompts.
 const GENERIC_STYLE = 'Soft natural window light, warm neutral palette, 35mm lens, shallow depth of field, calm everyday mood.';
@@ -212,18 +214,12 @@ async function planImagePrompts(title, bodyExcerpt, sectionList) {
       }],
     });
     const plan = JSON.parse(responseText(message));
-    return {
-      style: plan.style,
-      featured: plan.featured,
-      scenes: new Map(plan.sections.map((s) => [String(s.index), s.scene])),
-    };
+    // Key by the digits only, so "[2]" or "H2_2" still matches section 2.
+    const scenes = new Map(plan.sections.map((s) => [String(s.index).match(/\d+/)?.[0], s.scene]));
+    return { style: plan.style, featured: plan.featured, scenes };
   } catch (error) {
     console.warn(`⚠️ Image prompt planning failed, using generic scenes: ${error.message}`);
-    return {
-      style: GENERIC_STYLE,
-      featured: GENERIC_FEATURED,
-      scenes: new Map(sectionList.map((s, i) => [s.index, GENERIC_SCENES[i % GENERIC_SCENES.length]])),
-    };
+    return { style: GENERIC_STYLE, featured: GENERIC_FEATURED, scenes: new Map() };
   }
 }
 
@@ -245,7 +241,6 @@ async function renderImage(scene, style, seed, outputPath, isFeatured) {
       const started = Date.now();
       const png = await generateImage({
         prompt,
-        negativePrompt: NEGATIVE_PROMPT,
         width: IMAGE_WIDTH,
         height: IMAGE_HEIGHT,
         seed: seed + attempt - 1,
@@ -303,36 +298,50 @@ async function generateBlogImages(content, title, slug) {
     return { index, title: section?.title || `Section ${index}`, content: section?.content || '' };
   });
 
-  console.log(`🧭 Planning image prompts with ${WRITING_MODEL}...`);
-  const plan = await planImagePrompts(title, bodyExcerpt, sectionList);
-  console.log(`Style: ${plan.style}`);
-  const baseSeed = seedFromSlug(slug);
-
-  // ── Featured image ──────────────────────────────────────────────────
   const featuredJpgPath = path.join(imagesDir, `${slug}.jpg`);
   const featuredImagePath = `/images/blog/${slug}.jpg`;
+  const h2JpgPath = (index) => path.join(imagesDir, `${slug}-h2-${index}.jpg`);
 
-  if (await fs.pathExists(featuredJpgPath)) {
+  const featuredExists = await fs.pathExists(featuredJpgPath);
+  const h2Exists = await Promise.all(sectionList.map(({ index }) => fs.pathExists(h2JpgPath(index))));
+
+  // Plan prompts only when there is something left to render.
+  let plan = null;
+  if (!featuredExists || h2Exists.includes(false)) {
+    console.log(`🧭 Planning image prompts with ${WRITING_MODEL}...`);
+    plan = await planImagePrompts(title, bodyExcerpt, sectionList);
+    console.log(`Style: ${plan.style}`);
+  }
+  const baseSeed = seedFromSlug(slug);
+  let rendered = 0;
+  let failed = 0;
+  const track = (ok) => (ok ? rendered++ : failed++);
+
+  // ── Featured image ──────────────────────────────────────────────────
+  if (featuredExists) {
     console.log(`Featured image already exists: ${featuredJpgPath}`);
   } else {
     console.log('🎨 Generating featured image...');
-    await renderImage(plan.featured, plan.style, baseSeed, featuredJpgPath, true);
+    track(await renderImage(plan.featured, plan.style, baseSeed, featuredJpgPath, true));
     console.log(`✅ Featured image: ${featuredImagePath}`);
   }
 
   // ── H2 section images ──────────────────────────────────────────────
   let updatedContent = fixedContent;
 
-  for (const { index, title: h2Title } of sectionList) {
-    const h2JpgPath = path.join(imagesDir, `${slug}-h2-${index}.jpg`);
+  for (const [i, { index, title: h2Title }] of sectionList.entries()) {
     const h2ImagePath = `/images/blog/${slug}-h2-${index}.jpg`;
 
-    if (await fs.pathExists(h2JpgPath)) {
-      console.log(`H2 image #${index} already exists: ${h2JpgPath}`);
+    if (h2Exists[i]) {
+      console.log(`H2 image #${index} already exists: ${h2JpgPath(index)}`);
     } else {
       console.log(`🖼️ Generating H2 image #${index}: "${h2Title}"...`);
-      const scene = plan.scenes.get(index) || GENERIC_SCENES[(Number(index) - 1) % GENERIC_SCENES.length];
-      await renderImage(scene, plan.style, baseSeed + Number(index) * 100, h2JpgPath, false);
+      let scene = plan.scenes.get(index);
+      if (!scene) {
+        console.warn(`⚠️ No planned scene for H2 #${index}, using a generic one`);
+        scene = GENERIC_SCENES[i % GENERIC_SCENES.length];
+      }
+      track(await renderImage(scene, plan.style, baseSeed + Number(index) * 100, h2JpgPath(index), false));
       console.log(`✅ H2 image #${index}: ${h2ImagePath}`);
     }
 
@@ -344,6 +353,11 @@ async function generateBlogImages(content, title, slug) {
     } else {
       console.warn(`Could not find placeholder: ${placeholderText}`);
     }
+  }
+
+  // Every render failing means the image server is down, not a bad prompt: no post rather than a post of placeholders.
+  if (failed > 0 && rendered === 0) {
+    throw new Error(`All ${failed} images failed to render; is the image server at ${IMAGE_BASE_URL} up?`);
   }
 
   // Final check for remaining placeholders
