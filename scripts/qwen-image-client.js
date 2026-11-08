@@ -80,10 +80,20 @@ async function requestLoad(deadline) {
   }
 }
 
-async function waitUntilReady(deadline) {
+/**
+ * Wait until the server answers /health. With `reload`, a model that
+ * ModelSwitcher dropped as a load target (it gives up on a start that finds no
+ * memory for 5 minutes) is requested again, so a long memory shortage is
+ * waited out instead of polling a server that will never come up.
+ */
+async function waitUntilReady(deadline, { reload = false } = {}) {
   console.log(`⏳ Waiting for ${SWITCHER_MODEL_ID} to become ready...`);
   while (Date.now() < deadline) {
     if (await isHealthy()) return;
+    if (reload && !(await isLoadTarget()) && !(await isHealthy())) {
+      console.warn(`⚠️ ModelSwitcher dropped ${SWITCHER_MODEL_ID} (start failed) — requesting the load again`);
+      await requestLoad(deadline);
+    }
     await sleep(10 * 1000);
   }
   throw new Error(`${SWITCHER_MODEL_ID} did not become ready in time`);
@@ -136,7 +146,7 @@ async function withImageServer(fn) {
   try {
     loadedHere = await requestLoad(deadline);
     // A load that only went through near the deadline still gets time to come up.
-    await waitUntilReady(Math.max(deadline, Date.now() + READY_MIN_MS));
+    await waitUntilReady(Math.max(deadline, Date.now() + READY_MIN_MS), { reload: loadedHere });
     console.log(`✅ Qwen image server ready at ${IMAGE_BASE_URL}`);
     return await fn();
   } finally {
