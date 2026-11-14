@@ -7,37 +7,36 @@ This guide explains how to set up and use the automated English learning blog po
 The system automatically generates an English learning blog post every day using:
 - **Claude Haiku 5.5** (`claude-haiku-5-5`, Anthropic API) for the post and the image prompts
 - **Qwen-Image-2.1-Turbo**, a local model on the DGX (served by ModelSwitcher), for the images
-- **GitHub Actions** for scheduled automation: generation on the DGX self-hosted runner, build and deploy on GitHub-hosted runners
+- **Hermes cron** on the DGX for scheduled generation; the push to `main` triggers the GitHub Pages deploy workflow
 - **Static site generation** with Next.js
 
 ## 🚀 Quick Start
 
-### Step 1: Configure GitHub Secrets
+### Step 1: API key
 
-1. Go to your repository on GitHub
-2. Navigate to **Settings** → **Secrets and variables** → **Actions**
-3. Click **"New repository secret"**
-4. Add the following secret:
-   - **Name:** `ANTHROPIC_API_KEY`
-   - **Value:** An API key from the [Claude Console](https://platform.claude.com/)
+Put the key in `~/.hermes/.env` on the DGX (the cron script reads only this line):
+```
+ANTHROPIC_API_KEY=<key from the Claude Console>
+```
 
-Or from a terminal: `gh secret set ANTHROPIC_API_KEY -R YCSE/yes-promotion-website`
+### Step 2: Hermes cron job
 
-### Step 2: Enable GitHub Actions
+`scripts/cron/daily-blog.sh` does one run: it syncs its own clone (`~/.cache/yes-blog-cron/repo`) to `origin/main`, generates the post, commits it and pushes. It is registered in Hermes through the stub `~/.hermes/scripts/yes_blog_daily.sh`:
 
-The workflow is already configured and will:
-- Run automatically every day at 10:00 AM KST
-- Can be triggered manually from Actions tab
+```bash
+hermes cron create "0 10,14,18 * * *" \
+  --name "YES 블로그 자동 생성" \
+  --script yes_blog_daily.sh --no-agent \
+  --timezone Asia/Seoul --catch-up on \
+  --deliver local --failure-deliver telegram
+```
 
-The generation job needs the DGX runner `spark-yes-promotion-1` online (`systemctl --user status yes-promotion-ci-runner-1`) and ModelSwitcher running; it loads the image model itself and unloads it afterwards.
+The 14:00 and 18:00 slots are retries: once today's post is on `origin/main`, a run exits without doing anything.
 
-### Step 3: Manual Trigger (Optional)
+### Step 3: Manual run (Optional)
 
-To generate a post immediately:
-1. Go to **Actions** tab in your GitHub repository
-2. Select **"Generate Blog Post"** workflow
-3. Click **"Run workflow"** button
-4. Select `main` branch and click **"Run workflow"**
+- `hermes cron run <job id>` — a normal run on the next scheduler tick
+- `scripts/cron/daily-blog.sh --no-push` — generate in the cron clone without committing
 
 ## 📁 Project Structure
 
@@ -52,8 +51,7 @@ yes-promotion-website/
 │   ├── generate-content.js  # Main orchestration
 │   ├── generate-blog-post.js # Content generation
 │   └── generate-blog-images.js  # Unified image generation (featured + H2)
-└── .github/workflows/
-    └── generate-blog-post.yml # GitHub Actions workflow
+│   └── cron/daily-blog.sh   # Hermes cron entry point
 ```
 
 ## 🛠️ Local Testing
@@ -107,21 +105,15 @@ const TOPICS = [
 ```
 
 ### Changing Schedule
-Edit `.github/workflows/generate-blog-post.yml`:
-```yaml
-schedule:
-  - cron: '0 0 */2 * *'  # Current: every 2 days
-  # Examples:
-  # - cron: '0 0 * * *'  # Daily
-  # - cron: '0 0 * * 1'  # Weekly (Monday)
+```bash
+hermes cron edit <job id> --schedule "0 10,14,18 * * *"
 ```
 
 ## 🔍 Monitoring
 
 ### Check Generation Status
-1. Go to **Actions** tab
-2. View **"Generate Blog Post"** workflow runs
-3. Check logs for any errors
+1. `hermes cron list` / `hermes cron runs <job id>`
+2. Logs: `~/.cache/yes-blog-cron/logs/run-*.log`
 
 ### Verify Deployment
 After blog post generation:
@@ -133,12 +125,11 @@ After blog post generation:
 
 1. **API Key Security**
    - Never commit API keys to the repository
-   - Always use GitHub Secrets for production
+   - The cron reads the key from `~/.hermes/.env`
 
 2. **Image Generation**
-   - Runs only on the DGX: the generation job uses the self-hosted runner `spark-yes-promotion-1`
-   - The repository is public, so fork workflow runs need approval for all outside contributors (Settings → Actions → General); keep it that way while the runner is registered
-   - The image model is loaded through ModelSwitcher without unloading other models; if memory is short the job waits up to 30 minutes, then fails
+   - Runs only on the DGX, where the image model lives
+   - The image model is loaded through ModelSwitcher without unloading other models; if memory is short (e.g. an H3 render holds the GPU lease) the cron run waits up to 60 minutes, then fails and the next slot retries
 
 3. **Content Quality**
    - Posts are generated in Korean for Korean learners
@@ -148,7 +139,7 @@ After blog post generation:
 ## 🆘 Troubleshooting
 
 ### Posts Not Appearing
-1. Check GitHub Actions logs
+1. Check `hermes cron runs <job id>` and the log in `~/.cache/yes-blog-cron/logs/`
 2. Verify API key is correctly set
 3. Ensure deploy workflow runs after generation
 4. Check `/content/posts/` directory
@@ -166,7 +157,7 @@ After blog post generation:
 ## 📊 Success Metrics
 
 The system will:
-- ✅ Generate a new blog post every 2 days
+- ✅ Generate a new blog post every day
 - ✅ Create SEO-friendly content
 - ✅ Automatically deploy to the website
 - ✅ Maintain consistent quality
