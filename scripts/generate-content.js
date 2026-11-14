@@ -4,6 +4,7 @@ const { generateBlogPost } = require('./generate-blog-post');
 const { generateBlogImages } = require('./generate-blog-images');
 const { withImageServer } = require('./qwen-image-client');
 const { WRITING_MODEL } = require('./claude-client');
+const { lintPost, formatProblems } = require('./lint-posts');
 
 async function generateContent() {
   try {
@@ -25,12 +26,17 @@ async function generateContent() {
     });
     const { slug, title, updatedContent, featuredImagePath } = result;
 
-    // Step 3: Save the blog post
+    // Step 3: Lint the finished post, then save it. A post that still has a
+    // problem is not saved, so it is never committed and published.
+    const linted = lintPost(updatedContent, { fix: true, publicDir: path.join(process.cwd(), 'public') });
+    if (linted.fixed.length > 0) console.warn(`🔧 Linter repaired: ${linted.fixed.join(', ')}`);
+    if (linted.problems.length > 0) throw new Error(`Post failed lint, not saving it: ${formatProblems(linted.problems)}`);
+
     const postsDir = path.join(process.cwd(), 'content', 'posts');
     await fs.ensureDir(postsDir);
 
     const postPath = path.join(postsDir, `${slug}.md`);
-    await fs.writeFile(postPath, updatedContent, 'utf8');
+    await fs.writeFile(postPath, linted.text, 'utf8');
     console.log(`✅ Blog post saved: ${postPath}`);
 
     // Step 4: Log summary

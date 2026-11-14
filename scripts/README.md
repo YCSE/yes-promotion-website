@@ -22,6 +22,15 @@ Talks to the local image server. If it is not running, asks ModelSwitcher (`127.
 ### claude-client.js
 Shared Anthropic client, model ID and response checks (refusal, truncation).
 
+### lint-posts.js
+Linter for the posts in `content/posts`. The model writes the frontmatter as free text and can break it (a missing colon made a post show up as "Untitled" at the top of the blog), so structure is checked here rather than trusted:
+
+- `npm run lint:posts` checks every post; `npm run lint:posts -- --fix` repairs what can be repaired (broken frontmatter, leftover image markers).
+- The generator runs it with `--fix` on each post it writes and does not save a post that still has a problem.
+- `npm run build` runs it first (`prebuild`), so a broken post stops the build and the deploy.
+
+Rules: `frontmatter-yaml`, `frontmatter-title`, `frontmatter-date`, `body-empty`, `image-marker`, `image-missing`. Tests: `npm test`.
+
 ### test-api.js
 Checks that both models are reachable: `node scripts/test-api.js`.
 
