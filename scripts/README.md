@@ -42,7 +42,7 @@ Checks that both models are reachable: `node scripts/test-api.js`.
 | `QWEN_IMAGE_BASE_URL` | `http://127.0.0.1:8000/v1` | Qwen image server |
 | `MODELSWITCHER_URL` | `http://127.0.0.1:18090` | ModelSwitcher daemon |
 | `QWEN_IMAGE_MODEL_ID` | `qwen-qwen-image-2-1-turbo` | ModelSwitcher catalog ID |
-| `QWEN_IMAGE_LOAD_TIMEOUT_MS` | 30 min (cron: 60 min) | How long to wait for the model to load; if ModelSwitcher gives up on a start (no memory for 5 min) the load is requested again until then. Once a load is accepted, the server gets at least 10 more min to come up |
+| `QWEN_IMAGE_LOAD_TIMEOUT_MS` | 30 min | How long to wait for the model to load; if ModelSwitcher gives up on a start (no memory for 5 min) the load is requested again until then. Once a load is accepted, the server gets at least 10 more min to come up |
 | `QWEN_IMAGE_GENERATE_TIMEOUT_MS` | 5 min | Per-image request timeout (Node's fetch caps it at 5 min) |
 
 ## Usage

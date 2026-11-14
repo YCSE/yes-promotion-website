@@ -129,7 +129,7 @@ After blog post generation:
 
 2. **Image Generation**
    - Runs only on the DGX, where the image model lives
-   - The image model is loaded through ModelSwitcher without unloading other models; if memory is short (e.g. an H3 render holds the GPU lease) the cron run waits up to 60 minutes, then fails and the next slot retries
+   - The image model is loaded through ModelSwitcher without unloading other models; if memory is short (e.g. an H3 render holds the GPU lease) the cron run waits up to 30 minutes, then fails and the next slot retries (Hermes stops a cron script after 60 minutes, so one run cannot wait longer)
 
 3. **Content Quality**
    - Posts are generated in Korean for Korean learners

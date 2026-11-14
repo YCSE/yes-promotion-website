@@ -95,9 +95,11 @@ main() {
   fi
   [ -n "$ANTHROPIC_API_KEY" ] || fail "ANTHROPIC_API_KEY 없음 (~/.hermes/.env)"
 
-  # --- 생성: Qwen-Image 로드(최대 60분 대기, 다른 GPU 작업과 경합) + Haiku 본문 + 이미지 ---
-  export QWEN_IMAGE_LOAD_TIMEOUT_MS=$((60 * 60 * 1000))
-  timeout --signal=TERM --kill-after=2m 100m node scripts/generate-content.js >> "$LOG" 2>&1 \
+  # --- 생성: Qwen-Image 로드(다른 GPU 작업과 경합하면 최대 30분 대기) + Haiku 본문 + 이미지 ---
+  # Hermes는 크론 스크립트를 60분(cron.script_timeout_seconds)에 강제 종료한다. 그 전에
+  # 여기서 끝내야 node가 SIGTERM을 받아 이미지 모델을 내리고, 실패 알림도 나간다.
+  # 못 올린 날은 다음 슬롯이 다시 시도한다.
+  timeout --signal=TERM --kill-after=1m 55m node scripts/generate-content.js >> "$LOG" 2>&1 \
     || fail "generate-content.js 종료 코드 $?"
 
   POST=$(git ls-files --others --exclude-standard -- "content/posts/${TODAY}-*.md" | head -n1)
