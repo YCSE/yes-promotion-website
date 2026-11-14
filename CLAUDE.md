@@ -27,8 +27,11 @@ npm run start
 # Linting
 npm run lint
 
-# Generate blog post (runs daily via GitHub Action)
-node blog-generation-system.js
+# Generate blog post locally (on the DGX; the Hermes cron runs this daily)
+ANTHROPIC_API_KEY=... node scripts/generate-content.js
+
+# Full cron run without pushing (uses the cron's own clone, see below)
+scripts/cron/daily-blog.sh --no-push
 ```
 
 ## Playwright MCP Testing
@@ -110,8 +113,7 @@ yes-promotion-website/
 │   └── config.ts         # Site configuration
 ├── public/               # Static assets and images
 ├── .github/workflows/    # GitHub Actions
-│   ├── deploy.yml        # Deploy to GitHub Pages
-│   └── generate-blog-post.yml # Daily blog generation
+│   └── deploy.yml        # Deploy to GitHub Pages
 ├── blog-generation-system.js # AI blog generator
 ├── next.config.js        # Next.js static export config
 ├── tailwind.config.js    # Tailwind configuration
@@ -145,7 +147,7 @@ The site uses Next.js 14's App Router with static export configuration. All page
 1. **Content Storage**: Markdown files in `content/posts/` with gray-matter frontmatter
 2. **Generation**: `scripts/generate-content.js` picks a topic from `blog-generation-system.js`, writes the post with Claude Haiku 5.5 and renders its images with the local Qwen-Image-2.1-Turbo (see `scripts/README.md`)
 3. **Rendering**: Dynamic routing with `[slug]` pages, SSG at build time
-4. **Automation**: GitHub Actions runs generation daily and deploys changes
+4. **Automation**: a Hermes cron job on the DGX runs `scripts/cron/daily-blog.sh` daily and pushes the post; the push triggers `deploy.yml`
 
 ### Component Patterns
 - Server Components by default (no `'use client'` unless needed)
@@ -187,12 +189,13 @@ trailingSlash: true      // GitHub Pages compatibility
 - Builds static site and deploys to GitHub Pages
 - Runs on Node.js 18
 
-### Blog Generation Workflow (.github/workflows/generate-blog-post.yml)
-- Runs daily at 01:00 UTC (10:00 AM KST)
-- Can be manually triggered
-- `generate` job runs on the DGX self-hosted runner (`[self-hosted, yes-promotion]`): Claude Haiku 5.5 writes the post, the local Qwen-Image-2.1-Turbo (loaded via ModelSwitcher) renders the images
-- Commits and pushes changes automatically; `build-and-deploy` then builds and deploys on `ubuntu-latest`
-- Uses the `ANTHROPIC_API_KEY` repository secret
+## Blog Generation (Hermes cron on the DGX)
+Blog generation is not a GitHub Actions workflow. A Hermes cron job (`hermes cron list`, name "YES 블로그 자동 생성") runs it on the DGX:
+- Schedule: 10:00, 14:00 and 18:00 KST. The first slot that succeeds posts; later slots see today's post on `origin/main` and do nothing, so they only act as retries (usually when GPU memory contention kept Qwen-Image from loading)
+- `~/.hermes/scripts/yes_blog_daily.sh` → `scripts/cron/daily-blog.sh` inside the cron's own clone `~/.cache/yes-blog-cron/repo` (reset to `origin/main` every run; never the working copy)
+- Runs `node scripts/generate-content.js` (Claude Haiku 5.5 writes, the local Qwen-Image-2.1-Turbo loaded via ModelSwitcher renders), commits as YCSE and pushes to `main`, which triggers `deploy.yml`
+- `ANTHROPIC_API_KEY` is read from `~/.hermes/.env`; logs in `~/.cache/yes-blog-cron/logs/`
+- Manual run: `hermes cron run <job id>`, or `scripts/cron/daily-blog.sh --no-push` to generate without pushing
 
 ## Important Implementation Notes
 
