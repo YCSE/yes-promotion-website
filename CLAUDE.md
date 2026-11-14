@@ -201,6 +201,7 @@ trailingSlash: true      // GitHub Pages compatibility
 - Structured content with examples and exercises
 - SEO-optimized metadata generation
 - Automatic sitemap and RSS feed updates
+- Post structure is enforced by a linter, `scripts/lint-posts.js` (`npm run lint:posts`, `-- --fix` to repair): the generator lints every post it writes and saves nothing that fails, and `npm run build` lints first (`prebuild`), so a post with broken frontmatter stops the deploy instead of showing up as "Untitled". Tests: `npm test`
 
 ### Design System Integration
 - Refer to DESIGN_SYSTEM_RULES.md for comprehensive styling guidelines

@@ -1,5 +1,6 @@
 const { format } = require('date-fns');
 const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
+const { lintPost, formatProblems } = require('./lint-posts');
 
 const SYSTEM_PROMPT = `당신은 화상영어 플랫폼 익스의 블로그 에디터입니다.
 요청받은 블로그 포스트를 마크다운 문서 하나로만 출력하세요. 첫 줄은 frontmatter를 여는 '---'입니다.
@@ -179,6 +180,14 @@ featuredImage: /images/blog/${slug}.jpg
     console.log(`📊 Tokens: ${message.usage.input_tokens} in / ${message.usage.output_tokens} out`);
 
     let text = extractMarkdownDocument(responseText(message));
+
+    // The structure of what the model wrote is the linter's job: it repairs a
+    // frontmatter block the model broke, and a post it cannot repair stops the
+    // run here, before any image is rendered. (Image markers are still expected.)
+    const linted = lintPost(text, { fix: true, allowMarkers: true });
+    if (linted.fixed.length > 0) console.warn(`🔧 Linter repaired: ${linted.fixed.join(', ')}`);
+    if (linted.problems.length > 0) throw new Error(`Post failed lint: ${formatProblems(linted.problems)}`);
+    text = linted.text;
 
     // 오타 감지 및 자동 수정
     const typoPatterns = [

@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/lint-posts.js",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:posts": "node scripts/lint-posts.js",
+    "test": "node --test scripts/*.test.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.6.0",
