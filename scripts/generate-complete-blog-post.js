@@ -1,6 +1,6 @@
 const { generateBlogPost } = require('./generate-blog-post');
 const { generateBlogImages } = require('./generate-blog-images');
-const { withImageServer } = require('./qwen-image-client');
+const { withImageServer } = require('./h3-image-client');
 const fs = require('fs-extra');
 const path = require('path');
 
@@ -14,7 +14,7 @@ async function generateCompleteBlogPost() {
       const post = await generateBlogPost();
       console.log(`   ✓ Generated post: "${post.title}"`);
 
-      // Step 2: Generate all images (featured + H2) with the local Qwen-Image model
+      // Step 2: Generate all images (featured + H2) with the local MiniMax-H3-Image model
       console.log('\n2. Generating blog images...');
       const images = await generateBlogImages(post.content, post.title, post.slug);
       console.log(`   ✓ Featured image: ${images.featuredImagePath}`);

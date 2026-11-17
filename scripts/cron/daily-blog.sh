@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # YES 블로그 자동 생성 — Hermes 크론(no-agent)이 하루 세 번 실행한다(10·14·18시 KST).
 # 오늘 글이 이미 origin/main에 있으면 아무것도 하지 않으므로, 뒤 슬롯은 앞 슬롯이
-# 실패한 날(주로 GPU 메모리 경합으로 Qwen-Image를 못 올린 날)의 재시도가 된다.
+# 실패한 날(주로 H3 영상 렌더가 GPU를 오래 잡아 그림을 못 그린 날)의 재시도가 된다.
 #
 # 등록:  ~/.hermes/scripts/yes_blog_daily.sh → 이 파일 (크론 전용 clone 안의 사본)
 # 수동:  scripts/cron/daily-blog.sh [--no-push]
@@ -10,7 +10,7 @@
 #   node scripts/generate-content.js → 커밋 → push. push가 deploy.yml을 트리거해 배포된다.
 #
 # stdout은 Hermes가 그대로 전달한다: 성공 1줄, 실패 시 로그 끝부분. 나머지는 전부 로그 파일로.
-# 전제: ~/.hermes/.env 의 ANTHROPIC_API_KEY, gh 로그인(YCSE) git 자격증명, ModelSwitcher(:18090).
+# 전제: ~/.hermes/.env 의 ANTHROPIC_API_KEY, gh 로그인(YCSE) git 자격증명, Comfy-H3 게이트웨이(:8190).
 
 set -euo pipefail
 
@@ -95,9 +95,9 @@ main() {
   fi
   [ -n "$ANTHROPIC_API_KEY" ] || fail "ANTHROPIC_API_KEY 없음 (~/.hermes/.env)"
 
-  # --- 생성: Qwen-Image 로드(다른 GPU 작업과 경합하면 최대 30분 대기) + Haiku 본문 + 이미지 ---
+  # --- 생성: Haiku 본문 + MiniMax-H3-Image 그림(Comfy-H3 게이트웨이, 다른 GPU 작업이 있으면 그림마다 최대 35분 대기) ---
   # Hermes는 크론 스크립트를 60분(cron.script_timeout_seconds)에 강제 종료한다. 그 전에
-  # 여기서 끝내야 node가 SIGTERM을 받아 이미지 모델을 내리고, 실패 알림도 나간다.
+  # 여기서 끝내야 node가 SIGTERM을 받아 대기 중인 그림 요청을 거두고, 실패 알림도 나간다.
   # 못 올린 날은 다음 슬롯이 다시 시도한다.
   timeout --signal=TERM --kill-after=1m 55m node scripts/generate-content.js >> "$LOG" 2>&1 \
     || fail "generate-content.js 종료 코드 $?"

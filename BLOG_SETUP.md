@@ -6,7 +6,7 @@ This guide explains how to set up and use the automated English learning blog po
 
 The system automatically generates an English learning blog post every day using:
 - **Claude Haiku 5.5** (`claude-haiku-5-5`, Anthropic API) for the post and the image prompts
-- **Qwen-Image-2.1-Turbo**, a local model on the DGX (served by ModelSwitcher), for the images
+- **MiniMax-H3-Image**, a local model on the DGX (Comfy-H3 engine, behind its GPU gateway), for the images
 - **Hermes cron** on the DGX for scheduled generation; the push to `main` triggers the GitHub Pages deploy workflow
 - **Static site generation** with Next.js
 
@@ -87,7 +87,7 @@ npm run dev
 - **Topics:** 20 pre-defined English learning topics
 
 ### Images
-- **Model:** Qwen-Image-2.1-Turbo (local), prompts written by Claude Haiku 5.5
+- **Model:** MiniMax-H3-Image (local), prompts written by Claude Haiku 5.5
 - **Images:** one featured image plus one per H2 section
 - **Format:** JPEG, 1184x896px (about 4:3)
 - **Fallback:** an SVG placeholder when an image fails twice
@@ -129,7 +129,7 @@ After blog post generation:
 
 2. **Image Generation**
    - Runs only on the DGX, where the image model lives
-   - The image model is loaded through ModelSwitcher without unloading other models; if memory is short (e.g. an H3 render holds the GPU lease) the cron run waits up to 30 minutes, then fails and the next slot retries (Hermes stops a cron script after 60 minutes, so one run cannot wait longer)
+   - Each picture goes through the Comfy-H3 GPU gateway; while another job holds the GPU lease (e.g. an H3 video render) a picture waits up to 35 minutes, then the run fails and the next slot retries (Hermes stops a cron script after 60 minutes, so one run cannot wait longer)
 
 3. **Content Quality**
    - Posts are generated in Korean for Korean learners

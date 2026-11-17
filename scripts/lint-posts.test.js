@@ -172,7 +172,7 @@ test('generateContent saves a lint-clean post and refuses one that is not', asyn
   let finished; // what the image step hands back
   const stubs = [
     stub('./claude-client', { WRITING_MODEL: 'test-model' }),
-    stub('./qwen-image-client', { withImageServer: (fn) => fn() }),
+    stub('./h3-image-client', { withImageServer: (fn) => fn() }),
     stub('./generate-blog-post', { generateBlogPost: async () => ({ slug, title: '제목', content: '' }) }),
     stub('./generate-blog-images', {
       generateBlogImages: async () => ({ updatedContent: finished, featuredImagePath: `/images/blog/${slug}.jpg` }),
