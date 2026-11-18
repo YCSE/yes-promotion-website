@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { generateBlogPost } = require('./generate-blog-post');
 const { generateBlogImages } = require('./generate-blog-images');
-const { withImageServer } = require('./qwen-image-client');
+const { withImageServer } = require('./h3-image-client');
 const { WRITING_MODEL } = require('./claude-client');
 const { lintPost, formatProblems } = require('./lint-posts');
 
@@ -17,8 +17,8 @@ async function generateContent() {
       const { slug, content, title } = await generateBlogPost();
       console.log(`✅ Blog post generated: ${title}`);
 
-      // Step 2: Generate all images (featured + H2) with the local Qwen-Image model
-      console.log('🎨 Generating blog images with Qwen-Image-2.1-Turbo...');
+      // Step 2: Generate all images (featured + H2) with the local MiniMax-H3-Image model
+      console.log('🎨 Generating blog images with MiniMax-H3-Image...');
       const { updatedContent, featuredImagePath } = await generateBlogImages(content, title, slug);
       console.log(`✅ All images generated`);
 

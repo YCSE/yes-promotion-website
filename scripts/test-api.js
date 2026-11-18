@@ -1,8 +1,8 @@
 // Checks both models the blog generator uses:
 // - Claude Haiku 5.5 (writing) via ANTHROPIC_API_KEY
-// - the local Qwen-Image-2.1-Turbo server (images), checked without loading it
+// - MiniMax-H3-Image (images) behind the Comfy-H3 GPU gateway, checked without rendering
 const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
-const { isHealthy, IMAGE_BASE_URL, SWITCHER_URL, SWITCHER_MODEL_ID } = require('./qwen-image-client');
+const { isHealthy, GATEWAY_URL, ENGINE_SCRIPT } = require('./h3-image-client');
 
 async function testWritingModel() {
   try {
@@ -23,22 +23,11 @@ async function testWritingModel() {
 
 async function testImageServer() {
   if (await isHealthy()) {
-    console.log(`✅ Image server is running at ${IMAGE_BASE_URL}`);
+    console.log(`✅ MiniMax-H3-Image is reachable: Comfy-H3 gateway ${GATEWAY_URL}, engine ${ENGINE_SCRIPT}`);
     return true;
   }
-  try {
-    const state = await fetch(`${SWITCHER_URL}/api/state`, { signal: AbortSignal.timeout(10000) }).then((r) => r.json());
-    const model = state.models?.[SWITCHER_MODEL_ID];
-    if (!model) {
-      console.error(`❌ ModelSwitcher has no model ${SWITCHER_MODEL_ID}`);
-      return false;
-    }
-    console.log(`✅ Image model is registered in ModelSwitcher (state: ${model.state}); the generator loads it on demand`);
-    return true;
-  } catch (error) {
-    console.error(`❌ Neither the image server nor ModelSwitcher (${SWITCHER_URL}) answered: ${error.message}`);
-    return false;
-  }
+  console.error(`❌ MiniMax-H3-Image is not reachable (gateway ${GATEWAY_URL}, engine ${ENGINE_SCRIPT})`);
+  return false;
 }
 
 (async () => {

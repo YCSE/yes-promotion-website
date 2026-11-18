@@ -3,7 +3,7 @@
 These scripts generate the daily English-learning blog posts.
 
 - **Writing**: Claude Haiku 5.5 (`claude-haiku-5-5`) through the Anthropic API
-- **Images**: Qwen-Image-2.1-Turbo, a local model on the DGX, served by ModelSwitcher
+- **Images**: MiniMax-H3-Image, a local model on the DGX, rendered by the Comfy-H3 engine behind its GPU gateway (`127.0.0.1:8190`)
 
 ## Scripts
 
@@ -14,10 +14,10 @@ Main orchestration script: loads the image model, writes the post, generates its
 Writes the post (markdown with frontmatter) with Claude Haiku 5.5, then puts an `[IMAGE_PLACEHOLDER_H2_n]` marker under each of the first four H2 headings. The markers are placed in code because the model does not place them reliably.
 
 ### generate-blog-images.js
-Generates the featured image and one image per H2 section. Claude Haiku 5.5 writes the image prompts (one shared style line plus a scene per image, following the people and no-text rules), and the local Qwen-Image model renders them as 1184x896 JPEGs. A failed image falls back to an SVG placeholder.
+Generates the featured image and one image per H2 section. Claude Haiku 5.5 writes the image prompts (one shared style line plus a scene per image, following the people and no-text rules), and the local MiniMax-H3-Image model renders them (at about 4 MP, scaled to 1184x896) as JPEGs. A failed image falls back to an SVG placeholder.
 
-### qwen-image-client.js
-Talks to the local image server. If it is not running, asks ModelSwitcher (`127.0.0.1:18090`) to load `qwen-qwen-image-2-1-turbo`, waits until it is ready, and unloads it afterwards. It never unloads other models to make room; when memory is short it retries for up to 30 minutes.
+### h3-image-client.js
+Renders each picture with the Comfy-H3 engine's own client (`~/Projects/Comfy-H3/comfy_h3/image.py gen`), which waits while the GPU gateway runs another job (an H3 video render), then holds the GPU lease for the picture. Nothing is loaded or unloaded from here; the gateway keeps the model warm for 10 minutes after a job, so the pictures of one post follow each other. A cancelled run (SIGINT/SIGTERM) stops the clients still waiting.
 
 ### claude-client.js
 Shared Anthropic client, model ID and response checks (refusal, truncation).
@@ -39,11 +39,10 @@ Checks that both models are reachable: `node scripts/test-api.js`.
 | Variable | Default | Purpose |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | (required) | Anthropic API key for Claude |
-| `QWEN_IMAGE_BASE_URL` | `http://127.0.0.1:8000/v1` | Qwen image server |
-| `MODELSWITCHER_URL` | `http://127.0.0.1:18090` | ModelSwitcher daemon |
-| `QWEN_IMAGE_MODEL_ID` | `qwen-qwen-image-2-1-turbo` | ModelSwitcher catalog ID |
-| `QWEN_IMAGE_LOAD_TIMEOUT_MS` | 30 min | How long to wait for the model to load; if ModelSwitcher gives up on a start (no memory for 5 min) the load is requested again until then. Once a load is accepted, the server gets at least 10 more min to come up |
-| `QWEN_IMAGE_GENERATE_TIMEOUT_MS` | 5 min | Per-image request timeout (Node's fetch caps it at 5 min) |
+| `H3_GATEWAY_URL` | `http://127.0.0.1:8190` | Comfy-H3 GPU gateway (checked by `isHealthy`) |
+| `H3_IMAGE_SCRIPT` | `/home/mersoom-dgx/Projects/Comfy-H3/comfy_h3/image.py` | The engine's picture client |
+| `H3_IMAGE_PYTHON` | `/usr/bin/python3` | Python that runs it |
+| `H3_IMAGE_WAIT_LIMIT_MS` | 35 min | How long one picture waits for the GPU while another job holds it (the cron run has 55 min in all) |
 
 ## Usage
 

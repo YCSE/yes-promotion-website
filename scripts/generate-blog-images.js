@@ -2,14 +2,14 @@ const fs = require('fs-extra');
 const path = require('path');
 const sharp = require('sharp');
 const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
-const { withImageServer, generateImage, IMAGE_BASE_URL } = require('./qwen-image-client');
+const { withImageServer, generateImage, GATEWAY_URL } = require('./h3-image-client');
 
-// Close to the 1200x896 of earlier posts; the Qwen pipeline snaps sizes to multiples of 32.
+// Close to the 1200x896 of earlier posts. The engine renders at about 4 MP in this aspect ratio and scales down.
 const IMAGE_WIDTH = 1184;
 const IMAGE_HEIGHT = 896;
 
 // Claude turns the post into image prompts; the local image model only sees those.
-const IMAGE_PROMPT_SYSTEM = `You write image prompts for a photorealistic text-to-image model (Qwen-Image). The images illustrate one post on the blog of 익스 (YCSE), a Korean video-call English-learning platform. You get the post's title, an excerpt and its H2 sections, and return:
+const IMAGE_PROMPT_SYSTEM = `You write image prompts for a photorealistic text-to-image model (MiniMax-H3-Image). The images illustrate one post on the blog of 익스 (YCSE), a Korean video-call English-learning platform. You get the post's title, an excerpt and its H2 sections, and return:
 - style: one sentence describing the shared look of every image in this post (color palette, lighting, lens, mood), so the images read as one set.
 - featured: the scene for the post's hero image, capturing the main theme of the whole article. It also works as a thumbnail.
 - sections: one scene per H2 section. Its index is the section's number from the brackets, digits only (for [2] write "2").
@@ -58,7 +58,7 @@ const PROMPT_PLAN_SCHEMA = {
 };
 
 // Positive wording only: the model draws whatever the prompt names, "no text" included. There is no
-// negative prompt: QwenImage21Pipeline ignores it unless true_cfg_scale > 1, which the server does not expose.
+// negative prompt: the MiniMax-H3-Image workflow samples at CFG 1 with a zeroed negative.
 const QUALITY_SUFFIX = 'Photorealistic candid documentary photograph, natural light, sharp focus, realistic anatomy with natural hands.';
 
 // Used only when Claude cannot plan the prompts.
@@ -268,7 +268,7 @@ async function renderImage(scene, style, seed, outputPath, isFeatured) {
 
 /**
  * Main entry point: generate all blog images (1 featured + N H2 images) with the
- * local Qwen-Image model. The image server must be running (see withImageServer).
+ * local MiniMax-H3-Image model. The image server must be running (see withImageServer).
  * One shared style line and related seeds keep the set visually consistent.
  *
  * @param {string} content - Full markdown content (with frontmatter)
@@ -277,7 +277,7 @@ async function renderImage(scene, style, seed, outputPath, isFeatured) {
  * @returns {{ updatedContent: string, featuredImagePath: string }}
  */
 async function generateBlogImages(content, title, slug) {
-  console.log('=== Starting blog image generation (Qwen-Image-2.1-Turbo) ===');
+  console.log('=== Starting blog image generation (MiniMax-H3-Image) ===');
   console.log(`Title: "${title}", Slug: "${slug}"`);
 
   const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
@@ -365,7 +365,7 @@ async function generateBlogImages(content, title, slug) {
 
   // Every render failing means the image server is down, not a bad prompt: no post rather than a post of placeholders.
   if (failed > 0 && rendered === 0) {
-    throw new Error(`All ${failed} images failed to render; is the image server at ${IMAGE_BASE_URL} up?`);
+    throw new Error(`All ${failed} images failed to render; is the Comfy-H3 gateway at ${GATEWAY_URL} up?`);
   }
 
   // Final check for remaining placeholders
