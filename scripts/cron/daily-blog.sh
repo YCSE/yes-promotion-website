@@ -10,7 +10,7 @@
 #   node scripts/generate-content.js → 커밋 → push. push가 deploy.yml을 트리거해 배포된다.
 #
 # stdout은 Hermes가 그대로 전달한다: 성공 1줄, 실패 시 로그 끝부분. 나머지는 전부 로그 파일로.
-# 전제: ~/.hermes/.env 의 ANTHROPIC_API_KEY, gh 로그인(YCSE) git 자격증명, Comfy-H3 게이트웨이(:8190).
+# 전제: Hermes에 선택된 모델과 그 인증(글), gh 로그인(YCSE) git 자격증명, Comfy-H3 게이트웨이(:8190, 그림).
 
 set -euo pipefail
 
@@ -88,14 +88,10 @@ main() {
     echo "$LOCK_HASH" > "$BASE/lock-hash"
   fi
 
-  # --- API 키: ~/.hermes/.env 에서 이 한 줄만 읽는다 (파일 전체를 source 하지 않음) ---
-  if [ -z "${ANTHROPIC_API_KEY:-}" ]; then
-    ANTHROPIC_API_KEY=$(grep -m1 '^ANTHROPIC_API_KEY=' "$HOME/.hermes/.env" 2>/dev/null | cut -d= -f2- | sed -e 's/^["'\'']//' -e 's/["'\'']$//' || true)
-    export ANTHROPIC_API_KEY
-  fi
-  [ -n "$ANTHROPIC_API_KEY" ] || fail "ANTHROPIC_API_KEY 없음 (~/.hermes/.env)"
+  # --- 글 모델: Hermes에 선택된 모델(hermes model)을 hermes -z로 쓴다. 키는 Hermes가 가진 인증을 그대로 쓴다 ---
+  command -v hermes >/dev/null || fail "hermes 없음 (PATH: $PATH)"
 
-  # --- 생성: Haiku 본문 + MiniMax-H3-Image 그림(Comfy-H3 게이트웨이, 다른 GPU 작업이 있으면 그림마다 최대 35분 대기) ---
+  # --- 생성: Hermes 선택 모델 본문 + MiniMax-H3-Image 그림(Comfy-H3 게이트웨이, 다른 GPU 작업이 있으면 그림마다 최대 35분 대기) ---
   # Hermes는 크론 스크립트를 60분(cron.script_timeout_seconds)에 강제 종료한다. 그 전에
   # 여기서 끝내야 node가 SIGTERM을 받아 대기 중인 그림 요청을 거두고, 실패 알림도 나간다.
   # 못 올린 날은 다음 슬롯이 다시 시도한다.

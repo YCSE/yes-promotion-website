@@ -1,5 +1,5 @@
 const { format } = require('date-fns');
-const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
+const { generate, WRITING_MODEL } = require('./hermes-client');
 const { lintPost, formatProblems } = require('./lint-posts');
 
 const SYSTEM_PROMPT = `당신은 화상영어 플랫폼 익스의 블로그 에디터입니다.
@@ -54,8 +54,6 @@ const { BlogPostGenerator, TOPICS, WRITING_DIRECTIONS } = require('../blog-gener
 
 async function generateBlogPost() {
   try {
-    const client = getClient();
-
     // Use the BlogPostGenerator to get random combination
     const generator = new BlogPostGenerator();
     const combination = generator.generateRandomCombination();
@@ -167,19 +165,11 @@ featuredImage: /images/blog/${slug}.jpg
 `;
 
     console.log(`✍️ Writing with ${WRITING_MODEL}...`);
-    const message = await client.messages
-      .stream({
-        model: WRITING_MODEL,
-        max_tokens: 64000,
-        // high: the post has many strict formatting rules to follow
-        output_config: { effort: 'high' },
-        system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: prompt }],
-      })
-      .finalMessage();
-    console.log(`📊 Tokens: ${message.usage.input_tokens} in / ${message.usage.output_tokens} out`);
+    // high: the post has many strict formatting rules to follow
+    const answer = await generate({ system: SYSTEM_PROMPT, prompt, reasoning: 'high' });
+    console.log(`📊 ${answer.model} (${answer.provider}): ${answer.usage.input_tokens ?? '?'} in / ${answer.usage.output_tokens ?? '?'} out`);
 
-    let text = extractMarkdownDocument(responseText(message));
+    let text = extractMarkdownDocument(answer.text);
 
     // The structure of what the model wrote is the linter's job: it repairs a
     // frontmatter block the model broke, and a post it cannot repair stops the

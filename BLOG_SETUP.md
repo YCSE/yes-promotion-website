@@ -5,19 +5,17 @@ This guide explains how to set up and use the automated English learning blog po
 ## 🎯 Overview
 
 The system automatically generates an English learning blog post every day using:
-- **Claude Haiku 5.5** (`claude-haiku-5-5`, Anthropic API) for the post and the image prompts
+- **The model selected in Hermes** on the DGX (`hermes model`; called with `hermes -z`, no tools) for the post and the image prompts
 - **MiniMax-H3-Image**, a local model on the DGX (Comfy-H3 engine, behind its GPU gateway), for the images
 - **Hermes cron** on the DGX for scheduled generation; the push to `main` triggers the GitHub Pages deploy workflow
 - **Static site generation** with Next.js
 
 ## 🚀 Quick Start
 
-### Step 1: API key
+### Step 1: Writing model
 
-Put the key in `~/.hermes/.env` on the DGX (the cron script reads only this line):
-```
-ANTHROPIC_API_KEY=<key from the Claude Console>
-```
+Nothing to configure here: the post is written by whatever model Hermes on the DGX has selected, with Hermes's own
+credentials. Change it with `hermes model`.
 
 ### Step 2: Hermes cron job
 
@@ -65,10 +63,10 @@ npm install
 Run on the DGX (the image model is local to it):
 ```bash
 # Check that both models are reachable
-ANTHROPIC_API_KEY=your_api_key_here node scripts/test-api.js
+node scripts/test-api.js
 
 # Generate a post
-ANTHROPIC_API_KEY=your_api_key_here node scripts/generate-content.js
+node scripts/generate-content.js
 ```
 
 ### View Generated Content
@@ -87,7 +85,7 @@ npm run dev
 - **Topics:** 20 pre-defined English learning topics
 
 ### Images
-- **Model:** MiniMax-H3-Image (local), prompts written by Claude Haiku 5.5
+- **Model:** MiniMax-H3-Image (local), prompts written by the model selected in Hermes
 - **Images:** one featured image plus one per H2 section
 - **Format:** JPEG, 1184x896px (about 4:3)
 - **Fallback:** an SVG placeholder when an image fails twice

@@ -12,7 +12,6 @@
     "test": "node --test scripts/*.test.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.6.0",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/typography": "^0.5.19",
     "date-fns": "^4.1.0",

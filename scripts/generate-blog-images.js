@@ -1,14 +1,14 @@
 const fs = require('fs-extra');
 const path = require('path');
 const sharp = require('sharp');
-const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
+const { generate, parseJsonObject, WRITING_MODEL } = require('./hermes-client');
 const { withImageServer, generateImage, GATEWAY_URL } = require('./h3-image-client');
 
 // Close to the 1200x896 of earlier posts. The engine renders at about 4 MP in this aspect ratio and scales down.
 const IMAGE_WIDTH = 1184;
 const IMAGE_HEIGHT = 896;
 
-// Claude turns the post into image prompts; the local image model only sees those.
+// The writing model turns the post into image prompts; the local image model only sees those.
 const IMAGE_PROMPT_SYSTEM = `You write image prompts for a photorealistic text-to-image model (MiniMax-H3-Image). The images illustrate one post on the blog of 익스 (YCSE), a Korean video-call English-learning platform. You get the post's title, an excerpt and its H2 sections, and return:
 - style: one sentence describing the shared look of every image in this post (color palette, lighting, lens, mood), so the images read as one set.
 - featured: the scene for the post's hero image, capturing the main theme of the whole article. It also works as a thumbnail.
@@ -61,7 +61,7 @@ const PROMPT_PLAN_SCHEMA = {
 // negative prompt: the MiniMax-H3-Image workflow samples at CFG 1 with a zeroed negative.
 const QUALITY_SUFFIX = 'Photorealistic candid documentary photograph, natural light, sharp focus, realistic anatomy with natural hands.';
 
-// Used only when Claude cannot plan the prompts.
+// Used only when the writing model cannot plan the prompts.
 const GENERIC_STYLE = 'Soft natural window light, warm neutral palette, 35mm lens, shallow depth of field, calm everyday mood.';
 const GENERIC_FEATURED = 'A Korean woman, about 24, smiles at the laptop screen in front of her during an English video lesson at a bright desk at home, the laptop seen from behind.';
 const GENERIC_SCENES = [
@@ -199,7 +199,7 @@ async function generateFallbackImage(outputPath, isFeatured = false) {
 }
 
 /**
- * Ask Claude for one shared style and a scene per image.
+ * Ask the writing model for one shared style and a scene per image.
  * Returns { style, featured, scenes: Map<index, scene> }.
  */
 async function planImagePrompts(title, bodyExcerpt, sectionList) {
@@ -208,20 +208,15 @@ async function planImagePrompts(title, bodyExcerpt, sectionList) {
     .join('\n\n');
 
   try {
-    const message = await getClient().messages.create({
-      model: WRITING_MODEL,
-      max_tokens: 16000,
-      output_config: {
-        effort: 'medium',
-        format: { type: 'json_schema', schema: PROMPT_PLAN_SCHEMA },
-      },
-      system: IMAGE_PROMPT_SYSTEM,
-      messages: [{
-        role: 'user',
-        content: `Title: ${title}\n\nExcerpt:\n${bodyExcerpt}\n\nH2 sections:\n${sectionText}`,
-      }],
+    const answer = await generate({
+      system: `${IMAGE_PROMPT_SYSTEM}\n\nAnswer with one JSON object only, no other text, matching this JSON Schema:\n${JSON.stringify(PROMPT_PLAN_SCHEMA)}`,
+      prompt: `Title: ${title}\n\nExcerpt:\n${bodyExcerpt}\n\nH2 sections:\n${sectionText}`,
+      reasoning: 'medium',
     });
-    const plan = JSON.parse(responseText(message));
+    const plan = parseJsonObject(answer.text);
+    if (typeof plan.style !== 'string' || typeof plan.featured !== 'string' || !Array.isArray(plan.sections)) {
+      throw new Error('the image prompt plan does not match the schema');
+    }
     // Key by the digits only, so "[2]" or "H2_2" still matches section 2.
     const scenes = new Map(plan.sections.map((s) => [String(s.index).match(/\d+/)?.[0], s.scene]));
     return { style: plan.style, featured: plan.featured, scenes };

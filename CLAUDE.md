@@ -9,7 +9,7 @@ This is a Next.js static website project for YES Promotion with the following ke
 - **Type**: Static website (SSG - Static Site Generation) with `output: 'export'`
 - **Design Source**: Figma designs via MCP integration
 - **Testing**: End-to-end testing with Playwright MCP
-- **Blog System**: Automated content generation — writing with Claude Haiku 5.5, images with the local MiniMax-H3-Image on the DGX (Comfy-H3 engine)
+- **Blog System**: Automated content generation — writing with the model selected in Hermes on the DGX (`hermes -z`), images with the local MiniMax-H3-Image on the DGX (Comfy-H3 engine)
 - **Deployment**: GitHub Pages via GitHub Actions
 
 ## Development Commands
@@ -28,7 +28,7 @@ npm run start
 npm run lint
 
 # Generate blog post locally (on the DGX; the Hermes cron runs this daily)
-ANTHROPIC_API_KEY=... node scripts/generate-content.js
+node scripts/generate-content.js   # on the DGX: writing uses the model selected in Hermes
 
 # Full cron run without pushing (uses the cron's own clone, see below)
 scripts/cron/daily-blog.sh --no-push
@@ -145,7 +145,7 @@ The site uses Next.js 14's App Router with static export configuration. All page
 
 ### Blog System Architecture
 1. **Content Storage**: Markdown files in `content/posts/` with gray-matter frontmatter
-2. **Generation**: `scripts/generate-content.js` picks a topic from `blog-generation-system.js`, writes the post with Claude Haiku 5.5 and renders its images with the local MiniMax-H3-Image (see `scripts/README.md`)
+2. **Generation**: `scripts/generate-content.js` picks a topic from `blog-generation-system.js`, writes the post with the model selected in Hermes and renders its images with the local MiniMax-H3-Image (see `scripts/README.md`)
 3. **Rendering**: Dynamic routing with `[slug]` pages, SSG at build time
 4. **Automation**: a Hermes cron job on the DGX runs `scripts/cron/daily-blog.sh` daily and pushes the post; the push triggers `deploy.yml`
 
@@ -193,8 +193,8 @@ trailingSlash: true      // GitHub Pages compatibility
 Blog generation is not a GitHub Actions workflow. A Hermes cron job (`hermes cron list`, name "YES 블로그 자동 생성") runs it on the DGX:
 - Schedule: 10:00, 14:00 and 18:00 KST. The first slot that succeeds posts; later slots see today's post on `origin/main` and do nothing, so they only act as retries (usually when an H3 video render kept the GPU gateway busy)
 - `~/.hermes/scripts/yes_blog_daily.sh` → `scripts/cron/daily-blog.sh` inside the cron's own clone `~/.cache/yes-blog-cron/repo` (reset to `origin/main` every run; never the working copy)
-- Runs `node scripts/generate-content.js` (Claude Haiku 5.5 writes, MiniMax-H3-Image renders through the Comfy-H3 gateway), commits as YCSE and pushes to `main`, which triggers `deploy.yml`
-- `ANTHROPIC_API_KEY` is read from `~/.hermes/.env`; logs in `~/.cache/yes-blog-cron/logs/`
+- Runs `node scripts/generate-content.js` (the model selected in Hermes writes, MiniMax-H3-Image renders through the Comfy-H3 gateway), commits as YCSE and pushes to `main`, which triggers `deploy.yml`
+- Writing goes through `hermes -z` with Hermes's own selected model and credentials (`hermes model` changes it); logs in `~/.cache/yes-blog-cron/logs/`
 - Manual run: `hermes cron run <job id>`, or `scripts/cron/daily-blog.sh --no-push` to generate without pushing
 
 ## Important Implementation Notes

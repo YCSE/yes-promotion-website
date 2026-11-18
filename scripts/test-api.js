@@ -1,19 +1,14 @@
 // Checks both models the blog generator uses:
-// - Claude Haiku 5.5 (writing) via ANTHROPIC_API_KEY
+// - the model selected in Hermes (writing), through `hermes -z`
 // - MiniMax-H3-Image (images) behind the Comfy-H3 GPU gateway, checked without rendering
-const { getClient, responseText, WRITING_MODEL } = require('./claude-client');
+const { generate, WRITING_MODEL } = require('./hermes-client');
 const { isHealthy, GATEWAY_URL, ENGINE_SCRIPT } = require('./h3-image-client');
 
 async function testWritingModel() {
   try {
     console.log(`📡 Testing ${WRITING_MODEL}...`);
-    const message = await getClient().messages.create({
-      model: WRITING_MODEL,
-      max_tokens: 1024,
-      output_config: { effort: 'low' },
-      messages: [{ role: 'user', content: "Say 'Hello, 익스!' in Korean, in one short line." }],
-    });
-    console.log('✅ Writing model OK:', responseText(message).trim());
+    const answer = await generate({ prompt: "Say 'Hello, 익스!' in Korean, in one short line.", reasoning: 'low' });
+    console.log(`✅ Writing model OK (${answer.model}, ${answer.provider}):`, answer.text.trim());
     return true;
   } catch (error) {
     console.error('❌ Writing model failed:', error.message);

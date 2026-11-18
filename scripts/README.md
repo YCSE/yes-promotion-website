@@ -2,7 +2,7 @@
 
 These scripts generate the daily English-learning blog posts.
 
-- **Writing**: Claude Haiku 5.5 (`claude-haiku-5-5`) through the Anthropic API
+- **Writing**: the model selected in Hermes on the DGX (`hermes model`), one `hermes -z` turn per call
 - **Images**: MiniMax-H3-Image, a local model on the DGX, rendered by the Comfy-H3 engine behind its GPU gateway (`127.0.0.1:8190`)
 
 ## Scripts
@@ -11,16 +11,16 @@ These scripts generate the daily English-learning blog posts.
 Main orchestration script: loads the image model, writes the post, generates its images, and saves the post to `content/posts/`.
 
 ### generate-blog-post.js
-Writes the post (markdown with frontmatter) with Claude Haiku 5.5, then puts an `[IMAGE_PLACEHOLDER_H2_n]` marker under each of the first four H2 headings. The markers are placed in code because the model does not place them reliably.
+Writes the post (markdown with frontmatter) with the model selected in Hermes, then puts an `[IMAGE_PLACEHOLDER_H2_n]` marker under each of the first four H2 headings. The markers are placed in code because the model does not place them reliably.
 
 ### generate-blog-images.js
-Generates the featured image and one image per H2 section. Claude Haiku 5.5 writes the image prompts (one shared style line plus a scene per image, following the people and no-text rules), and the local MiniMax-H3-Image model renders them (at about 4 MP, scaled to 1184x896) as JPEGs. A failed image falls back to an SVG placeholder.
+Generates the featured image and one image per H2 section. The same model writes the image prompts (one shared style line plus a scene per image, following the people and no-text rules), and the local MiniMax-H3-Image model renders them (at about 4 MP, scaled to 1184x896) as JPEGs. A failed image falls back to an SVG placeholder.
 
 ### h3-image-client.js
 Renders each picture with the Comfy-H3 engine's own client (`~/Projects/Comfy-H3/comfy_h3/image.py gen`), which waits while the GPU gateway runs another job (an H3 video render), then holds the GPU lease for the picture. Nothing is loaded or unloaded from here; the gateway keeps the model warm for 10 minutes after a job, so the pictures of one post follow each other. A cancelled run (SIGINT/SIGTERM) stops the clients still waiting.
 
-### claude-client.js
-Shared Anthropic client, model ID and response checks (refusal, truncation).
+### hermes-client.js
+Runs one turn on the model selected in Hermes: `hermes -z <prompt> -t "" --reasoning <level> --ignore-rules`, from an empty folder so this repository's rule files stay out of the prompt. It reads the model, provider and success from Hermes's usage file and fails the run on an unfinished turn.
 
 ### lint-posts.js
 Linter for the posts in `content/posts`. The model writes the frontmatter as free text and can break it (a missing colon made a post show up as "Untitled" at the top of the blog), so structure is checked here rather than trusted:
@@ -38,7 +38,8 @@ Checks that both models are reachable: `node scripts/test-api.js`.
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | (required) | Anthropic API key for Claude |
+| `HERMES_BIN` | `~/.local/bin/hermes` | Hermes CLI that writes the post |
+| `HERMES_TURN_TIMEOUT_MS` | 20 min | Longest one writing turn may take |
 | `H3_GATEWAY_URL` | `http://127.0.0.1:8190` | Comfy-H3 GPU gateway (checked by `isHealthy`) |
 | `H3_IMAGE_SCRIPT` | `/home/mersoom-dgx/Projects/Comfy-H3/comfy_h3/image.py` | The engine's picture client |
 | `H3_IMAGE_PYTHON` | `/usr/bin/python3` | Python that runs it |
@@ -48,7 +49,7 @@ Checks that both models are reachable: `node scripts/test-api.js`.
 
 ### Manual generation (on the DGX)
 ```bash
-ANTHROPIC_API_KEY=your_api_key_here node scripts/generate-content.js
+node scripts/generate-content.js
 ```
 
 ### Automatic generation
@@ -56,7 +57,7 @@ A Hermes cron job on the DGX (`hermes cron list`, "YES 블로그 자동 생성")
 
 1. `~/.hermes/scripts/yes_blog_daily.sh` execs `scripts/cron/daily-blog.sh` from the cron's own clone `~/.cache/yes-blog-cron/repo`.
 2. The script resets that clone to `origin/main`; if today's post is already there it exits (so the later slots are retries).
-3. It runs `generate-content.js` with `ANTHROPIC_API_KEY` from `~/.hermes/.env`, commits the post and images as YCSE and pushes to `main`.
+3. It runs `generate-content.js` (writing through Hermes's selected model), commits the post and images as YCSE and pushes to `main`.
 4. The push triggers `.github/workflows/deploy.yml`, which builds and deploys to GitHub Pages.
 
 Logs: `~/.cache/yes-blog-cron/logs/`. Dry run: `scripts/cron/daily-blog.sh --no-push`.
@@ -69,11 +70,10 @@ Logs: `~/.cache/yes-blog-cron/logs/`. Dry run: `scripts/cron/daily-blog.sh --no-
 
 ## Troubleshooting
 
-- **`ANTHROPIC_API_KEY is not set`**: add it to `~/.hermes/.env` on the DGX.
-- **`Claude declined the request`**: Haiku 5.5 has no server-side fallback; the next cron slot (or a manual run) picks a new topic.
+- **`Hermes turn failed`**: check `hermes status` and the selected model (`hermes model`); the next cron slot retries.
 - **Image model does not load**: check `modelswitcher status`; another model may be using the memory.
 - **Cron did not run**: `hermes cron status`, `hermes cron runs <job id>`.
 
 ## Security Notes
 
-- Never commit API keys; the cron reads `ANTHROPIC_API_KEY` from `~/.hermes/.env`.
+- No API key lives in this repository or the cron: the writing model uses Hermes's own credentials.
