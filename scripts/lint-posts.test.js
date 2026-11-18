@@ -121,20 +121,16 @@ test('images the post points at must exist', () => {
 });
 
 test('generateBlogPost returns a lint-clean post when the model breaks the frontmatter', async () => {
-  // Stand in for the Anthropic client: the "model" returns the broken document.
-  const clientPath = require.resolve('./claude-client');
-  const fakeClient = {
-    messages: {
-      stream: () => ({
-        finalMessage: async () => ({ text: BROKEN_DOC, usage: { input_tokens: 0, output_tokens: 0 } }),
-      }),
-    },
-  };
+  // Stand in for the Hermes client: the "model" returns the broken document.
+  const clientPath = require.resolve('./hermes-client');
   require.cache[clientPath] = {
     id: clientPath,
     filename: clientPath,
     loaded: true,
-    exports: { getClient: () => fakeClient, responseText: (message) => message.text, WRITING_MODEL: 'test-model' },
+    exports: {
+      generate: async () => ({ text: BROKEN_DOC, model: 'test-model', provider: 'test', usage: {} }),
+      WRITING_MODEL: 'test-model',
+    },
   };
 
   const { log, warn } = console;
@@ -171,7 +167,7 @@ test('generateContent saves a lint-clean post and refuses one that is not', asyn
   const slug = '2026-11-14-test-1';
   let finished; // what the image step hands back
   const stubs = [
-    stub('./claude-client', { WRITING_MODEL: 'test-model' }),
+    stub('./hermes-client', { WRITING_MODEL: 'test-model', isAvailable: () => true, HERMES: 'hermes' }),
     stub('./h3-image-client', { withImageServer: (fn) => fn() }),
     stub('./generate-blog-post', { generateBlogPost: async () => ({ slug, title: '제목', content: '' }) }),
     stub('./generate-blog-images', {

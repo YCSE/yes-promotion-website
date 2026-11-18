@@ -3,7 +3,7 @@ const path = require('path');
 const { generateBlogPost } = require('./generate-blog-post');
 const { generateBlogImages } = require('./generate-blog-images');
 const { withImageServer } = require('./h3-image-client');
-const { WRITING_MODEL } = require('./claude-client');
+const { WRITING_MODEL, isAvailable: hermesAvailable, HERMES } = require('./hermes-client');
 const { lintPost, formatProblems } = require('./lint-posts');
 
 async function generateContent() {
@@ -64,11 +64,9 @@ async function generateContent() {
 
 // Run if called directly
 if (require.main === module) {
-  // Check if API key is available
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('❌ Error: ANTHROPIC_API_KEY environment variable is not set');
-    console.log('Please set the ANTHROPIC_API_KEY environment variable and try again.');
-    console.log('Example: ANTHROPIC_API_KEY=your_api_key_here node scripts/generate-content.js');
+  // The post is written by the model selected in Hermes on the DGX
+  if (!hermesAvailable()) {
+    console.error(`❌ Error: Hermes not found at ${HERMES} (set HERMES_BIN); the post is written by its selected model`);
     process.exit(1);
   }
   
